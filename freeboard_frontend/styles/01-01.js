@@ -30,6 +30,7 @@ export const Writer = styled.div`
 
 export const Writer_account = styled.div`
   
+  
 `
 export const Writer__name = styled.div`
   
@@ -37,12 +38,17 @@ export const Writer__name = styled.div`
 export const Writer__input = styled.input`
   width: 450px;
   height: 40px;
+  &::placeholder {
+    color: gray;
+  }
   
 `
 
 export const Writer__content = styled.div`
-margin-left: 100px;
-margin-top: 30px;
+  margin-left: 100px;
+  margin-top: 30px;
+  
+  
   
 `
 export const Writer__content__title = styled.div`
