@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {useMutation, gql} from '@apollo/client';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router'
 
 import { 
   Wrapper, 
@@ -45,94 +45,81 @@ export default function Freebd(){
   const [pwd, setPwd] = useState('')
   const [title, setTitle] = useState('');
   const [contents, setContents] = useState('');
-  const [youtube, setYoutubeUrl] = useState('');
-  const [addressTotal, setAddressTotal] = useState({
-    zipcode: "",
-    address: "",
-    addressDetail: ''
-    })
-
 
   const [writerMsg, setWriterMsg] = useState('');
   const [pwdMsg, setPwdMsg] = useState('');
   const [titleMsg, setTitleMsg] = useState('');
   const [contentsMsg, setContentsMsg] = useState('');
-  
+  const [inputState, setInputState] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
-  const router = useRouter();
+/*
+  const BoardSubmit = async ()=>{
+    // console.log(inputState);
+    if(inputState ===true){
+      // console.log(inputState);
+      const result = await createBoard({
+        variables: {
+          createBoardInput:{
+            writer: writer,
+            password: pwd,
+            title: title,
+            contents: contents,
+            youtubeUrl:"ddd",
+            boardAddress:{
+              zipcode: "1234",
+              address: "경기도",
+              addressDetail:"100ehd"
+            },
 
+          }
+        }
+      });
+      console.log(result.data);
+    }
+    // setInputState(!inputState);
+  }
+*/
 
 
   
 
-  const WriterF = (e)=>{
+  function WriterF(e){
     setWriter(e.target.value);
     // 조건문에서 변수에 값이 있으면 true 임
     if(writer){
       setWriterMsg('');
     }
   }
-  const PwdF = (e)=>{
+  function PwdF(e){
     setPwd(e.target.value);
     if(pwd){
       setPwdMsg('');
     }
   }
-  const TitleF =(e)=>{
+  function TitleF(e){
     setTitle(e.target.value);
     if(title){
       setTitleMsg('');
     }
   }
-  const ContentsF = (e)=>{
+  function ContentsF(e){
     setContents(e.target.value);
     if(contents){
       setContentsMsg('');
     }
   }
-
-  const YoutubeF = (e)=>{
-    setYoutubeUrl(e.target.value)
-  }
-
-  const Address = (e)=>{
-    setAddressTotal(e.target.value)
-  }
   
-  
-  const SignupChk = async ()=>{
+  const SignupChk = ()=>{
+    
+  }
+  function SignupChk(BoardSubmitC){
     
     if(writer !== '' && pwd !== '' && title !== '' && contents !== '') {
-      
+      setInputState(true);
       // alert('등록이 완료되었습니다.')
-
-      try{
-        const result = await createBoard({
-          variables: {
-            createBoardInput:{
-              writer: writer,
-              password: pwd,
-              title: title,
-              contents: contents,
-              youtubeUrl: "youtube",
-              boardAddress:{
-                zipcode: "ddd",
-                address: "ddd",
-                addressDetail:"dddd"
-              },
-    
-            }
-          }
-        });
-        router.push(`/PostDetail/${result.data.createBoard._id}`)
-        console.log(result.data);  
-        
-        
-        console.log(router)
-      }catch(error){
-        console.log(error.message)
-      } 
+      
+      
     }
     if(writer === ''){
       setWriterMsg('이름을 입력하세요');
@@ -146,9 +133,41 @@ export default function Freebd(){
     if(contents === ''){
       setContentsMsg('내용을 입력하세요');
     }
-    
+    BoardSubmitC();
+
   }
+  const BoardSubmit = async ()=> {
+
+    // console.log(inputState);
+    //  if(inputState ===true){
+      // console.log(inputState);
+      const result = await createBoard({
+        variables: {
+          createBoardInput:{
+            writer: writer,
+            password: pwd,
+            title: title,
+            contents: contents,
+            youtubeUrl:"ddd",
+            boardAddress:{
+              zipcode: "1234",
+              address: "경기도",
+              addressDetail:"100ehd"
+            },
+  
+          }
+        }
+      });
+      console.log(result.data);
+    // }
+    // setInputState(!inputState);
+  }
+
  
+  
+  
+
+  
  
   
   return(
@@ -208,7 +227,9 @@ export default function Freebd(){
         <label><Select__radio type="radio" name="mainSet" value='image'></Select__radio>사진</label>
 
       </Select>
-      <Submit__btn onClick={SignupChk}>등록하기</Submit__btn>
+      <Submit__btn onClick={()=>{
+        SignupChk(BoardSubmit)
+      }}>등록하기</Submit__btn>
       
      
      

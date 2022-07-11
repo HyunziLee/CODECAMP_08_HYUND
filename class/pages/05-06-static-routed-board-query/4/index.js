@@ -19,7 +19,7 @@ export default function StaticRoutedPage(){
     }
   })
 
-  console.log(data)
+  console.log(data) 
 
   return(
     <div>
