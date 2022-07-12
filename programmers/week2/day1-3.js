@@ -9,19 +9,30 @@ phone_number는 길이 4 이상, 20이하인 문자열입니다.
 
 */
 
-
 function solution(phone_number) {
-  var answer = '';
-let cut = phone_number
+  let  answer = '';
+  
+  let cut = phone_number
+  
+  	cut = phone_number.slice(-4)
+    answer = cut.padStart(phone_number.length, '*')
 
-if(phone_number.length>5 && phone_number.length<21){
-  cut = phone_number.slice(-4)
-  answer = cut.padStart(phone_number.length, '*')
-}else {
-  return false
-}
-  return answer;
+    return answer;
 }
 
 let a = solution("027778888");
 console.log(a)
+
+/*
+  다른풀이
+  let answer = [];
+  for(let i=0 ;i<phone_number.length;i++){
+    if(i<phone_number.length-4){
+      answer  += "+"
+    } else {
+      answer += phone_number[i]
+    }
+  }
+
+
+*/

@@ -35,3 +35,12 @@ function solution(arr)
     }  
   return answer
 }
+
+/*
+  다른 풀이
+  const answer = []
+  for (let i =0 <i<arr.length; i++ ){
+    if(arr[i] !== answer[arr.length-1]) answer.push(arr[i]);
+  }
+
+*/
