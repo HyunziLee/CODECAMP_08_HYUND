@@ -15,8 +15,11 @@ import {
   Youtube,
   LikeDislikeIcon,
   LikeDislikeIcon_icon,
+  FooterBtnWrapper,
+  FooterBtnWrapper__btn
   
 } from "../../../../../styles/postDetail";
+
 import {faLocationDot, faLink, faThumbsUp, faThumbsDown} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -56,7 +59,15 @@ export default function BoardDetailUI(props){
             <div>{props.data?.fetchBoard.dislikeCount}</div>
           </LikeDislikeIcon_icon>
         </LikeDislikeIcon>
+
+        <FooterBtnWrapper>
+          <FooterBtnWrapper__btn>목록으로</FooterBtnWrapper__btn>
+          <FooterBtnWrapper__btn>수정하기</FooterBtnWrapper__btn>
+          <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
+        </FooterBtnWrapper>
+       
     </Wrapper>
+    
   </div>
   )
 }

@@ -12,7 +12,7 @@ arr의 원소는 -10,000 이상 10,000 이하인 정수입니다.
 
 function solution(arr) {
   let copy = [...arr];
- let sum = 0;
+ let sum = 0;ß
  let answer = 0;
  
  copy.forEach((a)=>{
@@ -22,3 +22,14 @@ function solution(arr) {
    
    return answer;
 }
+
+/*
+  다른풀이
+
+  const sum = arr.reduce((c,e)=>{
+    return c+e
+  },0)
+  return sum/arr.length
+
+
+*/

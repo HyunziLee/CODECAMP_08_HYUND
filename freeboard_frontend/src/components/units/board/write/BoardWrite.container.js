@@ -127,6 +127,8 @@ export default function BoardWrite(){
   return(
     <BoardWriteUI
       InputFunction={InputFunction}
+
+      
       SignupChk={SignupChk}
       writerMsg={writerMsg}
       pwdMsg={pwdMsg}

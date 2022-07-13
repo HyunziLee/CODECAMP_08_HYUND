@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
+
 export const Wrapper = styled.div`
   width : 1200px;
   border: 1px solid black;
@@ -155,4 +156,21 @@ export const LikeDislikeIcon_icon = styled.div`
 
   
   
+`
+export const FooterBtnWrapper = styled.div`
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+
+`
+export const FooterBtnWrapper__btn = styled.button`
+  background-color: #fff;
+  margin-left: 20px;
+  width: 179px;
+  height: 45px;
+  border: 1px solid #BDBDBD;
+  cursor: pointer;
+
 `
