@@ -13,15 +13,14 @@ s	return
 
 */
 
-
-
-
-
 function solution(s) {
 	let arr = [...s];
   let result =[];
   let result2=[]
   let answer = true;
+    if(s.length !==4 && s.length!==6){
+        return false
+    }
   
   
  arr.forEach((a,i)=>{
@@ -34,3 +33,26 @@ function solution(s) {
 
 let a = solution("1234")
 console.log(a)
+
+
+/*
+다른풀이
+function solution(s) {
+	
+  if(s.length !==4 && s.length!==6){
+      return false
+  }
+  const answer = s.split('').filter(num=>{
+    //데이터가 숫자가 아닌 문자 타입만 남긴다.
+    // NaN 값인 데이터만 남긴다.
+
+    return isNaN(num)
+  })
+  return answer.length ===0
+
+}
+
+
+
+
+*/

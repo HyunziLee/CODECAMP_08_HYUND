@@ -42,3 +42,26 @@ for(let i =1 ; i<n+1;i++){
 
 let a = solution(5)
 console.log(a)
+
+/*
+다른풀이 1
+
+let answer = n
+
+for(let i =1; i<=n/2; i++){
+  if(n%i===0) answer +=i
+}
+ return answer
+
+ 다른풀이 2
+
+ const answer = new Array(n).fill(1) //<= 배열길이가 n이 생성되고, n개가 1로 채워짐
+ const answer = new Array(n).fill(1).reduce((c,e,i)=>{
+  let num = e +i
+  return n%num=== 0 ? c+num : c 
+ },0)
+
+
+
+
+*/
