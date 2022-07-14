@@ -59,13 +59,17 @@ export default function BoardWrite(props){
   }
 
   const onClickUpdate = async()=>{
+    const myVariables={
+      number: Number(router.query.number),     //$number = number와 같음
+    }
+    if(writer) myVariables.writer = writer
+    
+    if(title) myVariables.title = title
+  
+    if(contents) myVariables.contents = contents
+  
     const result = await updateBoard({
-      variables:{
-        number: Number(router.query.number),     //$number = number와 같음
-        writer:writer,
-        title:title,
-        contents:contents
-      }
+      variables: myVariables
     })
     router.push(`/09-01-boards/${result.data.updateBoard.number}`) //=router.query.number와 같은 번호임
 
@@ -80,6 +84,14 @@ export default function BoardWrite(props){
         onChangeFunction={onChangeFunction}
         mycolor = {mycolor}
         isEdit ={props.isEdit}
+        data={props.data}
     />
   )
 }
+
+/*
+  수정페이지에서 수정 내용 입력안할 경우, 백엔드에 빈내용 저장하는거 방지하는 방법
+
+  1. state 초기값으로 defaultvalue 넣어주기
+  2. mutation에서 state 가 변경된것만 보내기
+*/ 
