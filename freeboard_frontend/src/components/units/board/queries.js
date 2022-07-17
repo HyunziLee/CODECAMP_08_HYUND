@@ -29,16 +29,14 @@ export const CREATE_BOARD = gql`
   }
 `
 export const UPDATE_BOARD = gql`
-  mutation updateBoard($updateBoardInput: UpdateBoardInput!,$password:String, $boardId:ID!){
-    updateBoard(updateBoardInput: $updateBoardInput, password:$password, boardId:$boardId){
+  mutation updateBoard( $boardId:ID!, $password:String, $updateBoardInput: UpdateBoardInput!){
+    updateBoard(boardId:$boardId, password:$password, updateBoardInput: $updateBoardInput ){
       _id
-      Writer
+      writer
       title
       contents
-      updateAt
+      updatedAt
     }
   }
-
-
 
 `

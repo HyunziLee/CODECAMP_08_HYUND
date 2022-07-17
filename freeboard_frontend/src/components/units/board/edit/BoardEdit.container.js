@@ -6,5 +6,3 @@ export default function PostEdit(props){
     <BoardWrite btnState = {props.btnState}/>
   )
 }
-
-//onClickUpdateBtn

@@ -110,11 +110,14 @@ export default function BoardWrite(props){
 
   const onClickUpdateBtn = async()=>{
     
+    
     if(writer !== '' && pwd !== '' && title !== '' && contents !== '') {
       try{
         const result= await updateBoard({
           variables: {
-           
+
+            boardId: router.query.name,
+            password: pwd,
             updateBoardInput:{
               title,
               contents,
