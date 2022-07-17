@@ -2,7 +2,15 @@ import * as s from './postList.style'
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { useRouter } from 'next/router';
+
+import {FETCH_BOARD} from '../queries'
+
+
 export default function PostListUI(props){
+
+  const router = useRouter();
+  const ListId = ""
   
   const getDate = (value)=>{
     const date = new Date(value)
@@ -13,9 +21,14 @@ export default function PostListUI(props){
     return `${yyyy}-${mm}-${dd}`
 
   }
-  
-  const a = [1,2,3,4,5]
 
+
+
+  const MoveToListDetailBtn=(x)=>{
+
+    router.push(`/PostDetail/${x}`)
+  }
+  
 
   return (
 
@@ -36,14 +49,15 @@ export default function PostListUI(props){
             <s.ListWrapper__column>날짜</s.ListWrapper__column>
           </s.ListWrapper__row>
 
-           { props.data?.fetchBoards.map((e,i)=>{
+           { props.data?.fetchBoards.map((e,i)=>{ 
 
             return( 
               <s.ListWrapper__row key={e._id}>
-                <s.ListWrapper__column>{i+1}</s.ListWrapper__column>
-                <s.ListWrapper__column>{e.title}</s.ListWrapper__column>
-                <s.ListWrapper__column>{e.writer}</s.ListWrapper__column>
-                <s.ListWrapper__column>{e.createdAt}</s.ListWrapper__column>
+                <s.ListWrapper__column >{i+1}</s.ListWrapper__column>
+                {/* 제목 눌렀을 때, _id를 이용해 Detail 페이지로 이동 */}
+                <s.ListWrapper__column onClick={()=>{MoveToListDetailBtn(e._id)}}><span>{e.title}</span> </s.ListWrapper__column>
+                <s.ListWrapper__column >{e.writer}</s.ListWrapper__column>
+                <s.ListWrapper__column >{e.createdAt}</s.ListWrapper__column>
               </s.ListWrapper__row>)
 
            })

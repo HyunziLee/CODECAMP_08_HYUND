@@ -84,6 +84,12 @@ export const ListWrapper__row = styled.div`
 
 `
 export const ListWrapper__column = styled.div`
+
+ span {
+    cursor: pointer;
+
+  }
+  
   
 `
 export const Footer = styled.div`

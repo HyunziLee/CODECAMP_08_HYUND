@@ -61,11 +61,25 @@ export default function BoardDetailUI(props){
           </LikeDislikeIcon_icon>
         </LikeDislikeIcon>
 
-        <FooterBtnWrapper>
-          <FooterBtnWrapper__btn onClick={props.MoveToListPageBtn}>목록으로</FooterBtnWrapper__btn>
-          <FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>수정하기</FooterBtnWrapper__btn>
-          <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
-        </FooterBtnWrapper>
+        {
+          props.adminState 
+          ? <div>ssdfs</div>
+          : <FooterBtnWrapper >
+              <FooterBtnWrapper__btn onClick={props.MoveToListPageBtn}>목록으로</FooterBtnWrapper__btn>
+              <FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>수정하기</FooterBtnWrapper__btn>
+              <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
+            </FooterBtnWrapper>
+          
+          
+
+
+        }
+
+         {/* <FooterBtnWrapper >
+           <FooterBtnWrapper__btn onClick={props.MoveToListPageBtn}>목록으로</FooterBtnWrapper__btn>
+           <FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>수정하기</FooterBtnWrapper__btn>
+           <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
+         </FooterBtnWrapper> */}
        
     </Wrapper>
     

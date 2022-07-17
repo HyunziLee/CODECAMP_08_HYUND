@@ -163,6 +163,7 @@ export default function BoardWrite(props){
       data={props.data}
       
       
+      
 
     />
   )

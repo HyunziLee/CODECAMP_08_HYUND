@@ -3,20 +3,8 @@ import PostListUI from "./postList.presenter"
 import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
 
-const FETCH_BOARDS = gql`
-  query fetchBoards ($endDate:DateTime, $startDate:DateTime, $search:String, $page:Int){
-    fetchBoards (endDate:$endDate, startDate:$startDate, search:$search, page:$page){
-      _id
-      writer
-      title
-      createdAt
-      
+import {FETCH_BOARDS, FETCH_BOARD} from '../queries'
 
-    }
-  }
-
-
-`
 
 
 export default function PostListContainer(){
@@ -32,10 +20,23 @@ export default function PostListContainer(){
     }
   });
 
+  const{data:ListDetail} = useQuery(FETCH_BOARD, {
+    variables:{
+      // router.query.변수명=> 하위 폴더 [변수명]
+      boardId: router.query.name
+    }
+  })
+
+ 
+
   const MoveToWritePageBtn=()=>{
 
     router.push(`/PostForm/`)
   }
+
+
+
+
    
   return(
     
@@ -43,8 +44,10 @@ export default function PostListContainer(){
       
       <PostListUI 
         data={data}
+        ListDetail={ListDetail}
         
         MoveToWritePageBtn={MoveToWritePageBtn}
+        
         >
       </PostListUI>
     </>
