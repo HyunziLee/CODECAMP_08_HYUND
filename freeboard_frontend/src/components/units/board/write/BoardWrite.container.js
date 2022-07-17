@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import {useMutation} from '@apollo/client';
 
-import {CREATE_BOARD} from '../write/BoardWrite.queries'
+import { CREATE_BOARD, UPDATE_BOARD } from '../queries';
 import BoardWriteUI from './BoardWrite.presenter';
 
-export default function BoardWrite(){
+export default function BoardWrite(props){
 
   const [createBoard] = useMutation(CREATE_BOARD);
+  const[updateBoard] = useMutation(UPDATE_BOARD)
   const router = useRouter();
   
   const [writer, setWriter] = useState('');
@@ -61,10 +62,6 @@ export default function BoardWrite(){
 
   }
   
-
-  
-  
-  
   const SignupChk = async ()=>{
     
     if(writer !== '' && pwd !== '' && title !== '' && contents !== '') {
@@ -87,8 +84,9 @@ export default function BoardWrite(){
             }
           }
         });
-        router.push(`/PostDetail/${result.data.createBoard._id}`)
         console.log(result.data);  
+        router.push(`/PostDetail/${result.data.createBoard._id}`)
+       
         console.log(router)
       }catch(error){
         console.log(error.message)
@@ -109,6 +107,50 @@ export default function BoardWrite(){
     }
     
   }
+
+  const onClickUpdateBtn = async()=>{
+    
+    if(writer !== '' && pwd !== '' && title !== '' && contents !== '') {
+      try{
+        const result= await updateBoard({
+          variables: {
+           
+            updateBoardInput:{
+              title,
+              contents,
+              youtubeUrl: "youtube",
+              boardAddress:{
+                zipcode: "ddd",
+                address: "ddd",
+                addressDetail:"dddd"
+              },
+
+            }
+          
+          }
+        });
+        router.push(`/PostDetail/${result.data.updateBoard._id}`)
+        console.log(result.data);  
+        console.log(router)
+      }catch(error){
+        console.log(error.message)
+      } 
+    }
+    if(writer === ''){
+      setWriterMsg('이름을 입력하세요');
+    }
+    
+    if(pwd === ''){
+      setPwdMsg('비밀번호를 입력하세요');
+    }
+    if(title === ''){
+      setTitleMsg('제목을 입력하세요');
+    }
+    if(contents === ''){
+      setContentsMsg('내용을 입력하세요');
+    }
+
+  }
   
   
   return(
@@ -119,7 +161,8 @@ export default function BoardWrite(){
       pwdMsg={pwdMsg}
       titleMsg={titleMsg}
       contentsMsg={contentsMsg}
-      
+      btnState={props.btnState}
+      onClickUpdateBtn={onClickUpdateBtn}
 
     />
   )

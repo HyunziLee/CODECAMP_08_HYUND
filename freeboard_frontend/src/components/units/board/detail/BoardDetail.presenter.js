@@ -63,7 +63,7 @@ export default function BoardDetailUI(props){
 
         <FooterBtnWrapper>
           <FooterBtnWrapper__btn onClick={props.MoveToListPageBtn}>목록으로</FooterBtnWrapper__btn>
-          <FooterBtnWrapper__btn>수정하기</FooterBtnWrapper__btn>
+          <FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>수정하기</FooterBtnWrapper__btn>
           <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
         </FooterBtnWrapper>
        

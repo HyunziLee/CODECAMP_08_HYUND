@@ -25,7 +25,7 @@ import {
 export default function BoardWriteUI(props){
   return(
     <Wrapper>
-      <Wrapper_title>게시물 등록</Wrapper_title>
+      <Wrapper_title>{props.btnState ? "게시물 등록" : "게시물 수정"}</Wrapper_title>
       <Writer>
         <Writer_account>
           <Writer__name>작성자</Writer__name>
@@ -80,7 +80,8 @@ export default function BoardWriteUI(props){
         <label><Select__radio type="radio" name="mainSet" value='image'></Select__radio>사진</label>
 
       </Select>
-      <Submit__btn onClick={props.SignupChk}>등록하기</Submit__btn>
+      <Submit__btn onClick={props.btnState? props.SignupChk : props.onClickUpdateBtn}>{props.btnState ? "등록하기" : "수정하기"}
+      </Submit__btn>
       
   </Wrapper>
   )

@@ -23,7 +23,7 @@ export default function PostListContainer(){
 
   const router = useRouter();
 
-  let a = 5;
+  let a = 1;
 
   // useQuery  결과값 담는 변수명은 data 밖에 못씀, 만약에 useQuery가 여러개 있다면 이런식으로 써야함=> const {data :작명 }  = useQuery() 데이터는 작명에 담김 => ex console.log(작명)
   const {data} = useQuery(FETCH_BOARDS, {
