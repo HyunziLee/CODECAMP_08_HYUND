@@ -17,18 +17,7 @@ N	answer
 입출력 예 #2
 9 + 8 + 7 = 24이므로 24를 return 하면 됩니다.
 
-
-
-
 */
-
-
-
-
-
-
-
-
 
 
 function solution(n)
@@ -42,3 +31,15 @@ function solution(n)
     
     return answer;
 }
+
+
+/*
+다른풀이
+ let str = String(n).split('').reduce((acc,cur)=>{
+    return acc+Number(cur)
+ },0)
+  
+
+
+
+*/

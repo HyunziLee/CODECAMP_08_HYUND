@@ -2,10 +2,6 @@ import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.
 
 export default function PostDetail(){
 
- 
-
-
-
   return(
    <BoardDetail />
   )

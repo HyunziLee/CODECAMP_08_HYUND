@@ -122,9 +122,12 @@ export const Footer__submitBtn = styled.button`
   justify-content: center;
   align-items: center;
   font-size: 16px;
+  cursor: pointer;
+  
 
 `
 export const Footer__submitBtn_icon = styled.div`
+  margin-right: 10px;
   
 
 `

@@ -6,6 +6,9 @@ import {CREATE_BOARD} from '../write/BoardWrite.queries'
 import BoardWriteUI from './BoardWrite.presenter';
 
 export default function BoardWrite(){
+
+  const [createBoard] = useMutation(CREATE_BOARD);
+  const router = useRouter();
   
   const [writer, setWriter] = useState('');
   const [pwd, setPwd] = useState('')
@@ -23,22 +26,6 @@ export default function BoardWrite(){
   const [pwdMsg, setPwdMsg] = useState('');
   const [titleMsg, setTitleMsg] = useState('');
   const [contentsMsg, setContentsMsg] = useState('');
-
-
-  // const [errorMessage, setErrorMessage] = useState([{
-  //   writer: "",
-  //   setWriter: (arr)=>{
-  //     setErrorMessage(`${arr}을 입력하세요`)
-      
-  //   }
-  // }])
-
-  // const errorM = (arr)=>{
-    
-  //   return `${arr}를 입력하세요`
-  // }
-
-
   
   const InputFunction = {
     writer: (e)=>{
@@ -73,9 +60,9 @@ export default function BoardWrite(){
     }
 
   }
-  const [createBoard] = useMutation(CREATE_BOARD);
+  
 
-  const router = useRouter();
+  
   
   
   const SignupChk = async ()=>{
@@ -127,8 +114,6 @@ export default function BoardWrite(){
   return(
     <BoardWriteUI
       InputFunction={InputFunction}
-
-      
       SignupChk={SignupChk}
       writerMsg={writerMsg}
       pwdMsg={pwdMsg}

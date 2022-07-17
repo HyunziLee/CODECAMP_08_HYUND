@@ -28,3 +28,18 @@ function solution(x, n) {
 
   return answer;
 }
+
+/*
+다른풀이
+
+function solution(x, n) {
+	  const answer  = new Array(n).fill(x); 
+		answer.map((num,i)=>{
+      console.log(num*(i+1))
+      
+    })
+
+}
+
+
+*/

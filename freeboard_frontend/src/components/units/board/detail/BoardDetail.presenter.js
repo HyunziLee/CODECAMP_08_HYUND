@@ -33,6 +33,7 @@ export default function BoardDetailUI(props){
             <ProfileName>
               <Name>{props.data? props.data.fetchBoard.writer : "로딩중"}</Name>
               <Date>{props.data? props.data.fetchBoard.createdAt : "로딩중"}</Date>
+              {console.log(props.data)}
             </ProfileName>
           </ProfileWrapper>
           <ProfileIcon>
@@ -61,7 +62,7 @@ export default function BoardDetailUI(props){
         </LikeDislikeIcon>
 
         <FooterBtnWrapper>
-          <FooterBtnWrapper__btn>목록으로</FooterBtnWrapper__btn>
+          <FooterBtnWrapper__btn onClick={props.MoveToListPageBtn}>목록으로</FooterBtnWrapper__btn>
           <FooterBtnWrapper__btn>수정하기</FooterBtnWrapper__btn>
           <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
         </FooterBtnWrapper>
