@@ -7,6 +7,7 @@ import {FETCH_BOARD} from '../queries'
 
 export default function BoardDetail(){
   
+  
   const router = useRouter();
 
   const{data} = useQuery(FETCH_BOARD, {

@@ -29,7 +29,10 @@ export default function BoardWriteUI(props){
       <Writer>
         <Writer_account>
           <Writer__name>작성자</Writer__name>
-          <Writer__input placeholder="이름을 적어주세요." onChange={props.InputFunction.writer}></Writer__input>
+          {
+            props.btnState? <Writer__input placeholder="이름을 적어주세요." onChange={props.InputFunction.writer}></Writer__input> 
+            : <Writer__input defaultValue={props.data?.fetchBoard.writer} disabled></Writer__input> 
+          }
           <div style={{color:'red'}}>{props.writerMsg}</div>
         </Writer_account>
         <Writer_account>

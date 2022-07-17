@@ -84,6 +84,7 @@ export default function BoardWrite(props){
             }
           }
         });
+        
         console.log(result.data);  
         router.push(`/PostDetail/${result.data.createBoard._id}`)
        
@@ -106,29 +107,29 @@ export default function BoardWrite(props){
       setContentsMsg('내용을 입력하세요');
     }
     
+    
   }
+ 
+
 
   const onClickUpdateBtn = async()=>{
-    
-    
-    if(writer !== '' && pwd !== '' && title !== '' && contents !== '') {
+    const updateBoardInput= {}
+
+  
+    if(title === '' || contents === ''){
+      alert('제목, 내용의 변경사항이 작성되지 않았다.')
+    }
+    // 변경사항이 있으면 updateBoard에 보내고, 없으면 안보냄
+    if(title)updateBoardInput.title = title
+    if(contents) updateBoardInput.contents = contents
+
+   
       try{
         const result= await updateBoard({
           variables: {
-
             boardId: router.query.name,
             password: pwd,
-            updateBoardInput:{
-              title,
-              contents,
-              youtubeUrl: "youtube",
-              boardAddress:{
-                zipcode: "ddd",
-                address: "ddd",
-                addressDetail:"dddd"
-              },
-
-            }
+            updateBoardInput: updateBoardInput
           
           }
         });
@@ -136,24 +137,17 @@ export default function BoardWrite(props){
         console.log(result.data);  
         console.log(router)
       }catch(error){
-        console.log(error.message)
+        alert(error.message)
+        // console.log(error.message)
       } 
-    }
-    if(writer === ''){
-      setWriterMsg('이름을 입력하세요');
-    }
     
-    if(pwd === ''){
+    if(!pwd){
       setPwdMsg('비밀번호를 입력하세요');
     }
-    if(title === ''){
-      setTitleMsg('제목을 입력하세요');
-    }
-    if(contents === ''){
-      setContentsMsg('내용을 입력하세요');
-    }
+    
 
   }
+ 
   
   
   return(
@@ -166,6 +160,9 @@ export default function BoardWrite(props){
       contentsMsg={contentsMsg}
       btnState={props.btnState}
       onClickUpdateBtn={onClickUpdateBtn}
+      data={props.data}
+      
+      
 
     />
   )
