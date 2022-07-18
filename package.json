@@ -3,6 +3,8 @@
     "@graphql-codegen/cli": "^2.8.1"
   },
   "dependencies": {
-    "@graphql-codegen/typescript": "^2.7.1"
+    "@graphql-codegen/typescript": "^2.7.1",
+    "react-player": "^2.10.1",
+    "youtube-playlist": "^1.0.4"
   }
 }

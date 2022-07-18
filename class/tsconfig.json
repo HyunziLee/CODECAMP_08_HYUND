@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/quiz/11-01-star/index.js"  ],
   "exclude": [
     "node_modules"
   ]
