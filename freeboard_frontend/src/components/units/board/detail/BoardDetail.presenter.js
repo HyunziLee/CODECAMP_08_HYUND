@@ -60,8 +60,8 @@ export default function BoardDetailUI(props){
             <div>{props.data?.fetchBoard.dislikeCount}</div>
           </LikeDislikeIcon_icon>
         </LikeDislikeIcon>
-
-        {
+    </Wrapper>
+    {
           props.adminState 
           ? <div>ssdfs</div>
           : <FooterBtnWrapper >
@@ -69,19 +69,7 @@ export default function BoardDetailUI(props){
               <FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>수정하기</FooterBtnWrapper__btn>
               <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
             </FooterBtnWrapper>
-          
-          
-
-
         }
-
-         {/* <FooterBtnWrapper >
-           <FooterBtnWrapper__btn onClick={props.MoveToListPageBtn}>목록으로</FooterBtnWrapper__btn>
-           <FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>수정하기</FooterBtnWrapper__btn>
-           <FooterBtnWrapper__btn>삭제하기</FooterBtnWrapper__btn>
-         </FooterBtnWrapper> */}
-       
-    </Wrapper>
     
   </div>
   )

@@ -1,37 +1,144 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-
-
-
+  width : 1200px;
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0px;
+  
 `
 
 export const Wrapper_write = styled.div`
-
-
-
-`
-
-export const write = styled.div`
-
-
-
-`
-export const write_writer = styled.div`
-
-
-
-`
-export const write_password = styled.div`
-
-
-
+  display: flex;
+  flex-direction: column;
+  
 `
 
 
+export const Write_userInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0px;
+  
+`
+export const UserInfo__writer = styled.input`
+  width : 150px;
+  height: 40px;
+  border: 1px solid #BDBDBD;
+  margin-right: 20px;
+  
+`
+export const UserInfo__password = styled.input`
+  width : 150px;
+  height: 40px;
+  border: 1px solid #BDBDBD;
+
+`
+export const Comment__wrapper = styled.div`
+  width : 100%;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #BDBDBD;
+  
+`
+export const Comment__write = styled.textarea`
+  width : 100%;
+  height: 70%;
+  border: none;
+  &::placeholder{
+    color: #BDBDBD;
+    font-size: 16px;
+  }
+  
+
+`
+export const Comment__info = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 30%;
+  align-content: center;
+  
+`
+export const Comment__info_length = styled.div`
+  width : 90%;
+  border-top: 1px solid #F2F2F2;
+  
+`
+export const Comment__info_btn = styled.div`
+  width : 10%;
+  border: none;  
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  line-height: 45px;
+  
+`
 
 export const Wrapper_list = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 111px;
+  margin-top: 30px;
+  border-bottom: 1px solid #BDBDBD;
+  width: 100%;
 
+`
+export const ProfileImg = styled.div`
+  margin-right: 10px;
+
+
+
+`
+export const CommentFetch = styled.div`
+  display: flex;
+  flex-direction: column;
+
+
+`
+export const FetchData = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  
+  
+`
+
+export const FetchName = styled.div`
+  margin-right: 10px;
+  font-weight: 500;
+  font-size: 16px;
+
+
+
+`
+export const FetchRate = styled.div`
+
+
+
+`
+export const FetchComment = styled.div`
+  font-size: 16px;
+  color: #4F4F4F;
+
+
+`
+export const FetchCreateAt = styled.div`
+  font-size: 12px;
+  color: #BDBDBD;
+
+
+
+`
+export const DeleteBtn = styled.div`
+  font-size: 16px;
+  color: #BDBDBD;
+  justify-items: flex-end;
+  margin-left: 900px;
+  margin-top: -25px;
+  cursor: pointer;
 
 
 `

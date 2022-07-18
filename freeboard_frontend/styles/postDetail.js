@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Wrapper = styled.div`
   width : 1200px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
   
   
 `
@@ -159,10 +159,12 @@ export const LikeDislikeIcon_icon = styled.div`
 `
 export const FooterBtnWrapper = styled.div`
 
+  width: 1200px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 30px;
+  margin: 40px 0px;
+
 
 `
 export const FooterBtnWrapper__btn = styled.button`

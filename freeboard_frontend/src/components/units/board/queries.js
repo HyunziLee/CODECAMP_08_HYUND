@@ -28,6 +28,24 @@ export const CREATE_BOARD = gql`
     }
   }
 `
+export const CREATE_BOARD_COMMENT = gql`
+  mutation createBoardComment(
+    $createBoardCommentInput: CreateBoardCommentInput! 
+    $boardId:ID!
+    ){
+      createBoardComment(
+        createBoardCommentInput:$createBoardCommentInput
+        boardId:$boardId
+        ){
+          _id
+          writer
+          contents
+          rating
+          createdAt
+    }
+}
+`
+
 export const UPDATE_BOARD = gql`
   mutation updateBoard( $boardId:ID!, $password:String, $updateBoardInput: UpdateBoardInput!){
     updateBoard(boardId:$boardId, password:$password, updateBoardInput: $updateBoardInput ){
@@ -48,9 +66,21 @@ export const FETCH_BOARDS = gql`
       title
       createdAt
       
-
     }
   }
 
+`
+export const FETCH_BOARD_COMMENTS = gql`
+  query fetchBoardComments($boardId:ID!) {
+  fetchBoardComments(boardId: $boardId){
+    _id
+    writer
+    contents
+    rating
+    createdAt
+    
+  }
+}
+  
 
 `

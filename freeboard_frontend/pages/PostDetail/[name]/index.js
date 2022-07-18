@@ -1,4 +1,4 @@
-
+import CommentContainer from "../../../src/components/units/board/comment/Comment.container"
 import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.container"
 export default function PostDetailPage(){
 
@@ -11,9 +11,8 @@ export default function PostDetailPage(){
       
       <BoardDetail 
         adminState={false}
-        
-      
       ></BoardDetail>
+      <CommentContainer></CommentContainer>
     
     </>
   )
