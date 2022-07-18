@@ -20,7 +20,7 @@ export default function ListDetailPage(){
     <>
       
       <BoardDetail 
-        adminState={false}
+        // adminState={true} //여기는 true, false에 따라 안바뀜
         data={data}
       
       ></BoardDetail>

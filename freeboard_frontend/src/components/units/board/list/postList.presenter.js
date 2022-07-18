@@ -57,7 +57,7 @@ export default function PostListUI(props){
                 {/* 제목 눌렀을 때, _id를 이용해 Detail 페이지로 이동 */}
                 <s.ListWrapper__column onClick={()=>{MoveToListDetailBtn(e._id)}}><span>{e.title}</span> </s.ListWrapper__column>
                 <s.ListWrapper__column >{e.writer}</s.ListWrapper__column>
-                <s.ListWrapper__column >{e.createdAt}</s.ListWrapper__column>
+                <s.ListWrapper__column >{getDate(e.createdAt)}</s.ListWrapper__column>
               </s.ListWrapper__row>)
 
            })
