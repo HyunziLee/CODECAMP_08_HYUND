@@ -30,12 +30,6 @@ export default function ModalContainer(props) {
       ) : (
         ""
       )}
-      {/* <ModalUI
-        showModal={showModal}
-        handleOk={handleOk}
-        handleCancel={handleCancel}
-        isModalVisible={isModalVisible}
-      ></ModalUI> */}
     </>
   );
 }

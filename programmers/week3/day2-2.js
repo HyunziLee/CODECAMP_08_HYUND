@@ -20,17 +20,26 @@ arr	divisor	return
 function solution(arr, divisor) {
   var answer = [];
 
-arr.forEach((e)=>{
-  if(e%divisor ===0) answer.push(e)
-}) 
-answer.sort((a,b)=>{
-  return a-b
-})
+  arr.forEach((e) => {
+    if (e % divisor === 0) answer.push(e);
+  });
+  answer.sort((a, b) => {
+    return a - b;
+  });
 
-if(answer.length ===0) answer.push(-1)
-return answer;
+  if (answer.length === 0) answer.push(-1);
+  return answer;
 }
 
-let a = solution([3,2,6],10)
+let a = solution([3, 2, 6], 10);
 
-console.log(a)
+console.log(a);
+
+/*
+다른풀이 
+arr.filter((n)=>{
+  return n%divisor === 0
+})
+return answer.length === 0 ? [-1] : answer.sort((a,b)=>a-b)
+
+*/

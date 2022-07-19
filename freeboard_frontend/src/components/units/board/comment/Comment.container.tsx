@@ -3,7 +3,7 @@ import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "../queries";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
-import ModalContainer from "../../../commons/modal.container";
+import ModalContainer from "../../../commons/Modal/modal.container";
 
 export default function CommentContainer() {
   const [createBoardComment] = useMutation(CREATE_BOARD_COMMENT);

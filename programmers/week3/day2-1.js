@@ -9,18 +9,24 @@ n	return
 
 */
 
-
 function solution(n) {
-  let a = n.toString().split('')
-  let answer=[]
-   for(let i = a.length-1;i>=0;--i){
-   answer.push(Number(a[i]))
- }
+  let a = n.toString().split("");
+  let answer = [];
+  for (let i = a.length - 1; i >= 0; --i) {
+    answer.push(Number(a[i]));
+  }
 
-  
   return answer;
 }
 
-let a = solution(12345)
+let a = solution(12345);
 
-console.log(a)
+console.log(a);
+
+/*
+다른풀이
+  let a = n.toString().split('').reverse().map(num=>{
+    return Number(num)
+  })
+
+*/
