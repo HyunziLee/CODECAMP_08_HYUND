@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -87,12 +88,12 @@ export const Contents = styled.div`
   background: skyblue;
   margin-bottom: 100px;
 `;
-export const Youtube = styled.div`
-  width: 55%;
-  height: 250px;
-  background: orange;
-  margin-bottom: 100px;
-`;
+// export const Youtube = styled.div`
+//   width: 55%;
+//   height: 250px;
+//   background: orange;
+//   margin-bottom: 100px;
+// `;
 export const LikeDislikeIcon = styled.div`
   width: 40%;
 
@@ -136,4 +137,8 @@ export const FooterBtnWrapper__btn = styled.button`
   height: 45px;
   border: 1px solid #bdbdbd;
   cursor: pointer;
+`;
+
+export const Youtube = styled(ReactPlayer)`
+  margin-bottom: 100px;
 `;

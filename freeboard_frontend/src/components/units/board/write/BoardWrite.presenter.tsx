@@ -80,7 +80,11 @@ export default function BoardWriteUI(props) {
       </Writer__content>
       <Select>
         <Writer__content__title>메인 설정</Writer__content__title>
-        {props.isRatio === true ? <RatioContainer></RatioContainer> : ""}
+        {props.isRatio === true ? (
+          <RatioContainer InputFunction={props.InputFunction}></RatioContainer>
+        ) : (
+          ""
+        )}
       </Select>
       <Submit__btn
         onClick={props.btnState ? props.SignupChk : props.onClickUpdateBtn}

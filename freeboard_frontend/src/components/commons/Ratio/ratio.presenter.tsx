@@ -9,7 +9,11 @@ export default function RatioUI(props) {
         <Radio value={1}>유튜브</Radio>
         <Radio value={2}>이미지</Radio>
       </Radio.Group>
-      {props.value === 1 ? <UrlInputContainer /> : <UploadImgContainer />}
+      {props.value === 1 ? (
+        <UrlInputContainer InputFunction={props.InputFunction} />
+      ) : (
+        <UploadImgContainer />
+      )}
     </>
   );
 }

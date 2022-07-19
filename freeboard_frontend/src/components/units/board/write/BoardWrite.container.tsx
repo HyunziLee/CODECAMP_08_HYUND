@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
+import DaumPostcodeEmbed from "react-daum-postcode";
 
 import { CREATE_BOARD, UPDATE_BOARD } from "../queries";
 import BoardWriteUI from "./BoardWrite.presenter";
@@ -16,11 +17,12 @@ export default function BoardWrite(props) {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
-  const [addressTotal, setAddressTotal] = useState({
-    zipcode: "",
-    address: "",
-    addressDetail: "",
-  });
+  const [addressTotal, setAddressTotal] = useState("");
+  // const [addressTotal, setAddressTotal] = useState({
+  //   zipcode: "",
+  //   address: "",
+  //   addressDetail: "",
+  // });
 
   const [writerMsg, setWriterMsg] = useState("");
   const [pwdMsg, setPwdMsg] = useState("");
@@ -57,7 +59,26 @@ export default function BoardWrite(props) {
       setYoutubeUrl(e.target.value);
     },
     address: (e) => {
-      setAddressTotal(e.target.value);
+      const handleComplete = (data) => {
+        let fullAddress = data.address;
+        let extraAddress = "";
+
+        if (data.addressType === "R") {
+          if (data.bname !== "") {
+            extraAddress += data.bname;
+          }
+          if (data.buildingName !== "") {
+            extraAddress +=
+              extraAddress !== ""
+                ? `, ${data.buildingName}`
+                : data.buildingName;
+          }
+          fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+        }
+
+        console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+        setAddressTotal(fullAddress);
+      };
     },
   };
 
@@ -149,7 +170,7 @@ export default function BoardWrite(props) {
         data={props.data}
         isRatio={isRatio}
       />
-      {/* <RatioContainer isRatio={isRatio} /> */}
+      <DaumPostcodeEmbed onComplete={InputFunction.address} />
     </>
   );
 }
