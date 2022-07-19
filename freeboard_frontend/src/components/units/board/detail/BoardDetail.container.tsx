@@ -1,7 +1,7 @@
 import {useRouter} from 'next/router';
 import { useState } from "react";
 import {useQuery} from '@apollo/client';
-import BoardDetailUI from '../detail/BoardDetail.presenter';
+import BoardDetailUI from './BoardDetail.presenter';
 import {FETCH_BOARD} from '../queries'
 
 

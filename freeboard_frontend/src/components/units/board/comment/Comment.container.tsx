@@ -2,7 +2,7 @@ import CommentUI from './Comment.presenter'
 import {CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS} from '../queries'
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import {useMutation} from '@apollo/client';
+import {useMutation, useQuery} from '@apollo/client';
 
 export default function CommentContainer(){
 
@@ -12,6 +12,7 @@ export default function CommentContainer(){
   const[password, setPassword] = useState('');
   const[contents, setContents] = useState('');
   const[rating, setRating] = useState(0.0);
+  
 
   const commentInputFunc = {
     writer: (e)=>{
@@ -26,23 +27,23 @@ export default function CommentContainer(){
       setContents(e.target.value);
       console.log(contents)
     },
-    rating: (e)=>{
-      setRating(e.target.value);
-      console.log(rating)
+    rating: (i)=>{
+      setRating(i);
+      // console.log(rating)
     },
   }
 
   const onClickCommentBtn = async()=>{
     
     try{
-      const result = await createBoardComment({
+       const result = await createBoardComment({
         variables:{
           boardId:router.query.name,
           createBoardCommentInput:{
             writer: writer,
             password: password,
             contents: contents,
-            rating: 0
+            rating: parseFloat(rating)
           }
 
         },
@@ -54,18 +55,27 @@ export default function CommentContainer(){
         ]
 
       });
-      console.log(result)
+      
     }catch(error){
       alert(error.message)
     }
+    
   }
+  const{data} = useQuery(FETCH_BOARD_COMMENTS, {
+    variables:{
+      // router.query.변수명=> 하위 폴더 [변수명]
+      boardId: router.query.name
+    }
+  })
+  console.log(data)
 
 
-
+  
   return(
     <CommentUI
       onClickCommentBtn={onClickCommentBtn}
       commentInputFunc={commentInputFunc}
+      data={data}
       
     ></CommentUI>
   )

@@ -5,14 +5,16 @@ import React, { useState } from 'react';
 
 import * as s from './Comment.styles'
 export default function CommentUI(props){
-  const [value, setValue] = useState(0)
+  const [starValue, setStarValue] = useState(0.0)
+  
   return(
     <>
       <s.Wrapper>
         <s.Wrapper_write>
           
           <div>댓글</div>
-          <Rate onChange={setValue} value={value} />
+            <Rate onChange={setStarValue} />
+            
           <s.Write_userInfo>
             <s.UserInfo__writer onChange={props.commentInputFunc.writer}></s.UserInfo__writer>
             <s.UserInfo__password onChange={props.commentInputFunc.password}></s.UserInfo__password>
@@ -29,29 +31,37 @@ export default function CommentUI(props){
             </s.Comment__info>
           </s.Comment__wrapper>
         </s.Wrapper_write>
+        
+        
+          {
+            props.data?.fetchBoardComments.map((e,i)=>{
+              
+              return(
+                <>
+                  <s.Wrapper_list key={e._id}>
+                    <s.ProfileImg>
+                      <Avatar size={44} icon={<UserOutlined />} />
+                    </s.ProfileImg>
+                    <s.CommentFetch>
+                      <s.FetchData>
+                        <s.FetchName>{e.writer}</s.FetchName>
+                        <s.FetchRate>
+                          <Rate value={e.rating}/>
+                        </s.FetchRate> 
+                      </s.FetchData>
+                      <s.FetchComment>{e.contents}</s.FetchComment>
+                      <s.FetchCreateAt>{e.createdAt}</s.FetchCreateAt>
+                    </s.CommentFetch>
+                    <s.DeleteBtn>
+                      <CloseOutlined />
+                    </s.DeleteBtn>
+                  </s.Wrapper_list>
+                </>
+              )
+            })
+          }
 
-        <s.Wrapper_list>
-          <s.ProfileImg>
-            <Avatar size={44} icon={<UserOutlined />} />
-          </s.ProfileImg>
-          <s.CommentFetch>
-            <s.FetchData>
-              <s.FetchName>이름</s.FetchName>
-              <s.FetchRate>
-                <Rate/>
-              </s.FetchRate> 
-            </s.FetchData>
-            <s.FetchComment>adsfasdfadf</s.FetchComment>
-            <s.FetchCreateAt>20220711</s.FetchCreateAt>
-          </s.CommentFetch>
-          <s.DeleteBtn>
-            <CloseOutlined />
-          </s.DeleteBtn>
-        </s.Wrapper_list>
-
-
-
-
+       
       </s.Wrapper>
     
     
