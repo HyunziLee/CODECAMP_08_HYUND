@@ -11,7 +11,7 @@ export default function CommentContainer(){
   const[writer, setWriter] = useState('');
   const[password, setPassword] = useState('');
   const[contents, setContents] = useState('');
-  const[rating, setRating] = useState(0.0);
+  const[rating, setRating] = useState(0);
   
 
   const commentInputFunc = {
@@ -40,10 +40,10 @@ export default function CommentContainer(){
         variables:{
           boardId:router.query.name,
           createBoardCommentInput:{
-            writer: writer,
-            password: password,
-            contents: contents,
-            rating: parseFloat(rating)
+            writer,
+            password,
+            contents,
+            rating: rating
           }
 
         },
