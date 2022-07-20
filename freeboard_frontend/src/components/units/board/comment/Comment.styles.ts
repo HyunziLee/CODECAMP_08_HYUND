@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import { Rate, Avatar } from "antd";
 
 export const Wrapper = styled.div`
+  margin: auto;
   width: 1200px;
   display: flex;
   flex-direction: column;
-  margin: 40px 0px;
+  margin-top: 40px;
 `;
 
 export const Wrapper_write = styled.div`

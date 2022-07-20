@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPlayer from "react-player";
 
 export const Wrapper = styled.div`
+  margin: auto;
   width: 1200px;
   display: flex;
   flex-direction: column;
@@ -88,12 +89,7 @@ export const Contents = styled.div`
   background: skyblue;
   margin-bottom: 100px;
 `;
-// export const Youtube = styled.div`
-//   width: 55%;
-//   height: 250px;
-//   background: orange;
-//   margin-bottom: 100px;
-// `;
+
 export const LikeDislikeIcon = styled.div`
   width: 40%;
 
@@ -128,7 +124,8 @@ export const FooterBtnWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 40px 0px;
+  margin: auto;
+  margin-top: 40px;
 `;
 export const FooterBtnWrapper__btn = styled.button`
   background-color: #fff;
