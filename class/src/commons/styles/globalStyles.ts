@@ -4,12 +4,12 @@ export const globalStyles = css`
   * {
     margin: 0;
     box-sizing: border-box;
-    font-size: 15px;
-    font-family: ;
+    font-size: 30px;
+    font-family: myFont;
   }
 
   @font-face {
-    font-family: "myfont";
-    src: url("/font/scifibit.ttf");
+    font-family: "myFont";
+    src: url("/fonts/scifibit.ttf");
   }
 `;

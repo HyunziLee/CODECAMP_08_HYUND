@@ -18,6 +18,8 @@ export default function ModalContainer(props) {
 
   console.log("dd");
 
+  const commentModal = "이름, 비밀번호, 내용을 입력하세요";
+
   return (
     <>
       {props.isNull === true ? (
@@ -26,6 +28,8 @@ export default function ModalContainer(props) {
           handleOk={handleOk}
           handleCancel={handleCancel}
           isModalVisible={isModalVisible}
+          commentModal={commentModal}
+          isModal={props.isModal}
         ></ModalUI>
       ) : (
         ""

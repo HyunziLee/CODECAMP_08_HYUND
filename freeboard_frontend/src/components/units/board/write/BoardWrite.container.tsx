@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import DaumPostcodeEmbed from "react-daum-postcode";
 
 import { CREATE_BOARD, UPDATE_BOARD } from "../queries";
 import BoardWriteUI from "./BoardWrite.presenter";
-import RatioContainer from "../../../commons/Ratio/ratio.container";
 
 export default function BoardWrite(props) {
   const [createBoard] = useMutation(CREATE_BOARD);
@@ -29,6 +27,8 @@ export default function BoardWrite(props) {
   const [titleMsg, setTitleMsg] = useState("");
   const [contentsMsg, setContentsMsg] = useState("");
   const [isRatio, setIsRatio] = useState(true);
+  const [isModal, setIsModal] = useState(false);
+  const [isNull, setIsNull] = useState(false);
 
   const InputFunction = {
     writer: (e) => {
@@ -58,28 +58,7 @@ export default function BoardWrite(props) {
     youtubeUrl: (e) => {
       setYoutubeUrl(e.target.value);
     },
-    address: (e) => {
-      const handleComplete = (data) => {
-        let fullAddress = data.address;
-        let extraAddress = "";
-
-        if (data.addressType === "R") {
-          if (data.bname !== "") {
-            extraAddress += data.bname;
-          }
-          if (data.buildingName !== "") {
-            extraAddress +=
-              extraAddress !== ""
-                ? `, ${data.buildingName}`
-                : data.buildingName;
-          }
-          fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
-        }
-
-        console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-        setAddressTotal(fullAddress);
-      };
-    },
+    address: () => {},
   };
 
   const SignupChk = async () => {
@@ -155,6 +134,10 @@ export default function BoardWrite(props) {
       setPwdMsg("비밀번호를 입력하세요");
     }
   };
+  const onClickFindAddressModal = () => {
+    setIsModal(!isModal);
+    setIsNull(true);
+  };
 
   return (
     <>
@@ -169,8 +152,10 @@ export default function BoardWrite(props) {
         onClickUpdateBtn={onClickUpdateBtn}
         data={props.data}
         isRatio={isRatio}
+        onClickFindAddressModal={onClickFindAddressModal}
+        isModal={isModal}
+        isNull={isNull}
       />
-      <DaumPostcodeEmbed onComplete={InputFunction.address} />
     </>
   );
 }

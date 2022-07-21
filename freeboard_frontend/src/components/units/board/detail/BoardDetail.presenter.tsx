@@ -61,7 +61,7 @@ export default function BoardDetailUI(props) {
           width="486px"
           height="240px"
         ></Youtube>
-        {/* <Youtube>{props.data?.fetchBoard.youtyubeUrl}</Youtube> */}
+
         <LikeDislikeIcon>
           <LikeDislikeIcon_icon>
             <FontAwesomeIcon icon={faThumbsUp} />
