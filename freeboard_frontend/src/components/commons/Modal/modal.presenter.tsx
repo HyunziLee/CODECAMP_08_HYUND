@@ -25,8 +25,8 @@ export default function ModalUI(props) {
   return (
     <>
       {
-        // isModal 이 false 이면 daumpost 모달
-        // isModal이 true이면 댓글 경고 모달
+        // isModal 이 true 이면 daumpost 모달
+        // 아니면 댓글 경고 모달(댓글 경고에는 isModal 상태 없음)
 
         props.isModal === true ? (
           <Modal
