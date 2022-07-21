@@ -6,21 +6,18 @@ import { useRouter } from "next/router";
 
 import { FETCH_BOARD } from "../queries";
 
-import { getDate } from "../../../commons/Function/getDate";
-import ListPaginationUI from "./ListPagination.presenter";
-
 export default function PostListUI(props) {
   const router = useRouter();
   const ListId = "";
 
-  // const getDate = (value) => {
-  //   const date = new Date(value);
-  //   const yyyy = date.getFullYear();
-  //   const mm = String(date.getMonth() + 1).padStart(2, "0");
-  //   //padStart는 문자열 함수임
-  //   const dd = String(date.getDate()).padStart(2, "0");
-  //   return `${yyyy}-${mm}-${dd}`;
-  // };
+  const getDate = (value) => {
+    const date = new Date(value);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    //padStart는 문자열 함수임
+    const dd = String(date.getDate()).padStart(2, "0");
+    return `${yyyy}-${mm}-${dd}`;
+  };
 
   const MoveToListDetailBtn = (x) => {
     router.push(`/PostDetail/${x}`);
@@ -62,18 +59,21 @@ export default function PostListUI(props) {
         </s.ListWrapper>
 
         <s.Footer>
-          <ListPaginationUI
-            data={props.data}
-            onClickRefetch={props.onClickRefetch}
-            startPage={props.startPage}
-            onClickPrev={props.onClickPrev}
-            onClickNext={props.onClickNext}
-            lastPageStandard={props.lastPageStandard}
-            isLastPage={props.isLastPage}
-            setIsLastPate={props.setIsLastPate}
-            isClicked={props.isClicked}
-            setIsClicked={props.setIsClicked}
-          />
+          <s.Footer__pageBlank></s.Footer__pageBlank>
+          <s.Footer__pageMoveBtn>
+            <s.Footer__pageMoveBtn_individual>
+              0
+            </s.Footer__pageMoveBtn_individual>
+            <s.Footer__pageMoveBtn_individual>
+              1
+            </s.Footer__pageMoveBtn_individual>
+            <s.Footer__pageMoveBtn_individual>
+              2
+            </s.Footer__pageMoveBtn_individual>
+            <s.Footer__pageMoveBtn_individual>
+              0
+            </s.Footer__pageMoveBtn_individual>
+          </s.Footer__pageMoveBtn>
 
           <s.Footer__submitBtn onClick={props.MoveToWritePageBtn}>
             <s.Footer__submitBtn_icon>

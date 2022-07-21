@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   margin: auto;
@@ -95,32 +94,8 @@ export const Footer__pageMoveBtn = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  align-items: flex-start;
-  margin: auto;
 `;
-export const Footer__pageMoveBtn_Left = styled(LeftOutlined)`
-  font-size: 16px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  cursor: pointer;
-`;
-export const Footer__pageMoveBtn_Right = styled(RightOutlined)`
-  font-size: 16px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  cursor: pointer;
-`;
-export const Footer__pageMoveBtn_individual = styled.div`
-  font-size: 16px;
-  width: 30px;
-  height: 30px;
-  margin: 0px 10px;
-  text-align: center;
-  cursor: pointer;
-`;
+export const Footer__pageMoveBtn_individual = styled.div``;
 
 export const Footer__submitBtn = styled.button`
   display: flex;

@@ -1,5 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import styled from "@emotion/styled";
+import { MouseEvent } from "react";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
