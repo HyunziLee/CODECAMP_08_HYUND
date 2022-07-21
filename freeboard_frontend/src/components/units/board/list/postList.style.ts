@@ -113,13 +113,19 @@ export const Footer__pageMoveBtn_Right = styled(RightOutlined)`
   line-height: 30px;
   cursor: pointer;
 `;
-export const Footer__pageMoveBtn_individual = styled.div`
+export const Footer__pageMoveBtn_individual = styled.button`
   font-size: 16px;
   width: 30px;
   height: 30px;
   margin: 0px 10px;
   text-align: center;
+  border: none;
+  background-color: #fff;
   cursor: pointer;
+  :focus {
+    color: blue;
+    font-weight: 700;
+  }
 `;
 
 export const Footer__submitBtn = styled.button`

@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import { FETCH_BOARDS, FETCH_BOARD, FETCH_BOARDS_COUNT } from "../queries";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function PostListContainer() {
   const [startPage, setStartPage] = useState(1);
@@ -31,7 +31,7 @@ export default function PostListContainer() {
   const MoveToWritePageBtn = () => {
     router.push(`/PostForm/`);
   };
-
+  const divFoucus = useRef();
   const onClickRefetch = (e) => {
     refetch({ page: Number(e.target.id) });
   };
