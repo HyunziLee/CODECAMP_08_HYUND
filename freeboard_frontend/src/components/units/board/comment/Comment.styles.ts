@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Rate, Avatar } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   margin: auto;
@@ -66,7 +67,16 @@ export const Comment__info_btn = styled.div`
   line-height: 45px;
 `;
 
+// export const Wrapper_Scroll = styled.div`
+//   margin: auto;
+//   width: 1200px;
+//   display: flex;
+//   flex-direction: column;
+//   margin-top: 40px;
+// `;
+
 export const Wrapper_list = styled.div`
+  width: 300px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -74,6 +84,13 @@ export const Wrapper_list = styled.div`
   margin-top: 30px;
   border-bottom: 1px solid #bdbdbd;
   width: 100%;
+  justify-content: space-between;
+  background-color: yellow;
+`;
+export const User_wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 export const ProfileImg = styled.div`
   margin-right: 10px;
@@ -103,10 +120,21 @@ export const FetchCreateAt = styled.div`
   color: #bdbdbd;
 `;
 export const DeleteBtn = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+`;
+export const CommentDelete = styled.span`
   font-size: 16px;
-  color: #bdbdbd;
-  justify-items: flex-end;
-  margin-left: 900px;
-  margin-top: -25px;
   cursor: pointer;
+`;
+export const EditBtn = styled.span`
+  font-size: 14px;
+  margin-left: 20px;
+  cursor: pointer;
+`;
+export const EditDiv = styled.div`
+  height: 70px;
+  background-color: yellow;
 `;

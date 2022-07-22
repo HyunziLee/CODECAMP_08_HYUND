@@ -4,7 +4,7 @@ import { Avatar } from "antd";
 
 import React, { useState } from "react";
 
-import * as s from "../Comment.styles";
+import * as s from "./CommentList.styles";
 
 export default function CommentScroll(props) {
   const [isEditClicked, setIsEditClicked] = useState(false);
@@ -21,10 +21,10 @@ export default function CommentScroll(props) {
   };
 
   return (
-    <InfiniteScroll>
+    <>
       {isEditClicked === false && (
-        <div>
-          <s.Wrapper_list key={props.e_id}>
+        <s.Wrapper_list>
+          <s.User_wrapper>
             <s.ProfileImg>
               <Avatar size={44} icon={<UserOutlined />} />
             </s.ProfileImg>
@@ -36,19 +36,22 @@ export default function CommentScroll(props) {
               <s.FetchComment>{props.e.contents}</s.FetchComment>
               <s.FetchCreateAt>{props.e.createdAt}</s.FetchCreateAt>
             </s.CommentFetch>
-            <s.DeleteBtn>
-              <CloseOutlined />
-              <button onClick={isEditBtn}>수정하기</button>
-            </s.DeleteBtn>
-          </s.Wrapper_list>
-        </div>
+          </s.User_wrapper>
+          <s.DeleteBtn>
+            <s.CommentDelete>x</s.CommentDelete>
+            <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn>
+          </s.DeleteBtn>
+        </s.Wrapper_list>
       )}
+
       {isEditClicked === true && (
-        <>
-          <input onChange={passwordInput} />
-        </>
+        <s.Wrapper_list>
+          <s.EditDiv>
+            <input onChange={passwordInput} />
+          </s.EditDiv>
+        </s.Wrapper_list>
       )}
-    </InfiniteScroll>
+    </>
   );
 }
 
