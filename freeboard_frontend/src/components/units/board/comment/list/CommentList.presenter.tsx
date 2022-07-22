@@ -1,24 +1,27 @@
+import InfiniteScroll from "react-infinite-scroller";
 import { UserOutlined, CloseOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 
 import React, { useState } from "react";
 
-import * as s from "./Comment.styles";
+import * as s from "../Comment.styles";
 
 export default function CommentScroll(props) {
   const [isEditClicked, setIsEditClicked] = useState(false);
   const [password, setPassword] = useState("");
 
   const isEditBtn = () => {
-    setIsEditClicked(true);
+    setIsEditClicked(!isEditClicked);
   };
+  console.log(isEditClicked);
+
   const passwordInput = (e) => {
     setPassword(e.target.value);
     console.log(e.target.value);
   };
 
   return (
-    <>
+    <InfiniteScroll>
       {isEditClicked === false && (
         <div>
           <s.Wrapper_list key={props.e_id}>
@@ -42,11 +45,10 @@ export default function CommentScroll(props) {
       )}
       {isEditClicked === true && (
         <>
-          <span>비밀번호를 입력하세요</span>
-          <input type="text" onChange={passwordInput} />
+          <input onChange={passwordInput} />
         </>
       )}
-    </>
+    </InfiniteScroll>
   );
 }
 

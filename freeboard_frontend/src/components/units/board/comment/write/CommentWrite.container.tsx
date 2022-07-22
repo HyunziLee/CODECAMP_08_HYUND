@@ -1,23 +1,23 @@
-import CommentUI from "./Comment.presenter";
-import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "../queries";
+import CommentUI from "./CommentWrite.presenter";
+import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "../../queries";
 import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
-import ModalContainer from "../../../commons/Modal/modal.container";
+import ModalContainer from "../../../../commons/Modal/modal.container";
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
-  IQuery,
-  IQueryFetchBoardCommentsArgs,
-} from "../../../../commons/types/generated/types";
-import CommentScroll from "./Comment.presenter copy";
+} from "../../../../../commons/types/generated/types";
+import CommentEdit from "../list/CommentList.container";
 
 export default function CommentContainer() {
+  const router = useRouter();
+
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
-  const router = useRouter();
+
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
@@ -27,21 +27,19 @@ export default function CommentContainer() {
   const commentInputFunc = {
     writer: (e: ChangeEvent<HTMLInputElement>) => {
       setWriter(e.target.value);
-      console.log(writer);
     },
     password: (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
-      console.log(password);
     },
     contents: (e: ChangeEvent<HTMLInputElement>) => {
       setContents(e.target.value);
-      console.log(contents);
     },
     rating: setRating,
   };
 
   const onClickCommentBtn = async () => {
     //입력창이 하나라도 빈칸인 경우, 댓글이 등록되지 않으며, 모달창 발생
+
     if (!writer || !password || !contents) {
       setIsNull(true);
       return;
@@ -64,37 +62,26 @@ export default function CommentContainer() {
           },
         ],
       });
+      console.log(result);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
       }
     }
   };
-  const { data } = useQuery<
-    Pick<IQuery, "fetchBoardComments">,
-    IQueryFetchBoardCommentsArgs
-  >(FETCH_BOARD_COMMENTS, {
-    variables: {
-      // router.query.변수명=> 하위 폴더 [변수명]
-      boardId: String(router.query.name),
-    },
-  });
-  console.log(data);
 
   return (
     <>
       <CommentUI
         onClickCommentBtn={onClickCommentBtn}
         commentInputFunc={commentInputFunc}
-        data={data}
         rating={rating}
       ></CommentUI>
-      {data?.fetchBoardComments.map((e) => {
-        <CommentScroll key={e._id} e={e}></CommentScroll>;
-      })}
+
+      <CommentEdit />
 
       {/* 댓글 입력창에 공란이 있을 경우, 모달창 발생 */}
-      <ModalContainer isNull={isNull}></ModalContainer>
+      <ModalContainer isNull={isNull} />
     </>
   );
 }

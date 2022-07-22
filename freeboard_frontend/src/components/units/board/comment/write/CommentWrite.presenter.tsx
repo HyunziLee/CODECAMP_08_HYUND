@@ -1,14 +1,9 @@
-import { UserOutlined, CloseOutlined } from "@ant-design/icons";
-import { Rate, Avatar } from "antd";
-
 import React, { useState } from "react";
 
-import * as s from "./Comment.styles";
-import { ICommentUIProps } from "./IBoardComment.types";
+import * as s from "../Comment.styles";
+import { ICommentUIProps } from "../IBoardComment.types";
 
 export default function CommentUI(props: ICommentUIProps) {
-  const [starValue, setStarValue] = useState(0.0);
-
   return (
     <>
       <s.Wrapper>
@@ -18,7 +13,6 @@ export default function CommentUI(props: ICommentUIProps) {
             onChange={props.commentInputFunc.rating}
             value={props.rating}
           ></s.FetchRate>
-
           <s.Write_userInfo>
             <s.UserInfo__writer
               onChange={props.commentInputFunc.writer}
@@ -40,29 +34,6 @@ export default function CommentUI(props: ICommentUIProps) {
             </s.Comment__info>
           </s.Comment__wrapper>
         </s.Wrapper_write>
-
-        {/* {props.data?.fetchBoardComments.map((e) => {
-          return (
-            <>
-              <s.Wrapper_list key={e._id}>
-                <s.ProfileImg>
-                  <Avatar size={44} icon={<UserOutlined />} />
-                </s.ProfileImg>
-                <s.CommentFetch>
-                  <s.FetchData>
-                    <s.FetchName>{e.writer}</s.FetchName>
-                    <s.FetchRate value={e.rating} disabled></s.FetchRate>
-                  </s.FetchData>
-                  <s.FetchComment>{e.contents}</s.FetchComment>
-                  <s.FetchCreateAt>{e.createdAt}</s.FetchCreateAt>
-                </s.CommentFetch>
-                <s.DeleteBtn>
-                  <CloseOutlined />
-                </s.DeleteBtn>
-              </s.Wrapper_list>
-            </>
-          );
-        })} */}
       </s.Wrapper>
     </>
   );
