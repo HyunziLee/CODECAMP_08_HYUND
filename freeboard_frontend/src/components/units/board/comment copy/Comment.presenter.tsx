@@ -41,7 +41,7 @@ export default function CommentUI(props: ICommentUIProps) {
           </s.Comment__wrapper>
         </s.Wrapper_write>
 
-        {/* {props.data?.fetchBoardComments.map((e) => {
+        {props.data?.fetchBoardComments.map((e) => {
           return (
             <>
               <s.Wrapper_list key={e._id}>
@@ -62,7 +62,7 @@ export default function CommentUI(props: ICommentUIProps) {
               </s.Wrapper_list>
             </>
           );
-        })} */}
+        })}
       </s.Wrapper>
     </>
   );

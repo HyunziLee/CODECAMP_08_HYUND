@@ -1,9 +1,9 @@
 import * as s from "../../../../../styles/01-01";
 import RatioContainer from "../../../commons/Ratio/ratio.container";
-import DaumPostcodeEmbed from "react-daum-postcode";
 import ModalContainer from "../../../commons/Modal/modal.container";
+import { IBoardWriteUIProps } from "./IBoardWrite.types";
 
-export default function BoardWriteUI(props) {
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <s.Wrapper>
       <s.Wrapper_title>
@@ -19,7 +19,7 @@ export default function BoardWriteUI(props) {
             ></s.Writer__input>
           ) : (
             <s.Writer__input
-              defaultValue={props.data?.fetchBoard.writer}
+              value={String(props.data?.fetchBoard.writer)}
               disabled
             ></s.Writer__input>
           )}

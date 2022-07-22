@@ -10,7 +10,6 @@ import {
   IQuery,
   IQueryFetchBoardCommentsArgs,
 } from "../../../../commons/types/generated/types";
-import CommentScroll from "./Comment.presenter copy";
 
 export default function CommentContainer() {
   const [createBoardComment] = useMutation<
@@ -89,10 +88,6 @@ export default function CommentContainer() {
         data={data}
         rating={rating}
       ></CommentUI>
-      {data?.fetchBoardComments.map((e) => {
-        <CommentScroll key={e._id} e={e}></CommentScroll>;
-      })}
-
       {/* 댓글 입력창에 공란이 있을 경우, 모달창 발생 */}
       <ModalContainer isNull={isNull}></ModalContainer>
     </>

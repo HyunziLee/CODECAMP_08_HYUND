@@ -4,25 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useRouter } from "next/router";
 
-import { FETCH_BOARD } from "../queries";
-
 import { getDate } from "../../../commons/Function/getDate";
 import ListPaginationUI from "./ListPagination.presenter";
+import { IPostListProps } from "./IPostList.types";
 
-export default function PostListUI(props) {
+export default function PostListUI(props: IPostListProps) {
   const router = useRouter();
-  const ListId = "";
 
-  // const getDate = (value) => {
-  //   const date = new Date(value);
-  //   const yyyy = date.getFullYear();
-  //   const mm = String(date.getMonth() + 1).padStart(2, "0");
-  //   //padStart는 문자열 함수임
-  //   const dd = String(date.getDate()).padStart(2, "0");
-  //   return `${yyyy}-${mm}-${dd}`;
-  // };
-
-  const MoveToListDetailBtn = (x) => {
+  const MoveToListDetailBtn = (x: string) => {
     router.push(`/PostDetail/${x}`);
   };
 
@@ -63,16 +52,16 @@ export default function PostListUI(props) {
 
         <s.Footer>
           <ListPaginationUI
-            data={props.data}
             onClickRefetch={props.onClickRefetch}
-            startPage={props.startPage}
             onClickPrev={props.onClickPrev}
             onClickNext={props.onClickNext}
+            setIsLastPage={props.setIsLastPage}
+            setIsClicked={props.setIsClicked}
+            data={props.data}
+            startPage={props.startPage}
             lastPageStandard={props.lastPageStandard}
             isLastPage={props.isLastPage}
-            setIsLastPate={props.setIsLastPate}
             isClicked={props.isClicked}
-            setIsClicked={props.setIsClicked}
           />
 
           <s.Footer__submitBtn onClick={props.MoveToWritePageBtn}>

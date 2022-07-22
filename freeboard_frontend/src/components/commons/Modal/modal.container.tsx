@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { IModalContainerProps } from "../../units/board/comment/IBoardComment.types";
 import ModalUI from "./modal.presenter";
 
-export default function ModalContainer(props) {
+export default function ModalContainer(props: IModalContainerProps) {
   const [isModalVisible, setIsModalVisible] = useState(true);
 
   const showModal = () => {

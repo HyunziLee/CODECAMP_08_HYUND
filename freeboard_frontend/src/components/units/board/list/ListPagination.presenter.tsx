@@ -1,6 +1,7 @@
+import { IListPaginationUIProps } from "./IPostList.types";
 import * as s from "./postList.style";
 
-export default function ListPaginationUI(props) {
+export default function ListPaginationUI(props: IListPaginationUIProps) {
   return (
     <>
       <s.Footer__pageMoveBtn>
@@ -25,7 +26,7 @@ export default function ListPaginationUI(props) {
 
         {new Array(10).fill(1).map((_, i) => {
           if (i + props.startPage <= props.lastPageStandard) {
-            props.setIsLastPate(i + props.startPage);
+            props.setIsLastPage(i + props.startPage);
             return (
               <s.Footer__pageMoveBtn_individual
                 key={i + props.startPage}

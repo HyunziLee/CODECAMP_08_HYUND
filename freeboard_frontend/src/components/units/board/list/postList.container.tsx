@@ -4,35 +4,53 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import { FETCH_BOARDS, FETCH_BOARD, FETCH_BOARDS_COUNT } from "../queries";
-import { useState, useRef } from "react";
+import { ChangeEvent, useState } from "react";
+import {
+  IQuery,
+  IQueryFetchBoardArgs,
+  IQueryFetchBoardsArgs,
+  IQueryFetchBoardsCountArgs,
+} from "../../../../commons/types/generated/types";
 
 export default function PostListContainer() {
   const [startPage, setStartPage] = useState(1);
-  const [isLastPage, setIsLastPate] = useState(0);
+  const [isLastPage, setIsLastPage] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
 
   const router = useRouter();
 
   // useQuery  결과값 담는 변수명은 data 밖에 못씀, 만약에 useQuery가 여러개 있다면 이런식으로 써야함=> const {data :작명 }  = useQuery() 데이터는 작명에 담김 => ex console.log(작명)
-  const { data, refetch } = useQuery(FETCH_BOARDS);
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardsArgs
+  >(FETCH_BOARDS);
 
-  const { data: lastPageNum } = useQuery(FETCH_BOARDS_COUNT);
+  const { data: lastPageNum } = useQuery<
+    Pick<IQuery, "fetchBoardsCount">,
+    IQueryFetchBoardsCountArgs
+  >(FETCH_BOARDS_COUNT);
 
-  const lastPageStandard = Math.ceil(lastPageNum?.fetchBoardsCount / 10);
+  const lastPageStandard = lastPageNum
+    ? Math.ceil(lastPageNum?.fetchBoardsCount / 10)
+    : 1;
 
   // 이거는 리스트에서 제목 눌렀을 때, 디테일 페이지로 넘어가는 부분
-  const { data: ListDetail } = useQuery(FETCH_BOARD, {
+  const { data: ListDetail } = useQuery<
+    Pick<IQuery, "fetchBoard">,
+    IQueryFetchBoardArgs
+  >(FETCH_BOARD, {
     variables: {
       // router.query.변수명=> 하위 폴더 [변수명]
-      boardId: router.query.name,
+      boardId: String(router.query.name),
     },
   });
 
   const MoveToWritePageBtn = () => {
     router.push(`/PostForm/`);
   };
-  const divFoucus = useRef();
-  const onClickRefetch = (e) => {
+
+  const onClickRefetch = (e: ChangeEvent<HTMLButtonElement>) => {
+    if (!(e.target instanceof HTMLButtonElement)) return;
     refetch({ page: Number(e.target.id) });
   };
 
@@ -49,18 +67,18 @@ export default function PostListContainer() {
   return (
     <>
       <PostListUI
-        data={data}
-        ListDetail={ListDetail}
         MoveToWritePageBtn={MoveToWritePageBtn}
         onClickRefetch={onClickRefetch}
-        startPage={startPage}
         onClickPrev={onClickPrev}
         onClickNext={onClickNext}
+        setIsLastPage={setIsLastPage}
+        setIsClicked={setIsClicked}
+        data={data}
+        ListDetail={ListDetail}
+        startPage={startPage}
         lastPageStandard={lastPageStandard}
         isLastPage={isLastPage}
-        setIsLastPate={setIsLastPate}
         isClicked={isClicked}
-        setIsClicked={setIsClicked}
       ></PostListUI>
     </>
   );

@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 
 import { CREATE_BOARD, UPDATE_BOARD } from "../queries";
 import BoardWriteUI from "./BoardWrite.presenter";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+  IQuery,
+} from "../../../../commons/types/generated/types";
+import { IBoardWriteProps, IUpdateBoardInput } from "./IBoardWrite.types";
 
-export default function BoardWrite(props) {
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+export default function BoardWrite(props: IBoardWriteProps) {
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
   const router = useRouter();
 
   const [writer, setWriter] = useState("");
@@ -31,34 +44,34 @@ export default function BoardWrite(props) {
   const [isNull, setIsNull] = useState(false);
 
   const InputFunction = {
-    writer: (e) => {
+    writer: (e: ChangeEvent<HTMLInputElement>) => {
       setWriter(e.target.value);
       if (writer) {
         setWriterMsg("");
       }
     },
-    password: (e) => {
+    password: (e: ChangeEvent<HTMLInputElement>) => {
       setPwd(e.target.value);
       if (pwd) {
         setPwdMsg("");
       }
     },
-    title: (e) => {
+    title: (e: ChangeEvent<HTMLInputElement>) => {
       setTitle(e.target.value);
       if (title) {
         setTitleMsg("");
       }
     },
-    contents: (e) => {
+    contents: (e: ChangeEvent<HTMLInputElement>) => {
       setContents(e.target.value);
       if (contents) {
         setContentsMsg("");
       }
     },
-    youtubeUrl: (e) => {
+    youtubeUrl: (e: ChangeEvent<HTMLInputElement>) => {
       setYoutubeUrl(e.target.value);
     },
-    address: () => {},
+    // address: () => {},
   };
 
   const SignupChk = async () => {
@@ -81,12 +94,9 @@ export default function BoardWrite(props) {
           },
         });
 
-        console.log(result.data);
-        router.push(`/PostDetail/${result.data.createBoard._id}`);
-
-        console.log(router);
+        router.push(`/PostDetail/${result.data?.createBoard._id}`);
       } catch (error) {
-        console.log(error.message);
+        if (error instanceof Error) console.log(error.message);
       }
     }
     if (writer === "") {
@@ -105,7 +115,7 @@ export default function BoardWrite(props) {
   };
 
   const onClickUpdateBtn = async () => {
-    const updateBoardInput = {};
+    const updateBoardInput: IUpdateBoardInput = {};
 
     if (title === "" || contents === "") {
       alert("제목, 내용의 변경사항이 작성되지 않았다.");
@@ -117,17 +127,14 @@ export default function BoardWrite(props) {
     try {
       const result = await updateBoard({
         variables: {
-          boardId: router.query.name,
+          boardId: String(router.query.name),
           password: pwd,
           updateBoardInput: updateBoardInput,
         },
       });
-      router.push(`/PostDetail/${result.data.updateBoard._id}`);
-      console.log(result.data);
-      console.log(router);
+      router.push(`/PostDetail/${result.data?.updateBoard._id}`);
     } catch (error) {
-      alert(error.message);
-      // console.log(error.message)
+      if (error instanceof Error) alert(error.message);
     }
 
     if (!pwd) {
@@ -144,17 +151,17 @@ export default function BoardWrite(props) {
       <BoardWriteUI
         InputFunction={InputFunction}
         SignupChk={SignupChk}
+        onClickUpdateBtn={onClickUpdateBtn}
+        onClickFindAddressModal={onClickFindAddressModal}
         writerMsg={writerMsg}
         pwdMsg={pwdMsg}
         titleMsg={titleMsg}
         contentsMsg={contentsMsg}
-        btnState={props.btnState}
-        onClickUpdateBtn={onClickUpdateBtn}
-        data={props.data}
         isRatio={isRatio}
-        onClickFindAddressModal={onClickFindAddressModal}
         isModal={isModal}
         isNull={isNull}
+        btnState={props.btnState}
+        data={props.data}
       />
     </>
   );

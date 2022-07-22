@@ -23,12 +23,7 @@ export default function Layout(props: ILayoutProps) {
       {!isHiddenHeader && <LayoutHeader></LayoutHeader>}
       <LayoutBanner></LayoutBanner>
       <LayoutNavigation></LayoutNavigation>
-      <div style={{ display: "flex" }}>
-        <div
-          style={{ width: "100px", height: "700px", background: "orange" }}
-        ></div>
-        <div>{props.children}</div>
-      </div>
+      <div>{props.children}</div>
 
       <LayoutFooter></LayoutFooter>
     </>
