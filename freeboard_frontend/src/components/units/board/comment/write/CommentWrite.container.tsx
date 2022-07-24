@@ -81,7 +81,7 @@ export default function CommentContainer() {
         rating={rating}
       ></CommentUI>
 
-      <CommentEdit commentInputFunc={commentInputFunc} contents={contents} />
+      <CommentEdit />
 
       {/* 댓글 입력창에 공란이 있을 경우, 모달창 발생 */}
       <ModalContainer

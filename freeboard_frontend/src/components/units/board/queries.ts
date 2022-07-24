@@ -75,6 +75,7 @@ export const UPDATE_BOARD_COMMENT = gql`
       password: $password
     ) {
       _id
+      updatedAt
       # contents
     }
   }
@@ -108,6 +109,7 @@ export const FETCH_BOARD_COMMENTS = gql`
       contents
       rating
       createdAt
+      updatedAt
     }
   }
 `;

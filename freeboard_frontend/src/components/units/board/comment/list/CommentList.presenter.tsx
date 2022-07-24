@@ -17,7 +17,8 @@ export default function CommentScroll(props) {
   const [password, setPassword] = useState("");
   const commentModal = "비밀번호가 일치하지 않습니다. ";
 
-  const creatDate = getDate(props.e.createdAt);
+  // const creatDate = getDate(props.e.updatedAt);
+  const creatDate = props.e.updatedAt;
 
   const isEditBtn = () => {
     setIsEditClicked(!isEditClicked);
@@ -50,7 +51,6 @@ export default function CommentScroll(props) {
               commentInputFunc={props.commentInputFunc}
               contents={props.contents}
             ></PopoverPage>
-            {console.log(password)}
             <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn>
             <s.CommentDelete>x</s.CommentDelete>
           </s.DeleteBtn>
