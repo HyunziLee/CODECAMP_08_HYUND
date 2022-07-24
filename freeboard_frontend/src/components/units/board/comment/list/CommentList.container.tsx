@@ -7,7 +7,7 @@ import {
 import { FETCH_BOARD_COMMENTS } from "../../queries";
 import CommentScroll from "./CommentList.presenter";
 
-export default function CommentEdit() {
+export default function CommentEdit(props) {
   const router = useRouter();
 
   const { data } = useQuery<
@@ -23,8 +23,14 @@ export default function CommentEdit() {
 
   return (
     <>
+      {/* {console.log(console.log(data?.fetchBoardComments))} */}
       {data?.fetchBoardComments.map((e) => (
-        <CommentScroll key={e._id} e={e}></CommentScroll>
+        <CommentScroll
+          key={e._id}
+          e={e}
+          commentInputFunc={props.commentInputFunc}
+          contents={props.contents}
+        ></CommentScroll>
       ))}
     </>
   );

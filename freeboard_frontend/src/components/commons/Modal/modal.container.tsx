@@ -11,15 +11,13 @@ export default function ModalContainer(props: IModalContainerProps) {
 
   const handleOk = () => {
     setIsModalVisible(false);
+    props.setIsEditClicked(!props.isEditClicked);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    props.setIsEditClicked(!props.isEditClicked);
   };
-
-  console.log("dd");
-
-  const commentModal = "이름, 비밀번호, 내용을 입력하세요";
 
   return (
     <>
@@ -29,7 +27,7 @@ export default function ModalContainer(props: IModalContainerProps) {
           handleOk={handleOk}
           handleCancel={handleCancel}
           isModalVisible={isModalVisible}
-          commentModal={commentModal}
+          commentModal={props.commentModal}
           isModal={props.isModal}
         ></ModalUI>
       ) : (

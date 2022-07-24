@@ -15,5 +15,6 @@ export interface ICommentUIProps {
 
 export interface IModalContainerProps {
   isNull: boolean;
-  // isModal: boolean;
+  isModal: boolean;
+  commentModal: string;
 }

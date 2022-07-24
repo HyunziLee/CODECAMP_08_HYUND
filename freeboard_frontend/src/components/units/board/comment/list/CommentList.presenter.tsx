@@ -5,20 +5,25 @@ import { Avatar } from "antd";
 import React, { useState } from "react";
 
 import * as s from "./CommentList.styles";
+import ModalContainer from "../../../../commons/Modal/modal.container";
+import { getDate } from "../../../../commons/Function/getDate";
+import PopoverPage from "../Popover/popOver";
 
 export default function CommentScroll(props) {
   const [isEditClicked, setIsEditClicked] = useState(false);
+
+  const [isModal, setIsModal] = useState(true);
+  const [isNull, seIsNull] = useState(true);
   const [password, setPassword] = useState("");
+  const commentModal = "비밀번호가 일치하지 않습니다. ";
+
+  const creatDate = getDate(props.e.createdAt);
 
   const isEditBtn = () => {
     setIsEditClicked(!isEditClicked);
+    setIsModal(false);
   };
   console.log(isEditClicked);
-
-  const passwordInput = (e) => {
-    setPassword(e.target.value);
-    console.log(e.target.value);
-  };
 
   return (
     <>
@@ -34,12 +39,20 @@ export default function CommentScroll(props) {
                 <s.FetchRate value={props.e.rating} disabled></s.FetchRate>
               </s.FetchData>
               <s.FetchComment>{props.e.contents}</s.FetchComment>
-              <s.FetchCreateAt>{props.e.createdAt}</s.FetchCreateAt>
+              <s.FetchCreateAt>{creatDate}</s.FetchCreateAt>
             </s.CommentFetch>
           </s.User_wrapper>
           <s.DeleteBtn>
-            <s.CommentDelete>x</s.CommentDelete>
+            <PopoverPage
+              setPassword={setPassword}
+              password={password}
+              data={props.e}
+              commentInputFunc={props.commentInputFunc}
+              contents={props.contents}
+            ></PopoverPage>
+            {console.log(password)}
             <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn>
+            <s.CommentDelete>x</s.CommentDelete>
           </s.DeleteBtn>
         </s.Wrapper_list>
       )}
@@ -47,6 +60,14 @@ export default function CommentScroll(props) {
       {isEditClicked === true && (
         <s.Wrapper_list>
           <s.EditDiv>
+            <ModalContainer
+              isNull={isNull}
+              isModal={isModal}
+              commentModal={commentModal}
+              isEditClicked={isEditClicked}
+              setIsEditClicked={setIsEditClicked}
+            ></ModalContainer>
+
             <input onChange={passwordInput} />
           </s.EditDiv>
         </s.Wrapper_list>

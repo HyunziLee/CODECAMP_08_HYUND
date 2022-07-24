@@ -52,11 +52,12 @@ export const DeleteBtn = styled.div`
 `;
 export const CommentDelete = styled.span`
   font-size: 16px;
+  margin-left: 20px;
   cursor: pointer;
 `;
 export const EditBtn = styled.span`
   font-size: 14px;
-  margin-left: 20px;
+
   cursor: pointer;
 `;
 export const EditDiv = styled.div`

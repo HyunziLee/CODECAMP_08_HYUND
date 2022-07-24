@@ -62,6 +62,24 @@ export const UPDATE_BOARD = gql`
     }
   }
 `;
+
+export const UPDATE_BOARD_COMMENT = gql`
+  mutation updateBoardComment(
+    $updateBoardCommentInput: UpdateBoardCommentInput!
+    $boardCommentId: ID!
+    $password: String
+  ) {
+    updateBoardComment(
+      updateBoardCommentInput: $updateBoardCommentInput
+      boardCommentId: $boardCommentId
+      password: $password
+    ) {
+      _id
+      # contents
+    }
+  }
+`;
+
 export const FETCH_BOARDS = gql`
   query fetchBoards(
     $endDate: DateTime
