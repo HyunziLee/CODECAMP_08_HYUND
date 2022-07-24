@@ -1,6 +1,5 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import InfiniteScroll from "react-infinite-scroller";
 import {
   IQuery,
   IQueryFetchBoardCommentsArgs,
@@ -11,7 +10,7 @@ import CommentScroll from "./CommentList.presenter";
 export default function CommentEdit(props) {
   const router = useRouter();
 
-  const { data, fetchMore } = useQuery<
+  const { data } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
@@ -20,31 +19,10 @@ export default function CommentEdit(props) {
       boardId: String(router.query.name),
     },
   });
-
-  console.log(data?.fetchBoardComments);
-
-  const onFetchMore = () => {
-    if (!data) {
-      return;
-    }
-    fetchMore({
-      variables: { page: Math.ceil(data?.fetchBoardComments.length / 10) + 1 }, // <= 다음페이지 계산하는 거임
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult.fetchBoardComments)
-          return { fetchBoardComments: [...prev.fetchBoardComments] };
-
-        return {
-          fetchBoardComments: [
-            ...prev.fetchBoardComments,
-            ...fetchMoreResult.fetchBoardComments,
-          ],
-        };
-      },
-    });
-  };
+  console.log(data);
 
   return (
-    <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true}>
+    <>
       {/* {console.log(console.log(data?.fetchBoardComments))} */}
       {data?.fetchBoardComments.map((e) => (
         <CommentScroll
@@ -54,6 +32,6 @@ export default function CommentEdit(props) {
           contents={props.contents}
         ></CommentScroll>
       ))}
-    </InfiniteScroll>
+    </>
   );
 }

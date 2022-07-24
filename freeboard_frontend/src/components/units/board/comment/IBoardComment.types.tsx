@@ -11,6 +11,7 @@ export interface ICommentUIProps {
   };
   data?: Pick<IQuery, "fetchBoardComments">;
   rating: number;
+  contents: string;
 }
 
 export interface IModalContainerProps {

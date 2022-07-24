@@ -79,6 +79,7 @@ export default function CommentContainer() {
         onClickCommentBtn={onClickCommentBtn}
         commentInputFunc={commentInputFunc}
         rating={rating}
+        contents={contents}
       ></CommentUI>
 
       <CommentEdit />

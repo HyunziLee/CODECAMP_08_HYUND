@@ -11,7 +11,6 @@ export default function PopoverPage(props) {
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [pwdState, setPwdState] = useState(false);
   const [completeState, setcompleteState] = useState(false);
-  const [submitBtnState, setSubmitBtnState] = useState(false);
   const [commentContents, setCommentContents] = useState("");
   const [commentPwd, setCommentPwd] = useState("");
   const [commentRating, setCommentRating] = useState(props.data.rating);

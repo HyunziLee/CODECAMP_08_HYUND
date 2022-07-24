@@ -55,6 +55,7 @@ export const Comment__info = styled.div`
 `;
 export const Comment__info_length = styled.div`
   width: 90%;
+  color: #bdbdbd;
   border-top: 1px solid #f2f2f2;
 `;
 export const Comment__info_btn = styled.div`
@@ -66,15 +67,6 @@ export const Comment__info_btn = styled.div`
   cursor: pointer;
   line-height: 45px;
 `;
-
-// export const Wrapper_Scroll = styled.div`
-//   margin: auto;
-//   width: 1200px;
-//   display: flex;
-//   flex-direction: column;
-//   margin-top: 40px;
-// `;
-
 export const Wrapper_list = styled.div`
   width: 300px;
   display: flex;

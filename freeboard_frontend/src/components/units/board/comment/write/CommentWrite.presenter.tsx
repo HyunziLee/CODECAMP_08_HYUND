@@ -18,6 +18,7 @@ export default function CommentUI(props: ICommentUIProps) {
               onChange={props.commentInputFunc.writer}
             ></s.UserInfo__writer>
             <s.UserInfo__password
+              type="password"
               onChange={props.commentInputFunc.password}
             ></s.UserInfo__password>
           </s.Write_userInfo>
@@ -27,7 +28,9 @@ export default function CommentUI(props: ICommentUIProps) {
               onChange={props.commentInputFunc.contents}
             ></s.Comment__write>
             <s.Comment__info>
-              <s.Comment__info_length></s.Comment__info_length>
+              <s.Comment__info_length>
+                {`${props.contents.length} / 100`}
+              </s.Comment__info_length>
               <s.Comment__info_btn onClick={props.onClickCommentBtn}>
                 등록하기
               </s.Comment__info_btn>
