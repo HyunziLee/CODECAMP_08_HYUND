@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import * as s from "./CommentList.styles";
 import ModalContainer from "../../../../commons/Modal/modal.container";
 import { getDate } from "../../../../commons/Function/getDate";
-import PopoverPage from "../Popover/popOver";
+import PopoverPage from "../edit/popOver";
 
 export default function CommentScroll(props) {
   const [isEditClicked, setIsEditClicked] = useState(false);
@@ -49,9 +49,10 @@ export default function CommentScroll(props) {
               data={props.e}
               commentInputFunc={props.commentInputFunc}
               contents={props.contents}
+              isEditBtn={isEditBtn}
             ></PopoverPage>
-            <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn>
-            <s.CommentDelete>x</s.CommentDelete>
+            {/* <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn> */}
+            {/* <s.CommentDelete>x</s.CommentDelete> */}
           </s.DeleteBtn>
         </s.Wrapper_list>
       )}

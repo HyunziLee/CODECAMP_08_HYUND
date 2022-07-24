@@ -2,7 +2,15 @@ import { useMutation } from "@apollo/client";
 import { Button, Popover, InputNumber } from "antd";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { FETCH_BOARD_COMMENTS, UPDATE_BOARD_COMMENT } from "../../queries";
+import {
+  IMutation,
+  IMutationDeleteBoardCommentArgs,
+} from "../../../../../commons/types/generated/types";
+import {
+  FETCH_BOARD_COMMENTS,
+  UPDATE_BOARD_COMMENT,
+  DELETE_BOARD_COMMENT,
+} from "../../queries";
 import * as s from "./popOver.styles";
 
 export default function PopoverPage(props) {
@@ -16,7 +24,50 @@ export default function PopoverPage(props) {
   const [commentRating, setCommentRating] = useState(props.data.rating);
   const [pwdMsg, setPwdMsg] = useState("");
   const [visible, setVisible] = useState(false);
+  const [deletePwd, setDeletePWd] = useState("");
+  const [deletePwdMsg, setDeletePwdMsg] = useState("");
   const router = useRouter();
+
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
+
+  const onClickDeleteComment = async () => {
+    try {
+      await deleteBoardComment({
+        variables: {
+          password: deletePwd,
+          boardCommentId: props.data._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: { boardId: router.query.name },
+          },
+        ],
+      });
+      // props.isEditBtn();
+    } catch (error) {
+      if (error instanceof Error) {
+        setDeletePwdMsg(error.message);
+      }
+    }
+  };
+
+  const contentDelete = (
+    <s.Wrapper>
+      <p>비밀번호를 입력하세요</p>
+      <s.Password_input
+        type="password"
+        onChange={(e) => {
+          setDeletePWd(e.target.value);
+        }}
+      />
+      {deletePwdMsg ? <s.Error_msg>{deletePwdMsg}</s.Error_msg> : ""}
+      <s.SubimtBtn onClick={onClickDeleteComment}>확인</s.SubimtBtn>
+    </s.Wrapper>
+  );
 
   const hide = () => {
     setVisible(false);
@@ -124,6 +175,10 @@ export default function PopoverPage(props) {
         onVisibleChange={handleVisibleChange}
       >
         <Button>수정하기</Button>
+      </Popover>
+
+      <Popover content={contentDelete} title="댓글 삭제" trigger="click">
+        <Button>x</Button>
       </Popover>
     </>
   );

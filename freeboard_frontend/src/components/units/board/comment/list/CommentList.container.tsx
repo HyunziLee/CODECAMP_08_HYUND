@@ -11,7 +11,6 @@ import { Wrapper_scroll } from "./CommentList.styles";
 
 export default function CommentEdit(props) {
   const router = useRouter();
-
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
     IQueryFetchBoardCommentsArgs
