@@ -25,6 +25,13 @@ const Column = styled.div`
   width: 25%;
 `;
 
+const Wrap = styled.div`
+  height: 500px;
+  overflow: auto;
+`;
+
+
+
 export default function StaticRoutedPage() {
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoards">,
@@ -53,13 +60,17 @@ console.log(data)
   
 
   return (
-    <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true}>
-      {data?.fetchBoards.map((el) => (
-        <Row key={el._id}>
-          <Column>{el.writer}</Column>
-          <Column>{el.contents}</Column>
-        </Row>
-      )) || <div></div>}
+    <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true} useWindow={false}>
+      <Wrap >
+        {data?.fetchBoards.map((el) => (
+          
+            <Row key={el._id}>
+              <Column>{el.writer}</Column>
+              <Column>{el.contents}</Column>
+            </Row>
+        
+        )) || <div></div>}
+       </Wrap>
       {/*  🔺 data가 없을 때 빈 <div > 보여줘 뜻 */}
     </InfiniteScroll>
   );

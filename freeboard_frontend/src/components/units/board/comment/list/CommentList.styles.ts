@@ -3,6 +3,7 @@ import { Rate, Avatar } from "antd";
 
 export const Wrapper_list = styled.div`
   width: 1200px;
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -63,4 +64,8 @@ export const EditBtn = styled.span`
 export const EditDiv = styled.div`
   height: 70px;
   background-color: yellow;
+`;
+export const Wrapper_scroll = styled.div`
+  height: 500px;
+  overflow: auto;
 `;

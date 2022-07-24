@@ -7,6 +7,7 @@ import {
 } from "../../../../../commons/types/generated/types";
 import { FETCH_BOARD_COMMENTS } from "../../queries";
 import CommentScroll from "./CommentList.presenter";
+import { Wrapper_scroll } from "./CommentList.styles";
 
 export default function CommentEdit(props) {
   const router = useRouter();
@@ -46,14 +47,16 @@ export default function CommentEdit(props) {
   return (
     <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true}>
       {/* {console.log(console.log(data?.fetchBoardComments))} */}
-      {data?.fetchBoardComments.map((e) => (
-        <CommentScroll
-          key={e._id}
-          e={e}
-          commentInputFunc={props.commentInputFunc}
-          contents={props.contents}
-        ></CommentScroll>
-      ))}
+      <Wrapper_scroll>
+        {data?.fetchBoardComments.map((e) => (
+          <CommentScroll
+            key={e._id}
+            e={e}
+            commentInputFunc={props.commentInputFunc}
+            contents={props.contents}
+          ></CommentScroll>
+        ))}
+      </Wrapper_scroll>
     </InfiniteScroll>
   );
 }
