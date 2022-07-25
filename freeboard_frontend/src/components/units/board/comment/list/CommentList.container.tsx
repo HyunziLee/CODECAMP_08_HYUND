@@ -46,16 +46,16 @@ export default function CommentEdit(props) {
   return (
     <InfiniteScroll pageStart={0} loadMore={onFetchMore} hasMore={true}>
       {/* {console.log(console.log(data?.fetchBoardComments))} */}
-      <Wrapper_scroll>
-        {data?.fetchBoardComments.map((e) => (
-          <CommentScroll
-            key={e._id}
-            e={e}
-            commentInputFunc={props.commentInputFunc}
-            contents={props.contents}
-          ></CommentScroll>
-        ))}
-      </Wrapper_scroll>
+      {/* <Wrapper_scroll> */}
+      {data?.fetchBoardComments.map((e) => (
+        <CommentScroll
+          key={e._id}
+          e={e}
+          commentInputFunc={props.commentInputFunc}
+          contents={props.contents}
+        ></CommentScroll>
+      ))}
+      {/* </Wrapper_scroll> */}
     </InfiniteScroll>
   );
 }
