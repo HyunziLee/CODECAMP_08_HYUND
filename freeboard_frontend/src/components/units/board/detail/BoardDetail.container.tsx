@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { FETCH_BOARD } from "../queries";
+import { DELETE_BOARD, FETCH_BOARD, FETCH_BOARDS } from "../queries";
 import {
+  IMutation,
+  IMutationDeleteBoardArgs,
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
@@ -10,6 +12,11 @@ import { IBoardDetailProps } from "./IBoardDetail.types";
 
 export default function BoardDetail(props: IBoardDetailProps) {
   const router = useRouter();
+
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, "deleteBoard">,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
 
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
@@ -20,6 +27,21 @@ export default function BoardDetail(props: IBoardDetailProps) {
       },
     }
   );
+
+  const DeleteBoardBtn = async () => {
+    try {
+      deleteBoard({
+        variables: {
+          boardId: String(router.query.name),
+        },
+        refetchQueries: [{ query: FETCH_BOARDS }],
+      });
+      console.log("삭제완료");
+      router.push(`/PostList/p`);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
+  };
 
   const MoveToListPageBtn = () => {
     router.push(`/PostList/p/`); // 나중에 페이저번호 번수로 저장해서 바꿔야함 /p/아님
@@ -34,6 +56,7 @@ export default function BoardDetail(props: IBoardDetailProps) {
       data={data}
       MoveToListPageBtn={MoveToListPageBtn}
       MoveToEditPageBtn={MoveToEditPageBtn}
+      DeleteBoardBtn={DeleteBoardBtn}
     />
   );
 }

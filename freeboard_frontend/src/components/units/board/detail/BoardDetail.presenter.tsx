@@ -63,7 +63,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <s.FooterBtnWrapper__btn onClick={props.MoveToEditPageBtn}>
           수정하기
         </s.FooterBtnWrapper__btn>
-        <s.FooterBtnWrapper__btn>삭제하기</s.FooterBtnWrapper__btn>
+        <s.FooterBtnWrapper__btn onClick={props.DeleteBoardBtn}>
+          삭제하기
+        </s.FooterBtnWrapper__btn>
       </s.FooterBtnWrapper>
     </div>
   );

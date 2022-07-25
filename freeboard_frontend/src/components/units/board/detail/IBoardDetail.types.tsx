@@ -8,4 +8,5 @@ export interface IBoardDetailUIProps {
   data?: Pick<IQuery, "fetchBoard">;
   MoveToListPageBtn: () => void;
   MoveToEditPageBtn: () => void;
+  DeleteBoardBtn: () => void;
 }
