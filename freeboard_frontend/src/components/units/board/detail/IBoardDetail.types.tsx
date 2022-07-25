@@ -9,4 +9,6 @@ export interface IBoardDetailUIProps {
   MoveToListPageBtn: () => void;
   MoveToEditPageBtn: () => void;
   DeleteBoardBtn: () => void;
+  likeBtn: () => void;
+  dislikeBtn: () => void;
 }

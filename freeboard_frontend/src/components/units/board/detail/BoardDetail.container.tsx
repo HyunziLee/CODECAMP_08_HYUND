@@ -1,10 +1,18 @@
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { DELETE_BOARD, FETCH_BOARD, FETCH_BOARDS } from "../queries";
+import {
+  DELETE_BOARD,
+  DISLIKE_BOARD,
+  FETCH_BOARD,
+  FETCH_BOARDS,
+  LIKE_BOARD,
+} from "../queries";
 import {
   IMutation,
   IMutationDeleteBoardArgs,
+  IMutationDislikeBoardArgs,
+  IMutationLikeBoardArgs,
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
@@ -17,6 +25,15 @@ export default function BoardDetail(props: IBoardDetailProps) {
     Pick<IMutation, "deleteBoard">,
     IMutationDeleteBoardArgs
   >(DELETE_BOARD);
+
+  const [likeBoard] = useMutation<
+    Pick<IMutation, "likeBoard">,
+    IMutationLikeBoardArgs
+  >(LIKE_BOARD);
+  const [dislikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+  >(DISLIKE_BOARD);
 
   const { data } = useQuery<Pick<IQuery, "fetchBoard">, IQueryFetchBoardArgs>(
     FETCH_BOARD,
@@ -51,12 +68,50 @@ export default function BoardDetail(props: IBoardDetailProps) {
     router.push(`/PostDetail/Edit/${router.query.name}`); // 나중에 페이저번호 번수로 저장해서 바꿔야함 /p/아님
   };
 
+  const likeBtn = () => {
+    console.log(data?.fetchBoard.likeCount);
+    if (typeof router.query.name !== "string") return;
+    likeBoard({
+      variables: {
+        boardId: String(router.query.name),
+      },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: {
+            boardId: String(router.query.name),
+          },
+        },
+      ],
+    });
+    console.log(data?.fetchBoard.likeCount);
+    console.log(router.query.name);
+  };
+  const dislikeBtn = () => {
+    if (typeof router.query.name !== "string") return;
+    dislikeBoard({
+      variables: {
+        boardId: String(router.query.name),
+      },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: {
+            boardId: String(router.query.name),
+          },
+        },
+      ],
+    });
+  };
+
   return (
     <BoardDetailUI
       data={data}
       MoveToListPageBtn={MoveToListPageBtn}
       MoveToEditPageBtn={MoveToEditPageBtn}
       DeleteBoardBtn={DeleteBoardBtn}
+      likeBtn={likeBtn}
+      dislikeBtn={dislikeBtn}
     />
   );
 }

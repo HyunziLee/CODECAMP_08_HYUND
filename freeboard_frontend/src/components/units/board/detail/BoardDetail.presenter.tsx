@@ -46,12 +46,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
 
         <s.LikeDislikeIcon>
           <s.LikeDislikeIcon_icon>
-            <FontAwesomeIcon icon={faThumbsUp} />
+            <FontAwesomeIcon icon={faThumbsUp} onClick={props.likeBtn} />
             <div>{props.data?.fetchBoard.likeCount}</div>
           </s.LikeDislikeIcon_icon>
 
           <s.LikeDislikeIcon_icon>
-            <FontAwesomeIcon icon={faThumbsDown} />
+            <FontAwesomeIcon icon={faThumbsDown} onClick={props.dislikeBtn} />
             <div>{props.data?.fetchBoard.dislikeCount}</div>
           </s.LikeDislikeIcon_icon>
         </s.LikeDislikeIcon>
