@@ -23,7 +23,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
               <s.Date>
                 {props.data ? props.data.fetchBoard.createdAt : "로딩중"}
               </s.Date>
-              {console.log(props.data)}
+              s{console.log(props.data)}
             </s.ProfileName>
           </s.ProfileWrapper>
           <s.ProfileIcon>

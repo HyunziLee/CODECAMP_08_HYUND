@@ -19,6 +19,7 @@ import {
 import { IBoardDetailProps } from "./IBoardDetail.types";
 
 export default function BoardDetail(props: IBoardDetailProps) {
+  //
   const router = useRouter();
 
   const [deleteBoard] = useMutation<
@@ -105,13 +106,15 @@ export default function BoardDetail(props: IBoardDetailProps) {
   };
 
   return (
-    <BoardDetailUI
-      data={data}
-      MoveToListPageBtn={MoveToListPageBtn}
-      MoveToEditPageBtn={MoveToEditPageBtn}
-      DeleteBoardBtn={DeleteBoardBtn}
-      likeBtn={likeBtn}
-      dislikeBtn={dislikeBtn}
-    />
+    <>
+      <BoardDetailUI
+        data={data}
+        MoveToListPageBtn={MoveToListPageBtn}
+        MoveToEditPageBtn={MoveToEditPageBtn}
+        DeleteBoardBtn={DeleteBoardBtn}
+        dislikeBtn={dislikeBtn}
+        likeBtn={likeBtn}
+      />
+    </>
   );
 }
