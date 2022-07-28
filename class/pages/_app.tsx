@@ -1,12 +1,18 @@
 // import '../styles/globals.css'
 import "antd/dist/antd.css";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  InMemoryCache,
+} from "@apollo/client";
 import { AppProps } from "next/app";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
 import Layout from "../src/components/commons/layout";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { createUploadLink } from "apollo-upload-client";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -27,8 +33,12 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const client = new ApolloClient({
+  const uploadLink = createUploadLink({
     uri: "http://backend08.codebootcamp.co.kr/graphql",
+  });
+
+  const client = new ApolloClient({
+    link: ApolloLink.from([uploadLink]),
     cache: new InMemoryCache(),
   });
 
