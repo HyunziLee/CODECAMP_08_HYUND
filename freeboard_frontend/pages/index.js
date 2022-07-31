@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     AOS.init();
-  });
+  }, []);
 
   const onHover = () => {
     setIsHover(!isHover);
@@ -37,8 +37,8 @@ export default function Home() {
   return (
     <>
       {isPc && (
-        <s.Wrapper>
-          <s.Video autoPlay muted loop src={BgVideo} width={`2560px`}></s.Video>
+        <s.Wrapper width={`1300px`}>
+          <s.Video autoPlay muted loop src={BgVideo}></s.Video>
           {isHover ? (
             <s.Video_text
               fontsize={`32px`}
@@ -63,25 +63,25 @@ export default function Home() {
         </s.Wrapper>
       )}
       {isTablet && (
-        <s.Wrapper className="container">
-          <s.Video autoPlay muted loop src={BgVideo} width={`2560px`}></s.Video>
+        <s.Wrapper width={`760px`}>
+          <s.Video autoPlay muted loop src={BgVideo}></s.Video>
 
           {isHover ? (
             <s.Video_text
-              fontsize={`32px`}
+              fontsize={`16px`}
               onMouseOver={onHover}
-              width={`150px`}
-              height={`150px`}
+              width={`100px`}
+              height={`100px`}
             >
               Hello
             </s.Video_text>
           ) : (
             <s.GoHome
               onMouseLeave={onHover}
-              fontsize={`25px`}
+              fontsize={`16px`}
               onClick={onClickGoHome}
-              width={`150px`}
-              height={`150px`}
+              width={`100px`}
+              height={`100px`}
             >
               Go Home
               <SwapRightOutlined />
@@ -90,8 +90,8 @@ export default function Home() {
         </s.Wrapper>
       )}
       {isMobile && (
-        <s.Wrapper>
-          <s.Video autoPlay muted loop src={BgVideo} width={`390px`}></s.Video>
+        <s.Wrapper width={`390px`}>
+          <s.Video autoPlay muted loop src={BgVideo}></s.Video>
           {isHover ? (
             <s.Video_text
               fontsize={`10px`}
@@ -115,9 +115,9 @@ export default function Home() {
           )}
         </s.Wrapper>
       )}
-      <s.Main_intro>
+      {/* <s.Main_intro>
         <s.Intro_contents data-aos="fade-up" />
-      </s.Main_intro>
+      </s.Main_intro> */}
     </>
   );
 }

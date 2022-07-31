@@ -2,38 +2,36 @@ import styled from "@emotion/styled";
 import { propTypes } from "react-bootstrap/esm/Image";
 
 export const Wrapper = styled.div`
-  position: relative;
   width: ${(props) => props.width};
+  margin: auto;
+  position: relative;
 `;
 
 export const Video = styled.video`
   width: 100%;
-  overflow: scroll;
 `;
 
 export const Video_text = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 45%;
+  left: 45%;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   line-height: ${(props) => props.height};
   border-radius: 50%;
   text-align: center;
-
   font-size: ${(props) => props.fontsize};
   cursor: pointer;
 `;
 
 export const GoHome = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 45%;
+  left: 45%;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   line-height: ${(props) => props.height};
   text-align: center;
-
   background-color: #bbd0ff;
   color: #fff;
   font-weight: 800;
