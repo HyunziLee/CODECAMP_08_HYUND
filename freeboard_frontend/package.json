@@ -17,16 +17,21 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.8.6",
+    "@types/react-responsive": "^8.0.5",
     "antd": "^4.21.5",
     "antd-img-crop": "^4.2.3",
+    "aos": "^3.0.0-beta.6",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
     "graphql": "^16.5.0",
     "next": "12.1.0",
     "react": "17.0.2",
+    "react-bootstrap": "^2.4.0",
     "react-daum-postcode": "^3.1.1",
     "react-dom": "17.0.2",
     "react-infinite-scroller": "^1.2.6",
-    "react-player": "^2.10.1"
+    "react-player": "^2.10.1",
+    "react-responsive": "^9.0.0-beta.10"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^2.8.1",
