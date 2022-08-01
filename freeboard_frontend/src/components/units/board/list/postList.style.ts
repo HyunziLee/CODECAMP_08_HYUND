@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { style } from "@mui/system";
 
 export const Wrapper = styled.div`
   margin: auto;
@@ -144,3 +145,18 @@ export const Footer__submitBtn_icon = styled.div`
   margin-right: 10px;
 `;
 export const Footer__submitBtn_text = styled.div``;
+
+export const Search_page = styled.div`
+  width: 300px;
+
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Search_span = styled.span`
+  font-size: 16px;
+
+  margin: 10px;
+  cursor: pointer;
+`;

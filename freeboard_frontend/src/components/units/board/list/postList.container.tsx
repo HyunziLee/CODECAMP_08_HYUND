@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 import { FETCH_BOARDS, FETCH_BOARD, FETCH_BOARDS_COUNT } from "../queries";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import {
   IQuery,
   IQueryFetchBoardArgs,
@@ -12,10 +12,12 @@ import {
   IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
 
+import _ from "lodash";
 export default function PostListContainer() {
   const [startPage, setStartPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   const router = useRouter();
 
@@ -64,6 +66,22 @@ export default function PostListContainer() {
     setStartPage((prev) => prev + 10);
   };
 
+  const getDebounce = _.debounce((value) => {
+    refetch({ search: value, page: 1 });
+
+    setKeyword(value);
+  }, 1000);
+
+  const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    getDebounce(e.target.value);
+  };
+
+  const onMovetoPageForSearch = (e: MouseEvent<HTMLSpanElement>) => {
+    if (!(e.target instanceof HTMLSpanElement)) return;
+
+    refetch({ page: Number(e.target.id) });
+  };
+
   return (
     <>
       <PostListUI
@@ -73,12 +91,16 @@ export default function PostListContainer() {
         onClickNext={onClickNext}
         setIsLastPage={setIsLastPage}
         setIsClicked={setIsClicked}
+        onChangeSearch={onChangeSearch}
+        onMovetoPageForSearch={onMovetoPageForSearch}
+        getDebounce={getDebounce}
         data={data}
         ListDetail={ListDetail}
         startPage={startPage}
         lastPageStandard={lastPageStandard}
         isLastPage={isLastPage}
         isClicked={isClicked}
+        keyword={keyword}
       ></PostListUI>
     </>
   );

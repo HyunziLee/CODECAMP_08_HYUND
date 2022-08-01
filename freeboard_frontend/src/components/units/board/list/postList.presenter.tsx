@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { getDate } from "../../../commons/Function/getDate";
 import ListPaginationUI from "./ListPagination.presenter";
 import { IPostListProps } from "./IPostList.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function PostListUI(props: IPostListProps) {
   const router = useRouter();
@@ -19,9 +20,12 @@ export default function PostListUI(props: IPostListProps) {
     <div>
       <s.Wrapper>
         <s.SearchWrapper>
-          <s.SearchWrapper__titleSearch placeholder="제목을 검색해주세요."></s.SearchWrapper__titleSearch>
-          <s.SearchWrapper__dateSearch placeholder="YYYY.MM.DD - YYYY.MM.DD"></s.SearchWrapper__dateSearch>
-          <s.SearchWrapper__btn>검색하기</s.SearchWrapper__btn>
+          <s.SearchWrapper__titleSearch
+            placeholder="검색할 내용을 작성하세요."
+            onChange={props.onChangeSearch}
+          ></s.SearchWrapper__titleSearch>
+          {/* <s.SearchWrapper__dateSearch placeholder="YYYY.MM.DD - YYYY.MM.DD"></s.SearchWrapper__dateSearch> */}
+          {/* <s.SearchWrapper__btn>검색하기</s.SearchWrapper__btn> */}
         </s.SearchWrapper>
         <s.ListWrapper>
           <s.ListWrapper__row>
@@ -40,7 +44,21 @@ export default function PostListUI(props: IPostListProps) {
                   MoveToListDetailBtn(e._id);
                 }}
               >
-                <span>{e.title}</span>{" "}
+                <span>
+                  {e.title
+                    .replaceAll(props.keyword, `#$%${props.keyword}#$%`)
+                    .split("#$%")
+                    .map((e) => (
+                      <span
+                        key={uuidv4()}
+                        style={{
+                          color: props.keyword === e ? "green" : "black",
+                        }}
+                      >
+                        {e}
+                      </span>
+                    ))}
+                </span>{" "}
               </s.ListWrapper__column>
               <s.ListWrapper__column>{e.writer}</s.ListWrapper__column>
               <s.ListWrapper__column>
@@ -49,20 +67,47 @@ export default function PostListUI(props: IPostListProps) {
             </s.ListWrapper__row>
           ))}
         </s.ListWrapper>
+        {/* {console.log(props.data)} */}
+
+        {props.keyword ? (
+          <s.Search_page>
+            {new Array(10).fill(1).map((_, index) => {
+              // if (props.keyword.length < 10) {
+              //   console.log(props.keyword.length);
+              //   return;
+              // }
+              return (
+                <s.Search_span
+                  key={index + 1}
+                  id={String(index + 1)}
+                  onClick={props.onMovetoPageForSearch}
+                >
+                  {index + 1}
+                </s.Search_span>
+              );
+            })}
+          </s.Search_page>
+        ) : (
+          ""
+        )}
 
         <s.Footer>
-          <ListPaginationUI
-            onClickRefetch={props.onClickRefetch}
-            onClickPrev={props.onClickPrev}
-            onClickNext={props.onClickNext}
-            setIsLastPage={props.setIsLastPage}
-            setIsClicked={props.setIsClicked}
-            data={props.data}
-            startPage={props.startPage}
-            lastPageStandard={props.lastPageStandard}
-            isLastPage={props.isLastPage}
-            isClicked={props.isClicked}
-          />
+          {!props.keyword ? (
+            <ListPaginationUI
+              onClickRefetch={props.onClickRefetch}
+              onClickPrev={props.onClickPrev}
+              onClickNext={props.onClickNext}
+              setIsLastPage={props.setIsLastPage}
+              setIsClicked={props.setIsClicked}
+              data={props.data}
+              startPage={props.startPage}
+              lastPageStandard={props.lastPageStandard}
+              isLastPage={props.isLastPage}
+              isClicked={props.isClicked}
+            />
+          ) : (
+            ""
+          )}
 
           <s.Footer__submitBtn onClick={props.MoveToWritePageBtn}>
             <s.Footer__submitBtn_icon>
