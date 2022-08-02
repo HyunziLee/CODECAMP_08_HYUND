@@ -16,6 +16,7 @@ import { createUploadLink } from "apollo-upload-client";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { RecoilRoot } from "recoil";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -40,15 +41,19 @@ function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
     link: ApolloLink.from([uploadLink]),
     cache: new InMemoryCache(),
+    connectToDevTools: true,
+    // 브라우저에서 아폴로클라이언트데브툴스 사용할 때
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <RecoilRoot>
+      <ApolloProvider client={client}>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </RecoilRoot>
   );
 }
 

@@ -70,7 +70,7 @@ export default function PostListContainer() {
     refetch({ search: value, page: 1 });
 
     setKeyword(value);
-  }, 1000);
+  }, 200);
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     getDebounce(e.target.value);
