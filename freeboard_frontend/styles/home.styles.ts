@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import { propTypes } from "react-bootstrap/esm/Image";
 
 export const Wrapper = styled.div`
-  width: ${(props) => props.width};
+  /* width: ${(props) => props.width}; */
+
   margin: auto;
   position: relative;
 `;

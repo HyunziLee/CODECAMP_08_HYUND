@@ -66,6 +66,8 @@ export const Header_detail = styled.div`
   align-items: center;
   background-color: #bbd0ff;
   animation: ${(props) => props.Opacity} 0.5s linear;
+
+  z-index: 99;
 `;
 export const Header_detail_logo = styled.div`
   width: 10%;

@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { isEditQuiz } from "../../../../../pages/quiz/21-02-recoil/store";
+import { isEditQuiz } from "../../../../../pages/quiz/store";
 
 export default function Write() {
   const [isEDit, setIsEDit] = useRecoilState(isEditQuiz);

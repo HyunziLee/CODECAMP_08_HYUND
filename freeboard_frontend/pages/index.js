@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   const onClickGoHome = () => {
-    router.push("/PostList/p");
+    router.push("/Main");
   };
 
   return (
