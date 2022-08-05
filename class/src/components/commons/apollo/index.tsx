@@ -8,7 +8,7 @@ import { createUploadLink } from "apollo-upload-client";
 import { ReactNode, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenQuiz } from "../../../../pages/quiz/store";
-import { accessTokenState } from "../store";
+import { accessTokenState, userInfoState } from "../store";
 
 const APOLLO_CACHE = new InMemoryCache(); // 새로고침 하면 없어지기 때문에 따로 분리함.
 
@@ -18,6 +18,7 @@ interface IApolloSettingProps {
 
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   // const [accessTokenQ, setAccessTokenQ] = useRecoilState(accessTokenQuiz);
 
@@ -47,9 +48,21 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   useEffect(() => {
     console.log("지금은 브라우저");
     const accessToken = localStorage.getItem("accessToken") || "";
+    const userInfo = localStorage.getItem("userInfo");
     setAccessToken(accessToken);
+    if (!accessToken || !userInfo) return;
+
+    setUserInfo(JSON.parse(userInfo));
+
     console.log(accessToken);
   }, []);
+
+  // useEffect(() => {
+  //   console.log("지금은 브라우저");
+  //   const accessToken = localStorage.getItem("accessToken") || "";
+  //   setAccessTokenQ(accessToken);
+  //   console.log(accessToken);
+  // }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend08.codebootcamp.co.kr/graphql",
