@@ -48,6 +48,7 @@ export default function SignUpUI() {
             </s.Info_address>
           </s.Info_division>
         </s.Basic_info>
+        <s.Sign_common_button>회원가입</s.Sign_common_button>
         <s.Extra_info></s.Extra_info>
         <s.ServiceCheck></s.ServiceCheck>
       </s.Wrapper>

@@ -49,7 +49,9 @@ export default function LayoutHeader() {
           <s.Header_menu_menu>
             <s.Header_menu_text onMouseOver={onHover}>menu1</s.Header_menu_text>
             <s.Header_menu_text onMouseOver={onHover}>menu2</s.Header_menu_text>
-            <s.Header_menu_text onMouseOver={onHover}>menu3</s.Header_menu_text>
+            <s.Header_menu_text onMouseOver={onHover}>
+              Community
+            </s.Header_menu_text>
             <s.Header_menu_text onMouseOver={onHover}>
               Account
             </s.Header_menu_text>
@@ -62,26 +64,26 @@ export default function LayoutHeader() {
               <s.Header_detail_text>
                 <s.Div>menu4 </s.Div>
                 <s.Div>menu3</s.Div>
+                <s.Div>menu3</s.Div>
+                <s.Div>menu4</s.Div>
+              </s.Header_detail_text>
+              <s.Header_detail_text>
+                <s.Div>menu1</s.Div>
+                <s.Div>menu2</s.Div>
+                <s.Div>menu3</s.Div>
+                <s.Div>menu4</s.Div>
+              </s.Header_detail_text>
+              <s.Header_detail_text>
                 <s.Div onClick={onClickGoList}>게시글 조회</s.Div>
                 <s.Div onClick={onClickGoWrite}>게시물 등록하기</s.Div>
-              </s.Header_detail_text>
-              <s.Header_detail_text>
-                <s.Div>menu1</s.Div>
-                <s.Div>menu2</s.Div>
                 <s.Div>menu3</s.Div>
                 <s.Div>menu4</s.Div>
               </s.Header_detail_text>
               <s.Header_detail_text>
-                <s.Div>menu1</s.Div>
-                <s.Div>menu2</s.Div>
-                <s.Div>menu3</s.Div>
-                <s.Div>menu4</s.Div>
-              </s.Header_detail_text>
-              <s.Header_detail_text>
-                <s.Div>menu1</s.Div>
-                <s.Div>menu2</s.Div>
-                <s.Div>menu3</s.Div>
-                <s.Div>menu4</s.Div>
+                <s.Div>로그인</s.Div>
+                <s.Div>마이페이지</s.Div>
+                <s.Div>주문조회</s.Div>
+                <s.Div>최근본상품</s.Div>
               </s.Header_detail_text>
             </s.Header_detail_menu>
           </s.Header_detail>
