@@ -1,14 +1,16 @@
 import * as s from "../../../../../styles/login.styles";
+import Button01 from "../../../commons/button/01";
+import Input01 from "../../../commons/input/01";
 export default function LoginUI() {
   return (
     <>
       <s.Wrapper>
         <s.Login_text>로그인</s.Login_text>
         <s.Wrapper_login>
-          <s.Login__text>ID</s.Login__text>
-          <s.Login_input />
+          <s.Login__text>EMAIL</s.Login__text>
+          <Input01 />
           <s.Login__text>PASSWORD</s.Login__text>
-          <s.Login_input />
+          <Input01 />
           <s.Login_info>
             <s.Login_remember_id>아이디 기억하기</s.Login_remember_id>
             <s.Login_find>
@@ -17,8 +19,8 @@ export default function LoginUI() {
             </s.Login_find>
           </s.Login_info>
         </s.Wrapper_login>
-        <s.Login_button>로그인</s.Login_button>
-        <s.Login_button>회원가입</s.Login_button>
+        <Button01 title="로그인" />
+        <Button01 title="회원가입" />
       </s.Wrapper>
     </>
   );

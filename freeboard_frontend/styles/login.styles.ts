@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1500px;
+  width: 1200px;
   background-color: red;
-
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 export const Login_text = styled.div`
   font-size: 40px;
@@ -22,7 +22,7 @@ export const Wrapper_login = styled.div`
 export const Login__text = styled.div`
   font-size: 20px;
 `;
-export const Login_input = styled.input`
+export const Login_user_input = styled.input`
   width: 100%;
   height: 50px;
   border: none;
@@ -50,6 +50,12 @@ export const Login_find_pw = styled.div``;
 
 export const Login_button = styled.div`
   width: 600px;
-  height: 50px;
-  background-color: green;
+  height: 70px;
+  background-color: skyblue;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 70px;
+  margin-bottom: 10px;
+  cursor: pointer;
 `;
