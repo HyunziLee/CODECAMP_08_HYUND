@@ -1,17 +1,17 @@
-import { useMutation, useQuery } from "@apollo/client";
-import { IQuery } from "../../../../commons/types/generated/types";
+import { useRecoilState } from "recoil";
 import { withAuth } from "../../../commons/hoc/withAuth";
-import { FETCH_USER_LOGGED_IN } from "../queries";
+import { userInfoState } from "../../../commons/store";
+
 import MyAccountUI from "./myAccount.presenter";
 
 function MyAccountContainer() {
-  const { data } =
-    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
-  console.log(data);
+  const [userInfo] = useRecoilState(userInfoState);
 
   return (
     <>
-      <MyAccountUI data={data?.fetchUserLoggedIn.name} />
+      {console.log(userInfo.name)}
+
+      <MyAccountUI data={userInfo} />
     </>
   );
 }

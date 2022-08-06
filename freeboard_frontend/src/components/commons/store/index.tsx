@@ -10,5 +10,11 @@ export const userInfoState = atom({
   default: {
     email: "",
     name: "",
+    _id: "",
+
+    picture: "",
+    createdAt: "",
+    updatedAt: "",
+    deletedAt: "",
   },
 });

@@ -1,7 +1,7 @@
 export default function MyAccountUI(props) {
   return (
     <>
-      <div>{props.data}</div>
+      <div>{props.data?.name}</div>
     </>
   );
 }
