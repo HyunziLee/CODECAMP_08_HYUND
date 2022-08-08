@@ -1,6 +1,8 @@
 import { useApolloClient, useMutation } from "@apollo/client";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+
+import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import {
   IMutation,
@@ -9,12 +11,12 @@ import {
 import { accessTokenState, userInfoState } from "../../../commons/store";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "../queries";
 import LoginUI from "./login.presenter";
+import { schema } from "../../../commons/yup/index";
 
 export default function LoginContainer() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
   const router = useRouter();
   const client = useApolloClient();
   const [loginUser] = useMutation<
@@ -22,23 +24,20 @@ export default function LoginContainer() {
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
-  const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const onClickLogin = async () => {
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+  const onClickButton = async (data) => {
     const result = await loginUser({
       variables: {
-        email,
-        password,
+        email: data.email,
+        password: data.password,
       },
     });
 
     const accessToken = result.data?.loginUser.accessToken;
-    console.log(accessToken);
+
     if (!accessToken) {
       alert("로그인이 필요합니다.");
       return;
@@ -66,9 +65,10 @@ export default function LoginContainer() {
   return (
     <>
       <LoginUI
-        onChangeEmail={onChangeEmail}
-        onChangePassword={onChangePassword}
-        onClickLogin={onClickLogin}
+        register={register}
+        handleSubmit={handleSubmit}
+        formState={formState}
+        onClickButton={onClickButton}
       />
     </>
   );

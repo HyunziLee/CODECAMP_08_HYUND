@@ -13,5 +13,5 @@ export const LoginUserInput = styled.input`
 `;
 
 export default function Input01(props) {
-  return <LoginUserInput {...props.register("email")}></LoginUserInput>;
+  return <LoginUserInput {...props.register(props.name)}></LoginUserInput>;
 }

@@ -24,14 +24,13 @@ export default function ApolloSetting(props: IApolloSettingProps) {
     console.log("지금은 브라우저");
     const accessToken = localStorage.getItem("accessToken") || "";
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-
+    if (!accessToken || !userInfo) return;
     setAccessToken(accessToken);
 
-    if (!accessToken || !userInfo) return;
     setUserInfo(userInfo);
   }, []);
 
-  console.log(userInfo);
+  // console.log(userInfo);
 
   const uploadLink = createUploadLink({
     uri: "http://backend08.codebootcamp.co.kr/graphql",

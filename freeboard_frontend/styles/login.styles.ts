@@ -21,11 +21,10 @@ export const Login_text = styled.div`
   font-weight: 800;
   width: 600px;
   text-align: center;
-  background-color: salmon;
 `;
 export const Wrapper_login = styled.div`
   width: 600px;
-  background-color: yellow;
+
   margin: 100px 0px;
 `;
 export const Login__text = styled.div`
@@ -56,15 +55,3 @@ export const Login_find = styled.div`
 `;
 export const Login_find_id = styled.div``;
 export const Login_find_pw = styled.div``;
-
-export const Login_button = styled.div`
-  width: 600px;
-  height: 70px;
-  background-color: skyblue;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 70px;
-  margin-bottom: 10px;
-  cursor: pointer;
-`;
