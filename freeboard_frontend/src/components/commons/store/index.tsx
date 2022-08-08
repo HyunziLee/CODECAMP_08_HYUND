@@ -11,10 +11,17 @@ export const userInfoState = atom({
     email: "",
     name: "",
     _id: "",
-
     picture: "",
     createdAt: "",
     updatedAt: "",
     deletedAt: "",
+  },
+});
+
+export const loginInfo = atom({
+  key: "loginInfo",
+  default: {
+    email: "",
+    password: "",
   },
 });
