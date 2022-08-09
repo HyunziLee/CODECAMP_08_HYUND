@@ -25,3 +25,8 @@ export const loginInfo = atom({
     password: "",
   },
 });
+
+export const visitedPageState = atom({
+  key: "visitedPageState",
+  default: "/",
+});

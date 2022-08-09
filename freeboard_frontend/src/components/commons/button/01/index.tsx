@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import * as s from "../../../../../styles/login.styles";
 
 export const LoginButton = styled.button`
   width: 600px;
@@ -14,5 +13,11 @@ export const LoginButton = styled.button`
   cursor: pointer;
 `;
 export default function Button01(props) {
-  return <LoginButton>{props.title}</LoginButton>;
+  const { onClick, type, title } = props;
+  console.log(props);
+  return (
+    <LoginButton onClick={onClick} type={type}>
+      {title}
+    </LoginButton>
+  );
 }

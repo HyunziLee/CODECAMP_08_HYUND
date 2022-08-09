@@ -1,28 +1,16 @@
-import { useForm } from "react-hook-form";
 import * as s from "../../../../../styles/login.styles";
 import Button01 from "../../../commons/button/01";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import Input01 from "../../../commons/input/01";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useRecoilState } from "recoil";
-import { loginInfo } from "../../../commons/store";
 
 export default function LoginUI(props) {
-  const [login, setLogin] = useRecoilState(loginInfo);
-  // const { register, handleSubmit, formState } = useForm({
-  //   resolver: yupResolver(schema),
-  //   mode: "onChange",
-  // });
-  // const onClickButton = async (data) => {
-  //   setLogin(data);
-  //   props.onClickLogin();
-  // };
+  const { onClickMovetoPage } = useMoveToPage();
 
   return (
     <>
-      <form onSubmit={props.handleSubmit(props.onClickButton)}>
-        <s.Wrapper>
-          <s.WrapperForm>
+      <s.Wrapper>
+        <s.WrapperForm>
+          <form onSubmit={props.handleSubmit(props.onClickButton)}>
             <s.Login_text>로그인</s.Login_text>
             <s.Wrapper_login>
               <s.Login__text>EMAIL</s.Login__text>
@@ -49,11 +37,15 @@ export default function LoginUI(props) {
               type="submit"
               isValid={props.formState.isValid}
             />
-            {/* <Button01 title="회원가입" /> */}
-          </s.WrapperForm>
-        </s.Wrapper>
-      </form>
-      {/* <button onClick={props.onClickLogin}>로그인</button> */}
+          </form>
+          <Button01
+            title="회원가입"
+            type="button"
+            onClick={onClickMovetoPage("/SignUp")}
+          />
+          <button onClick={onClickMovetoPage("/SignUp")}>dddd</button>
+        </s.WrapperForm>
+      </s.Wrapper>
     </>
   );
 }
