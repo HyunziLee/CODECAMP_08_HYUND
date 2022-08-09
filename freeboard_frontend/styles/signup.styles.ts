@@ -30,17 +30,7 @@ export const Info_title = styled.div`
   font-size: 20px;
   line-height: 60px;
 `;
-export const Info_input = styled.input`
-  width: 75%;
-  height: 40%;
-  font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid #e5e5e5;
-  background: #ffffff;
-  &:focus {
-    outline: 1px solid #cddafd;
-  }
-`;
+
 export const Info_address = styled.div`
   width: 75%;
 

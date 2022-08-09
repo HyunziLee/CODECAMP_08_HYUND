@@ -1,5 +1,6 @@
-import { SSRProvider } from "react-bootstrap";
 import * as s from "../../../../../styles/signup.styles";
+import { SignUpButton } from "../../../commons/button/02";
+import { InfoInput } from "../../../commons/input/02";
 export default function SignUpUI() {
   return (
     <>
@@ -7,19 +8,19 @@ export default function SignUpUI() {
         <s.Basic_info>
           <s.Info_division>
             <s.Info_title>이메일</s.Info_title>
-            <s.Info_input />
+            <InfoInput />
           </s.Info_division>
           <s.Info_division>
             <s.Info_title>비밀번호</s.Info_title>
-            <s.Info_input />
+            <InfoInput />
           </s.Info_division>
           <s.Info_division>
             <s.Info_title>비밀번호 확인</s.Info_title>
-            <s.Info_input />
+            <InfoInput />
           </s.Info_division>
           <s.Info_division>
             <s.Info_title>이름</s.Info_title>
-            <s.Info_input />
+            <InfoInput />
           </s.Info_division>
           <s.Info_division>
             <s.Info_title>휴대폰</s.Info_title>
@@ -28,7 +29,7 @@ export default function SignUpUI() {
                 <s.Info_phone_number />
                 <s.Info_phone_number />
                 <s.Info_phone_number />
-                <s.Sign_common_button>인증번호 받기</s.Sign_common_button>
+                <SignUpButton title="인증번호 받기" />
               </s.Wrapper_phone>
               <s.Info_phone_certification>
                 <s.Certification_input />

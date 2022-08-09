@@ -36,14 +36,15 @@ export default function LoginUI(props) {
               title="로그인"
               type="submit"
               isValid={props.formState.isValid}
+              color="#bbd0ff"
             />
           </form>
           <Button01
             title="회원가입"
             type="button"
             onClick={onClickMovetoPage("/SignUp")}
+            color="#e9ecef"
           />
-          <button onClick={onClickMovetoPage("/SignUp")}>dddd</button>
         </s.WrapperForm>
       </s.Wrapper>
     </>
