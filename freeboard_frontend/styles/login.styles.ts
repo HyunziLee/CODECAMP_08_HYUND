@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1500px;
-  margin: auto;
+  margin: 200px auto;
 
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const WrapperForm = styled.div`
   width: 800px;
   border: 1px solid gray;
-  margin-top: 100px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,6 +21,7 @@ export const Login_text = styled.div`
   font-weight: 800;
   width: 600px;
   text-align: center;
+  margin: 40px auto;
 `;
 export const Wrapper_login = styled.div`
   width: 600px;

@@ -2,26 +2,36 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1500px;
-  margin: auto;
-
+  margin: 200px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 export const Basic_info = styled.div`
-  width: 50%;
-  border: 1px solid #eae4e9;
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
   background: #ffffff;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
-  border-radius: 10px;
+`;
+export const Title = styled.div`
+  width: 500px;
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+  margin: 40px auto;
 `;
 export const Info_division = styled.div`
   height: 150px;
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
-  justify-content: space-between;
+  justify-content: center;
   margin: 20px 10px;
+`;
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Info_title = styled.div`

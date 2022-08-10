@@ -43,6 +43,16 @@ export const CREATE_BOARD_COMMENT = gql`
   }
 `;
 
+export const CREATE_USER = gql`
+  mutation createUser($createUserInput: CreateUserInput!) {
+    createUser(createUserInput: $createUserInput) {
+      _id
+      email
+      name
+    }
+  }
+`;
+
 export const UPDATE_BOARD = gql`
   mutation updateBoard(
     $boardId: ID!

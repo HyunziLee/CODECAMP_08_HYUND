@@ -11,7 +11,7 @@ import {
 import { accessTokenState, userInfoState } from "../../../commons/store";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "../queries";
 import LoginUI from "./login.presenter";
-import { schema } from "../../../commons/yup/index";
+import { schema } from "../../../commons/yup/login/index";
 
 export default function LoginContainer() {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);

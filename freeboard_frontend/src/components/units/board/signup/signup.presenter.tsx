@@ -1,55 +1,84 @@
 import * as s from "../../../../../styles/signup.styles";
-import { SignUpButton } from "../../../commons/button/02";
-import { InfoInput } from "../../../commons/input/02";
-export default function SignUpUI() {
+import Button01 from "../../../commons/button/01";
+
+import Input02 from "../../../commons/input/02";
+
+export default function SignUpUI(props) {
   return (
     <>
       <s.Wrapper>
-        <s.Basic_info>
-          <s.Info_division>
-            <s.Info_title>이메일</s.Info_title>
-            <InfoInput />
-          </s.Info_division>
-          <s.Info_division>
-            <s.Info_title>비밀번호</s.Info_title>
-            <InfoInput />
-          </s.Info_division>
-          <s.Info_division>
-            <s.Info_title>비밀번호 확인</s.Info_title>
-            <InfoInput />
-          </s.Info_division>
-          <s.Info_division>
-            <s.Info_title>이름</s.Info_title>
-            <InfoInput />
-          </s.Info_division>
-          <s.Info_division>
-            <s.Info_title>휴대폰</s.Info_title>
-            <s.Info_phone>
-              <s.Wrapper_phone>
-                <s.Info_phone_number />
-                <s.Info_phone_number />
-                <s.Info_phone_number />
-                <SignUpButton title="인증번호 받기" />
-              </s.Wrapper_phone>
-              <s.Info_phone_certification>
-                <s.Certification_input />
-                <s.Sign_common_button>확인</s.Sign_common_button>
-              </s.Info_phone_certification>
-            </s.Info_phone>
-          </s.Info_division>
-          <s.Info_division>
-            <s.Info_title>주소</s.Info_title>
-            <s.Info_address>
-              <s.Info_address_find>
-                <s.Info_address_find_title />
-                <s.Sign_common_button>주소검색</s.Sign_common_button>
-              </s.Info_address_find>
-              <s.Info_address_input />
-              <s.Info_address_input />
-            </s.Info_address>
-          </s.Info_division>
-        </s.Basic_info>
-        <s.Sign_common_button>회원가입</s.Sign_common_button>
+        <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
+          <s.Basic_info>
+            <s.Title>회원가입</s.Title>
+            <s.Info_division>
+              <s.Info_title>이름</s.Info_title>
+              <s.InputWrapper>
+                <Input02 type="text" register={props.register} name={"name"} />
+                <div>{props.formState.errors.name?.message}</div>
+              </s.InputWrapper>
+            </s.Info_division>
+
+            <s.Info_division>
+              <s.Info_title>이메일</s.Info_title>
+              <s.InputWrapper>
+                <Input02 type="text" register={props.register} name={"email"} />
+                <div>{props.formState.errors.email?.message}</div>
+              </s.InputWrapper>
+            </s.Info_division>
+
+            <s.Info_division>
+              <s.Info_title>비밀번호</s.Info_title>
+              <s.InputWrapper>
+                <Input02
+                  type="text"
+                  register={props.register}
+                  name={"password"}
+                />
+                <div>{props.formState.errors.password?.message}</div>
+              </s.InputWrapper>
+            </s.Info_division>
+
+            {/* <s.Info_division>
+              <s.Info_title>비밀번호 확인</s.Info_title>
+              <InfoInput />
+            </s.Info_division>
+
+            <s.Info_division>
+              <s.Info_title>휴대폰</s.Info_title>
+              <s.Info_phone>
+                <s.Wrapper_phone>
+                  <s.Info_phone_number />
+                  <s.Info_phone_number />
+                  <s.Info_phone_number />
+                  <Button02 title="인증번호 받기" />
+                </s.Wrapper_phone>
+                <s.Info_phone_certification>
+                  <s.Certification_input />
+                  <Button02 title="확인" />
+                </s.Info_phone_certification>
+              </s.Info_phone>
+            </s.Info_division>
+            <s.Info_division>
+              <s.Info_title>주소</s.Info_title>
+              <s.Info_address>
+                <s.Info_address_find>
+                  <s.Info_address_find_title />
+                  <Button02 title="주소검색" />
+                </s.Info_address_find>
+                <s.Info_address_input />
+                <s.Info_address_input />
+              </s.Info_address>
+            </s.Info_division> */}
+
+            <Button01
+              title="회원가입"
+              type="submit"
+              isValid={props.formState.isValid}
+              color="#e9ecef"
+            />
+          </s.Basic_info>
+        </form>
+
         <s.Extra_info></s.Extra_info>
         <s.ServiceCheck></s.ServiceCheck>
       </s.Wrapper>
