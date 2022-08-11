@@ -59,12 +59,14 @@ export const Wrapper_Detail = styled.div`
 export const Header_detail = styled.div`
   width: 1200px;
   height: 300px;
+  position: relative;
   margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: #bbd0ff;
+  z-index: 999;
 
   animation: ${(props) => props.Opacity} 0.5s linear;
 `;

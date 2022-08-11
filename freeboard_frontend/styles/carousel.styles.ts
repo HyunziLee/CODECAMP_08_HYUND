@@ -1,20 +1,25 @@
 import styled from "@emotion/styled";
 
-export const WrapperCarousel = styled.div`
-  width: 1500px;
-  height: 500px;
-  margin: auto;
-  position: relative;
-  z-index: -1;
-
-  /* background-color: red; */
-`;
+export const WrapperCarousel = styled.div``;
 export const CarouselContainer = styled.div`
   width: 80%;
   height: 400px;
-  z-index: 10;
+  margin: auto;
+`;
 
-  position: absolute;
+export const ContainerWrapper = styled.div`
+  width: 100%;
+  height: 350px;
 
-  background-color: yellow;
+  background-color: pink;
+  margin: auto;
+`;
+export const Image = styled.div`
+  width: 100%;
+  height: 350px;
+  text-align: center;
+  font-size: 60px;
+
+  border: 1px dotted black;
+  margin: auto;
 `;

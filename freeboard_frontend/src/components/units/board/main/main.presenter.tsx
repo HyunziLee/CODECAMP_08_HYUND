@@ -14,26 +14,21 @@ export default function MainUI() {
 
   return (
     <>
-      <s.WrapperCarousel>
-        <s.CarouselContainer>
-          <Slider {...settings}>
-            <div>
-              <h3>
-                {" "}
-                Best
-                <p>21</p>
-                <p>2</p>
-              </h3>
-            </div>
-            <div>
-              <h3>Carousel</h3>
-            </div>
-            <div>
-              <h3>Carousel</h3>
-            </div>
-          </Slider>
-        </s.CarouselContainer>
-      </s.WrapperCarousel>
+      {/* <s.WrapperCarousel> */}
+      <s.CarouselContainer>
+        <Slider {...settings}>
+          <s.ContainerWrapper>
+            <s.Image>1</s.Image>
+          </s.ContainerWrapper>
+          <s.ContainerWrapper>
+            <s.Image>2</s.Image>
+          </s.ContainerWrapper>
+          <s.ContainerWrapper>
+            <s.Image>3</s.Image>
+          </s.ContainerWrapper>
+        </Slider>
+      </s.CarouselContainer>
+      {/* </s.WrapperCarousel> */}
     </>
   );
 }
