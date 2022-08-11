@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import LayoutFooter from "./footer";
@@ -18,11 +19,13 @@ export default function Layout(props: ILayoutProps) {
 
   return (
     <>
-      {!isHiddenHeader && <LayoutHeader />}
+      <Container maxWidth="xl">
+        {!isHiddenHeader && <LayoutHeader />}
 
-      <div>{props.children}</div>
+        <div>{props.children}</div>
 
-      <LayoutFooter></LayoutFooter>
+        <LayoutFooter></LayoutFooter>
+      </Container>
     </>
   );
 }

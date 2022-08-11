@@ -9,6 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IBoardDetailUIProps } from "./IBoardDetail.types";
 
+
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
     <div>

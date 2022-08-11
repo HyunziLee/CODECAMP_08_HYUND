@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 
 export const InfoInput = styled.input`
-  width: 550px;
-  height: 40%;
+  width: 600px;
+  height: 50px;
+
   font-size: 20px;
-  border-radius: 5px;
-  border: 1px solid #e5e5e5;
+
+  border: none;
+  border-bottom: solid 1px #555;
   background: #ffffff;
   &:focus {
-    outline: 1px solid #cddafd;
+    outline: none;
   }
 `;
 

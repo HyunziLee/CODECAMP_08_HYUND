@@ -14,7 +14,7 @@ export const Wrapper_header = styled.div`
 `;
 
 export const Header_menu = styled.div`
-  width: 1500px;
+  width: 1200px;
   height: 100%;
   margin: auto;
   display: flex;
@@ -36,7 +36,7 @@ export const Header_menu_menu = styled.div`
 export const Header_menu_text = styled.div`
   width: 100px;
   text-align: center;
-  font-size: 20px;
+  font-size: 15px;
   margin: 10px;
   cursor: pointer;
 `;
@@ -57,7 +57,7 @@ export const Wrapper_Detail = styled.div`
 `;
 
 export const Header_detail = styled.div`
-  width: 1500px;
+  width: 1200px;
   height: 300px;
   margin: auto;
   display: flex;

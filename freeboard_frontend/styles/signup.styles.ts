@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1500px;
+  width: 1200px;
   margin: 200px auto;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@ export const Basic_info = styled.div`
   width: 800px;
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
+
   background: #ffffff;
 `;
 export const Title = styled.div`
@@ -23,11 +23,9 @@ export const Title = styled.div`
 `;
 export const Info_division = styled.div`
   height: 150px;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
-  justify-content: center;
-  margin: 20px 10px;
+  margin-bottom: 30px;
+
+  margin: auto;
 `;
 export const InputWrapper = styled.div`
   display: flex;
@@ -36,9 +34,8 @@ export const InputWrapper = styled.div`
 
 export const Info_title = styled.div`
   width: 20%;
-  height: 40%;
+
   font-size: 20px;
-  line-height: 60px;
 `;
 
 export const Info_address = styled.div`

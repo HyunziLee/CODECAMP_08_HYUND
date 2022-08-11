@@ -1,6 +1,6 @@
 import * as s from "./postList.style";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { useRouter } from "next/router";
 
@@ -111,7 +111,7 @@ export default function PostListUI(props: IPostListProps) {
 
           <s.Footer__submitBtn onClick={props.MoveToWritePageBtn}>
             <s.Footer__submitBtn_icon>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              {/* <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
             </s.Footer__submitBtn_icon>
             <s.Footer__submitBtn_text>게시물등록하기</s.Footer__submitBtn_text>
           </s.Footer__submitBtn>
