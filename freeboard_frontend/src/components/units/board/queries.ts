@@ -62,14 +62,14 @@ export const CREATE_USED_ITEM = gql`
       price
       tags
       images
-      pickedCount
-      useditemAddress
-      buyer
-      seller
-      soldAt
-      createdAt
-      updatedAt
-      deletedAt
+      # pickedCount
+      # useditemAddress
+      # buyer
+      # seller
+      # soldAt
+      # createdAt
+      # updatedAt
+      # deletedAt
     }
   }
 `;

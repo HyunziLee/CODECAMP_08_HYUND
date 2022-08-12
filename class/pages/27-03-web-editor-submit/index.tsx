@@ -32,7 +32,7 @@ export default function WebEditorPage() {
     setValue("contents", value === "<p><br></p>" ? "" : value);
 
     // onChange이 됐다고 react-hook-form에 강제로 알려주는 기능
-    trigger("container");
+    trigger("contents");
   };
   const onClickCreate = async (data) => {
     const result = await createBoard({

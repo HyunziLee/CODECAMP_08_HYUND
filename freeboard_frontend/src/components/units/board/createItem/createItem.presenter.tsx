@@ -3,47 +3,67 @@ import { WrapperBox } from "../../../commons/box/01";
 import * as s from "../../../../../styles/createItem.styles";
 import Input02 from "../../../commons/input/02";
 
-export default function CreateItemUI() {
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
+
+export default function CreateItemUI(props) {
   return (
     <Container maxWidth="xl">
       <WrapperBox>
-        <s.Wrapper>
-          <s.ImageWrapper>
-            <s.ImageBig />
-            <s.ImageSmallWrapper>
-              {/* 무한스크롤 */}
-              <s.ImageSmall />
-              <s.ImageSmall />
-              <s.ImageSmall />
-            </s.ImageSmallWrapper>
-          </s.ImageWrapper>
-          <s.InputWrapper>
-            <s.InputName>
-              <s.InputDiv>상품명</s.InputDiv>
-              {/* <Input02 /> */}
-            </s.InputName>
-            <s.InputDiv>상품명</s.InputDiv>
+        <form onSubmit={props.handleSubmit(props.onClickCreateItem)}>
+          <s.Wrapper>
+            <s.ImageWrapper>
+              <s.ImageBig />
+              <s.ImageSmallWrapper>
+                <s.ImageSmall />
+                <s.ImageSmall />
+                <s.ImageSmall />
+                <s.ImageSmall />
+                <s.ImageSmall />
+              </s.ImageSmallWrapper>
+            </s.ImageWrapper>
+            <s.InputWrapper>
+              <s.InputDiv>
+                <s.InputH3>상품명</s.InputH3>
+                <Input02 type="text" register={props.register} name={"name"} />
+              </s.InputDiv>
+              <s.InputDiv>
+                <s.InputH3>가격</s.InputH3>
+                <Input02
+                  type="number"
+                  register={props.register}
+                  name={"price"}
+                />
+              </s.InputDiv>
 
-            <s.InputPrice>
-              <s.InputDiv>가격</s.InputDiv>
-              {/* <Input02 /> */}
-            </s.InputPrice>
+              <s.InputDiv>
+                <s.InputH3>상품 설명</s.InputH3>
+                <ReactQuill onChange={props.onChangeContents} />
+              </s.InputDiv>
 
-            <s.InputContents>
-              <s.InputDiv>상품 설명</s.InputDiv>
-            </s.InputContents>
-
-            <s.InputAddress>
-              <s.InputDiv>주소</s.InputDiv>
-            </s.InputAddress>
-            <s.InputRemarks>
-              <s.InputDiv>비고</s.InputDiv>
-            </s.InputRemarks>
-            <s.InputTag>
-              <s.InputDiv>태그</s.InputDiv>
-            </s.InputTag>
-          </s.InputWrapper>
-        </s.Wrapper>
+              <s.InputDiv>
+                <s.InputH3>주소</s.InputH3>
+                {/* <s.KakaoMap /> */}
+              </s.InputDiv>
+              <s.InputDiv>
+                <s.InputH3>비고</s.InputH3>
+                <Input02
+                  type="text"
+                  register={props.register}
+                  name={"remarks"}
+                />
+              </s.InputDiv>
+              <s.InputTag>
+                <s.InputH3>태그</s.InputH3>
+                <Input02 type="text" register={props.register} name={"tags"} />
+              </s.InputTag>
+            </s.InputWrapper>
+          </s.Wrapper>
+          <button type="submit">등록하기</button>
+        </form>
       </WrapperBox>
     </Container>
   );

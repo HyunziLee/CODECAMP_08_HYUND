@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 900px;
-  height: 600px;
+  width: 1100px;
+
   display: flex;
   flex-direction: row;
 
@@ -15,6 +15,7 @@ export const ImageWrapper = styled.div`
   flex-direction: column;
   background-color: yellow;
   align-items: center;
+  margin-top: 40px;
 `;
 export const ImageBig = styled.div`
   width: 90%;
@@ -23,15 +24,16 @@ export const ImageBig = styled.div`
 `;
 export const ImageSmallWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 90%;
   height: 100px;
   background-color: pink;
   align-items: center;
-  overflow: scroll;
+  flex-wrap: wrap;
+  overflow-y: scroll;
 `;
 export const ImageSmall = styled.div`
-  width: 25%;
+  width: 80px;
   height: 80px;
   margin: 10px;
   background-color: orange;
@@ -39,11 +41,15 @@ export const ImageSmall = styled.div`
 
 export const InputWrapper = styled.div`
   width: 60%;
-  background-color: skyblue;
+
+  margin-top: 40px;
+  margin-left: 20px;
 `;
 
-export const InputDiv = styled.div``;
-export const InputName = styled.div``;
+export const InputH3 = styled.h3``;
+export const InputDiv = styled.div`
+  margin-bottom: 30px;
+`;
 export const InputRemarks = styled.div``;
 export const InputContents = styled.div``;
 export const InputPrice = styled.div``;
