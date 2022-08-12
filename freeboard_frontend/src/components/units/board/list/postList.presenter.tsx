@@ -1,4 +1,4 @@
-import * as s from "./postList.style";
+import * as s from "../../../../../styles/postList.styles";
 // import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

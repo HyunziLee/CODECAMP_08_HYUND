@@ -1,5 +1,4 @@
 import { gql } from "@apollo/client";
-import { Writer } from "../../../../styles/01-01";
 
 export const FETCH_BOARD = gql`
   query fetchBoard($boardId: ID!) {
@@ -49,6 +48,28 @@ export const CREATE_USER = gql`
       _id
       email
       name
+    }
+  }
+`;
+
+export const CREATE_USED_ITEM = gql`
+  mutation createUseditem($createUseditemInput: CreateUseditemInput!) {
+    createUseditem(createUseditemInput: $createUseditemInput) {
+      _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      pickedCount
+      useditemAddress
+      buyer
+      seller
+      soldAt
+      createdAt
+      updatedAt
+      deletedAt
     }
   }
 `;

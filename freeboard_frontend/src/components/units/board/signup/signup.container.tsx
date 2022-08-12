@@ -45,12 +45,6 @@ export default function SignUpContainer() {
   };
   return (
     <>
-      {/* <form onSubmit={handleSubmit(onClickSignUp)}>
-        <input type="text" {...register("name")} />
-        <input type="text" {...register("email")} />
-        <input type="text" {...register("password")} />
-        <button>afafd</button>
-      </form> */}
       <SignUpUI
         register={register}
         handleSubmit={handleSubmit}

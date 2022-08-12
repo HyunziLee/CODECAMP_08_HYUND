@@ -4,11 +4,11 @@ import { style } from "@mui/system";
 
 export const Wrapper = styled.div`
   margin: auto;
-  width: 1500px;
+  width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 export const SearchWrapper = styled.div`
@@ -61,7 +61,7 @@ export const ListWrapper__row = styled.div`
   text-align: center;
   align-items: center;
   font-size: 16px;
-  border-top: 1px solid black;
+  border-top: 1px solid #ebebeb;
   height: 45px;
 
   & :first-child {

@@ -1,5 +1,5 @@
 import { IListPaginationUIProps } from "./IPostList.types";
-import * as s from "./postList.style";
+import * as s from "../../../../../styles/postList.styles";
 
 export default function ListPaginationUI(props: IListPaginationUIProps) {
   return (

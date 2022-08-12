@@ -1,4 +1,4 @@
-import * as s from "../../../../../styles/postDetail";
+import * as s from "../../../../../styles/postDetail.styles";
 
 import {
   faLocationDot,
@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IBoardDetailUIProps } from "./IBoardDetail.types";
-
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
