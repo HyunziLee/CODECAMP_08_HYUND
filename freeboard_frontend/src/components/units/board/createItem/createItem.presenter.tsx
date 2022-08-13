@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import Tags from "../../../commons/tags/tags";
 import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
+import Warning from "../../../commons/div/01-warning";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -31,6 +32,7 @@ export default function CreateItemUI(props) {
               <s.InputDiv>
                 <s.InputH3>상품명</s.InputH3>
                 <Input02 type="text" register={props.register} name={"name"} />
+                <Warning errormsg={props.formState.errors.name?.message} />
               </s.InputDiv>
               <s.InputDiv>
                 <s.InputH3>가격</s.InputH3>
@@ -39,6 +41,7 @@ export default function CreateItemUI(props) {
                   register={props.register}
                   name={"price"}
                 />
+                <Warning errormsg={props.formState.errors.price?.message} />
               </s.InputDiv>
 
               <s.InputDiv>

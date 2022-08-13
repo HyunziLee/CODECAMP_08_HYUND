@@ -1,6 +1,5 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ChangeEvent } from "react";
 
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";

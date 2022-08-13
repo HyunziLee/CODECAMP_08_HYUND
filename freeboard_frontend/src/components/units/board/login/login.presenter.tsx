@@ -1,5 +1,6 @@
 import * as s from "../../../../../styles/login.styles";
 import Button01 from "../../../commons/button/01";
+import Warning from "../../../commons/div/01-warning";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import Input01 from "../../../commons/input/01";
 
@@ -15,14 +16,16 @@ export default function LoginUI(props) {
             <s.Wrapper_login>
               <s.Login__text>EMAIL</s.Login__text>
               <Input01 type="text" register={props.register} name={"email"} />
-              <div>{props.formState.errors.email?.message}</div>
+              <Warning errormsg={props.formState.errors.email?.message} />
+
               <s.Login__text>PASSWORD</s.Login__text>
               <Input01
                 type="password"
                 register={props.register}
                 name={"password"}
               />
-              <div>{props.formState.errors.password?.message}</div>
+
+              <Warning errormsg={props.formState.errors.password?.message} />
               <s.Login_info>
                 <s.Login_remember_id>아이디 기억하기</s.Login_remember_id>
                 <s.Login_find>

@@ -1,5 +1,6 @@
 import * as s from "../../../../../styles/signup.styles";
 import Button01 from "../../../commons/button/01";
+import Warning, { WarningDiv } from "../../../commons/div/01-warning";
 
 import Input02 from "../../../commons/input/02";
 
@@ -14,7 +15,7 @@ export default function SignUpUI(props) {
               <s.Info_title>이름</s.Info_title>
               <s.InputWrapper>
                 <Input02 type="text" register={props.register} name={"name"} />
-                <div>{props.formState.errors.name?.message}</div>
+                <Warning errormsg={props.formState.errors.name?.message} />
               </s.InputWrapper>
             </s.Info_division>
 
@@ -22,7 +23,7 @@ export default function SignUpUI(props) {
               <s.Info_title>이메일</s.Info_title>
               <s.InputWrapper>
                 <Input02 type="text" register={props.register} name={"email"} />
-                <div>{props.formState.errors.email?.message}</div>
+                <Warning errormsg={props.formState.errors.email?.message} />
               </s.InputWrapper>
             </s.Info_division>
 
@@ -34,7 +35,7 @@ export default function SignUpUI(props) {
                   register={props.register}
                   name={"password"}
                 />
-                <div>{props.formState.errors.password?.message}</div>
+                <Warning errormsg={props.formState.errors.password?.message} />
               </s.InputWrapper>
             </s.Info_division>
 

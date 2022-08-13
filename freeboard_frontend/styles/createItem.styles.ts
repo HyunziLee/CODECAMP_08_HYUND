@@ -13,7 +13,7 @@ export const ImageWrapper = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
-  background-color: yellow;
+
   align-items: center;
   margin-top: 40px;
 `;
@@ -46,7 +46,9 @@ export const InputWrapper = styled.section`
   margin-left: 20px;
 `;
 
-export const InputH3 = styled.h3``;
+export const InputH3 = styled.h3`
+  font-weight: 800;
+`;
 export const InputDiv = styled.div`
   margin-bottom: 30px;
 `;
