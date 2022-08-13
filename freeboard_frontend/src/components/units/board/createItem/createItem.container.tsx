@@ -1,6 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useEffect } from "react";
+import { ChangeEvent } from "react";
+
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import {
@@ -8,14 +9,15 @@ import {
   IMutationCreateUseditemArgs,
 } from "../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { TagArr } from "../../../commons/store";
+import { KakaoMapAddress, TagArr } from "../../../commons/store";
 import { schema } from "../../../commons/yup/createItem";
 import { CREATE_USED_ITEM } from "../queries";
 import CreateItemUI from "./createItem.presenter";
 
 export default function CreateItemContainer() {
   const { onClickMovetoPage } = useMoveToPage();
-  const [tags, setTags] = useRecoilState(TagArr);
+  const [tags] = useRecoilState(TagArr);
+  const [kakaoAddress] = useRecoilState(KakaoMapAddress);
   const [createUseditem] = useMutation<
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
@@ -32,6 +34,7 @@ export default function CreateItemContainer() {
   };
 
   const onClickCreateItem = async (data) => {
+    console.log(kakaoAddress);
     try {
       const result = await createUseditem({
         variables: {

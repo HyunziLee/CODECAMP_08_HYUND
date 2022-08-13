@@ -6,6 +6,7 @@ import Input02 from "../../../commons/input/02";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import Tags from "../../../commons/tags/tags";
+import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -47,7 +48,8 @@ export default function CreateItemUI(props) {
 
               <s.InputDiv>
                 <s.InputH3>주소</s.InputH3>
-                <s.KakaoMap />
+
+                <KakaoMapPage />
               </s.InputDiv>
               <s.InputDiv>
                 <s.InputH3>비고</s.InputH3>

@@ -58,5 +58,4 @@ export const InputAddress = styled.div``;
 export const KakaoMap = styled.div`
   width: 500px;
   height: 400px;
-  background-color: yellow;
 `;

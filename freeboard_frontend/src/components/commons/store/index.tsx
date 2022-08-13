@@ -35,3 +35,7 @@ export const TagArr = atom({
   key: "TagArr",
   default: [],
 });
+export const KakaoMapAddress = atom({
+  key: "KakaoMapAddress",
+  default: [],
+});
