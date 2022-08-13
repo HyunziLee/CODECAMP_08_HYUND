@@ -22,7 +22,7 @@ export const ImageBig = styled.div`
   height: 300px;
   background-color: greenyellow;
 `;
-export const ImageSmallWrapper = styled.div`
+export const ImageSmallWrapper = styled.section`
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -39,7 +39,7 @@ export const ImageSmall = styled.div`
   background-color: orange;
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.section`
   width: 60%;
 
   margin-top: 40px;
@@ -55,3 +55,8 @@ export const InputContents = styled.div``;
 export const InputPrice = styled.div``;
 export const InputTag = styled.div``;
 export const InputAddress = styled.div``;
+export const KakaoMap = styled.div`
+  width: 500px;
+  height: 400px;
+  background-color: yellow;
+`;

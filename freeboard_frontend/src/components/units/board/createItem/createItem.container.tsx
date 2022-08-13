@@ -2,17 +2,20 @@ import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useRecoilState } from "recoil";
 import {
   IMutation,
   IMutationCreateUseditemArgs,
 } from "../../../../commons/types/generated/types";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
+import { TagArr } from "../../../commons/store";
 import { schema } from "../../../commons/yup/createItem";
 import { CREATE_USED_ITEM } from "../queries";
 import CreateItemUI from "./createItem.presenter";
 
 export default function CreateItemContainer() {
   const { onClickMovetoPage } = useMoveToPage();
+  const [tags, setTags] = useRecoilState(TagArr);
   const [createUseditem] = useMutation<
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
@@ -36,14 +39,14 @@ export default function CreateItemContainer() {
             name: data.name,
             remarks: data.remarks,
             price: Number(data.price),
-            tags: data.tags,
+            tags,
             images: ["a", "d", "c"],
             contents: data.contents,
           },
         },
       });
 
-      console.log(result.data?.createUseditem._id);
+      console.log(result.data?.createUseditem.tags);
       onClickMovetoPage(
         `/CreateItemSuccess/${result.data?.createUseditem._id}`
       );
