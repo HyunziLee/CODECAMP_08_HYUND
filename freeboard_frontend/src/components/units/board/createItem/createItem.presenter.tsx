@@ -10,17 +10,25 @@ import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
 import Warning from "../../../commons/div/01-warning";
 import { v4 as uuidv4 } from "uuid";
 import UploadImg from "../../../commons/upload/01/uploadImg.container";
+import { UploadImgState } from "../../../commons/store";
+import { useRecoilState } from "recoil";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
 export default function CreateItemUI(props) {
+  const [uploadUrl] = useRecoilState(UploadImgState);
   return (
     <Container maxWidth="xl">
       <WrapperBox>
         <s.Wrapper>
           <s.ImageWrapper>
-            <s.ImageBig />
+            {uploadUrl ? (
+              <s.ImageBig src={`https://storage.googleapis.com/${uploadUrl}`} />
+            ) : (
+              <s.ImageBig />
+            )}
+
             <s.ImageSmallWrapper>
               {props.fileUrls.map((el, index) => (
                 <UploadImg

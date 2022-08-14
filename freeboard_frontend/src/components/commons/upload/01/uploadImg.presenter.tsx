@@ -1,4 +1,7 @@
 import {
+  ImageBig,
+  ImageSmallWrapper,
+  ImageWrapper,
   UploadBtn,
   UploadFileHidden,
   UploadImg,

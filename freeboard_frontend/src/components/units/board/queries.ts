@@ -154,6 +154,28 @@ export const FETCH_BOARDS_COUNT = gql`
   }
 `;
 
+export const FETCH_USED_ITEM = gql`
+  query fetchUseditem($useditemId: ID!) {
+    fetchUseditem(useditemId: $useditemId) {
+      _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      # pickedCount
+      # useditemAddress
+      # buyer
+      # seller
+      # soldAt
+      # createdAt
+      # updatedAt
+      # deletedAt
+    }
+  }
+`;
+
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)

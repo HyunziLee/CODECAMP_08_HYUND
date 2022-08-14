@@ -39,3 +39,12 @@ export const KakaoMapAddress = atom({
   key: "KakaoMapAddress",
   default: [],
 });
+export const UploadImgState = atom({
+  key: "UploadImg",
+  default: "",
+});
+
+export const detailImgState = atom({
+  key: "detailImgState",
+  default: "",
+});

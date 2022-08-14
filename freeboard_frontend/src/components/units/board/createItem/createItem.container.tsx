@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 
 import { useForm } from "react-hook-form";
@@ -27,10 +28,13 @@ export default function CreateItemContainer() {
     IMutationCreateUseditemArgs
   >(CREATE_USED_ITEM);
 
-  const { register, handleSubmit, formState, setValue, trigger } = useForm({
-    resolver: yupResolver(schema),
-    mode: "onChange",
-  });
+  const router = useRouter();
+
+  const { register, handleSubmit, formState, setValue, trigger, getValues } =
+    useForm({
+      resolver: yupResolver(schema),
+      mode: "onChange",
+    });
   const onChangeFileUrls = (fileUrl: string, index: number) => {
     const newFileUrls = [...fileUrls];
     newFileUrls[index] = fileUrl;
@@ -58,10 +62,11 @@ export default function CreateItemContainer() {
         },
       });
 
-      console.log(result.data?.createUseditem.tags);
-      onClickMovetoPage(
-        `/CreateItemSuccess/${result.data?.createUseditem._id}`
-      );
+      console.log(result.data?.createUseditem._id);
+      // onClickMovetoPage(
+      //   `/CreateItemSuccess/${result.data?.createUseditem._id}`
+      // );
+      router.push(`/CreateItemSuccess/${result.data?.createUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }
