@@ -13,6 +13,8 @@ export default function RatioContainer(props) {
         value={value}
         onChange={onChange}
         InputFunction={props.InputFunction}
+        onChangeFileUrls={props.onChangeFileUrls}
+        fileUrls={props.fileUrls}
       ></RatioUI>
     </>
   );

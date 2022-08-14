@@ -8,6 +8,8 @@ import dynamic from "next/dynamic";
 import Tags from "../../../commons/tags/tags";
 import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
 import Warning from "../../../commons/div/01-warning";
+import { v4 as uuidv4 } from "uuid";
+import UploadImg from "../../../commons/upload/01/uploadImg.container";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -16,18 +18,21 @@ export default function CreateItemUI(props) {
   return (
     <Container maxWidth="xl">
       <WrapperBox>
-        <form onSubmit={props.handleSubmit(props.onClickCreateItem)}>
-          <s.Wrapper>
-            <s.ImageWrapper>
-              <s.ImageBig />
-              <s.ImageSmallWrapper>
-                <s.ImageSmall />
-                <s.ImageSmall />
-                <s.ImageSmall />
-                <s.ImageSmall />
-                <s.ImageSmall />
-              </s.ImageSmallWrapper>
-            </s.ImageWrapper>
+        <s.Wrapper>
+          <s.ImageWrapper>
+            <s.ImageBig />
+            <s.ImageSmallWrapper>
+              {props.fileUrls.map((el, index) => (
+                <UploadImg
+                  key={uuidv4()}
+                  index={index}
+                  fileUrl={el}
+                  onChangeFileUrls={props.onChangeFileUrls}
+                />
+              ))}
+            </s.ImageSmallWrapper>
+          </s.ImageWrapper>
+          <form onSubmit={props.handleSubmit(props.onClickCreateItem)}>
             <s.InputWrapper>
               <s.InputDiv>
                 <s.InputH3>상품명</s.InputH3>
@@ -46,7 +51,10 @@ export default function CreateItemUI(props) {
 
               <s.InputDiv>
                 <s.InputH3>상품 설명</s.InputH3>
-                <ReactQuill onChange={props.onChangeContents} />
+                <ReactQuill
+                  onChange={props.onChangeContents}
+                  style={{ width: "600px", height: "400px" }}
+                />
               </s.InputDiv>
 
               <s.InputDiv>
@@ -67,9 +75,9 @@ export default function CreateItemUI(props) {
                 <Tags />
               </s.InputTag>
             </s.InputWrapper>
-          </s.Wrapper>
-          <button type="submit">등록하기</button>
-        </form>
+            <button type="submit">등록하기</button>
+          </form>
+        </s.Wrapper>
       </WrapperBox>
     </Container>
   );

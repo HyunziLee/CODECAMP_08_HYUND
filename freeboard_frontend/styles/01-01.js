@@ -92,7 +92,7 @@ export const Select__radio = styled.input``;
 export const Submit__btn = styled.button`
   width: 150px;
   height: 40px;
-  background-color: #ffd600;
+  background-color: #bbd0ff;
   border: none;
   margin-top: 100px;
   margin-left: 50%;

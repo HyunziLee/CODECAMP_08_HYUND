@@ -11,6 +11,7 @@ export const FETCH_BOARD = gql`
       likeCount
       dislikeCount
       createdAt
+      images
     }
   }
 `;
@@ -21,6 +22,7 @@ export const CREATE_BOARD = gql`
       writer
       title
       contents
+      images
     }
   }
 `;
@@ -90,6 +92,7 @@ export const UPDATE_BOARD = gql`
       title
       contents
       updatedAt
+      images
     }
   }
 `;
@@ -192,6 +195,14 @@ export const FETCH_USER_LOGGED_IN = gql`
       createdAt
       updatedAt
       deletedAt
+    }
+  }
+`;
+
+export const UPLOAD_FILE = gql`
+  mutation uploadFile($file: Upload!) {
+    uploadFile(file: $file) {
+      url
     }
   }
 `;

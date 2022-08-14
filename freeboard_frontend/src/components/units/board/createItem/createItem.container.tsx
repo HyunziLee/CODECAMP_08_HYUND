@@ -1,22 +1,27 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ChangeEvent, useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import {
   IMutation,
   IMutationCreateUseditemArgs,
+  IMutationUpdateBoardArgs,
+  IMutationUploadFileArgs,
 } from "../../../../commons/types/generated/types";
+import { CheckFileValidation } from "../../../commons/Function/checkFileValidation";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { KakaoMapAddress, TagArr } from "../../../commons/store";
 import { schema } from "../../../commons/yup/createItem";
-import { CREATE_USED_ITEM } from "../queries";
+import { CREATE_USED_ITEM, UPDATE_BOARD } from "../queries";
 import CreateItemUI from "./createItem.presenter";
 
 export default function CreateItemContainer() {
   const { onClickMovetoPage } = useMoveToPage();
   const [tags] = useRecoilState(TagArr);
   const [kakaoAddress] = useRecoilState(KakaoMapAddress);
+  const [fileUrls, setFileUrls] = useState(["", "", "", "", ""]);
   const [createUseditem] = useMutation<
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
@@ -26,6 +31,11 @@ export default function CreateItemContainer() {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
 
   const onChangeContents = (value: string) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
@@ -42,7 +52,7 @@ export default function CreateItemContainer() {
             remarks: data.remarks,
             price: Number(data.price),
             tags,
-            images: ["a", "d", "c"],
+            images: fileUrls,
             contents: data.contents,
           },
         },
@@ -65,6 +75,8 @@ export default function CreateItemContainer() {
         handleSubmit={handleSubmit}
         onClickCreateItem={onClickCreateItem}
         formState={formState}
+        fileUrls={fileUrls}
+        onChangeFileUrls={onChangeFileUrls}
       />
     </>
   );

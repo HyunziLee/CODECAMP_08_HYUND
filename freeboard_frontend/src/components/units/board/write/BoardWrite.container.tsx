@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 
@@ -28,6 +28,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [addressTotal, setAddressTotal] = useState("");
   // const [addressTotal, setAddressTotal] = useState({
   //   zipcode: "",
@@ -74,6 +75,18 @@ export default function BoardWrite(props: IBoardWriteProps) {
     // address: () => {},
   };
 
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  // useEffect(() => {
+  //   if (props.data?.fetchBoard.images?.length) {
+  //     setFileUrls([...props.data?.fetchBoard.images]);
+  //   }
+  // }, [props.data]);
+
   const SignupChk = async () => {
     if (writer !== "" && pwd !== "" && title !== "" && contents !== "") {
       try {
@@ -85,6 +98,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
               title,
               contents,
               youtubeUrl,
+              images: fileUrls,
               boardAddress: {
                 zipcode: "ddd",
                 address: "ddd",
@@ -93,6 +107,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
             },
           },
         });
+        console.log(result.data?.createBoard.images);
 
         router.push(`/PostDetail/${result.data?.createBoard._id}`);
       } catch (error) {
@@ -129,7 +144,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
         variables: {
           boardId: String(router.query.name),
           password: pwd,
-          updateBoardInput: updateBoardInput,
+          updateBoardInput,
         },
       });
       router.push(`/PostDetail/${result.data?.updateBoard._id}`);
@@ -162,6 +177,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
         isNull={isNull}
         btnState={props.btnState}
         data={props.data}
+        onChangeFileUrls={onChangeFileUrls}
+        fileUrls={fileUrls}
       />
     </>
   );

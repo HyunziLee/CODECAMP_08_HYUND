@@ -62,7 +62,7 @@ export const ProfileIcon__Icon = styled.div`
   text-align: center;
 
   & :first-of-type {
-    color: #ffd600;
+    color: #bbd0ff;
     font-size: 20px;
     cursor: pointer;
   }
@@ -75,11 +75,14 @@ export const Title = styled.div`
   font-size: 25px;
   font-weight: 700;
 `;
-
-export const ImageArea = styled.div`
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 90%;
-  height: 500px;
-  background: #f2f2f2;
+`;
+export const ImageArea = styled.img`
+  width: 33.3%;
+
   margin-bottom: 40px;
 `;
 export const Contents = styled.div`
@@ -104,7 +107,7 @@ export const LikeDislikeIcon_icon = styled.div`
   text-align: center;
 
   &:first-of-type {
-    color: #ffd600;
+    color: #bbd0ff;
     font-size: 40px;
     cursor: pointer;
   }

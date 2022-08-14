@@ -28,6 +28,8 @@ export interface IBoardWriteUIProps {
   SignupChk: () => void;
   onClickUpdateBtn: () => void;
   onClickFindAddressModal: () => void;
+  onChangeFileUrls: () => void;
+  fileUrls: string[];
   writerMsg: string;
   pwdMsg: string;
   titleMsg: string;

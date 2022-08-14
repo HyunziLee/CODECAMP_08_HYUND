@@ -58,7 +58,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             우편번호 검색
           </s.Post__btn>
           {
-            //isModal이 true 이면 모달창 보여줘 (isModal 초기 = fasle / onClickFindAddressModal누르면 !isModal임 )
+            // isModal이 true 이면 모달창 보여줘 (isModal 초기 = fasle / onClickFindAddressModal누르면 !isModal임 )
             props.isModal === true ? (
               <ModalContainer isModal={props.isModal} isNull={props.isNull} />
             ) : (
@@ -74,7 +74,11 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       <s.Select>
         <s.Writer__content__title>메인 설정</s.Writer__content__title>
         {props.isRatio === true ? (
-          <RatioContainer InputFunction={props.InputFunction}></RatioContainer>
+          <RatioContainer
+            InputFunction={props.InputFunction}
+            onChangeFileUrls={props.onChangeFileUrls}
+            fileUrls={props.fileUrls}
+          ></RatioContainer>
         ) : (
           ""
         )}

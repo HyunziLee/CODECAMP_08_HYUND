@@ -36,7 +36,9 @@ export const ImageSmall = styled.div`
   width: 80px;
   height: 80px;
   margin: 10px;
-  background-color: orange;
+  text-align: center;
+  line-height: 80px;
+  background-color: #d1d1d1;
 `;
 
 export const InputWrapper = styled.section`

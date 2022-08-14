@@ -8,6 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IBoardDetailUIProps } from "./IBoardDetail.types";
+import { Link, LocationOn, ThumbDown, ThumbUp } from "@mui/icons-material";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
@@ -28,16 +30,29 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </s.ProfileWrapper>
           <s.ProfileIcon>
             <s.ProfileIcon__Icon>
-              <FontAwesomeIcon icon={faLink} />
+              <Link />
             </s.ProfileIcon__Icon>
             <s.ProfileIcon__Icon>
-              <FontAwesomeIcon icon={faLocationDot} />
+              <LocationOn />
             </s.ProfileIcon__Icon>
           </s.ProfileIcon>
         </s.UserWrapper>
         <s.Title>{props.data?.fetchBoard.title}</s.Title>
-        <s.ImageArea>{props.data?.fetchBoard.images}</s.ImageArea>
+
         <s.Contents>{props.data?.fetchBoard.contents}</s.Contents>
+        <s.ImageWrapper>
+          {props.data?.fetchBoard.images.map((el) =>
+            el ? (
+              <s.ImageArea
+                key={uuidv4()}
+                src={`https://storage.googleapis.com/${el}`}
+              />
+            ) : (
+              ""
+            )
+          )}
+        </s.ImageWrapper>
+
         <s.Youtube
           url={props.data?.fetchBoard.youtubeUrl}
           width="486px"
@@ -46,12 +61,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
 
         <s.LikeDislikeIcon>
           <s.LikeDislikeIcon_icon>
-            <FontAwesomeIcon icon={faThumbsUp} onClick={props.likeBtn} />
+            <ThumbUp onClick={props.likeBtn} />
             <div>{props.data?.fetchBoard.likeCount}</div>
           </s.LikeDislikeIcon_icon>
 
           <s.LikeDislikeIcon_icon>
-            <FontAwesomeIcon icon={faThumbsDown} onClick={props.dislikeBtn} />
+            <ThumbDown onClick={props.dislikeBtn} />
             <div>{props.data?.fetchBoard.dislikeCount}</div>
           </s.LikeDislikeIcon_icon>
         </s.LikeDislikeIcon>

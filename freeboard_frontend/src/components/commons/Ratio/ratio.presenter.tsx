@@ -1,6 +1,7 @@
 import { Radio } from "antd";
 import UrlInputContainer from "../InputUrl/urlInput.container";
-import UploadImgContainer from "../UploadImg/upload.container";
+import UploadImg from "../upload/01/uploadImg.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function RatioUI(props) {
   return (
@@ -12,7 +13,16 @@ export default function RatioUI(props) {
       {props.value === 1 ? (
         <UrlInputContainer InputFunction={props.InputFunction} />
       ) : (
-        <UploadImgContainer />
+        <>
+          {props.fileUrls.map((el, index) => (
+            <UploadImg
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
+        </>
       )}
     </>
   );
