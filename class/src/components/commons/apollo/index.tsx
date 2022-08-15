@@ -2,13 +2,16 @@ import {
   ApolloClient,
   ApolloLink,
   ApolloProvider,
+  fromPromise,
   InMemoryCache,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 import { ReactNode, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenQuiz } from "../../../../pages/quiz/store";
+
 import { accessTokenState, userInfoState } from "../store";
+import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
 const APOLLO_CACHE = new InMemoryCache(); // 새로고침 하면 없어지기 때문에 따로 분리함.
 
@@ -57,23 +60,41 @@ export default function ApolloSetting(props: IApolloSettingProps) {
     console.log(accessToken);
   }, []);
 
-  // useEffect(() => {
-  //   console.log("지금은 브라우저");
-  //   const accessToken = localStorage.getItem("accessToken") || "";
-  //   setAccessTokenQ(accessToken);
-  //   console.log(accessToken);
-  // }, []);
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    // 1-1. 에러를 캐치
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        // 1-2. 해당 에러가 토큰 만료 에러인지 체크(UNAUTHENTICATED)
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          return fromPromise(
+            // 2-1. refreshToken으로 accessToken 재발급 받기
+            getAccessToken().then((newAccessToken) => {
+              // 2-2. 재발급 받은 accessToken을 저장히기
+              setAccessToken(newAccessToken);
+
+              // 3-1. 재발급받은 accessToken으로 방금 실패한 쿼리 재요청하기(토큰 바꿔치기)
+
+              operation.setContext({
+                headers: {
+                  ...operation.getContext().headers, // 만료된 토큰이 추가되어있는 상태
+                  Authorization: `Bearer ${newAccessToken}`, // 토큰만 새걸로 바꿔치기
+                },
+              });
+            })
+          ).flatMap(() => forward(operation)); // 3-2. 재발급받은 accessToken으로 방금 실패한 쿼리 재요청하기(변경된 operation 재요청하기)
+        }
+      }
+    }
+  });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend08.codebootcamp.co.kr/graphql",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      // Authorization: `Bearer ${accessTokenQ}`,
-    },
+    uri: "https://backend08.codebootcamp.co.kr/graphql",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink]),
+    link: ApolloLink.from([errorLink, uploadLink]), // 순서 중요 - errorLink먼저
     cache: APOLLO_CACHE,
     connectToDevTools: true,
     // 브라우저에서 아폴로클라이언트데브툴스 사용할 때
