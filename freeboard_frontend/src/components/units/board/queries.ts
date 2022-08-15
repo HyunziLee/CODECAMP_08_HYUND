@@ -176,6 +176,28 @@ export const FETCH_USED_ITEM = gql`
   }
 `;
 
+export const FETCH_USED_ITEMS = gql`
+  query fetchUseditems($isSoldout: Boolean, $search: String, $page: Int) {
+    fetchUseditems(isSoldout: $isSoldout, search: $search, page: $page) {
+      _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      pickedCount
+      # useditemAddress
+      # buyer
+      # seller
+      # soldAt
+      # createdAt
+      # updatedAt
+      # deletedAt
+    }
+  }
+`;
+
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)

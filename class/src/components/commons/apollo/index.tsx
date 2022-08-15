@@ -49,15 +49,21 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   // 3. 프리렌더링 무시 - useEffect 방법
 
   useEffect(() => {
-    console.log("지금은 브라우저");
-    const accessToken = localStorage.getItem("accessToken") || "";
-    const userInfo = localStorage.getItem("userInfo");
-    setAccessToken(accessToken);
-    if (!accessToken || !userInfo) return;
+    // 1. 기존방식(refreshToken 이전)
+    // console.log("지금은 브라우저");
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // const userInfo = localStorage.getItem("userInfo");
+    // setAccessToken(accessToken);
+    // if (!accessToken || !userInfo) return;
 
-    setUserInfo(JSON.parse(userInfo));
+    // setUserInfo(JSON.parse(userInfo));
 
-    console.log(accessToken);
+    // console.log(accessToken);
+
+    // 2. 새로운 방식
+    getAccessToken().then((newAccessToken) => {
+      setAccessToken(newAccessToken);
+    });
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {

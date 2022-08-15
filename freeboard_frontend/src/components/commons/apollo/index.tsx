@@ -2,6 +2,7 @@ import {
   ApolloClient,
   ApolloLink,
   ApolloProvider,
+  fromPromise,
   InMemoryCache,
 } from "@apollo/client";
 
@@ -10,6 +11,8 @@ import { createUploadLink } from "apollo-upload-client";
 
 import { accessTokenState, userInfoState } from "../store";
 import { ReactNode, useEffect } from "react";
+import { onError } from "@apollo/client/link/error";
+import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
 const APOLLO_CACHE = new InMemoryCache();
 interface IApolloSettingProps {
@@ -21,16 +24,40 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
-    console.log("지금은 브라우저");
-    const accessToken = localStorage.getItem("accessToken") || "";
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    if (!accessToken || !userInfo) return;
-    setAccessToken(accessToken);
+    // 1. 기존방식(refreshToken 이전)
+    // console.log("지금은 브라우저다!!!!!");
+    // const accessToken = localStorage.getItem("accessToken") || "";
+    // const userInfo = localStorage.getItem("userInfo");
+    // setAccessToken(accessToken);
 
-    setUserInfo(userInfo);
+    if (!accessToken || !userInfo) return;
+    setUserInfo(JSON.parse(userInfo));
+
+    // 2. 새로운방식(refreshToken 이후)
+    getAccessToken().then((newAccessToken) => {
+      setAccessToken(newAccessToken);
+    });
   }, []);
 
-  // console.log(userInfo);
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      for (const err of graphQLErrors) {
+        if (err.extensions.code === "UNAUTHENTICATED") {
+          return fromPromise(
+            getAccessToken().then((newAccessToken) => {
+              setAccessToken(newAccessToken);
+              operation.setContext({
+                headers: {
+                  ...operation.getContext().headers,
+                  Authorization: `Bearer ${newAccessToken}`,
+                },
+              });
+            })
+          ).flatMap(() => forward(operation));
+        }
+      }
+    }
+  });
 
   const uploadLink = createUploadLink({
     uri: "http://backend08.codebootcamp.co.kr/graphql",
@@ -40,7 +67,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink]),
+    link: ApolloLink.from([errorLink, uploadLink]),
     cache: APOLLO_CACHE,
     connectToDevTools: true,
     // 브라우저에서 아폴로클라이언트데브툴스 사용할 때
