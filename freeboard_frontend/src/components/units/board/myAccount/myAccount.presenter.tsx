@@ -21,10 +21,12 @@ export default function MyAccountUI(props) {
             </s.Button>
           </Link>
 
-          <s.Button>
-            <Storefront style={{ fontSize: "50px", color: "#ABC2E8" }} />
-            <p>내 상점</p>
-          </s.Button>
+          <Link href={"/CreateItem"}>
+            <s.Button>
+              <Storefront style={{ fontSize: "50px", color: "#ABC2E8" }} />
+              <p>내 상점</p>
+            </s.Button>
+          </Link>
           <s.Button>
             <AccountCircle style={{ fontSize: "50px", color: "#ABC2E8" }} />
             <p>내 정보 수정</p>
