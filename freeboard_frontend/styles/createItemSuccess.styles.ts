@@ -49,6 +49,10 @@ export const ContentsWrapper = styled.section`
 `;
 
 export const TitleH4 = styled.h4``;
+export const TagWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export const ContentsH3 = styled.h3`
   font-weight: 800;

@@ -1,12 +1,5 @@
 import * as s from "../../../../../styles/postDetail.styles";
 
-import {
-  faLocationDot,
-  faLink,
-  faThumbsUp,
-  faThumbsDown,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IBoardDetailUIProps } from "./IBoardDetail.types";
 import { Link, LocationOn, ThumbDown, ThumbUp } from "@mui/icons-material";
 import { v4 as uuidv4 } from "uuid";

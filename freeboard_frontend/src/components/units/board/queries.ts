@@ -198,6 +198,26 @@ export const FETCH_USED_ITEMS = gql`
   }
 `;
 
+export const CREATE_USED_ITEM_QUESTION = gql`
+  mutation createUseditemQuestion(
+    $createUseditemQuestionInput: CreateUseditemQuestionInput!
+    $useditemId: ID!
+  ) {
+    createUseditemQuestion(
+      createUseditemQuestionInput: $createUseditemQuestionInput
+      useditemId: $useditemId
+    ) {
+      _id
+      contents
+      useditem
+      user
+      createdAt
+      updatedAt
+      deletedAt
+    }
+  }
+`;
+
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)

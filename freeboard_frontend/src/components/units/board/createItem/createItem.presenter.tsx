@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import UploadImg from "../../../commons/upload/01/uploadImg.container";
 import { UploadImgState } from "../../../commons/store";
 import { useRecoilState } from "recoil";
+import Button01 from "../../../commons/button/01";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
@@ -83,7 +84,14 @@ export default function CreateItemUI(props) {
                 <Tags />
               </s.InputTag>
             </s.InputWrapper>
-            <button type="submit">등록하기</button>
+            <s.SubmitBtnWrapper>
+              <Button01
+                title="상품 등록하기"
+                type="submit"
+                isValid={props.formState.isValid}
+                color="#bbd0ff"
+              />
+            </s.SubmitBtnWrapper>
           </form>
         </s.Wrapper>
       </WrapperBox>

@@ -40,7 +40,13 @@ export default function LayoutHeader() {
       <Container maxWidth="xl">
         <s.Wrapper_header>
           <s.Header_menu>
-            <s.Header_menu_logo>Home</s.Header_menu_logo>
+            <s.Header_menu_logo
+              onClick={() => {
+                onClickMenu("Main");
+              }}
+            >
+              Home
+            </s.Header_menu_logo>
             <s.Header_menu_menu>
               <s.Header_menu_text onMouseOver={onHover}>
                 menu1
@@ -67,7 +73,13 @@ export default function LayoutHeader() {
                   <s.Div>menu4</s.Div>
                 </s.Header_detail_text>
                 <s.Header_detail_text>
-                  <s.Div>menu1</s.Div>
+                  <s.Div
+                    onClick={() => {
+                      onClickMenu("Market");
+                    }}
+                  >
+                    중고상품
+                  </s.Div>
                   <s.Div>menu2</s.Div>
                   <s.Div>menu3</s.Div>
                   <s.Div>menu4</s.Div>

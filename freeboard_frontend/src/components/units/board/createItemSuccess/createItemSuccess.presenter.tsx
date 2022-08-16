@@ -4,6 +4,7 @@ import { WrapperBox } from "../../../commons/box/01";
 import { v4 as uuidv4 } from "uuid";
 import { detailImgState } from "../../../commons/store";
 import { useRecoilState } from "recoil";
+import Dompurify from "dompurify";
 export default function CreateItemSuccessUI(props) {
   const [bigImg, setBigImg] = useRecoilState(detailImgState);
   return (
@@ -46,7 +47,15 @@ export default function CreateItemSuccessUI(props) {
 
             <s.ContentsDiv>
               <s.TitleH4>상품 설명</s.TitleH4>
-              <s.ContentsH3>{props.data?.fetchUseditem.contents}</s.ContentsH3>
+              {typeof window !== "undefined" && (
+                <s.ContentsH3
+                  dangerouslySetInnerHTML={{
+                    __html: Dompurify.sanitize(
+                      props.data?.fetchUseditem.contents
+                    ),
+                  }}
+                ></s.ContentsH3>
+              )}
             </s.ContentsDiv>
 
             <s.ContentsDiv>
@@ -61,9 +70,11 @@ export default function CreateItemSuccessUI(props) {
             </s.ContentsDiv>
             <s.ContentsDiv>
               <s.TitleH4>태그</s.TitleH4>
-              {props.data?.fetchUseditem.tags.map((el) => (
-                <s.ContentsH3 key={uuidv4()}>{el}</s.ContentsH3>
-              ))}
+              <s.TagWrapper>
+                {props.data?.fetchUseditem.tags.map((el) => (
+                  <s.ContentsH3 key={uuidv4()}>{el}</s.ContentsH3>
+                ))}
+              </s.TagWrapper>
             </s.ContentsDiv>
             <s.ButtonWrapper>
               <s.BuyButton color="#bbd0ff">구매하기</s.BuyButton>

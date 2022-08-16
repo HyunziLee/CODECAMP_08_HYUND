@@ -62,3 +62,10 @@ export const KakaoMap = styled.div`
   width: 500px;
   height: 400px;
 `;
+
+export const SubmitBtnWrapper = styled.div`
+  margin: 40px auto;
+
+  display: flex;
+  flex-direction: column;
+`;

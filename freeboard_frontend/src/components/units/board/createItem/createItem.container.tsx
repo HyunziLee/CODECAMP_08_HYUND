@@ -13,7 +13,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { CheckFileValidation } from "../../../commons/Function/checkFileValidation";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import { KakaoMapAddress, TagArr } from "../../../commons/store";
+import { KakaoMapAddress, loginInfo, TagArr } from "../../../commons/store";
 import { schema } from "../../../commons/yup/createItem";
 import { CREATE_USED_ITEM, UPDATE_BOARD } from "../queries";
 import CreateItemUI from "./createItem.presenter";
@@ -27,6 +27,8 @@ export default function CreateItemContainer() {
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
   >(CREATE_USED_ITEM);
+
+  const [userInfo, setUserInfo] = useRecoilState(loginInfo);
 
   const router = useRouter();
 
@@ -48,6 +50,9 @@ export default function CreateItemContainer() {
 
   const onClickCreateItem = async (data) => {
     console.log(kakaoAddress);
+
+    // if (!userInfo) return;
+
     try {
       const result = await createUseditem({
         variables: {
