@@ -10,9 +10,9 @@ export default function CallbackPromiseAsyncAwaitPage() {
         aa.open("get", `http://numbersapi.com/random?min=1&max=200`);
         aa.send();
         aa.addEventListener("load", (res: any) => {
-            console.log(res);
+            // console.log(res);
             const num = res.target.response.split(" ")[0]; // 랜덤 숫자 받아오는 거
-
+            console.log(num);
             const bb = new XMLHttpRequest();
             bb.open("get", `http://koreanjson.com/posts/${num}`);
             bb.send();
@@ -55,8 +55,8 @@ export default function CallbackPromiseAsyncAwaitPage() {
     };
     const onClickAsyncAwait = async () => {
         const result = await axios.get("첫번째주소");
-        const result = await axios.get("두번째주소");
-        const result = await axios.get("세번째주소");
+        // const result = await axios.get("두번째주소");
+        // const result = await axios.get("세번째주소");
     };
     return (
         <>
