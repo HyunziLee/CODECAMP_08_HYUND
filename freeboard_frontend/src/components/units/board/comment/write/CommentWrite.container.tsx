@@ -2,7 +2,7 @@ import CommentUI from "./CommentWrite.presenter";
 import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "../../queries";
 import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import ModalContainer from "../../../../commons/Modal/modal.container";
 import {
   IMutation,
@@ -41,7 +41,7 @@ export default function CommentContainer() {
   };
 
   const onClickCommentBtn = async () => {
-    //입력창이 하나라도 빈칸인 경우, 댓글이 등록되지 않으며, 모달창 발생
+    // 입력창이 하나라도 빈칸인 경우, 댓글이 등록되지 않으며, 모달창 발생
 
     if (!writer || !password || !contents) {
       setIsNull(true);
