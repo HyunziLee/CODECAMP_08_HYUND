@@ -51,7 +51,6 @@ export const ItemPrice = styled.div`
 export const ItemRemarks = styled.div`
   height: 100px;
 
-  background-color: yellowgreen;
   margin-bottom: 10px;
 `;
 export const ItemHashTags = styled.div`
@@ -78,12 +77,14 @@ export const ItemButton = styled.button`
   font-weight: 700;
   border: none;
   margin-left: 10px;
+  cursor: pointer;
 `;
 
 export const ItemInfoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-top: 100px;
 `;
 
 export const Title = styled.div`

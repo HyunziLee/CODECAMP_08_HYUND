@@ -104,3 +104,12 @@ export const PhotoWrapper = styled.div`
 export const InputPhoto = styled.input`
   margin: 10px 0px;
 `;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  position: absolute;
+  margin-left: 230px;
+  margin-top: 600px;
+`;

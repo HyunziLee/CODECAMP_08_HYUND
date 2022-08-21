@@ -60,21 +60,23 @@ export default function CreateUI(props) {
               <s.InputInput />
             </s.Input>
           </s.InputWrapper>
-          <Button02
-            title="취소"
-            type="button"
-            isValid={props.formState.isValid}
-            color="#FFE004"
-            fontColor="#000"
-            onClick={props.onClickMovetoPage("/")}
-          />
-          <Button02
-            title="등록"
-            type="submit"
-            isValid={props.formState.isValid}
-            color="#000"
-            fontColor="#fff"
-          />
+          <s.ButtonWrapper>
+            <Button02
+              title="취소"
+              type="button"
+              isValid={props.formState.isValid}
+              color="#FFE004"
+              fontColor="#000"
+              onClick={props.onClickMovetoPage("/")}
+            />
+            <Button02
+              title="등록"
+              type="submit"
+              isValid={props.formState.isValid}
+              color="#000"
+              fontColor="#fff"
+            />
+          </s.ButtonWrapper>
         </form>
         <s.InputTitle>거래위치</s.InputTitle>
         <s.MapWrapper>

@@ -1,6 +1,7 @@
 import { Container } from "@material-ui/core";
 import * as s from "../../../../../styles/detail.styles";
 import { v4 as uuidv4 } from "uuid";
+import Dompurify from "dompurify";
 import {
   FavoriteBorder,
   LocalActivityOutlined,
@@ -29,7 +30,10 @@ export default function DetailUI(props) {
               <span style={{ fontSize: "20px" }}>원</span>
             </s.ItemPrice>
             <s.Line color="#555" />
-            <s.ItemRemarks>{props.data?.fetchUseditem.remarks} </s.ItemRemarks>
+            <s.ItemRemarks>
+              {props.data?.fetchUseditem.remarks ||
+                "등록된 상품 설명이 없습니다."}{" "}
+            </s.ItemRemarks>
             <s.ItemHashTags>
               {props.data?.fetchUseditem.tags
                 ? props.data?.fetchUseditem.tags.map((el) => (
@@ -43,7 +47,11 @@ export default function DetailUI(props) {
                 <FavoriteBorder />
                 {`찜 ${props.data?.fetchUseditem.pickedCount}`}
               </s.ItemButton>
-              <s.ItemButton width="312px" color="#A0A0A0">
+              <s.ItemButton
+                width="312px"
+                color="#A0A0A0"
+                onClick={props.onClickBasket(props.data?.fetchUseditem)}
+              >
                 장바구니
               </s.ItemButton>
               <s.ItemButton width="312px" color="#000000">
@@ -56,7 +64,17 @@ export default function DetailUI(props) {
           <s.ItemInfoDetail>
             <s.Title>상품정보</s.Title>
             <s.Line color="#555" />
-            <s.Contents>{props.data?.fetchUseditem.contents}</s.Contents>
+            <s.Contents>
+              {process.browser && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: Dompurify.sanitize(
+                      String(props.data?.fetchUseditem.contents)
+                    ),
+                  }}
+                />
+              )}
+            </s.Contents>
 
             <s.TitleText>
               <LocationOn />

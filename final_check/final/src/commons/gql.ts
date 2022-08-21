@@ -273,6 +273,10 @@ export const FETCH_USER_LOGGED_IN = gql`
       email
       name
       _id
+      userPoint {
+        _id
+        amount
+      }
       picture
       createdAt
       updatedAt

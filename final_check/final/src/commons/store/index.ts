@@ -15,6 +15,7 @@ export const userInfoState = atom({
   default: {
     email: "",
     name: "",
+    userPoint: 0,
   },
 });
 
