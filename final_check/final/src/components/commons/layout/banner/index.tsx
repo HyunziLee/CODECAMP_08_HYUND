@@ -33,6 +33,7 @@ const EmptyDiv = styled.div`
 `;
 export default function LayoutBanner() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
   return (
     <>
       <Wrapper>

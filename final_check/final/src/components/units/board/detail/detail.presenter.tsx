@@ -1,11 +1,22 @@
 import { Container } from "@material-ui/core";
 import * as s from "../../../../../styles/detail.styles";
 import { v4 as uuidv4 } from "uuid";
-import { FavoriteBorder } from "@mui/icons-material";
+import {
+  FavoriteBorder,
+  LocalActivityOutlined,
+  LocationCityOutlined,
+  LocationOn,
+} from "@mui/icons-material";
+import { KakaoMapAddress } from "../../../../commons/store";
+import { useRecoilState } from "recoil";
+import KakaoMapPageDetail from "../../../commons/kakaoMapDetail/kakaoMap";
 export default function DetailUI(props) {
+  const [mapAddress, setMapAddress] = useRecoilState(KakaoMapAddress);
+
   return (
     <s.Wrapper>
-      {console.log(props.data)}
+      {console.log(props.data?.fetchUseditem)}
+      {/* {console.log(mapAddress)} */}
       <s.WrapperMain>
         <s.ItemWrapper>
           <s.ItemImage
@@ -14,7 +25,7 @@ export default function DetailUI(props) {
           <s.ItemDetail>
             <s.ItemName>{props.data?.fetchUseditem.name}</s.ItemName>
             <s.ItemPrice>
-              {props.data?.fetchUseditem.name}
+              {props.data?.fetchUseditem.price}
               <span style={{ fontSize: "20px" }}>원</span>
             </s.ItemPrice>
             <s.Line color="#555" />
@@ -47,17 +58,58 @@ export default function DetailUI(props) {
             <s.Line color="#555" />
             <s.Contents>{props.data?.fetchUseditem.contents}</s.Contents>
 
-            <s.Map>
-              <p> 거래지역</p>
-              <div></div>
-            </s.Map>
+            <s.TitleText>
+              <LocationOn />
+
+              <span>거래지역</span>
+            </s.TitleText>
+
+            {props.data?.fetchUseditem.useditemAddress ? (
+              <s.Map>
+                <KakaoMapPageDetail />
+                <s.AddressWrapper>
+                  <s.PostCodeWrapper>
+                    <s.PostCode>
+                      {props.data?.fetchUseditem.useditemAddress.zipcode}
+                    </s.PostCode>
+                  </s.PostCodeWrapper>
+                  <s.AddDetailWrapper>
+                    <s.AddInput>
+                      {props.data?.fetchUseditem.useditemAddress.address}
+                    </s.AddInput>
+                    {!props.data?.fetchUseditem.useditemAddress
+                      .addressDetail ? (
+                      <s.AddInput></s.AddInput>
+                    ) : (
+                      <s.AddInput>
+                        {
+                          props.data?.fetchUseditem.useditemAddress
+                            .addressDetail
+                        }
+                      </s.AddInput>
+                    )}
+                  </s.AddDetailWrapper>
+                </s.AddressWrapper>
+              </s.Map>
+            ) : (
+              <div>등록된 거래지역이 없습니다. 판매자에게 문의하세요</div>
+            )}
           </s.ItemInfoDetail>
           <s.ItemInfoQnA>
             <s.Title>상점정보</s.Title>
             <s.Line color="#555" />
             <s.SellerWrapper>
-              <s.SellerAvatar />
-              <s.SellerName>셀러네임</s.SellerName>
+              {props.data?.fetchUseditem.seller.picture ? (
+                <s.SellerAvatar
+                  src={`https://storage.googleapis.com/${props.data?.fetchUseditem.seller.picture}`}
+                />
+              ) : (
+                <s.SellerAvatar />
+              )}
+
+              <s.SellerName>
+                {props.data?.fetchUseditem.seller.name}
+              </s.SellerName>
             </s.SellerWrapper>
             <s.Line color="#C0C0C0" />
             <s.CommentsWrapper>

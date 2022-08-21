@@ -2,7 +2,14 @@ import { useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
-import { KakaoMapAddress, loginInfo, TagArr } from "../../../../commons/store";
+import {
+  KakaoMapAddress,
+  KakaoMapLa,
+  KakaoMapMa,
+  loginInfo,
+  TagArr,
+  userInfoState,
+} from "../../../../commons/store";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -10,15 +17,15 @@ import CreateUI from "./create.presenter";
 import { schema } from "../../../commons/yup/create";
 import { CREATE_USED_ITEM } from "../../../../commons/gql";
 import { useRouter } from "next/router";
-
+import { withAuth } from "../../../commons/hoc";
 export default function CreateContainer() {
   const { onClickMovetoPage } = useMoveToPage();
   const [tags] = useRecoilState(TagArr);
   const [kakaoAddress] = useRecoilState(KakaoMapAddress);
+  const [la, setLa] = useRecoilState(KakaoMapLa);
+  const [ma, setMa] = useRecoilState(KakaoMapMa);
   const [fileUrls, setFileUrls] = useState(["", ""]);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
-
-  const [userInfo, setUserInfo] = useRecoilState(loginInfo);
 
   const router = useRouter();
 
@@ -53,15 +60,21 @@ export default function CreateContainer() {
             tags,
             images: fileUrls,
             contents: data.contents,
+            useditemAddress: {
+              zipcode: kakaoAddress.road_address?.zone_no,
+              address: kakaoAddress.road_address?.address_name,
+              addressDetail:
+                kakaoAddress.road_address?.address_name.building_name,
+              lat: la,
+              lng: ma,
+            },
           },
         },
       });
 
-      console.log(result.data?.createUseditem._id);
-      // onClickMovetoPage(
-      //   `/CreateItemSuccess/${result.data?.createUseditem._id}`
-      // );
-      router.push(`/CreateItemSuccess/${result.data?.createUseditem._id}`);
+      console.log(result.data?.createUseditem);
+      router.push(`/Detail/${result.data?.createUseditem._id}`);
+      // onClickMovetoPage(`/Detail/${result.data?.createUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }
@@ -76,6 +89,7 @@ export default function CreateContainer() {
       formState={formState}
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
+      onClickMovetoPage={onClickMovetoPage}
     />
   );
 }

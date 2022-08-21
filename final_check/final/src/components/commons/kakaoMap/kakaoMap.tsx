@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { KakaoMapAddress } from "../../../commons/store";
+import {
+  KakaoMapAddress,
+  KakaoMapLa,
+  KakaoMapMa,
+} from "../../../commons/store";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 export default function KakaoMapPage() {
   const [mapAddress, setMapAddress] = useRecoilState(KakaoMapAddress);
+  const [la, setLa] = useRecoilState(KakaoMapLa);
+  const [ma, setMa] = useRecoilState(KakaoMapMa);
   useEffect(() => {
     const script = document.createElement("script"); // <script></script>
     script.src =
@@ -62,6 +68,10 @@ export default function KakaoMapPage() {
                   // 마커를 클릭한 위치에 표시합니다
                   marker.setPosition(mouseEvent.latLng);
                   marker.setMap(map);
+                  console.log(mouseEvent.latLng.Ma);
+                  console.log(mouseEvent.latLng.La);
+                  setMa(mouseEvent.latLng.Ma);
+                  setLa(mouseEvent.latLng.La);
 
                   // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
                   infowindow.setContent(content);

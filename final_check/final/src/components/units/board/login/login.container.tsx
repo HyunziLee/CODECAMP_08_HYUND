@@ -40,22 +40,20 @@ export default function LoginContainer() {
     const resultUserInfo = await client.query({
       query: FETCH_USER_LOGGED_IN,
       context: {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
+        headers: { Authorization: `Bearer ${accessToken}` },
       },
     });
 
     const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
-    console.log(userInfo);
 
     setAccessToken(accessToken);
     setUserInfo(userInfo);
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("userInfo", JSON.stringify(userInfo)); // stringify: 객체를 json으로
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
     router.push(`/`);
   };
+  // console.log(userInfo);
+  console.log(accessToken);
 
   return (
     <>

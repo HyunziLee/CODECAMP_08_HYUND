@@ -28,13 +28,20 @@ export default function ApolloSetting(props: IApolloSettingProps) {
     // const userInfo = localStorage.getItem("userInfo");
     // setAccessToken(accessToken);
 
-    if (!accessToken || !userInfo) return;
-    setUserInfo(JSON.parse(userInfo));
+    // if (!accessToken || !userInfo) return;
+    // setUserInfo(JSON.parse(userInfo));
 
     // 2. 새로운방식(refreshToken 이후)
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
+
+    const userInfo = localStorage.getItem("userInfo");
+    setUserInfo(JSON.parse(userInfo));
+
+    // if (!accessToken || !userInfo) return;
+    // document.cookie = `email = ${userInfo.email}`;
+    // document.cookie = `name = ${userInfo.name}`;
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
@@ -58,11 +65,9 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend08.codebootcamp.co.kr/graphql",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      credentials: "include",
-    },
+    uri: "https://backend08.codebootcamp.co.kr/graphql",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({

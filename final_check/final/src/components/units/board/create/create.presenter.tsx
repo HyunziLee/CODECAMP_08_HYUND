@@ -7,13 +7,18 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 import "react-quill/dist/quill.snow.css";
 import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
 import { useRecoilState } from "recoil";
-import { UploadImgState } from "../../../../commons/store";
+import { KakaoMapAddress, UploadImgState } from "../../../../commons/store";
 import Input03 from "../../../commons/input/03";
 import Warning from "../../../commons/div/01-warning";
 import { v4 as uuidv4 } from "uuid";
 import UploadImg from "../../../commons/upload/01/uploadImg.container";
+import Button02 from "../../../commons/button/02";
+import { withAuth } from "../../../commons/hoc";
+import { useState } from "react";
 export default function CreateUI(props) {
   const [uploadUrl] = useRecoilState(UploadImgState);
+  const [mapAddress, setMapAddress] = useRecoilState(KakaoMapAddress);
+
   return (
     <s.Wrapper>
       <s.Title>상품등록</s.Title>
@@ -55,19 +60,43 @@ export default function CreateUI(props) {
               <s.InputInput />
             </s.Input>
           </s.InputWrapper>
+          <Button02
+            title="취소"
+            type="button"
+            isValid={props.formState.isValid}
+            color="#FFE004"
+            fontColor="#000"
+            onClick={props.onClickMovetoPage("/")}
+          />
+          <Button02
+            title="등록"
+            type="submit"
+            isValid={props.formState.isValid}
+            color="#000"
+            fontColor="#fff"
+          />
         </form>
         <s.InputTitle>거래위치</s.InputTitle>
         <s.MapWrapper>
           <KakaoMapPage />
 
           <s.AddressWrapper>
+            {console.log(mapAddress)}
+
             <s.PostCodeWrapper>
-              <s.PostCode />
-              <s.PostCodeBtn>우편번호 검색</s.PostCodeBtn>
+              <s.PostCode
+                defaultValue={mapAddress.road_address?.zone_no}
+                disabled
+              />
+              {/* <s.PostCodeBtn>우편번호 검색</s.PostCodeBtn> */}
             </s.PostCodeWrapper>
             <s.AddDetailWrapper>
-              <s.AddInput />
-              <s.AddInput />
+              <s.AddInput
+                defaultValue={mapAddress.road_address?.address_name}
+              />
+              <s.AddInput
+                defaultValue={mapAddress.road_address?.building_name}
+              />
             </s.AddDetailWrapper>
           </s.AddressWrapper>
         </s.MapWrapper>
@@ -86,3 +115,5 @@ export default function CreateUI(props) {
     </s.Wrapper>
   );
 }
+
+// export default withAuth(CreateUI);

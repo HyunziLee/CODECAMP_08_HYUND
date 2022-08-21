@@ -2,7 +2,7 @@ import * as s from "../../../../../styles/main.styles";
 export default function MainUI(props) {
   return (
     <>
-      {console.log(props.item)}
+      {/* {console.log(props.item)} */}
 
       <s.ItemWrapper onClick={props.onClickDetail(props.item._id)}>
         <s.ItemImg

@@ -4,4 +4,3 @@ import CreateContainer from "../../src/components/units/board/create/create.cont
 export default function CreatePage() {
   return <CreateContainer />;
 }
-// export default withAuth(CreatePage);

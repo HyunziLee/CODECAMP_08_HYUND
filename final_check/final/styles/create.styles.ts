@@ -70,7 +70,7 @@ export const PostCodeWrapper = styled.div`
   margin-bottom: 10px;
 `;
 
-export const PostCode = styled.div`
+export const PostCode = styled.input`
   width: 77px;
   height: 52px;
   border: 1px solid #bdbdbd;

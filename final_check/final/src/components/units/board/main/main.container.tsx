@@ -6,11 +6,14 @@ import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
 
 import * as s from "../../../../../styles/main.styles";
+import { accessTokenState, userInfoState } from "../../../../commons/store";
+import { useRecoilState } from "recoil";
 
 export default function MainContainer() {
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
-
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const { data: useItemDetail } = useQuery(FETCH_USED_ITEM, {
     variables: {
       useditemId: String(router.query.id),
@@ -38,6 +41,7 @@ export default function MainContainer() {
   const onClickDetail = (id) => () => {
     router.push(`/Detail/${id}`);
   };
+  console.log(userInfo);
 
   return (
     <>

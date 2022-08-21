@@ -8,7 +8,6 @@ export const WrapperMain = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  background-color: aliceblue;
 `;
 
 export const Line = styled.div`
@@ -22,7 +21,7 @@ export const Line = styled.div`
 export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: yellow;
+
   width: 100%;
   height: 480px;
 `;
@@ -97,14 +96,76 @@ export const ItemInfoDetail = styled.div`
   display: flex;
   flex-direction: column;
   width: 65%;
-  background-color: orange;
+
   margin-right: 10px;
 `;
 export const Contents = styled.div`
   height: 130px;
-  background-color: aquamarine;
 `;
-export const Map = styled.div``;
+export const Map = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin: 30px 0px;
+`;
+
+export const TitleText = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin: 30px 0px;
+`;
+
+export const KakaoMap = styled.div`
+  width: 30%;
+  height: 252px;
+  background-color: yellow;
+`;
+
+export const AddressWrapper = styled.div`
+  width: 60%;
+  margin-left: 10px;
+`;
+
+export const PostCodeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+`;
+
+export const PostCode = styled.div`
+  width: 77px;
+  height: 52px;
+  line-height: 52px;
+  text-align: center;
+  border: 1px solid #bdbdbd;
+  margin-right: 10px;
+`;
+export const PostCodeBtn = styled.button`
+  width: 124px;
+  height: 51px;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+`;
+
+export const AddDetailWrapper = styled.div`
+  margin: 10px 0px;
+`;
+
+export const AddInput = styled.div`
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+  border: none;
+  background-color: #e9e9e9;
+  margin-bottom: 10px;
+`;
 
 export const ItemInfoQnA = styled.div`
   width: 35%;
@@ -117,7 +178,7 @@ export const SellerWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
-export const SellerAvatar = styled.div`
+export const SellerAvatar = styled.img`
   width: 75px;
   height: 75px;
   border-radius: 50%;

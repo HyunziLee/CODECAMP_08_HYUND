@@ -28,6 +28,15 @@ export const KakaoMapAddress = atom({
   default: [],
 });
 
+export const KakaoMapLa = atom({
+  key: "KakaoMapLa",
+  default: 0,
+});
+export const KakaoMapMa = atom({
+  key: "KakaoMapMa",
+  default: 0,
+});
+
 export const loginInfo = atom({
   key: "loginInfo",
   default: {
