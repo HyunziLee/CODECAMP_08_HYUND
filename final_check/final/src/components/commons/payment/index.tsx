@@ -1,7 +1,9 @@
 import { useMutation } from "@apollo/client";
 import Head from "next/head";
+import { useRecoilState } from "recoil";
 import { v4 as uuidv4 } from "uuid";
 import { CREATE_POINT_TRANSACTION_OF_LOADING } from "../../../commons/gql";
+import { accessTokenState, userInfoState } from "../../../commons/store";
 declare const window: typeof globalThis & {
   IMP: any;
 };
@@ -32,13 +34,14 @@ export default function PaymentPage(props) {
       (rsp: any) => {
         // callback
         if (rsp.success) {
-          console.log(rsp);
+          console.log(rsp.imp_uid);
 
           const result = createPointTransactionOfLoading({
             variables: {
-              impUid: rsp.imp_uid,
+              impUid: String(rsp.imp_uid),
             },
           });
+
           console.log(result);
 
           // 결제 성공 시 로직,

@@ -14,7 +14,6 @@ export async function getUserInfo(parm) {
     const result = await graphQlClient.request(FETCH_USER_LOGGED_IN);
 
     const newUserInfo = result.fetchUserLoggedIn;
-    console.log(newUserInfo);
 
     return newUserInfo;
   } catch (error) {

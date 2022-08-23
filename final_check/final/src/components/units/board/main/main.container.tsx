@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useApolloClient, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { FETCH_USED_ITEM, FETCH_USED_ITEMS } from "../../../../commons/gql";
 import MainUI from "./main.presenter";
@@ -6,19 +6,18 @@ import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
 
 import * as s from "../../../../../styles/main.styles";
-import { accessTokenState, userInfoState } from "../../../../commons/store";
+import {
+  accessTokenState,
+  recentImg,
+  userInfoState,
+} from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 
 export default function MainContainer() {
   const router = useRouter();
   const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const { data: useItemDetail } = useQuery(FETCH_USED_ITEM, {
-    variables: {
-      useditemId: String(router.query.id),
-    },
-  });
+  const [recent, setRecent] = useRecoilState(recentImg);
+  const client = useApolloClient();
 
   const onFetchMore = () => {
     if (!data) return;
@@ -38,7 +37,20 @@ export default function MainContainer() {
     });
   };
 
-  const onClickDetail = (id) => () => {
+  const onClickDetail = (id) => async () => {
+    const result = await client.query({
+      query: FETCH_USED_ITEM,
+
+      variables: {
+        useditemId: id,
+      },
+    });
+    console.log(result.data?.fetchUseditem.images[0]);
+
+    const tempImg = [...recent];
+    tempImg.push(result.data?.fetchUseditem.images[0]);
+    setRecent(tempImg);
+
     router.push(`/Detail/${id}`);
   };
 

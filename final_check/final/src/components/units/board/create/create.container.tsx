@@ -7,6 +7,7 @@ import {
   KakaoMapLa,
   KakaoMapMa,
   loginInfo,
+  recentImg,
   TagArr,
   userInfoState,
 } from "../../../../commons/store";
@@ -15,7 +16,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import CreateUI from "./create.presenter";
 import { schema } from "../../../commons/yup/create";
-import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "../../../../commons/gql";
+import {
+  CREATE_USED_ITEM,
+  FETCH_USED_ITEM,
+  UPDATE_USED_ITEM,
+} from "../../../../commons/gql";
 import { useRouter } from "next/router";
 import { withAuth } from "../../../commons/hoc/withAuth";
 export default function CreateContainer(props) {
@@ -104,6 +109,7 @@ export default function CreateContainer(props) {
           },
           useditemId: router.query.id,
         },
+        refetchQueries: [{ query: FETCH_USED_ITEM }],
       });
       console.log(result);
       router.push(`/Detail/${result.data?.updateUseditem._id}`);

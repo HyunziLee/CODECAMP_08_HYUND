@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { Container } from "@material-ui/core";
+import { useRecoilState } from "recoil";
+import { recentImg } from "../../../../commons/store";
 // import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 
 const Wrapper = styled.div`
@@ -15,7 +17,7 @@ const Wrapper = styled.div`
   top: 219px;
 `;
 const Title = styled.div``;
-const Img = styled.div`
+const Img = styled.img`
   width: 85px;
   height: 85px;
   background-color: #c4c4c4;
@@ -23,12 +25,13 @@ const Img = styled.div`
 `;
 const Menu = styled.div``;
 export default function LayoutSide() {
+  const [recent, setRecent] = useRecoilState(recentImg);
   return (
     <Wrapper>
       <Title> 최근 본 상품</Title>
-      <Img />
-      <Img />
-      <Img />
+      <Img src={`https://storage.googleapis.com/${recent[2]}`} />
+      <Img src={`https://storage.googleapis.com/${recent[1]}`} />
+      <Img src={`https://storage.googleapis.com/${recent[0]}`} />
     </Wrapper>
   );
 }

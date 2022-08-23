@@ -59,6 +59,11 @@ export const UploadImgState = atom({
   default: "",
 });
 
+export const recentImg = atom({
+  key: "recentImg",
+  default: [],
+});
+
 export const detailImgState = atom({
   key: "detailImgState",
   default: "",

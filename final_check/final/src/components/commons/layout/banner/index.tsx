@@ -41,9 +41,6 @@ export default function LayoutBanner() {
 
   return (
     <>
-      {/* {console.log(accessToken)}
-      {console.log(userInfo)} */}
-
       <s.Wrapper>
         <s.MainWrapper>
           <s.EmptyDiv></s.EmptyDiv>

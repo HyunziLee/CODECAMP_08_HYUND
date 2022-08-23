@@ -18,7 +18,7 @@ export default function DetailUI(props) {
 
   return (
     <s.Wrapper>
-      {console.log(props.data?.fetchUseditem)}
+      {/* {console.log(props.data?.fetchUseditem)} */}
       {/* {console.log(mapAddress)} */}
       <s.WrapperMain>
         <s.ItemWrapper>
@@ -45,7 +45,11 @@ export default function DetailUI(props) {
             </s.ItemHashTags>
             <s.Line color="#C0C0C0" />
             <s.ItemButtons>
-              <s.ItemButton width="152px" color="#C9C9C9">
+              <s.ItemButton
+                width="152px"
+                color="#C9C9C9"
+                onClick={props.onClickPick(props.data?.fetchUseditem._id)}
+              >
                 <FavoriteBorder />
                 {`찜 ${props.data?.fetchUseditem.pickedCount}`}
               </s.ItemButton>
@@ -56,7 +60,11 @@ export default function DetailUI(props) {
               >
                 장바구니
               </s.ItemButton>
-              <s.ItemButton width="312px" color="#000000">
+              <s.ItemButton
+                width="312px"
+                color="#000000"
+                onClick={props.onClickBuying}
+              >
                 바로구매
               </s.ItemButton>
             </s.ItemButtons>
