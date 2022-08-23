@@ -1,4 +1,7 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+import { getAccessToken } from "../libraries/getAccessToken";
+import { getUserInfo } from "../libraries/getUserInfo";
+// import { getUserInfo } from "../libraries/getUserInfo";
 
 export const isEditState = atom({
   key: "isEditState",
@@ -38,13 +41,13 @@ export const KakaoMapMa = atom({
   default: 0,
 });
 
-export const loginInfo = atom({
-  key: "loginInfo",
-  default: {
-    email: "",
-    password: "",
-  },
-});
+// export const loginInfo = atom({
+//   key: "loginInfo",
+//   default: {
+//     email: "",
+//     password: "",
+//   },
+// });
 
 export const TagArr = atom({
   key: "TagArr",
@@ -59,4 +62,20 @@ export const UploadImgState = atom({
 export const detailImgState = atom({
   key: "detailImgState",
   default: "",
+});
+
+export const restoreAccessTokenLoadable = selector({
+  key: "restoreAccessTokenLoadable",
+  get: async () => {
+    const newAccessToken = await getAccessToken();
+    return newAccessToken;
+  },
+});
+
+export const getUserInfoLoadable = selector({
+  key: "getUserInfoLoadable",
+  get: async (pram) => {
+    const newUserInfo = await getUserInfo(pram);
+    return newUserInfo;
+  },
 });

@@ -15,10 +15,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import CreateUI from "./create.presenter";
 import { schema } from "../../../commons/yup/create";
-import { CREATE_USED_ITEM } from "../../../../commons/gql";
+import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "../../../../commons/gql";
 import { useRouter } from "next/router";
-import { withAuth } from "../../../commons/hoc";
-export default function CreateContainer() {
+import { withAuth } from "../../../commons/hoc/withAuth";
+export default function CreateContainer(props) {
   const { onClickMovetoPage } = useMoveToPage();
   const [tags] = useRecoilState(TagArr);
   const [kakaoAddress] = useRecoilState(KakaoMapAddress);
@@ -26,6 +26,7 @@ export default function CreateContainer() {
   const [ma, setMa] = useRecoilState(KakaoMapMa);
   const [fileUrls, setFileUrls] = useState(["", ""]);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
 
   const router = useRouter();
 
@@ -76,7 +77,40 @@ export default function CreateContainer() {
       router.push(`/Detail/${result.data?.createUseditem._id}`);
       // onClickMovetoPage(`/Detail/${result.data?.createUseditem._id}`);
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      // if (error instanceof Error) console.log(error.message);
+      alert(error.message);
+    }
+  };
+
+  const onClickUpdate = async (data) => {
+    try {
+      const result = await updateUseditem({
+        variables: {
+          updateUseditemInput: {
+            name: data.name,
+            remarks: data.remarks,
+            price: Number(data.price),
+            tags,
+            images: fileUrls,
+            contents: data.contents,
+            useditemAddress: {
+              zipcode: kakaoAddress.road_address?.zone_no,
+              address: kakaoAddress.road_address?.address_name,
+              addressDetail:
+                kakaoAddress.road_address?.address_name.building_name,
+              lat: la,
+              lng: ma,
+            },
+          },
+          useditemId: router.query.id,
+        },
+      });
+      console.log(result);
+      router.push(`/Detail/${result.data?.updateUseditem._id}`);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
     }
   };
 
@@ -90,6 +124,9 @@ export default function CreateContainer() {
       fileUrls={fileUrls}
       onChangeFileUrls={onChangeFileUrls}
       onClickMovetoPage={onClickMovetoPage}
+      isEdit={props.isEdit}
+      onClickUpdate={onClickUpdate}
+      data={props.data}
     />
   );
 }

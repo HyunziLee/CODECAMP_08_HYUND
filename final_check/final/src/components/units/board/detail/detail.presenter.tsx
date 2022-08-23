@@ -8,11 +8,13 @@ import {
   LocationCityOutlined,
   LocationOn,
 } from "@mui/icons-material";
-import { KakaoMapAddress } from "../../../../commons/store";
+import { KakaoMapAddress, userInfoState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 import KakaoMapPageDetail from "../../../commons/kakaoMapDetail/kakaoMap";
+import Button02 from "../../../commons/button/02";
 export default function DetailUI(props) {
   const [mapAddress, setMapAddress] = useRecoilState(KakaoMapAddress);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   return (
     <s.Wrapper>
@@ -95,16 +97,15 @@ export default function DetailUI(props) {
                     <s.AddInput>
                       {props.data?.fetchUseditem.useditemAddress.address}
                     </s.AddInput>
-                    {!props.data?.fetchUseditem.useditemAddress
-                      .addressDetail ? (
-                      <s.AddInput></s.AddInput>
-                    ) : (
+                    {props.data?.fetchUseditem.useditemAddress.addressDetail ? (
                       <s.AddInput>
                         {
                           props.data?.fetchUseditem.useditemAddress
                             .addressDetail
                         }
                       </s.AddInput>
+                    ) : (
+                      <s.AddInput></s.AddInput>
                     )}
                   </s.AddDetailWrapper>
                 </s.AddressWrapper>
@@ -145,6 +146,20 @@ export default function DetailUI(props) {
             </s.CommentsWrapper>
           </s.ItemInfoQnA>
         </s.ItemInfoWrapper>
+
+        {userInfo?.email === props.data?.fetchUseditem.seller.email ? (
+          <Button02
+            title="수정하기"
+            type="button"
+            color="#FFE004"
+            fontColor="#000"
+            onClick={props.onClickMovetoPage(
+              `/Edit/${props.data?.fetchUseditem._id}`
+            )}
+          />
+        ) : (
+          <></>
+        )}
       </s.WrapperMain>
     </s.Wrapper>
   );

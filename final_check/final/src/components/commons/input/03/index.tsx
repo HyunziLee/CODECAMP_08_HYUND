@@ -9,5 +9,10 @@ export const InfoInput = styled.input`
 `;
 
 export default function Input03(props) {
-  return <InfoInput {...props.register(props.name)}></InfoInput>;
+  return (
+    <InfoInput
+      {...props.register(props.name)}
+      defaultValue={props.default}
+    ></InfoInput>
+  );
 }

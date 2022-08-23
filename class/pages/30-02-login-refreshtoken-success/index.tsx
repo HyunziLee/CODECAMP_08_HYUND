@@ -25,7 +25,6 @@ export default function LoginSuccessPage() {
   return (
     <>
       <button onClick={onClickButton}>클릭하슈</button>
-      {/* <div>{data?.fetchUserLoggedIn.name} 환영</div>{" "} */}
     </>
   );
 }

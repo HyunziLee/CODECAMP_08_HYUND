@@ -8,9 +8,14 @@ import {
 import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 import { ReactNode, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
 
-import { accessTokenState, userInfoState } from "../store";
+import {
+  accessTokenState,
+  isLoadedState,
+  restoreAccessTokenLoadable,
+  userInfoState,
+} from "../store";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 
 const APOLLO_CACHE = new InMemoryCache(); // 새로고침 하면 없어지기 때문에 따로 분리함.
@@ -22,6 +27,8 @@ interface IApolloSettingProps {
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [isLoaded, setIsLoaded] = useRecoilState(isLoadedState);
+  const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
   // const [accessTokenQ, setAccessTokenQ] = useRecoilState(accessTokenQuiz);
 
@@ -61,7 +68,38 @@ export default function ApolloSetting(props: IApolloSettingProps) {
     // console.log(accessToken);
 
     // 2. 새로운 방식
-    getAccessToken().then((newAccessToken) => {
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    // });
+    //
+    //
+    //
+    //
+
+    //refreshToken이용할 때, 새로고침한 경우 withAuth안됨
+    // withAuth랑 같이 봐야함
+    // 해결방법 1 -restoreAccessToken을 두번 요청하기
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    // });
+    //
+    //
+    //
+    //
+    //
+
+    // 해결방법2 - 나만의 로딩 활용하기
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    //   setIsLoaded(true);
+    // });
+    //
+    //
+    //
+    //
+
+    // 해결방법3 - RecoilSelector 활용하기
+    aaa.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
   }, []);

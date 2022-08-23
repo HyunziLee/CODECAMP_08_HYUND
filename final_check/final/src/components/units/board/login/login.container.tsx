@@ -32,10 +32,10 @@ export default function LoginContainer() {
 
     const accessToken = result.data?.loginUser.accessToken;
 
-    if (!accessToken) {
-      alert("로그인이 필요합니다.");
-      return;
-    }
+    // if (!accessToken) {
+    //   alert("로그인이 필요합니다.");
+    //   return;
+    // }
 
     const resultUserInfo = await client.query({
       query: FETCH_USER_LOGGED_IN,
@@ -45,15 +45,14 @@ export default function LoginContainer() {
     });
 
     const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
+    // console.log(userInfo);
 
-    setAccessToken(accessToken);
+    if (accessToken) setAccessToken(accessToken || "");
+    // if (userInfo) setUserInfo(userInfo || {});
     setUserInfo(userInfo);
-    localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
     router.push(`/`);
   };
-  // console.log(userInfo);
-  console.log(accessToken);
 
   return (
     <>

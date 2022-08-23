@@ -1,5 +1,6 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { FETCH_USED_ITEM } from "../../../../commons/gql";
 import {
@@ -8,21 +9,24 @@ import {
   KakaoMapMa,
   userInfoState,
 } from "../../../../commons/store";
-import { withAuth } from "../../../commons/hoc";
+import { withAuth } from "../../../commons/hoc/withAuth";
+import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import DetailUI from "./detail.presenter";
 
 export default function DetailContainer() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [la, setLa] = useRecoilState(KakaoMapLa);
   const [ma, setMa] = useRecoilState(KakaoMapMa);
+  const { onClickMovetoPage } = useMoveToPage();
+  const [temp, setTemp] = useState(0);
 
   const router = useRouter();
-  const { data } = useQuery(FETCH_USED_ITEM, {
+  const { data, refetch } = useQuery(FETCH_USED_ITEM, {
     variables: {
       useditemId: router.query.id,
     },
   });
-  console.log(data);
+
   if (!data?.fetchUseditem.useditemAddress) {
     setLa(0);
     setMa(0);
@@ -32,8 +36,6 @@ export default function DetailContainer() {
   }
 
   const onClickBasket = (basket) => () => {
-    console.log(basket);
-
     // 1. 기존 장바구니 가져오기
     const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
 
@@ -50,7 +52,13 @@ export default function DetailContainer() {
     localStorage.setItem("baskets", JSON.stringify(baskets)); // localStorage는 항상 문자열만 저장 가능
   };
 
-  return <DetailUI data={data} onClickBasket={onClickBasket} />;
+  return (
+    <DetailUI
+      data={data}
+      onClickBasket={onClickBasket}
+      onClickMovetoPage={onClickMovetoPage}
+    />
+  );
 }
 
 // export default withAuth(DetailContainer);

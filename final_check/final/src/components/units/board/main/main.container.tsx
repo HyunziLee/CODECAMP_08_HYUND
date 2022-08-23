@@ -41,7 +41,6 @@ export default function MainContainer() {
   const onClickDetail = (id) => () => {
     router.push(`/Detail/${id}`);
   };
-  console.log(userInfo);
 
   return (
     <>

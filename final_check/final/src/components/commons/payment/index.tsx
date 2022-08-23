@@ -1,10 +1,15 @@
+import { useMutation } from "@apollo/client";
 import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
+import { CREATE_POINT_TRANSACTION_OF_LOADING } from "../../../commons/gql";
 declare const window: typeof globalThis & {
   IMP: any;
 };
 
 export default function PaymentPage(props) {
+  const [createPointTransactionOfLoading] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_LOADING
+  );
   const onClickPayment = () => {
     const IMP = window.IMP; // 생략 가능
     IMP.init("imp01040085"); // Example: imp00000000
@@ -28,6 +33,14 @@ export default function PaymentPage(props) {
         // callback
         if (rsp.success) {
           console.log(rsp);
+
+          const result = createPointTransactionOfLoading({
+            variables: {
+              impUid: rsp.imp_uid,
+            },
+          });
+          console.log(result);
+
           // 결제 성공 시 로직,
           // 백엔드에 결제관련 데이터 넘겨주기 => 즉, 뮤테이션 실행하기
           // ex, createPointTransactionOfLoading

@@ -7,16 +7,18 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { Modal } from "antd";
 
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../../../../commons/store";
+import { accessTokenState, userInfoState } from "../../../../commons/store";
 import * as s from "../../../../../styles/banner.styles";
-import ModalPage from "../../Modal";
+
 import PaymentPage from "../../payment";
+import { useApolloClient } from "@apollo/client";
+import { FETCH_USER_LOGGED_IN } from "../../../../commons/gql";
 
 export default function LayoutBanner() {
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [baskets, setBaskets] = useState([]);
   const [price, setPrice] = useState(0);
@@ -39,6 +41,9 @@ export default function LayoutBanner() {
 
   return (
     <>
+      {/* {console.log(accessToken)}
+      {console.log(userInfo)} */}
+
       <s.Wrapper>
         <s.MainWrapper>
           <s.EmptyDiv></s.EmptyDiv>

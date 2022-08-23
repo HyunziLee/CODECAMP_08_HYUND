@@ -4,14 +4,24 @@ import {
   ApolloProvider,
   fromPromise,
   InMemoryCache,
+  useApolloClient,
+  useQuery,
 } from "@apollo/client";
 import { GraphQLClient } from "graphql-request";
 import { createUploadLink } from "apollo-upload-client";
 import { ReactNode, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
-import { accessTokenState, userInfoState } from "../../../commons/store";
+
+import {
+  accessTokenState,
+  getUserInfoLoadable,
+  restoreAccessTokenLoadable,
+  userInfoState,
+} from "../../../commons/store";
 import { onError } from "@apollo/client/link/error";
+import { FETCH_USER_LOGGED_IN } from "../../../commons/gql";
+import { getUserInfo } from "../../../commons/libraries/getUserInfo";
 interface IApolloSettingProps {
   children: ReactNode;
 }
@@ -20,29 +30,23 @@ const APOLLO_CACHE = new InMemoryCache();
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
+  const bbb = useRecoilValueLoadable(getUserInfoLoadable);
 
   useEffect(() => {
-    // 1. 기존방식(refreshToken 이전)
-    // console.log("지금은 브라우저다!!!!!");
-    // const accessToken = localStorage.getItem("accessToken") || "";
-    // const userInfo = localStorage.getItem("userInfo");
-    // setAccessToken(accessToken);
-
-    // if (!accessToken || !userInfo) return;
-    // setUserInfo(JSON.parse(userInfo));
-
-    // 2. 새로운방식(refreshToken 이후)
-    getAccessToken().then((newAccessToken) => {
+    console.log(accessToken);
+    aaa.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
-
-    const userInfo = localStorage.getItem("userInfo");
-    setUserInfo(JSON.parse(userInfo));
-
-    // if (!accessToken || !userInfo) return;
-    // document.cookie = `email = ${userInfo.email}`;
-    // document.cookie = `name = ${userInfo.name}`;
-  }, []);
+    const Fetch = async (accessToken) => {
+      const resultUserInfo = await getUserInfo(accessToken);
+      console.log(resultUserInfo);
+      setUserInfo(resultUserInfo);
+      return resultUserInfo;
+    };
+    const newUserInfo = Fetch(accessToken);
+  }, [accessToken]);
+  console.log(userInfo);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {

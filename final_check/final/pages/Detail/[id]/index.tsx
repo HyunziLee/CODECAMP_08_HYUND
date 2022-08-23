@@ -1,6 +1,7 @@
-import { withAuth } from "../../../src/components/commons/hoc";
+import { withAuth } from "../../../src/components/commons/hoc/withAuth";
 import DetailContainer from "../../../src/components/units/board/detail/detail.container";
 
-export default function Detail() {
+function Detail() {
   return <DetailContainer />;
 }
+export default withAuth(Detail);

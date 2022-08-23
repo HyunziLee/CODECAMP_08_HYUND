@@ -54,6 +54,15 @@ export const CREATE_USER = gql`
   }
 `;
 
+export const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
+  mutation createPointTransactionOfLoading($impUid: ID!) {
+    createPointTransactionOfLoading(impUid: $impUid) {
+      _id
+      impUid
+    }
+  }
+`;
+
 export const CREATE_USED_ITEM = gql`
   mutation createUseditem($createUseditemInput: CreateUseditemInput!) {
     createUseditem(createUseditemInput: $createUseditemInput) {
@@ -185,6 +194,7 @@ export const FETCH_USED_ITEM = gql`
         email
         name
         picture
+        _id
       }
       # soldAt
       createdAt
@@ -289,6 +299,45 @@ export const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {
     uploadFile(file: $file) {
       url
+    }
+  }
+`;
+
+export const UPDATE_USED_ITEM = gql`
+  mutation updateUseditem(
+    $updateUseditemInput: UpdateUseditemInput!
+    $useditemId: ID!
+  ) {
+    updateUseditem(
+      updateUseditemInput: $updateUseditemInput
+      useditemId: $useditemId
+    ) {
+      _id
+      # name
+      # remarks
+      # contents
+      # price
+      # tags
+      # images
+      # pickedCount
+      # useditemAddress {
+      #   _id
+      #   zipcode
+      #   address
+      #   addressDetail
+      #   lat
+      #   lng
+      # }
+      # buyer
+      # seller {
+      #   email
+      #   name
+      #   picture
+      # }
+      # soldAt
+      # createdAt
+      # updatedAt
+      # deletedAt
     }
   }
 `;

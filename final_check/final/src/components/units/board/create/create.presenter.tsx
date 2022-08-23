@@ -13,7 +13,7 @@ import Warning from "../../../commons/div/01-warning";
 import { v4 as uuidv4 } from "uuid";
 import UploadImg from "../../../commons/upload/01/uploadImg.container";
 import Button02 from "../../../commons/button/02";
-import { withAuth } from "../../../commons/hoc";
+import { withAuth } from "../../../commons/hoc/withAuth";
 import { useState } from "react";
 export default function CreateUI(props) {
   const [uploadUrl] = useRecoilState(UploadImgState);
@@ -21,21 +21,44 @@ export default function CreateUI(props) {
 
   return (
     <s.Wrapper>
-      <s.Title>상품등록</s.Title>
+      {console.log(props.data)}
+      <s.Title>{!props.isEdit ? "상품등록" : "상품수정"}</s.Title>
 
       <s.WrapperMain>
-        <form onSubmit={props.handleSubmit(props.onClickCreateItem)}>
+        {/* <form onSubmit= {props.handleSubmit(props.onClickCreateItem)}> */}
+        <form
+          onSubmit={
+            !props.isEdit
+              ? props.handleSubmit(props.onClickCreateItem)
+              : props.handleSubmit(props.onClickUpdate)
+          }
+        >
           <s.InputWrapper>
             <s.InputTitle>상품명</s.InputTitle>
             <s.Input>
-              <Input03 type="text" register={props.register} name={"name"} />
+              {!props.isEdit ? (
+                <Input03 type="text" register={props.register} name={"name"} />
+              ) : (
+                <Input03
+                  type="text"
+                  register={props.register}
+                  name={"name"}
+                  default={props.data?.fetchUseditem.name}
+                />
+              )}
+
               <Warning errormsg={props.formState.errors.name?.message} />
             </s.Input>
           </s.InputWrapper>
           <s.InputWrapper>
             <s.InputTitle>상품요약</s.InputTitle>
             <s.Input>
-              <Input03 type="text" register={props.register} name={"remarks"} />
+              <Input03
+                type="text"
+                register={props.register}
+                name={"remarks"}
+                default={!props.isEdit ? "" : props.data?.fetchUseditem.remarks}
+              />
             </s.Input>
           </s.InputWrapper>
           <s.InputWrapper>
@@ -44,20 +67,32 @@ export default function CreateUI(props) {
               <ReactQuill
                 onChange={props.onChangeContents}
                 style={{ height: "431px" }}
+                defaultValue={
+                  !props.isEdit ? "" : props.data?.fetchUseditem.contents
+                }
               />
             </s.Input>
           </s.InputWrapper>
           <s.InputWrapper>
             <s.InputTitle>판매가격</s.InputTitle>
             <s.Input>
-              <Input03 type="number" register={props.register} name={"price"} />
+              <Input03
+                type="number"
+                register={props.register}
+                name={"price"}
+                default={!props.isEdit ? "" : props.data?.fetchUseditem.price}
+              />
               <Warning errormsg={props.formState.errors.price?.message} />
             </s.Input>
           </s.InputWrapper>
           <s.InputWrapper>
             <s.InputTitle>태그입력</s.InputTitle>
             <s.Input>
-              <s.InputInput />
+              <s.InputInput
+                defaultValue={
+                  !props.isEdit ? "" : props.data?.fetchUseditem.tags
+                }
+              />
             </s.Input>
           </s.InputWrapper>
           <s.ButtonWrapper>
@@ -69,8 +104,9 @@ export default function CreateUI(props) {
               fontColor="#000"
               onClick={props.onClickMovetoPage("/")}
             />
+
             <Button02
-              title="등록"
+              title={!props.isEdit ? "등록" : "수정"}
               type="submit"
               isValid={props.formState.isValid}
               color="#000"
@@ -103,19 +139,31 @@ export default function CreateUI(props) {
           </s.AddressWrapper>
         </s.MapWrapper>
         <s.InputTitle>사진첨부</s.InputTitle>
-        <s.PhotoWrapper>
-          {props.fileUrls.map((el, index) => (
-            <UploadImg
-              key={uuidv4()}
-              index={index}
-              fileUrl={el}
-              onChangeFileUrls={props.onChangeFileUrls}
-            />
-          ))}
-        </s.PhotoWrapper>
+        {!props.isEdit ? (
+          <s.PhotoWrapper>
+            {props.fileUrls.map((el, index) => (
+              <UploadImg
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </s.PhotoWrapper>
+        ) : (
+          <s.PhotoWrapper>
+            {console.log(props.data?.fetchUseditem.images)}
+            {props.data?.fetchUseditem.images.map((el, index) => (
+              <UploadImg
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </s.PhotoWrapper>
+        )}
       </s.WrapperMain>
     </s.Wrapper>
   );
 }
-
-// export default withAuth(CreateUI);

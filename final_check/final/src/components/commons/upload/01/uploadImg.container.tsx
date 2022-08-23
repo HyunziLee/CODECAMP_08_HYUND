@@ -21,7 +21,6 @@ export default function UploadImg(props) {
   };
 
   const onChangeFile = async (event) => {
-    console.log("sadf");
     const isValid = CheckFileValidation(event.target.files?.[0]);
     const file = event.target.files?.[0];
     console.log(file);
