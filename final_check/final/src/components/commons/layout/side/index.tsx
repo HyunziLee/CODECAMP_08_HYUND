@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Container } from "@material-ui/core";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { recentImg } from "../../../../commons/store";
 // import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
@@ -25,13 +26,28 @@ const Img = styled.img`
 `;
 const Menu = styled.div``;
 export default function LayoutSide() {
-  const [recent, setRecent] = useRecoilState(recentImg);
+  const [recent, setRecent] = useState([]);
+  useEffect(() => {
+    const tempImg = JSON.parse(sessionStorage.getItem("recentImages"));
+    setRecent(tempImg);
+  }, []);
+
   return (
     <Wrapper>
       <Title> 최근 본 상품</Title>
-      <Img src={`https://storage.googleapis.com/${recent[2]}`} />
-      <Img src={`https://storage.googleapis.com/${recent[1]}`} />
-      <Img src={`https://storage.googleapis.com/${recent[0]}`} />
+      {!recent ? (
+        <>
+          <Img />
+          <Img />
+          <Img />
+        </>
+      ) : (
+        <>
+          <Img src={`https://storage.googleapis.com/${recent[0]}`} />
+          <Img src={`https://storage.googleapis.com/${recent[1]}`} />
+          <Img src={`https://storage.googleapis.com/${recent[2]}`} />
+        </>
+      )}
     </Wrapper>
   );
 }

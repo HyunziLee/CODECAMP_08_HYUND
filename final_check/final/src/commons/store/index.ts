@@ -69,6 +69,10 @@ export const detailImgState = atom({
   default: "",
 });
 
+export const basketLength = atom({
+  key: "basketLength",
+  default: 0,
+});
 export const restoreAccessTokenLoadable = selector({
   key: "restoreAccessTokenLoadable",
   get: async () => {

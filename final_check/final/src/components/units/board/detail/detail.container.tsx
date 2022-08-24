@@ -9,6 +9,7 @@ import {
   TOGGLE_USED_ITEM_PICK,
 } from "../../../../commons/gql";
 import {
+  basketLength,
   KakaoMapAddress,
   KakaoMapLa,
   KakaoMapMa,
@@ -26,7 +27,7 @@ export default function DetailContainer() {
   const [ma, setMa] = useRecoilState(KakaoMapMa);
   const { onClickMovetoPage } = useMoveToPage();
   const [temp, setTemp] = useState(0);
-  const [basketTemp, setBasketTemp] = useState(true);
+  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
 
   const router = useRouter();
   const { data } = useQuery(FETCH_USED_ITEM, {
@@ -65,6 +66,8 @@ export default function DetailContainer() {
     const { __typename, ...newBasket } = basket;
     baskets.push(newBasket);
     localStorage.setItem("baskets", JSON.stringify(baskets)); // localStorage는 항상 문자열만 저장 가능
+    console.log(baskets.length);
+    setBasketTemp(baskets.length);
   };
 
   const onClickPick = (parm) => () => {

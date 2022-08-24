@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 import {
-  Badge,
+  // Badge,
   FormControl,
   InputLabel,
   MenuItem,
@@ -10,24 +10,30 @@ import {
 
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState, userInfoState } from "../../../../commons/store";
+import {
+  accessTokenState,
+  basketLength,
+  userInfoState,
+} from "../../../../commons/store";
 import * as s from "../../../../../styles/banner.styles";
 
 import PaymentPage from "../../payment";
-import { useApolloClient } from "@apollo/client";
-import { FETCH_USER_LOGGED_IN } from "../../../../commons/gql";
+import { useRouter } from "next/router";
 
 export default function LayoutBanner() {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
   const [baskets, setBaskets] = useState([]);
   const [price, setPrice] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     const result = JSON.parse(localStorage.getItem("baskets") || "[]");
     setBaskets(result);
   }, []);
+
   const onClickPoint = () => {
     setIsOpen((prev) => !prev);
   };
@@ -37,6 +43,9 @@ export default function LayoutBanner() {
   };
   const PriceChange = (event) => {
     setPrice(event.target.value);
+  };
+  const onClickMove = (path) => () => {
+    router.push(path);
   };
 
   return (
@@ -52,18 +61,14 @@ export default function LayoutBanner() {
               <s.Menu>로그아웃</s.Menu>
               <s.Menu>
                 장바구니
-                <Badge
-                  badgeContent={baskets.length}
-                  color="success"
-                  style={{ marginLeft: "15px" }}
-                ></Badge>
+                <s.Badge>{basketTemp}</s.Badge>
               </s.Menu>
             </s.MenuWrapper>
           ) : (
             <s.MenuWrapper>
-              <s.Menu>로그인</s.Menu>
+              <s.Menu onClick={onClickMove("/Login")}>로그인</s.Menu>
 
-              <s.Menu>회원가입</s.Menu>
+              <s.Menu onClick={onClickMove("/Join")}>회원가입</s.Menu>
               <s.Menu>장바구니</s.Menu>
             </s.MenuWrapper>
           )}

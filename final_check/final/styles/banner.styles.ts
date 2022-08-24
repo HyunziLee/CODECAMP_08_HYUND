@@ -43,7 +43,7 @@ export const PointModal = styled(Modal)`
   top: 100px;
   left: 40%;
   width: 300px;
-  height: 300px;
+  height: 300px;ß
   /* border: 1px solid black; */
   border-radius: 20px;
   opacity: 1;
@@ -57,4 +57,15 @@ export const Menu = styled.div`
 `;
 export const EmptyDiv = styled.div`
   width: 50%;
+`;
+
+export const Badge = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+
+  background-color: #ffe004;
+  font-size: 10px;
 `;

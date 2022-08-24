@@ -47,9 +47,40 @@ export default function MainContainer() {
     });
     console.log(result.data?.fetchUseditem.images[0]);
 
-    const tempImg = [...recent];
-    tempImg.push(result.data?.fetchUseditem.images[0]);
-    setRecent(tempImg);
+    // const tempImg = [...recent];
+    // tempImg.unshift(result.data?.fetchUseditem.images[0]);
+    // setRecent(tempImg);
+
+    // const recentImages = JSON.parse(sessionStorage.getItem("recentImages" || "[]"))
+
+    // if (
+
+    //   sessionStorage.getItem("recentImages").length > 3
+    // ) {
+    //   sessionStorage.clear();
+    // }
+
+    const recentImages = JSON.parse(
+      sessionStorage.getItem("recentImages") || "[]"
+    );
+
+    if (recentImages.length > 3) {
+      sessionStorage.clear();
+    }
+    if (recentImages) {
+      const temp = recentImages.filter(
+        (el) => el === result.data?.fetchUseditem.images[0]
+      ); // temp는 임시로 저장할 때 주로 작명함
+      if (temp.length === 1) {
+        return;
+      }
+    }
+
+    recentImages.unshift(result.data?.fetchUseditem.images[0]);
+
+    sessionStorage.setItem("recentImages", JSON.stringify(recentImages));
+
+    // sessionStorage.setItem("recentImages", JSON.stringify(recentImages));
 
     router.push(`/Detail/${id}`);
   };
