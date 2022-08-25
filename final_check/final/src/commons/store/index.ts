@@ -81,10 +81,10 @@ export const restoreAccessTokenLoadable = selector({
   },
 });
 
-export const getUserInfoLoadable = selector({
-  key: "getUserInfoLoadable",
-  get: async (pram) => {
-    const newUserInfo = await getUserInfo(pram);
-    return newUserInfo;
-  },
-});
+// export const getUserInfoLoadable = selector({
+//   key: "getUserInfoLoadable",
+//   get: async (pram) => {
+//     const newUserInfo = await getUserInfo(pram);
+//     return newUserInfo;
+//   },
+// });

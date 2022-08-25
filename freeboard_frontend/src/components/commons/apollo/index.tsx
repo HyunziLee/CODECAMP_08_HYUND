@@ -6,13 +6,19 @@ import {
   InMemoryCache,
 } from "@apollo/client";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { createUploadLink } from "apollo-upload-client";
 
-import { accessTokenState, userInfoState } from "../store";
+import {
+  accessTokenState,
+  basketLength,
+  restoreAccessTokenLoadable,
+  userInfoState,
+} from "../store";
 import { ReactNode, useEffect } from "react";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
+import { getUserInfo } from "../../../commons/libraries/getUserInfo";
 
 const APOLLO_CACHE = new InMemoryCache();
 interface IApolloSettingProps {
@@ -22,22 +28,26 @@ interface IApolloSettingProps {
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
+  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
 
   useEffect(() => {
-    // 1. 기존방식(refreshToken 이전)
-    // console.log("지금은 브라우저다!!!!!");
-    // const accessToken = localStorage.getItem("accessToken") || "";
-    // const userInfo = localStorage.getItem("userInfo");
-    // setAccessToken(accessToken);
-
-    if (!accessToken || !userInfo) return;
-    setUserInfo(JSON.parse(userInfo));
-
-    // 2. 새로운방식(refreshToken 이후)
-    getAccessToken().then((newAccessToken) => {
+    aaa.toPromise().then((newAccessToken) => {
+      console.log(newAccessToken);
       setAccessToken(newAccessToken);
     });
-  }, []);
+    const Fetch = async (accessToken) => {
+      const resultUserInfo = await getUserInfo(accessToken);
+      console.log(resultUserInfo);
+      setUserInfo(resultUserInfo);
+      return resultUserInfo;
+    };
+    const newUserInfo = Fetch(accessToken);
+
+    const temp = JSON.parse(localStorage.getItem("baskets"));
+
+    setBasketTemp(temp?.length);
+  }, [accessToken]);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (graphQLErrors) {
@@ -60,10 +70,9 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   });
 
   const uploadLink = createUploadLink({
-    uri: "http://backend08.codebootcamp.co.kr/graphql",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
+    uri: "https://backend08.codebootcamp.co.kr/graphql",
+    headers: { Authorization: `Bearer ${accessToken}` },
+    credentials: "include",
   });
 
   const client = new ApolloClient({

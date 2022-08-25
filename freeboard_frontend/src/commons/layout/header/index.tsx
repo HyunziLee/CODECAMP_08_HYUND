@@ -4,8 +4,11 @@ import { useState } from "react";
 import * as s from "../../../../styles/layout.styles";
 import { css, keyframes } from "@emotion/react";
 import { Container } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../../components/commons/store";
 
 export default function LayoutHeader() {
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const menuList = ["menu1", "menu2", "menu3", "menu4"];
   const [isHover, setIsHover] = useState(false);
   const router = useRouter();
@@ -13,7 +16,6 @@ export default function LayoutHeader() {
   const onHover = () => {
     setIsHover(true);
   };
-  console.log(isHover);
 
   const onLeave = () => {
     setIsHover(false);
@@ -58,7 +60,7 @@ export default function LayoutHeader() {
                 Community
               </s.Header_menu_text>
               <s.Header_menu_text onMouseOver={onHover}>
-                Account
+                {userInfo ? `${userInfo.name}님` : "Account"}
               </s.Header_menu_text>
             </s.Header_menu_menu>
           </s.Header_menu>
@@ -102,24 +104,33 @@ export default function LayoutHeader() {
                   <s.Div>menu3</s.Div>
                   <s.Div>menu4</s.Div>
                 </s.Header_detail_text>
-                <s.Header_detail_text>
-                  <s.Div
-                    onClick={() => {
-                      onClickMenu("Login");
-                    }}
-                  >
-                    로그인
-                  </s.Div>
-                  <s.Div
-                    onClick={() => {
-                      onClickMenu("MyAccount");
-                    }}
-                  >
-                    마이페이지
-                  </s.Div>
-                  <s.Div>주문조회</s.Div>
-                  <s.Div>최근본상품</s.Div>
-                </s.Header_detail_text>
+                {!userInfo ? (
+                  <s.Header_detail_text>
+                    <s.Div
+                      onClick={() => {
+                        onClickMenu("Login");
+                      }}
+                    >
+                      로그인
+                    </s.Div>
+                    <s.Div>회원가입</s.Div>
+                    <s.Div></s.Div>
+                    <s.Div></s.Div>
+                  </s.Header_detail_text>
+                ) : (
+                  <s.Header_detail_text>
+                    <s.Div
+                      onClick={() => {
+                        onClickMenu("MyAccount");
+                      }}
+                    >
+                      마이페이지
+                    </s.Div>
+                    <s.Div>로그아웃</s.Div>
+                    <s.Div>장바구니</s.Div>
+                    <s.Div>최근본 상품</s.Div>
+                  </s.Header_detail_text>
+                )}
               </s.Header_detail_menu>
             </s.Header_detail>
           ) : (

@@ -8,13 +8,12 @@ import {
   IMutation,
   IMutationLoginUserArgs,
 } from "../../../../commons/types/generated/types";
-import { accessTokenState, userInfoState } from "../../../commons/store";
+import { userInfoState } from "../../../commons/store";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "../queries";
 import LoginUI from "./login.presenter";
 import { schema } from "../../../commons/yup/login/index";
 
 export default function LoginContainer() {
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   const router = useRouter();
@@ -38,11 +37,6 @@ export default function LoginContainer() {
 
     const accessToken = result.data?.loginUser.accessToken;
 
-    if (!accessToken) {
-      alert("로그인이 필요합니다.");
-      return;
-    }
-
     const resultUserInfo = await client.query({
       query: FETCH_USER_LOGGED_IN,
       context: {
@@ -54,10 +48,7 @@ export default function LoginContainer() {
 
     const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
 
-    setAccessToken(accessToken);
     setUserInfo(userInfo);
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("userInfo", JSON.stringify(userInfo)); // stringify: 객체를 json으로
 
     router.push(`/MyAccount`);
   };

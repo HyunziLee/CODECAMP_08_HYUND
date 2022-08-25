@@ -16,7 +16,6 @@ import { getAccessToken } from "../../../commons/libraries/getAccessToken";
 import {
   accessTokenState,
   basketLength,
-  getUserInfoLoadable,
   restoreAccessTokenLoadable,
   userInfoState,
 } from "../../../commons/store";
@@ -33,11 +32,10 @@ export default function ApolloSetting(props: IApolloSettingProps) {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
   const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
-  const bbb = useRecoilValueLoadable(getUserInfoLoadable);
 
   useEffect(() => {
-    console.log(accessToken);
     aaa.toPromise().then((newAccessToken) => {
+      console.log(accessToken);
       setAccessToken(newAccessToken);
     });
     const Fetch = async (accessToken) => {
@@ -46,7 +44,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
       setUserInfo(resultUserInfo);
       return resultUserInfo;
     };
-    const newUserInfo = Fetch(accessToken); // localStorage는 항상 문자열만 저장 가능
+    const newUserInfo = Fetch(accessToken);
 
     const temp = JSON.parse(localStorage.getItem("baskets"));
 

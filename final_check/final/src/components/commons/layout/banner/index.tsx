@@ -19,6 +19,8 @@ import * as s from "../../../../../styles/banner.styles";
 
 import PaymentPage from "../../payment";
 import { useRouter } from "next/router";
+import { useMutation } from "@apollo/client";
+import { LOGOUT_USER } from "../../../../commons/gql";
 
 export default function LayoutBanner() {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
@@ -29,6 +31,7 @@ export default function LayoutBanner() {
 
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const [logoutUser] = useMutation(LOGOUT_USER);
   useEffect(() => {
     const result = JSON.parse(localStorage.getItem("baskets") || "[]");
     setBaskets(result);
@@ -48,6 +51,10 @@ export default function LayoutBanner() {
     router.push(path);
   };
 
+  const onClickLogOut = () => {
+    logoutUser;
+  };
+
   return (
     <>
       <s.Wrapper>
@@ -58,7 +65,7 @@ export default function LayoutBanner() {
               <s.Menu>{`${userInfo.name}님의 포인트 ${userInfo.userPoint.amount}p`}</s.Menu>
               <s.Menu onClick={onClickPoint}>충전</s.Menu>
 
-              <s.Menu>로그아웃</s.Menu>
+              <s.Menu onClick={onClickLogOut}>로그아웃</s.Menu>
               <s.Menu>
                 장바구니
                 <s.Badge>{basketTemp}</s.Badge>

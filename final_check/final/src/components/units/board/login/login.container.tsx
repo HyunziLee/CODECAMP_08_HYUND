@@ -32,11 +32,6 @@ export default function LoginContainer() {
 
     const accessToken = result.data?.loginUser.accessToken;
 
-    // if (!accessToken) {
-    //   alert("로그인이 필요합니다.");
-    //   return;
-    // }
-
     const resultUserInfo = await client.query({
       query: FETCH_USER_LOGGED_IN,
       context: {
@@ -45,11 +40,12 @@ export default function LoginContainer() {
     });
 
     const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
-    // console.log(userInfo);
 
     if (accessToken) setAccessToken(accessToken || "");
     // if (userInfo) setUserInfo(userInfo || {});
     setUserInfo(userInfo);
+
+    console.log(userInfo);
 
     router.push(`/`);
   };

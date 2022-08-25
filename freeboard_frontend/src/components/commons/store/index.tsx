@@ -1,4 +1,6 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
+import { getAccessToken } from "../../../commons/libraries/getAccessToken";
+import { getUserInfo } from "../../../commons/libraries/getUserInfo";
 
 export const accessTokenState = atom({
   key: "accessTokenState",
@@ -47,4 +49,25 @@ export const UploadImgState = atom({
 export const detailImgState = atom({
   key: "detailImgState",
   default: "",
+});
+
+export const restoreAccessTokenLoadable = selector({
+  key: "restoreAccessTokenLoadable",
+  get: async () => {
+    const newAccessToken = await getAccessToken();
+    return newAccessToken;
+  },
+});
+
+// export const getUserInfoLoadable = selector({
+//   key: "getUserInfoLoadable",
+//   get: async (pram) => {
+//     const newUserInfo = await getUserInfo(pram);
+//     return newUserInfo;
+//   },
+// });
+
+export const basketLength = atom({
+  key: "basketLength",
+  default: 0,
 });

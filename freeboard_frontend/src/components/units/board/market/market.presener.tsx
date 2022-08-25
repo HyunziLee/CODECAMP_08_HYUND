@@ -1,5 +1,6 @@
 import { AddShoppingCart, FavoriteBorder } from "@mui/icons-material";
 import * as s from "../../../../../styles/market.styles";
+import { onClickBasket } from "../../../commons/Function/onClickAddBaskets";
 
 export default function MarketUI(props) {
   return (
@@ -23,9 +24,12 @@ export default function MarketUI(props) {
             <s.ItemPrice>{props.item.price}</s.ItemPrice>
           </s.ItemContents>
           <s.ItemWrapper2>
-            <s.ItemSeller>철수</s.ItemSeller>
+            <s.ItemSeller>{props.item.seller.name}</s.ItemSeller>
             <s.IconWrapper>
-              <AddShoppingCart />
+              {/* <div onClick={onClickBasket(props.item)}>
+                <AddShoppingCart />
+              </div>
+              {console.log(props.item)} */}
 
               <FavoriteBorder />
             </s.IconWrapper>
