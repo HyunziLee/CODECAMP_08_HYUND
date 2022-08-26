@@ -5,11 +5,11 @@ import * as s from "../../../../styles/layout.styles";
 import { css, keyframes } from "@emotion/react";
 import { Container } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { userInfoState } from "../../../components/commons/store";
+import { basketLength, userInfoState } from "../../../components/commons/store";
 
 export default function LayoutHeader() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const menuList = ["menu1", "menu2", "menu3", "menu4"];
+  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
   const [isHover, setIsHover] = useState(false);
   const router = useRouter();
 
@@ -127,7 +127,7 @@ export default function LayoutHeader() {
                       마이페이지
                     </s.Div>
                     <s.Div>로그아웃</s.Div>
-                    <s.Div>장바구니</s.Div>
+                    <s.Div>{`장바구니 ${basketTemp}`}</s.Div>
                     <s.Div>최근본 상품</s.Div>
                   </s.Header_detail_text>
                 )}

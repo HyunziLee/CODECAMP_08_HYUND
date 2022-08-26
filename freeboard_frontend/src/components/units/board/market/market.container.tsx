@@ -1,35 +1,37 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroller";
 import {
   IQuery,
+  IQueryFetchBoardArgs,
   IQueryFetchUseditemArgs,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_USED_ITEM, FETCH_USED_ITEMS } from "../queries";
+import {
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  FETCH_BOARD,
+  FETCH_USED_ITEM,
+  FETCH_USED_ITEMS,
+  FETCH_USED_ITEMS_I_PICKED,
+  TOGGLE_USED_ITEM_PICK,
+} from "../queries";
 import MarketUI from "./market.presener";
 import { v4 as uuidv4 } from "uuid";
 import * as s from "../../../../../styles/market.styles";
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { basketLength } from "../../../commons/store";
 
 export default function MarketContainer() {
   const router = useRouter();
+  const [toggleUsedItemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
 
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS);
-  console.log(data);
 
-  const { data: useItemDetail } = useQuery<
-    Pick<IQuery, "fetchUseditem">,
-    IQueryFetchUseditemArgs
-  >(FETCH_USED_ITEM, {
-    variables: {
-      useditemId: String(router.query.id),
-    },
+  const { data: IPick } = useQuery(FETCH_USED_ITEMS_I_PICKED, {
+    variables: { search: "" },
   });
+  console.log(IPick);
 
   const onFetchMore = () => {
     if (!data) return;
@@ -48,45 +50,55 @@ export default function MarketContainer() {
       },
     });
   };
-  // const onClickBasket = (basket) => () => {
-  //   // 1. 기존 장바구니 가져오기
-
-  //   const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
-
-  //   // 2. 이미 담겼는지 확인하기
-  //   const temp = baskets.filter((el) => el._id === basket._id); // temp는 임시로 저장할 때 주로 작명함
-  //   if (temp.length === 1) {
-  //     alert("장바구니에 동일한 상품이 있습니다.");
-  //     return;
-  //   }
-
-  //   // 3. 해당 장바구니에 담기
-  //   const { __typename, ...newBasket } = basket;
-  //   baskets.push(newBasket);
-  //   localStorage.setItem("baskets", JSON.stringify(baskets)); // localStorage는 항상 문자열만 저장 가능
-  //   console.log(baskets.length);
-  //   setBasketTemp(baskets.length);
-  // };
 
   const onClickPick = (parm) => () => {
-    const result = toggleUsedItemPick({
+    toggleUsedItemPick({
       variables: {
         useditemId: String(parm),
       },
       refetchQueries: [
         {
-          query: FETCH_USED_ITEM,
-          variables: {
-            useditemId: router.query.id,
-          },
+          query: FETCH_USED_ITEMS,
         },
       ],
+      // optimisticResponse:{
+      //   toggleUsedItemPick: (fetchBD?.fetchUseditem.pickedCount || 0)+1
+      // },
+      // update(cache,{data}){
+      //   cache.writeQuery({
+      //     query: FETCH_USED_ITEM,
+      //     variables:{useditemId:parm},
+      //     data:{
+      //       fetchUseditem:{
+      //         _id : parm,
+      //         _typename: "Useditem",
+
+      //       }
+      //     }
+      //   })
+      // }
     });
   };
 
-  const onClickDetail = (id) => () => {
+  const onClickDetail = (id, img) => () => {
+    console.log(id, img);
+    const recentImages = JSON.parse(
+      sessionStorage.getItem("recentImages") || "[]"
+    );
+
+    if (recentImages) {
+      const temp = recentImages.filter((el) => el === img); // temp는 임시로 저장할 때 주로 작명함
+      if (temp.length === 1) {
+        return;
+      }
+    }
+
+    recentImages.unshift(img);
+
+    sessionStorage.setItem("recentImages", JSON.stringify(recentImages));
     router.push(`/CreateItemSuccess/${id}`);
   };
+  // console.log(IPick);
 
   return (
     <>
@@ -98,7 +110,13 @@ export default function MarketContainer() {
           useWindow={false}
         >
           {data?.fetchUseditems.map((el, index) => (
-            <MarketUI key={uuidv4()} item={el} onClickDetail={onClickDetail} />
+            <MarketUI
+              key={uuidv4()}
+              item={el}
+              onClickDetail={onClickDetail}
+              onClickPick={onClickPick}
+              IPick={IPick}
+            />
           ))}
         </InfiniteScroll>
       </s.WrapperScroll>

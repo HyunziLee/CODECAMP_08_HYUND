@@ -84,6 +84,7 @@ export default function DetailContainer() {
         },
       ],
     });
+    console.log(result);
   };
 
   const onClickBuying = () => {

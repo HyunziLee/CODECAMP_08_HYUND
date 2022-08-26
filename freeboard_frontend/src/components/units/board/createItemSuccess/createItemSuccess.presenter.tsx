@@ -64,7 +64,7 @@ export default function CreateItemSuccessUI(props) {
               {/* <KakaoMapPage /> */}
             </s.ContentsDiv>
             <s.ContentsDiv>
-              <s.TitleH4>비고</s.TitleH4>
+              <s.TitleH4>상품요약</s.TitleH4>
 
               <s.ContentsH3>{props.data?.fetchUseditem.remarks}</s.ContentsH3>
             </s.ContentsDiv>
@@ -77,7 +77,9 @@ export default function CreateItemSuccessUI(props) {
               </s.TagWrapper>
             </s.ContentsDiv>
             <s.ButtonWrapper>
-              <s.BuyButton color="#bbd0ff">구매하기</s.BuyButton>
+              <s.BuyButton color="#bbd0ff" onClick={props.onClickBuying}>
+                구매하기
+              </s.BuyButton>
               <s.BuyButton color="#e9ecef">장바구니</s.BuyButton>
             </s.ButtonWrapper>
           </s.ContentsWrapper>

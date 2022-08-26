@@ -63,7 +63,8 @@ export const TOGGLE_USED_ITEM_PICK = gql`
 export const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
   mutation createPointTransactionOfLoading($impUid: ID!) {
     createPointTransactionOfLoading(impUid: $impUid) {
-      balance
+      _id
+      amount
     }
   }
 `;
@@ -262,6 +263,13 @@ export const LOGOUT_USER = gql`
   }
 `;
 
+export const FETCH_USED_ITEMS_I_PICKED = gql`
+  query fetchUseditemsIPicked($search: String) {
+    fetchUseditemsIPicked(search: $search) {
+      _id
+    }
+  }
+`;
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
     deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
