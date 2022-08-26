@@ -25,7 +25,7 @@ export default function MarketUI(props) {
             />
           ) : (
             <s.ItemImage
-              oonClick={props.onClickDetail(
+              onClick={props.onClickDetail(
                 props.item._id,
                 props.item.images[0]
               )}

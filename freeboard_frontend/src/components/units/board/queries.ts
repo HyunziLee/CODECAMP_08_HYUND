@@ -373,3 +373,9 @@ export const UPDATE_USED_ITEM = gql`
     }
   }
 `;
+
+export const DELETE_USED_ITEM = gql`
+  mutation deleteUsedItem($useditemId: ID!) {
+    deleteUsedItem(useditemId: $useditemId)
+  }
+`;

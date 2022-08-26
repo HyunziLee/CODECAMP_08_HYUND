@@ -50,7 +50,7 @@ function ChargePointContainer() {
 
   const onClickPrice = async () => {
     const IMP = window.IMP; // 생략 가능
-    IMP.init("imp01040085"); // Example: imp00000000
+    IMP.init("imp49910675"); // Example: imp00000000
 
     await IMP.request_pay(
       {
@@ -74,22 +74,22 @@ function ChargePointContainer() {
           // 결제 성공 시 로직,
           // 백엔드에 결제관련 데이터 넘겨주기 => 즉, 뮤테이션 실행하기
           // ex, createPointTransactionOfLoading
-          // const result = await createPointTransactionOfLoading({
-          //   variables: {
-          //     impUid: String(rsp.imp_uid),
-          //   },
-          // });
           const impUid = rsp.imp_uid;
           console.log(impUid);
-
-          const resultUserInfo = await client.mutate({
-            mutation: CREATE_POINT_TRANSACTION_OF_LOADING,
+          const result = await createPointTransactionOfLoading({
             variables: {
               impUid,
             },
           });
 
-          console.log(resultUserInfo);
+          // const resultUserInfo = await client.mutate({
+          //   mutation: CREATE_POINT_TRANSACTION_OF_LOADING,
+          //   variables: {
+          //     impUid,
+          //   },
+          // });
+
+          console.log(result);
         } else {
           // 결제 실패 시 로직,
           alert("결제에 실패했습니다. 다시 시도해주삼");

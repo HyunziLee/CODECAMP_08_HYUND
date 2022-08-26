@@ -10,7 +10,7 @@ import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
 import Warning from "../../../commons/div/01-warning";
 import { v4 as uuidv4 } from "uuid";
 import UploadImg from "../../../commons/upload/01/uploadImg.container";
-import { UploadImgState } from "../../../commons/store";
+import { isEditState, UploadImgState } from "../../../commons/store";
 import { useRecoilState } from "recoil";
 import Button01 from "../../../commons/button/01";
 const ReactQuill = dynamic(() => import("react-quill"), {
@@ -19,6 +19,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 
 export default function CreateItemUI(props) {
   const [uploadUrl] = useRecoilState(UploadImgState);
+  const [isEdit, setIsEdit] = useRecoilState(isEditState);
   return (
     <Container maxWidth="xl">
       <WrapperBox>
@@ -41,11 +42,24 @@ export default function CreateItemUI(props) {
               ))}
             </s.ImageSmallWrapper>
           </s.ImageWrapper>
-          <form onSubmit={props.handleSubmit(props.onClickCreateItem)}>
+          <form
+            onSubmit={
+              isEdit
+                ? props.handleSubmit(props.onClickUpdate)
+                : props.handleSubmit(props.onClickCreateItem)
+            }
+          >
             <s.InputWrapper>
               <s.InputDiv>
                 <s.InputH3>상품명</s.InputH3>
-                <Input02 type="text" register={props.register} name={"name"} />
+
+                <Input02
+                  type="text"
+                  register={props.register}
+                  name={"name"}
+                  default={isEdit ? props.data?.fetchUseditem.name : ""}
+                />
+
                 <Warning errormsg={props.formState.errors.name?.message} />
               </s.InputDiv>
               <s.InputDiv>
@@ -54,6 +68,7 @@ export default function CreateItemUI(props) {
                   type="number"
                   register={props.register}
                   name={"price"}
+                  default={isEdit ? props.data?.fetchUseditem.price : ""}
                 />
                 <Warning errormsg={props.formState.errors.price?.message} />
               </s.InputDiv>
@@ -63,6 +78,9 @@ export default function CreateItemUI(props) {
                 <ReactQuill
                   onChange={props.onChangeContents}
                   style={{ width: "600px", height: "400px" }}
+                  defaultValue={
+                    isEdit ? props.data?.fetchUseditem.contents : ""
+                  }
                 />
               </s.InputDiv>
 
@@ -72,25 +90,36 @@ export default function CreateItemUI(props) {
                 <KakaoMapPage />
               </s.InputDiv>
               <s.InputDiv>
-                <s.InputH3>비고</s.InputH3>
+                <s.InputH3>상품 요약</s.InputH3>
                 <Input02
                   type="text"
                   register={props.register}
                   name={"remarks"}
+                  default={isEdit ? props.data?.fetchUseditem.name : ""}
                 />
               </s.InputDiv>
               <s.InputTag>
                 <s.InputH3>태그</s.InputH3>
+
                 <Tags />
               </s.InputTag>
             </s.InputWrapper>
             <s.SubmitBtnWrapper>
-              <Button01
-                title="상품 등록하기"
-                type="submit"
-                isValid={props.formState.isValid}
-                color="#bbd0ff"
-              />
+              {!isEdit ? (
+                <Button01
+                  title="상품 등록하기"
+                  type="submit"
+                  isValid={props.formState.isValid}
+                  color="#bbd0ff"
+                />
+              ) : (
+                <Button01
+                  title="상품 수정하기"
+                  type="submit"
+                  isValid={props.formState.isValid}
+                  color="#bbd0ff"
+                />
+              )}
             </s.SubmitBtnWrapper>
           </form>
         </s.Wrapper>

@@ -2,11 +2,18 @@ import { Container } from "@mui/material";
 import * as s from "../../../../../styles/createItemSuccess.styles";
 import { WrapperBox } from "../../../commons/box/01";
 import { v4 as uuidv4 } from "uuid";
-import { detailImgState } from "../../../commons/store";
+import {
+  basketLength,
+  detailImgState,
+  userInfoState,
+} from "../../../commons/store";
 import { useRecoilState } from "recoil";
 import Dompurify from "dompurify";
+import { onClickBasket } from "../../../commons/Function/onClickAddBaskets";
 export default function CreateItemSuccessUI(props) {
   const [bigImg, setBigImg] = useRecoilState(detailImgState);
+  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
   return (
     <Container maxWidth="xl">
       <WrapperBox>
@@ -65,8 +72,11 @@ export default function CreateItemSuccessUI(props) {
             </s.ContentsDiv>
             <s.ContentsDiv>
               <s.TitleH4>상품요약</s.TitleH4>
-
-              <s.ContentsH3>{props.data?.fetchUseditem.remarks}</s.ContentsH3>
+              {props.data?.fetchUseditem.remarks ? (
+                <s.ContentsH3>{props.data?.fetchUseditem.remarks}</s.ContentsH3>
+              ) : (
+                <s.ContentsH3>등록된 상품 설명 요약이 없습니다.</s.ContentsH3>
+              )}
             </s.ContentsDiv>
             <s.ContentsDiv>
               <s.TitleH4>태그</s.TitleH4>
@@ -80,7 +90,15 @@ export default function CreateItemSuccessUI(props) {
               <s.BuyButton color="#bbd0ff" onClick={props.onClickBuying}>
                 구매하기
               </s.BuyButton>
-              <s.BuyButton color="#e9ecef">장바구니</s.BuyButton>
+              <s.BuyButton
+                color="#e9ecef"
+                onClick={() => {
+                  const result = onClickBasket(props.data?.fetchUseditem._id);
+                  setBasketTemp(result);
+                }}
+              >
+                장바구니
+              </s.BuyButton>
             </s.ButtonWrapper>
           </s.ContentsWrapper>
         </s.Wrapper>
@@ -98,6 +116,25 @@ export default function CreateItemSuccessUI(props) {
               )
             )}
           </s.DetailImgWrapper>
+          {userInfo?.email === props.data?.fetchUseditem.seller.email ? (
+            <s.ButtonWrapper>
+              <s.BuyButton
+                color="#bbd0ff"
+                onClick={props.onClickEdit(props.data?.fetchUseditem._id)}
+              >
+                수정하기
+              </s.BuyButton>
+              <s.BuyButton
+                color="#e9ecef"
+                onClick={props.onClickDelete(props.data?.fetchUseditem._id)}
+              >
+                삭제하기
+              </s.BuyButton>
+              {props.data?.fetchUseditem._id}
+            </s.ButtonWrapper>
+          ) : (
+            <></>
+          )}
         </s.DetailWrapper>
       </WrapperBox>
     </Container>

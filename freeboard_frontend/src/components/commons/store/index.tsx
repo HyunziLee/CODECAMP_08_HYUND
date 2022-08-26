@@ -59,15 +59,12 @@ export const restoreAccessTokenLoadable = selector({
   },
 });
 
-// export const getUserInfoLoadable = selector({
-//   key: "getUserInfoLoadable",
-//   get: async (pram) => {
-//     const newUserInfo = await getUserInfo(pram);
-//     return newUserInfo;
-//   },
-// });
-
 export const basketLength = atom({
   key: "basketLength",
   default: 0,
+});
+
+export const isEditState = atom({
+  key: "isEditState",
+  default: false,
 });

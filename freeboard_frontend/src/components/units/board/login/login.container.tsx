@@ -49,8 +49,11 @@ export default function LoginContainer() {
     const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
 
     setUserInfo(userInfo);
-
-    router.push(`/MyAccount`);
+    if (userInfo) {
+      router.push(`/MyAccount`);
+    } else {
+      alert("다시 로그인해주세요");
+    }
   };
 
   return (

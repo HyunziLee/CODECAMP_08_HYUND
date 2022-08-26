@@ -90,6 +90,8 @@ export const ButtonWrapper = styled.div`
   margin: auto;
   justify-content: center;
   cursor: pointer;
+  margin-bottom: 30px;
+  margin-top: 30px;
 `;
 
 export const BuyButton = styled.button`
@@ -99,6 +101,7 @@ export const BuyButton = styled.button`
   /* background-color: #bbd0ff; */
   border: none;
   margin: 0 20px;
+  cursor: pointer;
 `;
 export const InputRemarks = styled.div``;
 export const InputContents = styled.div``;
