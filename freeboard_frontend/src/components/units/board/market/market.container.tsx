@@ -2,14 +2,9 @@ import { useMutation, useQuery } from "@apollo/client";
 import InfiniteScroll from "react-infinite-scroller";
 import {
   IQuery,
-  IQueryFetchBoardArgs,
-  IQueryFetchUseditemArgs,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types";
 import {
-  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
-  FETCH_BOARD,
-  FETCH_USED_ITEM,
   FETCH_USED_ITEMS,
   FETCH_USED_ITEMS_I_PICKED,
   TOGGLE_USED_ITEM_PICK,
@@ -51,10 +46,10 @@ export default function MarketContainer() {
     });
   };
 
-  const onClickPick = (parm) => () => {
+  const onClickPick = (parm: string) => () => {
     toggleUsedItemPick({
       variables: {
-        useditemId: String(parm),
+        useditemId: parm,
       },
       refetchQueries: [
         {
@@ -80,14 +75,15 @@ export default function MarketContainer() {
     });
   };
 
-  const onClickDetail = (id, img) => () => {
-    console.log(id, img);
+  const onClickDetail = (id: string, img: string) => () => {
+    router.push(`/CreateItemSuccess/${id}`);
+
     const recentImages = JSON.parse(
       sessionStorage.getItem("recentImages") || "[]"
     );
 
     if (recentImages) {
-      const temp = recentImages.filter((el) => el === img); // temp는 임시로 저장할 때 주로 작명함
+      const temp = recentImages.filter((el: string) => el === img); // temp는 임시로 저장할 때 주로 작명함
       if (temp.length === 1) {
         return;
       }

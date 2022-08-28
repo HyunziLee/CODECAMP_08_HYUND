@@ -36,7 +36,7 @@ export default function ApolloSetting(props: IApolloSettingProps) {
       console.log(newAccessToken);
       setAccessToken(newAccessToken);
     });
-    const Fetch = async (accessToken) => {
+    const Fetch = async (accessToken: string) => {
       const resultUserInfo = await getUserInfo(accessToken);
       console.log(resultUserInfo);
       setUserInfo(resultUserInfo);

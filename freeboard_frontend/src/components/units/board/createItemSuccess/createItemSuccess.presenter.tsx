@@ -11,9 +11,9 @@ import { useRecoilState } from "recoil";
 import Dompurify from "dompurify";
 import { onClickBasket } from "../../../commons/Function/onClickAddBaskets";
 export default function CreateItemSuccessUI(props) {
-  const [bigImg, setBigImg] = useRecoilState(detailImgState);
+  const [bigImg] = useRecoilState(detailImgState);
   const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [userInfo] = useRecoilState(userInfoState);
   return (
     <Container maxWidth="xl">
       <WrapperBox>
@@ -28,7 +28,7 @@ export default function CreateItemSuccessUI(props) {
             )}
 
             <s.ImageSmallWrapper>
-              {props.data?.fetchUseditem.images.map((el) =>
+              {props.data?.fetchUseditem.images.map((el: string) =>
                 el ? (
                   <s.ImageSmall
                     key={uuidv4()}
@@ -81,7 +81,7 @@ export default function CreateItemSuccessUI(props) {
             <s.ContentsDiv>
               <s.TitleH4>태그</s.TitleH4>
               <s.TagWrapper>
-                {props.data?.fetchUseditem.tags.map((el) => (
+                {props.data?.fetchUseditem.tags.map((el: string) => (
                   <s.ContentsH3 key={uuidv4()}>{el}</s.ContentsH3>
                 ))}
               </s.TagWrapper>
@@ -130,7 +130,6 @@ export default function CreateItemSuccessUI(props) {
               >
                 삭제하기
               </s.BuyButton>
-              {props.data?.fetchUseditem._id}
             </s.ButtonWrapper>
           ) : (
             <></>

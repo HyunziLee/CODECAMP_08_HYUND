@@ -37,7 +37,7 @@ export default function CreateItemSuccess() {
     },
   });
 
-  const onClickImg = (Img) => () => {
+  const onClickImg = (Img: string) => () => {
     setBigImg(Img);
   };
 
@@ -56,7 +56,7 @@ export default function CreateItemSuccess() {
     router.push("/Market");
   };
 
-  const onClickEdit = (id) => () => {
+  const onClickEdit = (id: string) => () => {
     router.push(`/CreateItemEdit/${id}`);
   };
 
@@ -65,11 +65,11 @@ export default function CreateItemSuccess() {
     try {
       await deleteUsedItem({
         variables: { useditemId },
-        // refetchQueries: [
-        //   {
-        //     query: FETCH_USED_ITEMS,
-        //   },
-        // ],
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEMS,
+          },
+        ],
       });
     } catch (error) {
       if (error instanceof Error) {

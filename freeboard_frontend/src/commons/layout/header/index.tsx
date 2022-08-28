@@ -1,17 +1,21 @@
-import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import * as s from "../../../../styles/layout.styles";
-import { css, keyframes } from "@emotion/react";
+import { keyframes } from "@emotion/react";
 import { Container } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { basketLength, userInfoState } from "../../../components/commons/store";
+import { useMutation } from "@apollo/client";
+import { LOGOUT_USER } from "../../../components/units/board/queries";
+import { IMutation } from "../../types/generated/types";
 
 export default function LayoutHeader() {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
+  const [userInfo] = useRecoilState(userInfoState);
+  const [basketTemp] = useRecoilState(basketLength);
   const [isHover, setIsHover] = useState(false);
   const router = useRouter();
+
+  const [logoutUser] = useMutation<Pick<IMutation, "logoutUser">>(LOGOUT_USER);
 
   const onHover = () => {
     setIsHover(true);
@@ -21,7 +25,7 @@ export default function LayoutHeader() {
     setIsHover(false);
   };
 
-  const onClickMenu = (p) => {
+  const onClickMenu = (p: string) => {
     router.push(`/${p}`);
   };
 
@@ -36,6 +40,9 @@ export default function LayoutHeader() {
       opacity: 1;
     }
   `;
+  const onClickLogout = () => {
+    logoutUser();
+  };
 
   return (
     <>
@@ -126,7 +133,7 @@ export default function LayoutHeader() {
                     >
                       마이페이지
                     </s.Div>
-                    <s.Div>로그아웃</s.Div>
+                    <s.Div onClick={onClickLogout}>로그아웃</s.Div>
                     <s.Div>{`장바구니 ${basketTemp}`}</s.Div>
                     <s.Div>최근본 상품</s.Div>
                   </s.Header_detail_text>
