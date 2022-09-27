@@ -73,7 +73,7 @@ export default function LayoutBanner() {
             </s.MenuWrapper>
           ) : (
             <s.MenuWrapper>
-              <s.Menu onClick={onClickMove("/Login")}>로그인</s.Menu>
+              <s.Menu onClick={onClickMove("/login")}>로그인</s.Menu>
 
               <s.Menu onClick={onClickMove("/Join")}>회원가입</s.Menu>
               <s.Menu>장바구니</s.Menu>

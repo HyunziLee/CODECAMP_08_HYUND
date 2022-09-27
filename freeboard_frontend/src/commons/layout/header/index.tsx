@@ -47,44 +47,31 @@ export default function LayoutHeader() {
   return (
     <>
       <Container maxWidth="xl">
-        <s.Wrapper_header>
-          <s.Header_menu>
-            <s.Header_menu_logo
+        <s.WrapperHeader>
+          <s.WrapperHeaderMenu>
+            <s.HeaderMenuLogo
               onClick={() => {
-                onClickMenu("Main");
+                onClickMenu("main");
               }}
             >
               Home
-            </s.Header_menu_logo>
-            <s.Header_menu_menu>
-              <s.Header_menu_text onMouseOver={onHover}>
-                menu1
-              </s.Header_menu_text>
-              <s.Header_menu_text onMouseOver={onHover}>
-                Market
-              </s.Header_menu_text>
-              <s.Header_menu_text onMouseOver={onHover}>
-                Community
-              </s.Header_menu_text>
-              <s.Header_menu_text onMouseOver={onHover}>
+            </s.HeaderMenuLogo>
+            <s.HeaderMenus>
+              <s.HeaderMenu onMouseOver={onHover}>Market</s.HeaderMenu>
+              <s.HeaderMenu onMouseOver={onHover}>Community</s.HeaderMenu>
+              <s.HeaderMenu onMouseOver={onHover}>
                 {userInfo ? `${userInfo.name}님` : "Account"}
-              </s.Header_menu_text>
-            </s.Header_menu_menu>
-          </s.Header_menu>
+              </s.HeaderMenu>
+            </s.HeaderMenus>
+          </s.WrapperHeaderMenu>
           {isHover ? (
-            <s.Header_detail Opacity={Opacity}>
-              <s.Header_detail_logo></s.Header_detail_logo>
-              <s.Header_detail_menu onMouseLeave={onLeave}>
-                <s.Header_detail_text>
-                  <s.Div>menu4 </s.Div>
-                  <s.Div>menu3</s.Div>
-                  <s.Div>menu3</s.Div>
-                  <s.Div>menu4</s.Div>
-                </s.Header_detail_text>
-                <s.Header_detail_text>
+            <s.HeaderDetail Opacity={Opacity}>
+              <s.HeaderDetailLogo />
+              <s.HeaderDetailMenus onMouseLeave={onLeave}>
+                <s.HeaderDetailMenu>
                   <s.Div
                     onClick={() => {
-                      onClickMenu("Market");
+                      onClickMenu("market");
                     }}
                   >
                     중고상품
@@ -92,43 +79,45 @@ export default function LayoutHeader() {
                   <s.Div>menu2</s.Div>
                   <s.Div>menu3</s.Div>
                   <s.Div>menu4</s.Div>
-                </s.Header_detail_text>
-                <s.Header_detail_text>
+                </s.HeaderDetailMenu>
+                <s.HeaderDetailMenu>
                   <s.Div
                     onClick={() => {
-                      onClickMenu("PostList/p");
+                      onClickMenu("postlist");
                     }}
                   >
                     게시글 조회
                   </s.Div>
                   <s.Div
                     onClick={() => {
-                      onClickMenu("PostForm");
+                      onClickMenu("postform");
                     }}
                   >
                     게시물 등록하기
                   </s.Div>
-                  <s.Div>menu3</s.Div>
-                  <s.Div>menu4</s.Div>
-                </s.Header_detail_text>
+                </s.HeaderDetailMenu>
                 {!userInfo ? (
-                  <s.Header_detail_text>
+                  <s.HeaderDetailMenu>
                     <s.Div
                       onClick={() => {
-                        onClickMenu("Login");
+                        onClickMenu("login");
                       }}
                     >
                       로그인
                     </s.Div>
-                    <s.Div>회원가입</s.Div>
-                    <s.Div></s.Div>
-                    <s.Div></s.Div>
-                  </s.Header_detail_text>
-                ) : (
-                  <s.Header_detail_text>
                     <s.Div
                       onClick={() => {
-                        onClickMenu("MyAccount");
+                        onClickMenu("signup");
+                      }}
+                    >
+                      회원가입
+                    </s.Div>
+                  </s.HeaderDetailMenu>
+                ) : (
+                  <s.HeaderDetailMenu>
+                    <s.Div
+                      onClick={() => {
+                        onClickMenu("myaccount");
                       }}
                     >
                       마이페이지
@@ -136,15 +125,15 @@ export default function LayoutHeader() {
                     <s.Div onClick={onClickLogout}>로그아웃</s.Div>
                     <s.Div>{`장바구니 ${basketTemp}`}</s.Div>
                     <s.Div>최근본 상품</s.Div>
-                  </s.Header_detail_text>
+                  </s.HeaderDetailMenu>
                 )}
-              </s.Header_detail_menu>
-            </s.Header_detail>
+              </s.HeaderDetailMenus>
+            </s.HeaderDetail>
           ) : (
             ""
           )}
-        </s.Wrapper_header>
-        <s.Header_line></s.Header_line>
+        </s.WrapperHeader>
+        <s.DivideLine />
       </Container>
     </>
   );

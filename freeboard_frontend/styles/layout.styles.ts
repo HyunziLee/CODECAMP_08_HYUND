@@ -4,16 +4,16 @@ export const Wrapper_banner = styled.div`
   height: 500px;
 `;
 
-export const Wrapper_footer = styled.div`
-  height: 50px;
-  background-color: gray;
+export const WrapperFooter = styled.div`
+  height: 300px;
+  background-color: #e3e4e6;
 `;
 
-export const Wrapper_header = styled.div`
+export const WrapperHeader = styled.div`
   height: 80px;
 `;
 
-export const Header_menu = styled.div`
+export const WrapperHeaderMenu = styled.div`
   width: 1200px;
   height: 100%;
   margin: auto;
@@ -22,18 +22,17 @@ export const Header_menu = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-export const Header_menu_logo = styled.div`
-  width: 10%;
+export const HeaderMenuLogo = styled.div`
   text-align: center;
   cursor: pointer;
 `;
-export const Header_menu_menu = styled.div`
+export const HeaderMenus = styled.div`
   width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-export const Header_menu_text = styled.div`
+export const HeaderMenu = styled.div`
   width: 100px;
   text-align: center;
   font-size: 15px;
@@ -41,13 +40,13 @@ export const Header_menu_text = styled.div`
   cursor: pointer;
 `;
 
-export const Header_line = styled.div`
+export const DivideLine = styled.div`
   width: 100%;
   height: 1px;
   background-color: #edede9;
 `;
 
-export const Wrapper_nav = styled.div`
+export const WrapperNav = styled.div`
   height: 50px;
   background-color: lime;
 `;
@@ -56,7 +55,7 @@ export const Wrapper_Detail = styled.div`
   height: 80px;
 `;
 
-export const Header_detail = styled.div`
+export const HeaderDetail = styled.div<{ Opacity: string }>`
   width: 1200px;
   height: 300px;
   position: relative;
@@ -66,21 +65,20 @@ export const Header_detail = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #bbd0ff;
-  z-index: 999;
-
+  z-index: 90;
   animation: ${(props) => props.Opacity} 0.5s linear;
 `;
-export const Header_detail_logo = styled.div`
+export const HeaderDetailLogo = styled.div`
   width: 10%;
   text-align: center;
 `;
-export const Header_detail_menu = styled.div`
+export const HeaderDetailMenus = styled.div`
   width: 50%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
-export const Header_detail_text = styled.div`
+export const HeaderDetailMenu = styled.div`
   text-align: center;
   margin: 10px;
 `;

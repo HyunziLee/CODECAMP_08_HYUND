@@ -57,13 +57,11 @@ export default function LoginContainer() {
   };
 
   return (
-    <>
-      <LoginUI
-        register={register}
-        handleSubmit={handleSubmit}
-        formState={formState}
-        onClickButton={onClickButton}
-      />
-    </>
+    <LoginUI
+      register={register}
+      handleSubmit={handleSubmit}
+      formState={formState}
+      onClickButton={onClickButton}
+    />
   );
 }

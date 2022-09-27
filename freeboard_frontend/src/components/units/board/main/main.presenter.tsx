@@ -1,34 +1,31 @@
-import * as s from "../../../../../styles/carousel.styles";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import * as s from "./main.styles";
+
+import { Mousewheel, Pagination } from "swiper";
+
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function MainUI() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
-    <>
-      {/* <s.WrapperCarousel> */}
-      <s.CarouselContainer>
-        <Slider {...settings}>
-          <s.ContainerWrapper>
-            <s.Image>1</s.Image>
-          </s.ContainerWrapper>
-          <s.ContainerWrapper>
-            <s.Image>2</s.Image>
-          </s.ContainerWrapper>
-          <s.ContainerWrapper>
-            <s.Image>3</s.Image>
-          </s.ContainerWrapper>
-        </Slider>
-      </s.CarouselContainer>
-      {/* </s.WrapperCarousel> */}
-    </>
+    <s.Wrapper>
+      <s.CustonSwiper
+        direction={"vertical"}
+        slidesPerView={1}
+        spaceBetween={30}
+        mousewheel={true}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Mousewheel, Pagination]}
+        className="mySwiper"
+      >
+        <s.CustonSwiperSlide>Slide 1</s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>Slide 2</s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>Slide 3</s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>Slide 4</s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>Slide 5</s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>Slide 6</s.CustonSwiperSlide>
+      </s.CustonSwiper>
+    </s.Wrapper>
   );
 }

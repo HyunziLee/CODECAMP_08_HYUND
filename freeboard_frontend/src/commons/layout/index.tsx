@@ -1,4 +1,3 @@
-import { Container } from "@mui/material";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import LayoutFooter from "./footer";
@@ -6,7 +5,7 @@ import LayoutHeader from "./header";
 import LayoutSide from "./side";
 
 // 특정페이지에서 안보이게 하는 방법
-const HIDDEN_HEADERS = ["/"];
+const HIDDEN_HEADER_FOOTER_SIDE = ["/"];
 
 // const HIDDEN_CAROUSEL = [
 //   "/Write", `/Edit/${router.query.id}`
@@ -20,18 +19,18 @@ export default function Layout(props: ILayoutProps) {
   const router = useRouter();
   // console.log(router);
 
-  const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath); // asPath는 현재 주소임
+  const isHiddenHeaderFooterSide = HIDDEN_HEADER_FOOTER_SIDE.includes(
+    router.asPath
+  ); // asPath는 현재 주소임
 
   return (
     <>
-      <Container maxWidth="xl">
-        {!isHiddenHeader && <LayoutHeader />}
-        {<LayoutSide />}
-
-        <div>{props.children}</div>
-
-        <LayoutFooter></LayoutFooter>
-      </Container>
+      {/* <Container> */}
+      {!isHiddenHeaderFooterSide && <LayoutHeader />}
+      {!isHiddenHeaderFooterSide && <LayoutSide />}
+      <div>{props.children}</div>
+      {!isHiddenHeaderFooterSide && <LayoutFooter />}
+      {/* </Container> */}
     </>
   );
 }

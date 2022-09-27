@@ -3,10 +3,10 @@ import { withAuth } from "../../../commons/hoc/withAuth";
 import { userInfoState } from "../../../commons/store";
 import Head from "next/head";
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import ChargePointUI from "./chargePoint.presenter";
 import { v4 as uuidv4 } from "uuid";
-import { useApolloClient, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { CREATE_POINT_TRANSACTION_OF_LOADING } from "../queries";
 import {
   IMutation,
@@ -23,30 +23,20 @@ function ChargePointContainer() {
     IMutationCreatePointTransactionOfLoadingArgs
   >(CREATE_POINT_TRANSACTION_OF_LOADING);
   const [userInfo] = useRecoilState(userInfoState);
-  const client = useApolloClient();
+  // const client = useApolloClient();
   const priceList = [500, 1000, 2000, 5000, 0, 0, 0, 0];
   const [selectPrice, setSelectPrice] = useState(0);
-  const [isClick, setIsClick] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
 
-  const onSelect = (i) => (event) => {
-    setIsClick(isClick.fill(false));
+  const [isClick, setIsClick] = useState(Array(8).fill(false));
 
-    const copy = [...isClick];
-    copy[i] = true;
-
-    setIsClick(copy);
-
-    setSelectPrice(event.target.value);
-  };
+  const onSelect =
+    (index: number) => (event: ChangeEvent<HTMLButtonElement>) => {
+      setIsClick(isClick.fill(false));
+      const copy = [...isClick];
+      copy[index] = true;
+      setIsClick(copy);
+      setSelectPrice(Number(event.target?.value));
+    };
 
   const onClickPrice = async () => {
     const IMP = window.IMP; // 생략 가능
@@ -68,15 +58,9 @@ function ChargePointContainer() {
         m_redirect_url: "http://localhost:3000/",
       },
       async (rsp: any) => {
-        // callback
-        console.log(rsp);
         if (rsp.success) {
-          // 결제 성공 시 로직,
-          // 백엔드에 결제관련 데이터 넘겨주기 => 즉, 뮤테이션 실행하기
-          // ex, createPointTransactionOfLoading
           const impUid = rsp.imp_uid;
-          console.log(impUid);
-          const result = await createPointTransactionOfLoading({
+          await createPointTransactionOfLoading({
             variables: {
               impUid,
             },
@@ -88,8 +72,6 @@ function ChargePointContainer() {
           //     impUid,
           //   },
           // });
-
-          console.log(result);
         } else {
           // 결제 실패 시 로직,
           alert("결제에 실패했습니다. 다시 시도해주삼");

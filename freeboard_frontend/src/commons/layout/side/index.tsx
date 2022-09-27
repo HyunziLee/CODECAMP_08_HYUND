@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
-import { Container } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { recentImg } from "../../../../commons/store";
-// import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 
 const Wrapper = styled.div`
   height: 373px;

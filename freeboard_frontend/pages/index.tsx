@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import * as s from "../styles/home.styles";
+import * as s from "../styles/randing.styles";
 import { useMediaQuery } from "react-responsive";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -31,23 +31,23 @@ export default function Home() {
   };
 
   const onClickGoHome = () => {
-    router.push("/Main");
+    router.push("/main");
   };
 
   return (
     <>
       {isPc && (
-        <s.Wrapper width={`1300px`}>
+        <s.Wrapper>
           <s.Video autoPlay muted loop src={BgVideo}></s.Video>
           {isHover ? (
-            <s.Video_text
+            <s.VideoText
               fontsize={`32px`}
               onMouseOver={onHover}
               width={`150px`}
               height={`150px`}
             >
               Hello
-            </s.Video_text>
+            </s.VideoText>
           ) : (
             <s.GoHome
               onMouseLeave={onHover}
@@ -63,18 +63,18 @@ export default function Home() {
         </s.Wrapper>
       )}
       {isTablet && (
-        <s.Wrapper width={`760px`}>
+        <s.Wrapper>
           <s.Video autoPlay muted loop src={BgVideo}></s.Video>
 
           {isHover ? (
-            <s.Video_text
+            <s.VideoText
               fontsize={`16px`}
               onMouseOver={onHover}
               width={`100px`}
               height={`100px`}
             >
               Hello
-            </s.Video_text>
+            </s.VideoText>
           ) : (
             <s.GoHome
               onMouseLeave={onHover}
@@ -90,17 +90,17 @@ export default function Home() {
         </s.Wrapper>
       )}
       {isMobile && (
-        <s.Wrapper width={`390px`}>
+        <s.Wrapper>
           <s.Video autoPlay muted loop src={BgVideo}></s.Video>
           {isHover ? (
-            <s.Video_text
+            <s.VideoText
               fontsize={`10px`}
               onMouseOver={onHover}
               width={`60px`}
               height={`60px`}
             >
               Hello
-            </s.Video_text>
+            </s.VideoText>
           ) : (
             <s.GoHome
               onMouseLeave={onHover}

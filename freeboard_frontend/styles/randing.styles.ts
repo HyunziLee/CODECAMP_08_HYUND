@@ -1,9 +1,6 @@
 import styled from "@emotion/styled";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 export const Wrapper = styled.div`
-  /* width: ${(props) => props.width}; */
-
   margin: auto;
   position: relative;
 `;
@@ -12,7 +9,11 @@ export const Video = styled.video`
   width: 100%;
 `;
 
-export const Video_text = styled.div`
+export const VideoText = styled.div<{
+  width: string;
+  height: string;
+  fontsize: string;
+}>`
   position: absolute;
   top: 45%;
   left: 45%;
@@ -25,7 +26,11 @@ export const Video_text = styled.div`
   cursor: pointer;
 `;
 
-export const GoHome = styled.div`
+export const GoHome = styled.div<{
+  width: string;
+  height: string;
+  fontsize: string;
+}>`
   position: absolute;
   top: 45%;
   left: 45%;
@@ -39,18 +44,4 @@ export const GoHome = styled.div`
   border-radius: 50%;
   font-size: ${(props) => props.fontsize};
   cursor: pointer;
-`;
-
-export const Main_intro = styled.div`
-  width: 100%;
-  height: 800px;
-  background-color: yellow;
-  position: absolute;
-`;
-
-export const Intro_contents = styled.div`
-  width: 200px;
-  height: 100px;
-
-  background-color: skyblue;
 `;
