@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
+  IQueryFetchUseditemsIPickedArgs,
 } from "../../../../commons/types/generated/types";
 import {
   FETCH_USED_ITEMS,
@@ -23,7 +24,10 @@ export default function MarketContainer() {
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS);
 
-  const { data: IPick } = useQuery(FETCH_USED_ITEMS_I_PICKED, {
+  const { data: IPick } = useQuery<
+    Pick<IQuery, "fetchUseditemsIPicked">,
+    IQueryFetchUseditemsIPickedArgs
+  >(FETCH_USED_ITEMS_I_PICKED, {
     variables: { search: "" },
   });
   console.log(IPick);

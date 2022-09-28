@@ -105,10 +105,12 @@ export default function BoardDetail(props: IBoardDetailProps) {
     });
   };
 
+  console.log(data?.fetchBoard);
+
   return (
     <>
       <BoardDetailUI
-        data={data}
+        data={data?.fetchBoard}
         MoveToListPageBtn={MoveToListPageBtn}
         MoveToEditPageBtn={MoveToEditPageBtn}
         DeleteBoardBtn={DeleteBoardBtn}

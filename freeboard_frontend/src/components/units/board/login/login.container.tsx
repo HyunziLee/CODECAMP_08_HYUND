@@ -12,9 +12,10 @@ import { userInfoState } from "../../../../commons/store";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "../queries";
 import LoginUI from "./login.presenter";
 import { schema } from "../../../commons/yup/login/index";
+import { FormValue } from "./login.types";
 
 export default function LoginContainer() {
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState); // eslint-disable-line no-unused-vars
 
   const router = useRouter();
   const client = useApolloClient();
@@ -23,11 +24,11 @@ export default function LoginContainer() {
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm<FormValue>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const onClickButton = async (data) => {
+  const onClickButton = async (data: FormValue) => {
     const result = await loginUser({
       variables: {
         email: data.email,

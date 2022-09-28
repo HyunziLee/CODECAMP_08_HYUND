@@ -1,11 +1,11 @@
-import { IQuery } from "../../../../commons/types/generated/types";
+import { IBoard, IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardDetailProps {
   data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IBoardDetailUIProps {
-  data?: Pick<IQuery, "fetchBoard">;
+  data?: IBoard;
   MoveToListPageBtn: () => void;
   MoveToEditPageBtn: () => void;
   DeleteBoardBtn: () => void;

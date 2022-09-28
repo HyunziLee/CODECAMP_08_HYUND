@@ -3,8 +3,9 @@ import Button01 from "../../../commons/button/01";
 import Warning from "../../../commons/div/01-warning";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import Input01 from "../../../commons/input/01";
+import { ILoginUIProps } from "./login.types";
 
-export default function LoginUI(props) {
+export default function LoginUI(props: ILoginUIProps) {
   const { onClickMovetoPage } = useMoveToPage();
 
   return (

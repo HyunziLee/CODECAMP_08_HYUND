@@ -76,7 +76,14 @@ export default function LayoutHeader() {
                   >
                     중고상품
                   </s.Div>
-                  <s.Div>menu2</s.Div>
+                  <s.Div
+                    onClick={() => {
+                      onClickMenu("CreateItem");
+                    }}
+                  >
+                    내 상품 등록
+                  </s.Div>
+
                   <s.Div>menu3</s.Div>
                   <s.Div>menu4</s.Div>
                 </s.HeaderDetailMenu>

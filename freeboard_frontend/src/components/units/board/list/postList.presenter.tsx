@@ -1,12 +1,9 @@
-import * as s from "../../../../../styles/postList.styles";
-// import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import * as s from "./postList.styles";
 import { useRouter } from "next/router";
 
 import { getDate } from "../../../commons/Function/getDate";
 import ListPaginationUI from "./ListPagination.presenter";
-import { IPostListProps } from "./IPostList.types";
+import { IPostListProps } from "./postList.types";
 import { v4 as uuidv4 } from "uuid";
 
 export default function PostListUI(props: IPostListProps) {
@@ -20,26 +17,24 @@ export default function PostListUI(props: IPostListProps) {
     <div>
       <s.Wrapper>
         <s.SearchWrapper>
-          <s.SearchWrapper__titleSearch
+          <s.SearchTitle
             placeholder="검색할 내용을 작성하세요."
             onChange={props.onChangeSearch}
-          ></s.SearchWrapper__titleSearch>
-          {/* <s.SearchWrapper__dateSearch placeholder="YYYY.MM.DD - YYYY.MM.DD"></s.SearchWrapper__dateSearch> */}
-          {/* <s.SearchWrapper__btn>검색하기</s.SearchWrapper__btn> */}
+          ></s.SearchTitle>
         </s.SearchWrapper>
         <s.ListWrapper>
-          <s.ListWrapper__row>
-            <s.ListWrapper__column>번호</s.ListWrapper__column>
-            <s.ListWrapper__column>제목</s.ListWrapper__column>
-            <s.ListWrapper__column>작성자</s.ListWrapper__column>
-            <s.ListWrapper__column>날짜</s.ListWrapper__column>
-          </s.ListWrapper__row>
+          <s.Row>
+            <s.Column>번호</s.Column>
+            <s.Column>제목</s.Column>
+            <s.Column>작성자</s.Column>
+            <s.Column>날짜</s.Column>
+          </s.Row>
 
           {props.data?.fetchBoards.map((e, i) => (
-            <s.ListWrapper__row key={e._id}>
-              <s.ListWrapper__column>{i + 1}</s.ListWrapper__column>
+            <s.Row key={e._id}>
+              <s.Column>{i + 1}</s.Column>
               {/* 제목 눌렀을 때, _id를 이용해 Detail 페이지로 이동 */}
-              <s.ListWrapper__column
+              <s.Column
                 onClick={() => {
                   MoveToListDetailBtn(e._id);
                 }}
@@ -59,34 +54,31 @@ export default function PostListUI(props: IPostListProps) {
                       </span>
                     ))}
                 </span>{" "}
-              </s.ListWrapper__column>
-              <s.ListWrapper__column>{e.writer}</s.ListWrapper__column>
-              <s.ListWrapper__column>
-                {getDate(e.createdAt)}
-              </s.ListWrapper__column>
-            </s.ListWrapper__row>
+              </s.Column>
+              <s.Column>{e.writer}</s.Column>
+              <s.Column>{getDate(e.createdAt)}</s.Column>
+            </s.Row>
           ))}
         </s.ListWrapper>
         {/* {console.log(props.data)} */}
 
         {props.keyword ? (
-          <s.Search_page>
-            {new Array(10).fill(1).map((_, index) => {
+          <s.SearchPage>
+            {new Array(10).fill(1).map((_, index) => (
               // if (props.keyword.length < 10) {
               //   console.log(props.keyword.length);
               //   return;
               // }
-              return (
-                <s.Search_span
-                  key={index + 1}
-                  id={String(index + 1)}
-                  onClick={props.onMovetoPageForSearch}
-                >
-                  {index + 1}
-                </s.Search_span>
-              );
-            })}
-          </s.Search_page>
+
+              <s.SearchSpan
+                key={index + 1}
+                id={String(index + 1)}
+                onClick={props.onMovetoPageForSearch}
+              >
+                {index + 1}
+              </s.SearchSpan>
+            ))}
+          </s.SearchPage>
         ) : (
           ""
         )}
@@ -109,12 +101,12 @@ export default function PostListUI(props: IPostListProps) {
             ""
           )}
 
-          <s.Footer__submitBtn onClick={props.MoveToWritePageBtn}>
-            <s.Footer__submitBtn_icon>
+          <s.SubmitBtn onClick={props.MoveToWritePageBtn}>
+            <s.SubmitBtnIcon>
               {/* <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
-            </s.Footer__submitBtn_icon>
-            <s.Footer__submitBtn_text>게시물등록하기</s.Footer__submitBtn_text>
-          </s.Footer__submitBtn>
+            </s.SubmitBtnIcon>
+            <s.SubmitBtnText>게시물등록하기</s.SubmitBtnText>
+          </s.SubmitBtn>
         </s.Footer>
       </s.Wrapper>
     </div>

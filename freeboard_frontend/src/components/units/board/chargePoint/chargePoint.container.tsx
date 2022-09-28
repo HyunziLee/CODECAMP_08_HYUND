@@ -3,7 +3,7 @@ import { withAuth } from "../../../commons/hoc/withAuth";
 import { userInfoState } from "../../../../commons/store";
 import Head from "next/head";
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import ChargePointUI from "./chargePoint.presenter";
 import { v4 as uuidv4 } from "uuid";
 import { useMutation } from "@apollo/client";
@@ -30,12 +30,12 @@ function ChargePointContainer() {
   const [isClick, setIsClick] = useState(Array(8).fill(false));
 
   const onSelect =
-    (index: number) => (event: ChangeEvent<HTMLButtonElement>) => {
+    (index: number) => (event: { target: { value: number } }) => {
       setIsClick(isClick.fill(false));
       const copy = [...isClick];
       copy[index] = true;
       setIsClick(copy);
-      setSelectPrice(Number(event.target?.value));
+      setSelectPrice(event.target.value);
     };
 
   const onClickPrice = async () => {

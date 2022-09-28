@@ -12,13 +12,8 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <s.ProfileWrapper>
             <s.ProfileImg></s.ProfileImg>
             <s.ProfileName>
-              <s.Name>
-                {props.data ? props.data.fetchBoard.writer : "로딩중"}
-              </s.Name>
-              <s.Date>
-                {props.data ? props.data.fetchBoard.createdAt : "로딩중"}
-              </s.Date>
-              s{console.log(props.data)}
+              <s.Name>{props.data ? props.data?.writer : "로딩중"}</s.Name>
+              <s.Date>{props.data ? props.data?.createdAt : "로딩중"}</s.Date>
             </s.ProfileName>
           </s.ProfileWrapper>
           <s.ProfileIcon>
@@ -30,24 +25,23 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             </s.ProfileIcon__Icon>
           </s.ProfileIcon>
         </s.UserWrapper>
-        <s.Title>{props.data?.fetchBoard.title}</s.Title>
+        <s.Title>{props.data?.title}</s.Title>
 
-        <s.Contents>{props.data?.fetchBoard.contents}</s.Contents>
+        <s.Contents>{props.data?.contents}</s.Contents>
         <s.ImageWrapper>
-          {props.data?.fetchBoard.images.map((el) =>
-            el ? (
-              <s.ImageArea
-                key={uuidv4()}
-                src={`https://storage.googleapis.com/${el}`}
-              />
-            ) : (
-              ""
-            )
+          {props.data?.images?.map(
+            (el) =>
+              el && (
+                <s.ImageArea
+                  key={uuidv4()}
+                  src={`https://storage.googleapis.com/${el}`}
+                />
+              )
           )}
         </s.ImageWrapper>
 
         <s.Youtube
-          url={props.data?.fetchBoard.youtubeUrl}
+          url={props.data?.youtubeUrl || ""}
           width="486px"
           height="240px"
         ></s.Youtube>
@@ -55,12 +49,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <s.LikeDislikeIcon>
           <s.LikeDislikeIcon_icon>
             <ThumbUp onClick={props.likeBtn} />
-            <div>{props.data?.fetchBoard.likeCount}</div>
+            <div>{props.data?.likeCount}</div>
           </s.LikeDislikeIcon_icon>
 
           <s.LikeDislikeIcon_icon>
             <ThumbDown onClick={props.dislikeBtn} />
-            <div>{props.data?.fetchBoard.dislikeCount}</div>
+            <div>{props.data?.dislikeCount}</div>
           </s.LikeDislikeIcon_icon>
         </s.LikeDislikeIcon>
       </s.Wrapper>

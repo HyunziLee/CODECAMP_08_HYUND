@@ -3,15 +3,15 @@ import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IPostListProps {
   MoveToWritePageBtn: () => void;
-  onClickRefetch: (e: ChangeEvent<HTMLButtonElement>) => void;
+  onClickRefetch: (e: MouseEvent<HTMLButtonElement>) => void;
   onClickPrev: () => void;
   onClickNext: () => void;
-  onChangeSearch: () => void;
-  onMovetoPageForSearch: () => void;
+  onChangeSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onMovetoPageForSearch: (e: MouseEvent<HTMLSpanElement>) => void;
   setIsLastPage: Dispatch<SetStateAction<number>>;
   setIsClicked: Dispatch<SetStateAction<boolean>>;
-  data: Pick<IQuery, "fetchBoards">;
-  ListDetail: Pick<IQuery, "fetchBoard">;
+  data?: Pick<IQuery, "fetchBoards">;
+  ListDetail?: Pick<IQuery, "fetchBoard">;
   startPage: number;
   lastPageStandard: number;
   isLastPage: number;
@@ -25,7 +25,7 @@ export interface IListPaginationUIProps {
   onClickNext: () => void;
   setIsLastPage: Dispatch<SetStateAction<number>>;
   setIsClicked: Dispatch<SetStateAction<boolean>>;
-  data: Pick<IQuery, "fetchBoards">;
+  data?: Pick<IQuery, "fetchBoards">;
   startPage: number;
   lastPageStandard: number;
   isLastPage: number;

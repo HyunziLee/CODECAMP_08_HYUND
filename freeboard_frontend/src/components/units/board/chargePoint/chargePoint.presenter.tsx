@@ -13,7 +13,7 @@ export default function ChargePointUI(props: IChargePointProps) {
             <s.PriceLi key={el}>
               <s.PriceBtn
                 value={el}
-                onClick={() => props.onSelect(index)}
+                onClick={props.onSelect(index)}
                 color={props.isClick[index] ? "#e9ecef" : "#fff"}
               >
                 {el}

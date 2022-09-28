@@ -5,6 +5,7 @@ import Head from "next/head";
 
 import MyAccountUI from "./myAccount.presenter";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 declare const window: typeof globalThis & {
   IMP: any;
@@ -14,22 +15,13 @@ function MyAccountContainer() {
   const [userInfo] = useRecoilState(userInfoState);
   const priceList = [500, 1000, 2000, 5000, 0, 0, 0, 0];
   const [selectPrice, setSelectPrice] = useState(0);
-  const [isClick, setIsClick] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [isClick, setIsClick] = useState(Array(8).fill(false));
 
-  const onSelect = (i) => (event) => {
-    setIsClick(isClick.fill(false));
+  const onSelect = (index: number) => (event) => {
+    setIsClick(Array(8).fill(false));
 
     const copy = [...isClick];
-    copy[i] = true;
+    copy[index] = true;
 
     setIsClick(copy);
 
@@ -45,8 +37,8 @@ function MyAccountContainer() {
         // param
         pg: "nice",
         pay_method: "card",
-        merchant_uid: "ORD20180131-0000011",
-        name: "노르웨이 회전 의자",
+        merchant_uid: `${uuidv4()}`,
+        name: "포인트 충전",
         amount: selectPrice,
         buyer_email: "gildong@gmail.com",
         buyer_name: "홍길동",

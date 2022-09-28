@@ -10,6 +10,7 @@ import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
 import { schema } from "../../../commons/yup/signup";
 import { CREATE_USER } from "../queries";
 import SignUpUI from "./signup.presenter";
+import { FormValue } from "./signup.types";
 
 export default function SignUpContainer() {
   const { onClickMovetoPage } = useMoveToPage();
@@ -19,18 +20,18 @@ export default function SignUpContainer() {
     IMutationCreateUserArgs
   >(CREATE_USER);
 
-  const { register, handleSubmit, formState } = useForm({
+  const { register, handleSubmit, formState } = useForm<FormValue>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
-  const onClickSignUp = (data) => {
+  const onClickSignUp = (data: FormValue) => {
     console.log(data);
     if (!(data.email && data.password && data.name)) {
       return;
     }
     try {
-      const result = createUser({
+      createUser({
         variables: {
           createUserInput: {
             email: data.email,

@@ -51,7 +51,7 @@ export default function PostListContainer() {
     router.push(`/PostForm/`);
   };
 
-  const onClickRefetch = (e: ChangeEvent<HTMLButtonElement>) => {
+  const onClickRefetch = (e: MouseEvent<HTMLButtonElement>) => {
     if (!(e.target instanceof HTMLButtonElement)) return;
     refetch({ page: Number(e.target.id) });
   };
@@ -93,7 +93,6 @@ export default function PostListContainer() {
         setIsClicked={setIsClicked}
         onChangeSearch={onChangeSearch}
         onMovetoPageForSearch={onMovetoPageForSearch}
-        getDebounce={getDebounce}
         data={data}
         ListDetail={ListDetail}
         startPage={startPage}

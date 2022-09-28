@@ -1,5 +1,3 @@
-import { ChangeEvent } from "react";
-
 export interface IChargePointProps {
   data: {
     email: string;
@@ -12,7 +10,7 @@ export interface IChargePointProps {
   };
   onClickPrice: () => void;
   priceList: number[];
-  onSelect: (index: number) => (event: ChangeEvent<HTMLButtonElement>) => void;
+  onSelect: (index: number) => (event: any) => void;
   selectPrice: number;
   isClick: boolean[];
 }

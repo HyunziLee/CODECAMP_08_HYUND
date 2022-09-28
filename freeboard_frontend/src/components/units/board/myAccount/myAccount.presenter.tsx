@@ -4,7 +4,6 @@ import {
   SentimentDissatisfied,
   Storefront,
 } from "@mui/icons-material";
-import { Container } from "@mui/material";
 
 import * as s from "../../../../../styles/myAccount.styles";
 import Link from "next/link";

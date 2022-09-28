@@ -20,17 +20,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
       <WrapperBox>
         <s.Wrapper>
           <s.ImageWrapper>
-            <s.ImageBigWrapper>
-              {props.data?.images[0] === "" ? (
-                <s.NodataWrapper>등록된 사진이 없습니다.</s.NodataWrapper>
-              ) : (
-                <s.ImageBig
-                  src={`https://storage.googleapis.com/${props.data?.images[0]}`}
-                />
-              )}
-            </s.ImageBigWrapper>
-
-            {/* {!bigImg ? (
+            {!bigImg ? (
               <s.ImageBigWrapper>
                 {props.data?.images[0] === "" ? (
                   <s.NodataWrapper>등록된 사진이 없습니다.</s.NodataWrapper>
@@ -42,7 +32,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
               </s.ImageBigWrapper>
             ) : (
               <s.ImageBig src={`https://storage.googleapis.com/${bigImg}`} />
-            )} */}
+            )}
 
             <s.ImageSmallWrapper>
               {props.data?.images?.map((el: string) =>
@@ -74,7 +64,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
               {typeof window !== "undefined" && (
                 <s.ContentsH3
                   dangerouslySetInnerHTML={{
-                    __html: Dompurify.sanitize(props.data?.contents),
+                    __html: Dompurify.sanitize(props.data?.contents || ""),
                   }}
                 ></s.ContentsH3>
               )}
@@ -112,8 +102,8 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
               <s.BuyButton
                 color="#e9ecef"
                 onClick={() => {
-                  const result = onClickBasket(props.data?._id);
-                  setBasketTemp(result);
+                  const result = onClickBasket(props.data);
+                  setBasketTemp(Number(result));
                 }}
               >
                 장바구니

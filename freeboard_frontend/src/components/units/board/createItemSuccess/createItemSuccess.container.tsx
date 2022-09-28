@@ -80,7 +80,7 @@ export default function CreateItemSuccess() {
     }
     router.push("/market");
   };
-  console.log(data?.fetchUseditem);
+
   return (
     <CreateItemSuccessUI
       data={data?.fetchUseditem}

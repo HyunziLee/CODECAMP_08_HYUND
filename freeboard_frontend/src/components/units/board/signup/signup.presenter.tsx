@@ -1,10 +1,11 @@
 import * as s from "../../../../../styles/signup.styles";
 import Button01 from "../../../commons/button/01";
-import Warning, { WarningDiv } from "../../../commons/div/01-warning";
+import Warning from "../../../commons/div/01-warning";
 
 import Input02 from "../../../commons/input/02";
+import { ISignupProps } from "./signup.types";
 
-export default function SignUpUI(props) {
+export default function SignUpUI(props: ISignupProps) {
   return (
     <>
       <s.Wrapper>
