@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { Button, Popover, InputNumber } from "antd";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import {
   IMutation,
   IMutationDeleteBoardCommentArgs,
@@ -11,11 +11,10 @@ import {
   UPDATE_BOARD_COMMENT,
   DELETE_BOARD_COMMENT,
 } from "../../queries";
+import { IPopoverProps } from "../IBoardComment.types";
 import * as s from "./popOver.styles";
 
-export default function PopoverPage(props) {
-  //props.data = fetchBoardComment임
-
+export default function PopoverPage(props: IPopoverProps) {
   const [updateBoardComment] = useMutation(UPDATE_BOARD_COMMENT);
   const [pwdState, setPwdState] = useState(false);
   const [completeState, setcompleteState] = useState(false);
@@ -58,14 +57,14 @@ export default function PopoverPage(props) {
   const contentDelete = (
     <s.Wrapper>
       <p>비밀번호를 입력하세요</p>
-      <s.Password_input
+      <s.PasswordInput
         type="password"
         onChange={(e) => {
           setDeletePWd(e.target.value);
         }}
       />
-      {deletePwdMsg ? <s.Error_msg>{deletePwdMsg}</s.Error_msg> : ""}
-      <s.SubimtBtn onClick={onClickDeleteComment}>확인</s.SubimtBtn>
+      {deletePwdMsg ? <s.ErrorMsg>{deletePwdMsg}</s.ErrorMsg> : ""}
+      <s.SubmitBtn onClick={onClickDeleteComment}>확인</s.SubmitBtn>
     </s.Wrapper>
   );
 
@@ -82,23 +81,23 @@ export default function PopoverPage(props) {
   const onChange = (value: number) => {
     setCommentRating(value);
   };
-  const onChangeInput = (e) => {
-    props.setPassword(e.target.value);
-    setCommentPwd(e.target.value);
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    props.setPassword(event.target.value);
+    setCommentPwd(event.target.value);
   };
 
   const content = (
     <s.Wrapper>
-      <s.Wrapper_contents>
+      <s.WrapperContents>
         <div>수정할 내용을 입력하세요</div>
-        <s.Contents__input
+        <s.ContentsInput
           onChange={(e) => {
             setCommentContents(e.target.value);
           }}
-        ></s.Contents__input>
-      </s.Wrapper_contents>
+        ></s.ContentsInput>
+      </s.WrapperContents>
 
-      <s.Wrapper_rating>
+      <s.WrapperRating>
         <div>수정할 평점을 입력하세요</div>
         <InputNumber
           min={1}
@@ -106,20 +105,20 @@ export default function PopoverPage(props) {
           defaultValue={props.data.rating}
           onChange={onChange}
         />
-      </s.Wrapper_rating>
+      </s.WrapperRating>
 
-      <s.Wrapper_password>
+      <s.WrapperPassword>
         <div>비밀번호를 입력하세요</div>
-        <s.Password_input
+        <s.PasswordInput
           type="password"
           onChange={(e) => {
             onChangeInput(e);
           }}
-        ></s.Password_input>
-      </s.Wrapper_password>
+        ></s.PasswordInput>
+      </s.WrapperPassword>
 
       {!!commentContents && !!commentPwd ? (
-        <s.SubimtBtn
+        <s.SubmitBtn
           onClick={async () => {
             setPwdState(false);
             setcompleteState(false);
@@ -152,13 +151,13 @@ export default function PopoverPage(props) {
           }}
         >
           확인
-        </s.SubimtBtn>
+        </s.SubmitBtn>
       ) : (
         ""
       )}
-      {pwdState ? <s.Error_msg>{pwdMsg}</s.Error_msg> : ""}
+      {pwdState ? <s.ErrorMsg>{pwdMsg}</s.ErrorMsg> : ""}
       {completeState ? (
-        <s.Complete_msg>수정이 완료되었습니다.</s.Complete_msg>
+        <s.CompleteMsg>수정이 완료되었습니다.</s.CompleteMsg>
       ) : (
         ""
       )}

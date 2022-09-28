@@ -13,13 +13,18 @@ export const ImageWrapper = styled.div`
   width: 40%;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   margin-top: 40px;
 `;
-export const ImageBig = styled.img`
+
+export const ImageBigWrapper = styled.div`
   width: 90%;
   height: 300px;
+  background-color: yellow;
+`;
+export const ImageBig = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 export const ImageSmallWrapper = styled.section`
   display: flex;
@@ -111,4 +116,10 @@ export const InputAddress = styled.div``;
 export const KakaoMap = styled.div`
   width: 500px;
   height: 400px;
+`;
+
+export const NodataWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: aqua;
 `;

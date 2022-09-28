@@ -10,16 +10,17 @@ import KakaoMapPage from "../../../commons/kakaoMap/kakaoMap";
 import Warning from "../../../commons/div/01-warning";
 import { v4 as uuidv4 } from "uuid";
 import UploadImg from "../../../commons/upload/01/uploadImg.container";
-import { isEditState, UploadImgState } from "../../../commons/store";
+import { isEditState, UploadImgState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 import Button01 from "../../../commons/button/01";
+import { ICreateItemUIProps } from "./createItem.types";
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
-export default function CreateItemUI(props) {
+export default function CreateItemUI(props: ICreateItemUIProps) {
   const [uploadUrl] = useRecoilState(UploadImgState);
-  const [isEdit, setIsEdit] = useRecoilState(isEditState);
+  const [isEdit] = useRecoilState(isEditState);
   return (
     <Container maxWidth="xl">
       <WrapperBox>
@@ -57,7 +58,7 @@ export default function CreateItemUI(props) {
                   type="text"
                   register={props.register}
                   name={"name"}
-                  default={isEdit ? props.data?.fetchUseditem.name : ""}
+                  default={isEdit ? props.data?.name : ""}
                 />
 
                 <Warning errormsg={props.formState.errors.name?.message} />
@@ -68,7 +69,7 @@ export default function CreateItemUI(props) {
                   type="number"
                   register={props.register}
                   name={"price"}
-                  default={isEdit ? props.data?.fetchUseditem.price : ""}
+                  default={isEdit ? props.data?.price : ""}
                 />
                 <Warning errormsg={props.formState.errors.price?.message} />
               </s.InputDiv>
@@ -78,9 +79,7 @@ export default function CreateItemUI(props) {
                 <ReactQuill
                   onChange={props.onChangeContents}
                   style={{ width: "600px", height: "400px" }}
-                  defaultValue={
-                    isEdit ? props.data?.fetchUseditem.contents : ""
-                  }
+                  defaultValue={isEdit ? props.data?.contents : ""}
                 />
               </s.InputDiv>
 
@@ -95,7 +94,7 @@ export default function CreateItemUI(props) {
                   type="text"
                   register={props.register}
                   name={"remarks"}
-                  default={isEdit ? props.data?.fetchUseditem.name : ""}
+                  default={isEdit ? props.data?.name : ""}
                 />
               </s.InputDiv>
               <s.InputTag>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { KakaoMapAddress } from "../store";
+import { KakaoMapAddress } from "../../../commons/store";
 
 declare const window: typeof globalThis & {
   kakao: any;

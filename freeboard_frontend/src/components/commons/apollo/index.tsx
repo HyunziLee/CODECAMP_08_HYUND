@@ -14,7 +14,7 @@ import {
   basketLength,
   restoreAccessTokenLoadable,
   userInfoState,
-} from "../store";
+} from "../../../commons/store";
 import { ReactNode, useEffect } from "react";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
@@ -33,16 +33,14 @@ export default function ApolloSetting(props: IApolloSettingProps) {
 
   useEffect(() => {
     aaa.toPromise().then((newAccessToken) => {
-      console.log(newAccessToken);
       setAccessToken(newAccessToken);
     });
     const Fetch = async (accessToken: string) => {
       const resultUserInfo = await getUserInfo(accessToken);
-      console.log(resultUserInfo);
       setUserInfo(resultUserInfo);
       return resultUserInfo;
     };
-    const newUserInfo = Fetch(accessToken);
+    Fetch(accessToken);
 
     const temp = JSON.parse(localStorage.getItem("baskets"));
 

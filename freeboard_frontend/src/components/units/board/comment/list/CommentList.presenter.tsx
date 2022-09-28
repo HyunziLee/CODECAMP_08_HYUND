@@ -1,5 +1,4 @@
-import InfiniteScroll from "react-infinite-scroller";
-import { UserOutlined, CloseOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 
 import React, { useState } from "react";
@@ -8,45 +7,44 @@ import * as s from "./CommentList.styles";
 import ModalContainer from "../../../../commons/Modal/modal.container";
 import { getDate } from "../../../../commons/Function/getDate";
 import PopoverPage from "../edit/popOver";
+import { ICommentScrollProps } from "../IBoardComment.types";
 
-export default function CommentScroll(props) {
+export default function CommentScroll(props: ICommentScrollProps) {
   const [isEditClicked, setIsEditClicked] = useState(false);
 
   const [isModal, setIsModal] = useState(true);
-  const [isNull, seIsNull] = useState(true);
+  const [isNull] = useState(true);
   const [password, setPassword] = useState("");
-  const commentModal = "비밀번호가 일치하지 않습니다. ";
 
-  const creatDate = getDate(props.e.updatedAt);
+  const creatDate = getDate(props.el.updatedAt);
 
   const isEditBtn = () => {
     setIsEditClicked(!isEditClicked);
     setIsModal(false);
   };
-  console.log(isEditClicked);
 
   return (
     <>
       {isEditClicked === false && (
-        <s.Wrapper_list>
-          <s.User_wrapper>
+        <s.WrapperList>
+          <s.UserWrapper>
             <s.ProfileImg>
               <Avatar size={44} icon={<UserOutlined />} />
             </s.ProfileImg>
             <s.CommentFetch>
               <s.FetchData>
-                <s.FetchName>{props.e.writer}</s.FetchName>
-                <s.FetchRate value={props.e.rating} disabled></s.FetchRate>
+                <s.FetchName>{props.el.writer}</s.FetchName>
+                <s.FetchRate value={props.el.rating} disabled></s.FetchRate>
               </s.FetchData>
-              <s.FetchComment>{props.e.contents}</s.FetchComment>
+              <s.FetchComment>{props.el.contents}</s.FetchComment>
               <s.FetchCreateAt>{creatDate}</s.FetchCreateAt>
             </s.CommentFetch>
-          </s.User_wrapper>
+          </s.UserWrapper>
           <s.DeleteBtn>
             <PopoverPage
               setPassword={setPassword}
               password={password}
-              data={props.e}
+              data={props.el}
               commentInputFunc={props.commentInputFunc}
               contents={props.contents}
               isEditBtn={isEditBtn}
@@ -54,25 +52,24 @@ export default function CommentScroll(props) {
             {/* <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn> */}
             {/* <s.CommentDelete>x</s.CommentDelete> */}
           </s.DeleteBtn>
-        </s.Wrapper_list>
+        </s.WrapperList>
       )}
 
       {isEditClicked === true && (
-        <s.Wrapper_list>
+        <s.WrapperList>
           <s.EditDiv>
             <ModalContainer
               isNull={isNull}
               isModal={isModal}
-              commentModal={commentModal}
               isEditClicked={isEditClicked}
               setIsEditClicked={setIsEditClicked}
             ></ModalContainer>
           </s.EditDiv>
-        </s.Wrapper_list>
+        </s.WrapperList>
       )}
     </>
   );
 }
 
-//eventcurrentTarget: 이벤트핸들링이 실행되는 타겟(이벤트 버블링에 의해서 자식 이벤트 핸들링이 부모까지 올라가는데),
+// eventcurrentTarget: 이벤트핸들링이 실행되는 타겟(이벤트 버블링에 의해서 자식 이벤트 핸들링이 부모까지 올라가는데),
 // 이 때 부모가 실행되니칸 eventcurrentTarget으로 부모를 확일할 수 있음

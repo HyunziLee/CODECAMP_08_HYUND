@@ -8,7 +8,7 @@ import {
   IMutation,
   IMutationLoginUserArgs,
 } from "../../../../commons/types/generated/types";
-import { userInfoState } from "../../../commons/store";
+import { userInfoState } from "../../../../commons/store";
 import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "../queries";
 import LoginUI from "./login.presenter";
 import { schema } from "../../../commons/yup/login/index";

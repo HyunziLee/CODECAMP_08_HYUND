@@ -1,6 +1,6 @@
 import { atom, selector } from "recoil";
-import { getAccessToken } from "../../../commons/libraries/getAccessToken";
-import { getUserInfo } from "../../../commons/libraries/getUserInfo";
+import { getAccessToken } from "../libraries/getAccessToken";
+import { getUserInfo } from "../libraries/getUserInfo";
 
 export const accessTokenState = atom({
   key: "accessTokenState",
@@ -67,4 +67,9 @@ export const basketLength = atom({
 export const isEditState = atom({
   key: "isEditState",
   default: false,
+});
+
+export const commentForModal = atom({
+  key: "commentModal",
+  default: "비밀번호가 일치하지 않습니다.",
 });

@@ -3,7 +3,7 @@ import type { InputRef } from "antd";
 import { Input, Tag, Tooltip } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { useRecoilState } from "recoil";
-import { TagArr } from "../store";
+import { TagArr } from "../../../commons/store";
 
 export default function Tags() {
   // const [tags, setTags] =  useState<string[]>(["#태그를 입력하세요"]);

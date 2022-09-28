@@ -1,15 +1,14 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { IQuery } from "../../../../commons/types/generated/types";
+import React, { ChangeEvent } from "react";
+import { IBoardComment } from "../../../../commons/types/generated/types";
 
 export interface ICommentUIProps {
   onClickCommentBtn: () => void;
   commentInputFunc: {
     writer: (e: ChangeEvent<HTMLInputElement>) => void;
     password: (e: ChangeEvent<HTMLInputElement>) => void;
-    contents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-    rating: Dispatch<SetStateAction<number>>;
+    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    rating: React.Dispatch<React.SetStateAction<number>>;
   };
-  data?: Pick<IQuery, "fetchBoardComments">;
   rating: number;
   contents: string;
 }
@@ -17,5 +16,32 @@ export interface ICommentUIProps {
 export interface IModalContainerProps {
   isNull: boolean;
   isModal: boolean;
-  commentModal: string;
+  isEditClicked: boolean;
+  setIsEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export interface IPopoverProps {
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+  commentInputFunc: {
+    writer: (e: ChangeEvent<HTMLInputElement>) => void;
+    password: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    rating: React.Dispatch<React.SetStateAction<number>>;
+  };
+  password: string;
+  data: IBoardComment;
+  contents: string;
+  isEditBtn: () => void;
+}
+
+export interface ICommentScrollProps {
+  key: string;
+  el: IBoardComment;
+  commentInputFunc: {
+    writer: (e: ChangeEvent<HTMLInputElement>) => void;
+    password: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    rating: React.Dispatch<React.SetStateAction<number>>;
+  };
+  contents: string;
 }

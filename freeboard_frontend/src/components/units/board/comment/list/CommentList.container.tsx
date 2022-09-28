@@ -7,7 +7,7 @@ import {
 } from "../../../../../commons/types/generated/types";
 import { FETCH_BOARD_COMMENTS } from "../../queries";
 import CommentScroll from "./CommentList.presenter";
-import { Wrapper_scroll } from "./CommentList.styles";
+import { WrapperScroll } from "./CommentList.styles";
 
 export default function CommentEdit(props) {
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function CommentEdit(props) {
   };
 
   return (
-    <Wrapper_scroll>
+    <WrapperScroll>
       <InfiniteScroll
         pageStart={0}
         loadMore={onFetchMore}
@@ -53,15 +53,15 @@ export default function CommentEdit(props) {
       >
         {/* {console.log(console.log(data?.fetchBoardComments))} */}
 
-        {data?.fetchBoardComments.map((e) => (
+        {data?.fetchBoardComments.map((el) => (
           <CommentScroll
-            key={e._id}
-            e={e}
+            key={el._id}
+            el={el}
             commentInputFunc={props.commentInputFunc}
             contents={props.contents}
           ></CommentScroll>
         ))}
       </InfiniteScroll>
-    </Wrapper_scroll>
+    </WrapperScroll>
   );
 }

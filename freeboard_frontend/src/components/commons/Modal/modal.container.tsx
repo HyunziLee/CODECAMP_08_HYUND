@@ -27,9 +27,8 @@ export default function ModalContainer(props: IModalContainerProps) {
           handleOk={handleOk}
           handleCancel={handleCancel}
           isModalVisible={isModalVisible}
-          commentModal={props.commentModal}
           isModal={props.isModal}
-        ></ModalUI>
+        />
       ) : (
         ""
       )}

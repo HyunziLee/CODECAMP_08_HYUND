@@ -4,7 +4,7 @@ import * as s from "../../../../styles/layout.styles";
 import { keyframes } from "@emotion/react";
 import { Container } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { basketLength, userInfoState } from "../../../components/commons/store";
+import { basketLength, userInfoState } from "../../store";
 import { useMutation } from "@apollo/client";
 import { LOGOUT_USER } from "../../../components/units/board/queries";
 import { IMutation } from "../../types/generated/types";

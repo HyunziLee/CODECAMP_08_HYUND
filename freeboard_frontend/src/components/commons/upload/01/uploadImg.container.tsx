@@ -7,7 +7,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { UPLOAD_FILE } from "../../../units/board/queries";
 import { CheckFileValidation } from "../../Function/checkFileValidation";
-import { UploadImgState } from "../../store";
+import { UploadImgState } from "../../../../commons/store";
 import UploadImgUI from "./uploadImg.presenter";
 
 export default function UploadImg(props) {

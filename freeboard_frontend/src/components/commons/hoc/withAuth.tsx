@@ -2,10 +2,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import {
-  accessTokenState,
   restoreAccessTokenLoadable,
   userInfoState,
-} from "../store";
+} from "../../../commons/store";
 
 export const withAuth = (Component) => (props) => {
   const router = useRouter();

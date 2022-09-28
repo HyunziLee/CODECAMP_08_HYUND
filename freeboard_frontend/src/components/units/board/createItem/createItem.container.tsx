@@ -1,25 +1,16 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
-
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
 import {
   IMutation,
   IMutationCreateUseditemArgs,
-  IMutationDeleteUseditemArgs,
-  IMutationUpdateBoardArgs,
   IMutationUpdateUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { CheckFileValidation } from "../../../commons/Function/checkFileValidation";
-import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
-import {
-  isEditState,
-  KakaoMapAddress,
-  loginInfo,
-  TagArr,
-} from "../../../commons/store";
+
+import { KakaoMapAddress, TagArr } from "../../../../commons/store";
 import { schema } from "../../../commons/yup/createItem";
 import {
   CREATE_USED_ITEM,
@@ -27,13 +18,12 @@ import {
   UPDATE_USED_ITEM,
 } from "../queries";
 import CreateItemUI from "./createItem.presenter";
+import { ICreateItemProps, IUseForm } from "./createItem.types";
 
-export default function CreateItemContainer(props) {
-  const { onClickMovetoPage } = useMoveToPage();
+export default function CreateItemContainer(props: ICreateItemProps) {
   const [tags] = useRecoilState(TagArr);
   const [kakaoAddress] = useRecoilState(KakaoMapAddress);
   const [fileUrls, setFileUrls] = useState(["", "", "", "", ""]);
-  const [userInfo, setUserInfo] = useRecoilState(loginInfo);
   const router = useRouter();
   const [createUseditem] = useMutation<
     Pick<IMutation, "createUseditem">,
@@ -45,8 +35,8 @@ export default function CreateItemContainer(props) {
     IMutationUpdateUseditemArgs
   >(UPDATE_USED_ITEM);
 
-  const { register, handleSubmit, formState, setValue, trigger, getValues } =
-    useForm({
+  const { register, handleSubmit, formState, setValue, trigger } =
+    useForm<IUseForm>({
       resolver: yupResolver(schema),
       mode: "onChange",
     });
@@ -61,7 +51,7 @@ export default function CreateItemContainer(props) {
     trigger("contents");
   };
 
-  const onClickCreateItem = async (data) => {
+  const onClickCreateItem = async (data: IUseForm) => {
     console.log(kakaoAddress);
 
     try {
@@ -75,8 +65,8 @@ export default function CreateItemContainer(props) {
             images: fileUrls,
             contents: data.contents,
             // useditemAddress: {
-            //   zipcode: kakaoAddress.road_address?.zone_no,
-            //   address: kakaoAddress.road_address?.address_name,
+            //   zipcode: kakaoAddress.address?.main_address_no,
+            //   address: kakaoAddress.address?.address_name,
             //   addressDetail:
             //     kakaoAddress.road_address?.address_name.building_name,
             //   lat: la,
@@ -86,18 +76,13 @@ export default function CreateItemContainer(props) {
         },
       });
 
-      console.log(result.data?.createUseditem._id);
-      // onClickMovetoPage(
-      //   `/CreateItemSuccess/${result.data?.createUseditem._id}`
-      // );
       router.push(`/CreateItemSuccess/${result.data?.createUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
     }
   };
 
-  const onClickUpdate = async (data) => {
-    console.log(data);
+  const onClickUpdate = async (data: IUseForm) => {
     try {
       const result = await updateUseditem({
         variables: {
@@ -117,17 +102,17 @@ export default function CreateItemContainer(props) {
             //   lng: ma,
             // },
           },
-          useditemId: router.query.id,
+
+          useditemId: String(router.query.id),
         },
 
         refetchQueries: [
           {
             query: FETCH_USED_ITEM,
-            variables: { useditemId: router.query.id },
+            variables: { useditemId: String(router.query.id) },
           },
         ],
       });
-      console.log(result);
       router.push(`/CreateItemSuccess/${result.data?.updateUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) {
@@ -137,18 +122,16 @@ export default function CreateItemContainer(props) {
   };
 
   return (
-    <>
-      <CreateItemUI
-        onChangeContents={onChangeContents}
-        register={register}
-        handleSubmit={handleSubmit}
-        onClickCreateItem={onClickCreateItem}
-        formState={formState}
-        fileUrls={fileUrls}
-        onChangeFileUrls={onChangeFileUrls}
-        onClickUpdate={onClickUpdate}
-        data={props.data}
-      />
-    </>
+    <CreateItemUI
+      onChangeContents={onChangeContents}
+      register={register}
+      handleSubmit={handleSubmit}
+      onClickCreateItem={onClickCreateItem}
+      formState={formState}
+      fileUrls={fileUrls}
+      onChangeFileUrls={onChangeFileUrls}
+      onClickUpdate={onClickUpdate}
+      data={props.data}
+    />
   );
 }

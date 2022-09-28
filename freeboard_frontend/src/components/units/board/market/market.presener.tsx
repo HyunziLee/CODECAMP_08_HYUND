@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import * as s from "../../../../../styles/market.styles";
 import { onClickBasket } from "../../../commons/Function/onClickAddBaskets";
 import { onClickPick } from "../../../commons/Function/onClickPick";
-import { basketLength } from "../../../commons/store";
+import { basketLength } from "../../../../commons/store";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 

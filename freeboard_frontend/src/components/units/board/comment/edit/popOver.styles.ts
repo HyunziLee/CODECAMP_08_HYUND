@@ -1,15 +1,13 @@
 import styled from "@emotion/styled";
 
-import { InputNumber } from "antd";
-
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const Wrapper_contents = styled.div`
+export const WrapperContents = styled.div`
   margin-bottom: 20px;
 `;
-export const Contents__input = styled.textarea`
+export const ContentsInput = styled.textarea`
   border: 1px solid #d9d9d9;
   border-radius: 2px;
   :focus {
@@ -22,13 +20,13 @@ export const Contents__input = styled.textarea`
     border-color: #40a9ff;
   }
 `;
-export const Wrapper_rating = styled.div`
+export const WrapperRating = styled.div`
   margin-bottom: 20px;
 `;
-export const Wrapper_password = styled.div`
+export const WrapperPassword = styled.div`
   margin-bottom: 20px;
 `;
-export const Password_input = styled.input`
+export const PasswordInput = styled.input`
   height: 32px;
   border: 1px solid #d9d9d9;
   border-radius: 2px;
@@ -42,7 +40,7 @@ export const Password_input = styled.input`
     border-color: #40a9ff;
   }
 `;
-export const SubimtBtn = styled.button`
+export const SubmitBtn = styled.button`
   margin: auto;
   width: 50px;
   height: 32px;
@@ -52,9 +50,9 @@ export const SubimtBtn = styled.button`
   cursor: pointer;
 `;
 
-export const Error_msg = styled.div`
+export const ErrorMsg = styled.div`
   color: red;
 `;
-export const Complete_msg = styled.div`
+export const CompleteMsg = styled.div`
   text-align: center;
 `;

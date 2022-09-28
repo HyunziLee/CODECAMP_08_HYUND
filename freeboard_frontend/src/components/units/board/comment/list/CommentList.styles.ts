@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { Rate, Avatar } from "antd";
+import { Rate } from "antd";
 
-export const Wrapper_list = styled.div`
+export const WrapperList = styled.div`
   width: 1200px;
 
   display: flex;
@@ -13,7 +13,7 @@ export const Wrapper_list = styled.div`
   border-bottom: 1px solid #bdbdbd;
   justify-content: space-between;
 `;
-export const User_wrapper = styled.div`
+export const UserWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -65,7 +65,7 @@ export const EditDiv = styled.div`
   height: 70px;
   background-color: yellow;
 `;
-export const Wrapper_scroll = styled.div`
+export const WrapperScroll = styled.div`
   height: 500px;
   overflow: auto;
 `;

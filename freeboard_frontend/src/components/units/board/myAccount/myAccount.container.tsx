@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { withAuth } from "../../../commons/hoc/withAuth";
-import { userInfoState } from "../../../commons/store";
+import { userInfoState } from "../../../../commons/store";
 import Head from "next/head";
 
 import MyAccountUI from "./myAccount.presenter";

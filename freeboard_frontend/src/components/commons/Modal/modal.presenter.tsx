@@ -2,8 +2,12 @@ import { Button, Modal } from "antd";
 import { Postcode } from "react-daum-postcode/lib/loadPostcode";
 import React from "react";
 import DaumPostcodeEmbed from "react-daum-postcode";
+import { useRecoilState } from "recoil";
+import { commentForModal } from "../../../commons/store";
+import { IModalProps } from "./modal.types";
 
-export default function ModalUI(props) {
+export default function ModalUI(props: IModalProps) {
+  const [commentModal] = useRecoilState(commentForModal);
   const handleComplete = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
@@ -44,7 +48,7 @@ export default function ModalUI(props) {
             onOk={props.handleOk}
             onCancel={props.handleCancel}
           >
-            <p>{props.commentModal}</p>
+            <p>{commentModal}</p>
           </Modal>
         )
       }

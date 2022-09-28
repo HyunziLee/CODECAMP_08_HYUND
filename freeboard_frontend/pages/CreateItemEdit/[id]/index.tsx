@@ -5,7 +5,7 @@ import {
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../src/commons/types/generated/types";
-import { isEditState } from "../../../src/components/commons/store";
+import { isEditState } from "../../../src/commons/store";
 import CreateItemContainer from "../../../src/components/units/board/createItem/createItem.container";
 import { FETCH_USED_ITEM } from "../../../src/components/units/board/queries";
 
@@ -17,13 +17,9 @@ export default function CreateItemEditPage() {
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEM, {
     variables: {
-      useditemId: router.query.id,
+      useditemId: String(router.query.ids),
     },
   });
-  return (
-    <>
-      {setIsEdit(true)}
-      <CreateItemContainer isEdit={isEdit} data={data} />
-    </>
-  );
+  setIsEdit(true);
+  return <CreateItemContainer data={data?.fetchUseditem} />;
 }

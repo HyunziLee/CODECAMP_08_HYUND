@@ -7,7 +7,7 @@ import {
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { detailImgState } from "../../../commons/store";
+import { detailImgState } from "../../../../commons/store";
 import {
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
   DELETE_USED_ITEM,
@@ -18,7 +18,9 @@ import CreateItemSuccessUI from "./createItemSuccess.presenter";
 
 export default function CreateItemSuccess() {
   const router = useRouter();
-  const [bigImg, setBigImg] = useRecoilState(detailImgState);
+
+  const [bigImg, setBigImg] = useRecoilState(detailImgState); // eslint-disable-line no-unused-vars
+
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
   );
@@ -33,7 +35,7 @@ export default function CreateItemSuccess() {
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEM, {
     variables: {
-      useditemId: router.query.id,
+      useditemId: String(router.query.id),
     },
   });
 
@@ -76,11 +78,12 @@ export default function CreateItemSuccess() {
         alert(error.message);
       }
     }
-    router.push("/Market");
+    router.push("/market");
   };
+  console.log(data?.fetchUseditem);
   return (
     <CreateItemSuccessUI
-      data={data}
+      data={data?.fetchUseditem}
       onClickImg={onClickImg}
       onClickBuying={onClickBuying}
       onClickEdit={onClickEdit}

@@ -23,13 +23,11 @@ export default function CommentContainer() {
   const [contents, setContents] = useState("");
   const [rating, setRating] = useState(0);
   const [isNull, setIsNull] = useState(false);
-  const [isModal, setIsModal] = useState(false);
-  const commentModal = "이름, 비밀번호, 내용을 입력하세요";
+  const [isModal] = useState(false);
 
   const commentInputFunc = {
     writer: (e: ChangeEvent<HTMLInputElement>) => {
       setWriter(e.target.value);
-      console.log(contents);
     },
     password: (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
@@ -85,11 +83,7 @@ export default function CommentContainer() {
       <CommentEdit />
 
       {/* 댓글 입력창에 공란이 있을 경우, 모달창 발생 */}
-      <ModalContainer
-        isNull={isNull}
-        commentModal={commentModal}
-        isModal={isModal}
-      />
+      <ModalContainer isNull={isNull} isModal={isModal} />
     </>
   );
 }

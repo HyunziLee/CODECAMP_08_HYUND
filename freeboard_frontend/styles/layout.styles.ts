@@ -1,9 +1,5 @@
 import styled from "@emotion/styled";
 
-export const Wrapper_banner = styled.div`
-  height: 500px;
-`;
-
 export const WrapperFooter = styled.div`
   height: 300px;
   background-color: #e3e4e6;
@@ -49,10 +45,6 @@ export const DivideLine = styled.div`
 export const WrapperNav = styled.div`
   height: 50px;
   background-color: lime;
-`;
-
-export const Wrapper_Detail = styled.div`
-  height: 80px;
 `;
 
 export const HeaderDetail = styled.div<{ Opacity: string }>`
