@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import LayoutFooter from "./footer";
@@ -23,14 +24,16 @@ export default function Layout(props: ILayoutProps) {
     router.asPath
   ); // asPath는 현재 주소임
 
+  const Wrapper = styled.main`
+    width: 100vw;
+  `;
+
   return (
-    <>
-      {/* <Container> */}
+    <Wrapper>
       {!isHiddenHeaderFooterSide && <LayoutHeader />}
-      {!isHiddenHeaderFooterSide && <LayoutSide />}
+      {/* {!isHiddenHeaderFooterSide && <LayoutSide />} */}
       <div>{props.children}</div>
       {!isHiddenHeaderFooterSide && <LayoutFooter />}
-      {/* </Container> */}
-    </>
+    </Wrapper>
   );
 }

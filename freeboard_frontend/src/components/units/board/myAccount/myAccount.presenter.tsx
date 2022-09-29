@@ -8,7 +8,7 @@ import {
 import * as s from "../../../../../styles/myAccount.styles";
 import Link from "next/link";
 
-export default function MyAccountUI(props) {
+export default function MyAccountUI() {
   return (
     <>
       <s.Wrapper>

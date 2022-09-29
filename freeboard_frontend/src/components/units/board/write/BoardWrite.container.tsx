@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
 
@@ -8,7 +8,6 @@ import {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
-  IQuery,
 } from "../../../../commons/types/generated/types";
 import { IBoardWriteProps, IUpdateBoardInput } from "./IBoardWrite.types";
 

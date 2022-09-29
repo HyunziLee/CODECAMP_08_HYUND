@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
+import { Container } from "@mui/material";
+import { MAIN_COLOR } from "../src/commons/stylesConst";
 
 export const WrapperFooter = styled.div`
   height: 300px;
   background-color: #e3e4e6;
 `;
 
-export const WrapperHeader = styled.div`
+export const WrapperHeader = styled(Container)`
   height: 80px;
 `;
 
 export const WrapperHeaderMenu = styled.div`
-  width: 1200px;
+  width: 100%;
   height: 100%;
   margin: auto;
   display: flex;
@@ -29,11 +31,14 @@ export const HeaderMenus = styled.div`
   justify-content: space-between;
 `;
 export const HeaderMenu = styled.div`
-  width: 100px;
+  width: 33%;
   text-align: center;
   font-size: 15px;
   margin: 10px;
   cursor: pointer;
+  @media (max-width: 767px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const DivideLine = styled.div`
@@ -48,15 +53,15 @@ export const WrapperNav = styled.div`
 `;
 
 export const HeaderDetail = styled.div<{ Opacity: string }>`
-  width: 1200px;
-  height: 300px;
+  width: 100%;
+  height: 200px;
   position: relative;
   margin: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #bbd0ff;
+  background-color: ${MAIN_COLOR};
   z-index: 90;
   animation: ${(props) => props.Opacity} 0.5s linear;
 `;
@@ -71,13 +76,14 @@ export const HeaderDetailMenus = styled.div`
   justify-content: space-between;
 `;
 export const HeaderDetailMenu = styled.div`
-  text-align: center;
-  margin: 10px;
+  width: 33%;
 `;
 export const Div = styled.div`
-  width: 100px;
+  width: 100%;
   height: 40px;
   text-align: center;
-  margin: 10px;
   cursor: pointer;
+  @media (max-width: 767px) {
+    font-size: 0.6rem;
+  }
 `;

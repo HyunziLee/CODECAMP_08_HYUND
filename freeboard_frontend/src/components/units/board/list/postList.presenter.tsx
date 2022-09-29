@@ -14,8 +14,8 @@ export default function PostListUI(props: IPostListProps) {
   };
 
   return (
-    <div>
-      <s.Wrapper>
+    <s.Wrapper>
+      <s.Main>
         <s.SearchWrapper>
           <s.SearchTitle
             placeholder="검색할 내용을 작성하세요."
@@ -24,17 +24,17 @@ export default function PostListUI(props: IPostListProps) {
         </s.SearchWrapper>
         <s.ListWrapper>
           <s.Row>
-            <s.Column>번호</s.Column>
-            <s.Column>제목</s.Column>
-            <s.Column>작성자</s.Column>
-            <s.Column>날짜</s.Column>
+            <s.Column weight="700">번호</s.Column>
+            <s.Column weight="700">제목</s.Column>
+            <s.Column weight="700">작성자</s.Column>
+            <s.Column weight="700">날짜</s.Column>
           </s.Row>
 
           {props.data?.fetchBoards.map((e, i) => (
             <s.Row key={e._id}>
-              <s.Column>{i + 1}</s.Column>
-              {/* 제목 눌렀을 때, _id를 이용해 Detail 페이지로 이동 */}
+              <s.Column weight="400">{i + 1}</s.Column>
               <s.Column
+                weight="400"
                 onClick={() => {
                   MoveToListDetailBtn(e._id);
                 }}
@@ -53,10 +53,10 @@ export default function PostListUI(props: IPostListProps) {
                         {e}
                       </span>
                     ))}
-                </span>{" "}
+                </span>
               </s.Column>
-              <s.Column>{e.writer}</s.Column>
-              <s.Column>{getDate(e.createdAt)}</s.Column>
+              <s.Column weight="400">{e.writer}</s.Column>
+              <s.Column weight="400">{getDate(e.createdAt)}</s.Column>
             </s.Row>
           ))}
         </s.ListWrapper>
@@ -101,14 +101,11 @@ export default function PostListUI(props: IPostListProps) {
             ""
           )}
 
-          <s.SubmitBtn onClick={props.MoveToWritePageBtn}>
-            <s.SubmitBtnIcon>
-              {/* <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
-            </s.SubmitBtnIcon>
+          {/* <s.SubmitBtn onClick={props.MoveToWritePageBtn}>
             <s.SubmitBtnText>게시물등록하기</s.SubmitBtnText>
-          </s.SubmitBtn>
+          </s.SubmitBtn> */}
         </s.Footer>
-      </s.Wrapper>
-    </div>
+      </s.Main>
+    </s.Wrapper>
   );
 }

@@ -101,22 +101,26 @@ export default function MarketContainer() {
 
   return (
     <>
-      {/* <s.WrapperScroll> */}
-
-      {data?.fetchUseditems
-        ? data?.fetchUseditems.map((el, index) => (
-            <MarketUI
-              key={uuidv4()}
-              item={el}
-              onClickDetail={onClickDetail}
-              onClickPick={onClickPick}
-              IPick={IPick}
-              onFetchMore={onFetchMore}
-            />
-          ))
-        : ""}
-
-      {/* </s.WrapperScroll> */}
+      <s.WrapperScroll>
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={onFetchMore}
+          hasMore={true}
+          useWindow={false}
+        >
+          {data?.fetchUseditems
+            ? data?.fetchUseditems.map((el, index) => (
+                <MarketUI
+                  key={uuidv4()}
+                  item={el}
+                  onClickDetail={onClickDetail}
+                  onClickPick={onClickPick}
+                  IPick={IPick}
+                />
+              ))
+            : ""}
+        </InfiniteScroll>
+      </s.WrapperScroll>
     </>
   );
 }
