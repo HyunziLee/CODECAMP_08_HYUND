@@ -1,22 +1,20 @@
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroller";
+import { BOX_SHADOW } from "../../../../commons/stylesConst";
 
 export const Wrapper = styled(Container)``;
 
-export const SubWrapper = styled(Container)`
-  width: 100%;
-  background-color: orange;
-`;
-
-export const Main = styled.main`
+export const Main = styled.main``;
+export const WrapperScroll = styled.div`
   height: 900px;
   overflow: auto;
 `;
-export const WrapperScroll = styled(InfiniteScroll)`
-  width: 100%;
+
+export const Scroll = styled(InfiniteScroll)`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
 `;
 
@@ -24,66 +22,50 @@ export const WrapperItems = styled.section`
   display: flex;
   flex-direction: column;
   width: 30%;
-  height: 200px;
-
-  border-bottom: 2px solid #edede9;
+  margin-bottom: 30px;
+  box-shadow: ${BOX_SHADOW};
+  @media (max-width: 767px) {
+    width: 48%;
+  }
 `;
 
 export const ItemImage = styled.img`
-  width: 20%;
-  height: 140px;
+  width: 100%;
+  height: 200px;
   margin-bottom: 10px;
+  object-fit: cover;
   cursor: pointer;
-  @media (max-width: 767px) {
-    width: 30%;
-  }
 `;
 export const NoImg = styled.div`
-  width: 20%;
-  height: 140px;
+  width: 100%;
+  height: 200px;
   margin-bottom: 10px;
   cursor: pointer;
   background-color: aliceblue;
-  @media (max-width: 767px) {
-    width: 30%;
-  }
 `;
 export const ItemContents = styled.div`
-  width: 60%;
-
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   cursor: pointer;
-  background-color: yellowgreen;
 `;
 
-export const ItemName = styled.h4`
-  font-weight: 800;
-  margin-left: 20px;
+export const Item = styled.span<{
+  color: string;
+  size: string;
+  weight: string;
+}>`
+  font-weight: ${(props) => props.weight};
+  color: ${(props) => props.color};
+  font-size: ${(props) => props.size};
 `;
 
-export const ItemPrice = styled.h2`
-  color: red;
-  font-weight: 800;
-  margin-left: 20px;
-`;
-export const ItemWrapper2 = styled.div`
-  width: 20%;
+export const ItemWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  background-color: aquamarine;
-`;
-
-export const ItemSeller = styled.div`
-  width: 50%;
-  background-color: orange;
-  font-size: 20px;
-  @media (max-width: 767px) {
-    width: 100%;
-  }
+  justify-content: space-between;
 `;
 
 export const IconWrapper = styled.div`

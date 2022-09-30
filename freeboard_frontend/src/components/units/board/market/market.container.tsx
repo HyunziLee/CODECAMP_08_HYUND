@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import InfiniteScroll from "react-infinite-scroller";
+
 import {
   IQuery,
   IQueryFetchUseditemsArgs,
@@ -14,6 +14,7 @@ import MarketUI from "./market.presener";
 import { v4 as uuidv4 } from "uuid";
 import * as s from "./market.styles";
 import { useRouter } from "next/router";
+import { Modal } from "antd";
 
 export default function MarketContainer() {
   const router = useRouter();
@@ -49,33 +50,22 @@ export default function MarketContainer() {
     });
   };
 
-  const onClickPick = (parm: string) => () => {
-    toggleUsedItemPick({
-      variables: {
-        useditemId: parm,
-      },
-      refetchQueries: [
-        {
-          query: FETCH_USED_ITEMS,
+  const onClickPick = (useditemId: string) => async () => {
+    try {
+      await toggleUsedItemPick({
+        variables: {
+          useditemId,
         },
-      ],
-      // optimisticResponse:{
-      //   toggleUsedItemPick: (fetchBD?.fetchUseditem.pickedCount || 0)+1
-      // },
-      // update(cache,{data}){
-      //   cache.writeQuery({
-      //     query: FETCH_USED_ITEM,
-      //     variables:{useditemId:parm},
-      //     data:{
-      //       fetchUseditem:{
-      //         _id : parm,
-      //         _typename: "Useditem",
-
-      //       }
-      //     }
-      //   })
-      // }
-    });
+        refetchQueries: [
+          {
+            query: FETCH_USED_ITEMS,
+          },
+        ],
+      });
+    } catch (error) {
+      if (error instanceof Error)
+        Modal.error({ content: "로그인 후 이용가능합니다." });
+    }
   };
 
   const onClickDetail = (id: string, img: string) => () => {
@@ -100,23 +90,29 @@ export default function MarketContainer() {
   // console.log(IPick);
 
   return (
-    <>
-      {/* <s.WrapperScroll> */}
-
-      {data?.fetchUseditems
-        ? data?.fetchUseditems.map((el, index) => (
-            <MarketUI
-              key={uuidv4()}
-              item={el}
-              onClickDetail={onClickDetail}
-              onClickPick={onClickPick}
-              IPick={IPick}
-              onFetchMore={onFetchMore}
-            />
-          ))
-        : ""}
-
-      {/* </s.WrapperScroll> */}
-    </>
+    <s.Wrapper>
+      <s.Main>
+        <s.WrapperScroll>
+          <s.Scroll
+            pageStart={0}
+            loadMore={onFetchMore}
+            hasMore={true}
+            useWindow={false}
+          >
+            {data?.fetchUseditems
+              ? data?.fetchUseditems.map((el, index) => (
+                  <MarketUI
+                    key={uuidv4()}
+                    item={el}
+                    onClickDetail={onClickDetail}
+                    onClickPick={onClickPick}
+                    IPick={IPick}
+                  />
+                ))
+              : ""}
+          </s.Scroll>
+        </s.WrapperScroll>
+      </s.Main>
+    </s.Wrapper>
   );
 }

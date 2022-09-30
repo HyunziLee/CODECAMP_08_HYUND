@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
+import { BOX_SHADOW } from "../../../../commons/stylesConst";
 
 export const Wrapper = styled(Container)``;
 
@@ -9,7 +10,7 @@ export const Main = styled.div`
   flex-direction: column;
   align-items: center;
 
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: ${BOX_SHADOW};
 `;
 export const WrapperTitle = styled.div`
   font-weight: 700;
