@@ -120,6 +120,7 @@ export default function CreateItemContainer(props: ICreateItemProps) {
       }
     }
   };
+  console.log(props.data);
 
   return (
     <CreateItemUI

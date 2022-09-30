@@ -13,5 +13,5 @@ export interface ILoginUIProps {
   register: UseFormRegister<FormValue>;
   handleSubmit: UseFormHandleSubmit<FormValue>;
   formState: FormState<FormValue>;
-  onClickButton: (data: FormValue) => Promise<void>;
+  onClickLogin: (data: FormValue) => Promise<void>;
 }

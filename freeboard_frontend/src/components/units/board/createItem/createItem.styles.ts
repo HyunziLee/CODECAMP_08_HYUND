@@ -1,21 +1,29 @@
 import styled from "@emotion/styled";
+import { Container } from "@mui/material";
+import { BOX_SHADOW } from "../../../../commons/stylesConst";
 
-export const Wrapper = styled.div`
-  width: 1200px;
+export const Wrapper = styled(Container)``;
 
+export const Main = styled.main`
+  width: 100%;
   display: flex;
   flex-direction: row;
-
-  margin: auto;
+  box-shadow: ${BOX_SHADOW};
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const ImageWrapper = styled.div`
   width: 40%;
+  height: 400px;
   display: flex;
   flex-direction: column;
-
   align-items: center;
   margin-top: 40px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 export const ImageBig = styled.img`
   width: 90%;
@@ -42,9 +50,10 @@ export const ImageSmall = styled.div`
 
 export const InputWrapper = styled.section`
   width: 60%;
-
   margin-top: 40px;
-  margin-left: 20px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const InputH3 = styled.h3`

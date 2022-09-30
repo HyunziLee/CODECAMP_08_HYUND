@@ -1,12 +1,22 @@
 import styled from "@emotion/styled";
+import { Container } from "@mui/system";
+import { BOX_SHADOW } from "../../../../commons/stylesConst";
+export const Wrapper = styled(Container)``;
 
-export const Wrapper = styled.div`
-  width: 1200px;
+export const Main = styled.main`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: ${BOX_SHADOW};
+`;
 
+export const ItemWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-
-  margin: auto;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -15,12 +25,15 @@ export const ImageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
+  background-color: aliceblue;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const ImageBigWrapper = styled.div`
   width: 90%;
   height: 300px;
-  background-color: yellow;
 `;
 export const ImageBig = styled.img`
   width: 100%;
@@ -48,9 +61,10 @@ export const ImageSmall = styled.img`
 
 export const ContentsWrapper = styled.section`
   width: 60%;
-
   margin-top: 40px;
-  margin-left: 20px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const TitleH4 = styled.h4``;
@@ -67,46 +81,54 @@ export const ContentsDiv = styled.div`
 `;
 
 export const DetailWrapper = styled.section`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-
-  margin: auto;
   margin-top: 200px;
 `;
 
 export const DetailImgWrapper = styled.section`
-  /* width: 90%; */
   display: flex;
   flex-direction: column;
-  margin-top: 30ox;
-  margin: auto;
-`;
-export const DetailImg = styled.img`
-  width: 700px;
-  height: 500ox;
-`;
-
-export const ButtonWrapper = styled.div`
-  width: 90%;
-
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  justify-content: center;
-  cursor: pointer;
-  margin-bottom: 30px;
+  width: 100%;
+  align-items: center;
   margin-top: 30px;
 `;
+export const DetailImg = styled.img`
+  width: 60%;
+  height: 500px;
+  margin-top: 10px;
+  background-color: aliceblue;
+  object-fit: cover;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
 
-export const BuyButton = styled.button`
-  width: 150px;
+export const ButtonWrapper = styled.div<{ width: string }>`
+  width: ${(props) => props.width};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  cursor: pointer;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+
+export const Button = styled.button`
+  width: 45%;
   height: 60px;
   background-color: ${(props) => props.color};
-  /* background-color: #bbd0ff; */
   border: none;
   margin: 0 20px;
   cursor: pointer;
+  @media (max-width: 767px) {
+    width: 45%;
+  }
 `;
 export const InputRemarks = styled.div``;
 export const InputContents = styled.div``;

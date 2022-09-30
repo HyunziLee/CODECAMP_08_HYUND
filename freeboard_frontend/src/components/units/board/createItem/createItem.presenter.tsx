@@ -1,6 +1,4 @@
-import { Container } from "@mui/material";
-import { WrapperBox } from "../../../commons/box/01";
-import * as s from "../../../../../styles/createItem.styles";
+import * as s from "./createItem.styles";
 import Input02 from "../../../commons/input/02";
 
 import "react-quill/dist/quill.snow.css";
@@ -21,28 +19,29 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 export default function CreateItemUI(props: ICreateItemUIProps) {
   const [uploadUrl] = useRecoilState(UploadImgState);
   const [isEdit] = useRecoilState(isEditState);
-  return (
-    <Container maxWidth="xl">
-      <WrapperBox>
-        <s.Wrapper>
-          <s.ImageWrapper>
-            {uploadUrl ? (
-              <s.ImageBig src={`https://storage.googleapis.com/${uploadUrl}`} />
-            ) : (
-              <s.ImageBig />
-            )}
 
-            <s.ImageSmallWrapper>
-              {props.fileUrls.map((el, index) => (
-                <UploadImg
-                  key={uuidv4()}
-                  index={index}
-                  fileUrl={el}
-                  onChangeFileUrls={props.onChangeFileUrls}
-                />
-              ))}
-            </s.ImageSmallWrapper>
-          </s.ImageWrapper>
+  return (
+    <s.Wrapper>
+      <s.Main>
+        <s.ImageWrapper>
+          {uploadUrl ? (
+            <s.ImageBig src={`https://storage.googleapis.com/${uploadUrl}`} />
+          ) : (
+            <s.ImageBig />
+          )}
+
+          <s.ImageSmallWrapper>
+            {props.fileUrls.map((el, index) => (
+              <UploadImg
+                key={uuidv4()}
+                index={index}
+                fileUrl={el}
+                onChangeFileUrls={props.onChangeFileUrls}
+              />
+            ))}
+          </s.ImageSmallWrapper>
+        </s.ImageWrapper>
+        <s.InputWrapper>
           <form
             onSubmit={
               isEdit
@@ -50,59 +49,65 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                 : props.handleSubmit(props.onClickCreateItem)
             }
           >
-            <s.InputWrapper>
-              <s.InputDiv>
-                <s.InputH3>상품명</s.InputH3>
+            <s.InputDiv>
+              <s.InputH3>상품명</s.InputH3>
+              {console.log(props.data?.name)}
+              <Input02
+                type="text"
+                register={props.register}
+                name="name"
+                defaultValue={isEdit ? props.data?.name : ""}
+                width="100%"
+              />
 
-                <Input02
-                  type="text"
-                  register={props.register}
-                  name={"name"}
-                  default={isEdit ? props.data?.name : ""}
-                />
+              <Warning errormsg={props.formState.errors.name?.message} />
+            </s.InputDiv>
+            <s.InputDiv>
+              <s.InputH3>가격</s.InputH3>
+              <Input02
+                type="text"
+                register={props.register}
+                name="price"
+                defaultValue={isEdit ? props.data?.price : ""}
+                width="100%"
+              />
+              <Warning errormsg={props.formState.errors.price?.message} />
+            </s.InputDiv>
 
-                <Warning errormsg={props.formState.errors.name?.message} />
-              </s.InputDiv>
-              <s.InputDiv>
-                <s.InputH3>가격</s.InputH3>
-                <Input02
-                  type="number"
-                  register={props.register}
-                  name={"price"}
-                  default={isEdit ? props.data?.price : ""}
-                />
-                <Warning errormsg={props.formState.errors.price?.message} />
-              </s.InputDiv>
+            <s.InputDiv>
+              <s.InputH3>상품 설명</s.InputH3>
+              <ReactQuill
+                onChange={props.onChangeContents}
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  marginBottom: "80px",
+                }}
+                defaultValue={isEdit ? props.data?.contents : ""}
+              />
+            </s.InputDiv>
 
-              <s.InputDiv>
-                <s.InputH3>상품 설명</s.InputH3>
-                <ReactQuill
-                  onChange={props.onChangeContents}
-                  style={{ width: "600px", height: "400px" }}
-                  defaultValue={isEdit ? props.data?.contents : ""}
-                />
-              </s.InputDiv>
+            <s.InputDiv>
+              <s.InputH3>주소</s.InputH3>
 
-              <s.InputDiv>
-                <s.InputH3>주소</s.InputH3>
+              <KakaoMapPage />
+            </s.InputDiv>
+            <s.InputDiv>
+              <s.InputH3>상품 요약</s.InputH3>
+              <Input02
+                type="text"
+                register={props.register}
+                name="remarks"
+                defaultValue={isEdit ? props.data?.remarks : ""}
+                width="100%"
+              />
+            </s.InputDiv>
+            <s.InputTag>
+              <s.InputH3>태그</s.InputH3>
 
-                <KakaoMapPage />
-              </s.InputDiv>
-              <s.InputDiv>
-                <s.InputH3>상품 요약</s.InputH3>
-                <Input02
-                  type="text"
-                  register={props.register}
-                  name={"remarks"}
-                  default={isEdit ? props.data?.name : ""}
-                />
-              </s.InputDiv>
-              <s.InputTag>
-                <s.InputH3>태그</s.InputH3>
+              <Tags />
+            </s.InputTag>
 
-                <Tags />
-              </s.InputTag>
-            </s.InputWrapper>
             <s.SubmitBtnWrapper>
               {!isEdit ? (
                 <Button01
@@ -121,8 +126,8 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
               )}
             </s.SubmitBtnWrapper>
           </form>
-        </s.Wrapper>
-      </WrapperBox>
-    </Container>
+        </s.InputWrapper>
+      </s.Main>
+    </s.Wrapper>
   );
 }

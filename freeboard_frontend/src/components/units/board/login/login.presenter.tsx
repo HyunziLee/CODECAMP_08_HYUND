@@ -1,4 +1,4 @@
-import * as s from "../../../../../styles/login.styles";
+import * as s from "./login.styles";
 import Button01 from "../../../commons/button/01";
 import Warning from "../../../commons/div/01-warning";
 import { useMoveToPage } from "../../../commons/hooks/useMoveToPage";
@@ -10,45 +10,64 @@ export default function LoginUI(props: ILoginUIProps) {
 
   return (
     <s.Wrapper>
-      <s.WrapperForm>
-        <form onSubmit={props.handleSubmit(props.onClickButton)}>
-          <s.Login_text>로그인</s.Login_text>
-          <s.Wrapper_login>
-            <s.Login__text>EMAIL</s.Login__text>
-            <Input01 type="text" register={props.register} name={"email"} />
-            <Warning errormsg={props.formState.errors.email?.message} />
+      <s.Main>
+        <s.WrapperForm>
+          <form
+            onSubmit={props.handleSubmit(props.onClickLogin)}
+            style={{ width: "90%" }}
+          >
+            <s.Text size="2rem" weight="800" align="center">
+              로그인
+            </s.Text>
+            <s.InputWrapper>
+              <s.Text size="1rem" weight="500" align="left">
+                EMAIL
+              </s.Text>
+              <Input01
+                type="text"
+                register={props.register}
+                name="email"
+                width="100%"
+              />
 
-            <s.Login__text>PASSWORD</s.Login__text>
-            <Input01
-              type="password"
-              register={props.register}
-              name={"password"}
+              <Warning errormsg={props.formState.errors.email?.message} />
+
+              <s.Text size="1rem" weight="500" align="left">
+                PASSWORD
+              </s.Text>
+              <Input01
+                type="password"
+                register={props.register}
+                name="password"
+                width="100%"
+              />
+              <Warning errormsg={props.formState.errors.password?.message} />
+              <s.SubService>
+                <s.SubServiceText>아이디 기억하기</s.SubServiceText>
+                <s.FindUserInfo>
+                  <s.SubServiceText>아이디 찾기 /</s.SubServiceText>
+                  <s.SubServiceText> 비밀번호 찾기</s.SubServiceText>
+                </s.FindUserInfo>
+              </s.SubService>
+            </s.InputWrapper>
+
+            <Button01
+              title="로그인"
+              type="submit"
+              isValid={props.formState.isValid}
+              color="#bbd0ff"
+              width="100%"
             />
-
-            <Warning errormsg={props.formState.errors.password?.message} />
-            <s.Login_info>
-              <s.Login_remember_id>아이디 기억하기</s.Login_remember_id>
-              <s.Login_find>
-                <s.Login_find_id>아이디 찾기 /</s.Login_find_id>
-                <s.Login_find_pw>비밀번호 찾기</s.Login_find_pw>
-              </s.Login_find>
-            </s.Login_info>
-          </s.Wrapper_login>
-
+          </form>
           <Button01
-            title="로그인"
-            type="submit"
-            isValid={props.formState.isValid}
-            color="#bbd0ff"
+            title="회원가입"
+            type="button"
+            onClick={onClickMovetoPage("/SignUp")}
+            color="#e9ecef"
+            width="90%"
           />
-        </form>
-        <Button01
-          title="회원가입"
-          type="button"
-          onClick={onClickMovetoPage("/SignUp")}
-          color="#e9ecef"
-        />
-      </s.WrapperForm>
+        </s.WrapperForm>
+      </s.Main>
     </s.Wrapper>
   );
 }

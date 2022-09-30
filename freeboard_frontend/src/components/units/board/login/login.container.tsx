@@ -1,6 +1,5 @@
 import { useApolloClient, useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useRouter } from "next/router";
 
 import { useForm } from "react-hook-form";
 import { useRecoilState } from "recoil";
@@ -13,11 +12,10 @@ import { FETCH_USER_LOGGED_IN, LOGIN_USER } from "../queries";
 import LoginUI from "./login.presenter";
 import { schema } from "../../../commons/yup/login/index";
 import { FormValue } from "./login.types";
+import { Modal } from "antd";
 
 export default function LoginContainer() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState); // eslint-disable-line no-unused-vars
-
-  const router = useRouter();
   const client = useApolloClient();
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
@@ -28,32 +26,37 @@ export default function LoginContainer() {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  const onClickButton = async (data: FormValue) => {
-    const result = await loginUser({
-      variables: {
-        email: data.email,
-        password: data.password,
-      },
-    });
-
-    const accessToken = result.data?.loginUser.accessToken;
-
-    const resultUserInfo = await client.query({
-      query: FETCH_USER_LOGGED_IN,
-      context: {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
+  const onClickLogin = async (data: FormValue) => {
+    try {
+      const result = await loginUser({
+        variables: {
+          email: data.email,
+          password: data.password,
         },
-      },
-    });
+      });
 
-    const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
+      if (!result) return;
 
-    setUserInfo(userInfo);
-    if (userInfo) {
-      router.push(`/MyAccount`);
-    } else {
-      alert("다시 로그인해주세요");
+      const accessToken = result.data?.loginUser.accessToken;
+      const resultUserInfo = await client.query({
+        query: FETCH_USER_LOGGED_IN,
+        context: {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      });
+
+      const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
+
+      setUserInfo(userInfo);
+      if (userInfo) {
+        location.replace(`/myaccount`);
+      } else {
+        Modal.warning({ content: "로그인이 필요합니다." });
+      }
+    } catch (error) {
+      if (error instanceof Error) Modal.warning({ content: error.message });
     }
   };
 
@@ -62,7 +65,7 @@ export default function LoginContainer() {
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
-      onClickButton={onClickButton}
+      onClickLogin={onClickLogin}
     />
   );
 }

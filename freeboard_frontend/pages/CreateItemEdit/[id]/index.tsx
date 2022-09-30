@@ -17,9 +17,10 @@ export default function CreateItemEditPage() {
     IQueryFetchUseditemArgs
   >(FETCH_USED_ITEM, {
     variables: {
-      useditemId: String(router.query.ids),
+      useditemId: String(router.query.id),
     },
   });
+  console.log(data);
   setIsEdit(true);
   return <CreateItemContainer data={data?.fetchUseditem} />;
 }

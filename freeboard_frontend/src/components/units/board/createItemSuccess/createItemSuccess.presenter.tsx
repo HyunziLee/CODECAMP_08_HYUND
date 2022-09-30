@@ -1,6 +1,4 @@
-import { Container } from "@mui/material";
-import * as s from "../../../../../styles/createItemSuccess.styles";
-import { WrapperBox } from "../../../commons/box/01";
+import * as s from "./createItemSuccess.styles";
 import { v4 as uuidv4 } from "uuid";
 import {
   basketLength,
@@ -16,9 +14,9 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
   const [basketTemp, setBasketTemp] = useRecoilState(basketLength); // eslint-disable-line no-unused-vars
   const [userInfo] = useRecoilState(userInfoState);
   return (
-    <Container maxWidth="xl">
-      <WrapperBox>
-        <s.Wrapper>
+    <s.Wrapper>
+      <s.Main>
+        <s.ItemWrapper>
           <s.ImageWrapper>
             {!bigImg ? (
               <s.ImageBigWrapper>
@@ -60,17 +58,6 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
             </s.ContentsDiv>
 
             <s.ContentsDiv>
-              <s.TitleH4>상품 설명</s.TitleH4>
-              {typeof window !== "undefined" && (
-                <s.ContentsH3
-                  dangerouslySetInnerHTML={{
-                    __html: Dompurify.sanitize(props.data?.contents || ""),
-                  }}
-                ></s.ContentsH3>
-              )}
-            </s.ContentsDiv>
-
-            <s.ContentsDiv>
               <s.TitleH4>주소</s.TitleH4>
 
               {/* <KakaoMapPage /> */}
@@ -95,54 +82,68 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
                 )}
               </s.TagWrapper>
             </s.ContentsDiv>
-            <s.ButtonWrapper>
-              <s.BuyButton color="#bbd0ff" onClick={props.onClickBuying}>
-                구매하기
-              </s.BuyButton>
-              <s.BuyButton
-                color="#e9ecef"
-                onClick={() => {
-                  const result = onClickBasket(props.data);
-                  setBasketTemp(Number(result));
-                }}
-              >
-                장바구니
-              </s.BuyButton>
-            </s.ButtonWrapper>
+            {userInfo?.email !== props.data?.seller?.email ? (
+              <s.ButtonWrapper width="100%">
+                <s.Button color="#bbd0ff" onClick={props.onClickBuying}>
+                  구매하기
+                </s.Button>
+                <s.Button
+                  color="#e9ecef"
+                  onClick={() => {
+                    const result = onClickBasket(props.data);
+                    setBasketTemp(Number(result));
+                  }}
+                >
+                  장바구니
+                </s.Button>
+              </s.ButtonWrapper>
+            ) : (
+              <></>
+            )}
           </s.ContentsWrapper>
-        </s.Wrapper>
+        </s.ItemWrapper>
+
         <s.DetailWrapper>
           <s.TitleH4>상세 보기</s.TitleH4>
-          <s.DetailImgWrapper>
-            {props.data?.images
-              ? props.data?.images.map((el) => (
-                  <s.DetailImg
-                    key={uuidv4()}
-                    src={`https://storage.googleapis.com/${el}`}
-                  />
-                ))
-              : ""}
-          </s.DetailImgWrapper>
-          {userInfo?.email === props.data?.seller?.email ? (
-            <s.ButtonWrapper>
-              <s.BuyButton
-                color="#bbd0ff"
-                onClick={props.onClickEdit(props.data?._id)}
-              >
-                수정하기
-              </s.BuyButton>
-              <s.BuyButton
-                color="#e9ecef"
-                onClick={props.onClickDelete(props.data?._id)}
-              >
-                삭제하기
-              </s.BuyButton>
-            </s.ButtonWrapper>
-          ) : (
-            <></>
-          )}
+          <s.ContentsDiv>
+            {typeof window !== "undefined" && (
+              <s.ContentsH3
+                dangerouslySetInnerHTML={{
+                  __html: Dompurify.sanitize(props.data?.contents || ""),
+                }}
+              ></s.ContentsH3>
+            )}
+          </s.ContentsDiv>
         </s.DetailWrapper>
-      </WrapperBox>
-    </Container>
+        <s.DetailImgWrapper>
+          {props.data?.images
+            ? props.data?.images.map((el) => (
+                <s.DetailImg
+                  key={uuidv4()}
+                  src={`https://storage.googleapis.com/${el}`}
+                />
+              ))
+            : ""}
+        </s.DetailImgWrapper>
+        {userInfo?.email === props.data?.seller?.email ? (
+          <s.ButtonWrapper width="30%">
+            <s.Button
+              color="#bbd0ff"
+              onClick={props.onClickEdit(props.data?._id)}
+            >
+              수정하기
+            </s.Button>
+            <s.Button
+              color="#e9ecef"
+              onClick={props.onClickDelete(props.data?._id)}
+            >
+              삭제하기
+            </s.Button>
+          </s.ButtonWrapper>
+        ) : (
+          <></>
+        )}
+      </s.Main>
+    </s.Wrapper>
   );
 }
