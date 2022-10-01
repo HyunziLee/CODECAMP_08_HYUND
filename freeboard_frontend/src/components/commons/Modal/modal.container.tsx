@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { IModalContainerProps } from "../../units/board/comment/IBoardComment.types";
+import { useRecoilState } from "recoil";
+import { modalState } from "../../../commons/store";
 import ModalUI from "./modal.presenter";
 
-export default function ModalContainer(props: IModalContainerProps) {
+export default function ModalContainer() {
+  const [modalOpen] = useRecoilState(modalState);
   const [isModalVisible, setIsModalVisible] = useState(true);
 
   const showModal = () => {
@@ -11,26 +13,21 @@ export default function ModalContainer(props: IModalContainerProps) {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    props.setIsEditClicked(!props.isEditClicked);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
-    props.setIsEditClicked(!props.isEditClicked);
   };
 
   return (
     <>
-      {props.isNull === true ? (
+      {modalOpen && (
         <ModalUI
           showModal={showModal}
           handleOk={handleOk}
           handleCancel={handleCancel}
           isModalVisible={isModalVisible}
-          isModal={props.isModal}
         />
-      ) : (
-        ""
       )}
     </>
   );

@@ -74,7 +74,7 @@ export const KakaoMap = styled.div`
 
 export const SubmitBtnWrapper = styled.div`
   margin: 40px auto;
-
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;

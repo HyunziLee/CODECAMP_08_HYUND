@@ -115,6 +115,8 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                   type="submit"
                   isValid={props.formState.isValid}
                   color="#bbd0ff"
+                  width="20%"
+                  onClick={""}
                 />
               ) : (
                 <Button01
@@ -122,6 +124,8 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                   type="submit"
                   isValid={props.formState.isValid}
                   color="#bbd0ff"
+                  width="20%"
+                  onClick={""}
                 />
               )}
             </s.SubmitBtnWrapper>

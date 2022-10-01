@@ -6,15 +6,12 @@ export const Wrapper = styled(Container)``;
 export const Main = styled.main`
   width: 100%;
   margin-top: 50px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 export const WrapperForm = styled.div`
   width: 50%;
-  /* border: 1px solid gray; */
-
   display: flex;
   flex-direction: column;
   align-items: center;

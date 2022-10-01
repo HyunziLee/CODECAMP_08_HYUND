@@ -4,69 +4,44 @@ import { Avatar } from "antd";
 import React, { useState } from "react";
 
 import * as s from "./CommentList.styles";
-import ModalContainer from "../../../../commons/Modal/modal.container";
+
 import { getDate } from "../../../../commons/Function/getDate";
 import PopoverPage from "../edit/popOver";
 import { ICommentScrollProps } from "../IBoardComment.types";
 
 export default function CommentScroll(props: ICommentScrollProps) {
-  const [isEditClicked, setIsEditClicked] = useState(false);
-
-  const [isModal, setIsModal] = useState(true);
-  const [isNull] = useState(true);
   const [password, setPassword] = useState("");
 
   const creatDate = getDate(props.el.updatedAt);
 
-  const isEditBtn = () => {
-    setIsEditClicked(!isEditClicked);
-    setIsModal(false);
-  };
-
   return (
     <>
-      {isEditClicked === false && (
-        <s.WrapperList>
-          <s.UserWrapper>
-            <s.ProfileImg>
-              <Avatar size={44} icon={<UserOutlined />} />
-            </s.ProfileImg>
-            <s.CommentFetch>
-              <s.FetchData>
-                <s.FetchName>{props.el.writer}</s.FetchName>
-                <s.FetchRate value={props.el.rating} disabled></s.FetchRate>
-              </s.FetchData>
-              <s.FetchComment>{props.el.contents}</s.FetchComment>
-              <s.FetchCreateAt>{creatDate}</s.FetchCreateAt>
-            </s.CommentFetch>
-          </s.UserWrapper>
-          <s.DeleteBtn>
-            <PopoverPage
-              setPassword={setPassword}
-              password={password}
-              data={props.el}
-              commentInputFunc={props.commentInputFunc}
-              contents={props.contents}
-              isEditBtn={isEditBtn}
-            ></PopoverPage>
-            {/* <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn> */}
-            {/* <s.CommentDelete>x</s.CommentDelete> */}
-          </s.DeleteBtn>
-        </s.WrapperList>
-      )}
-
-      {isEditClicked === true && (
-        <s.WrapperList>
-          <s.EditDiv>
-            <ModalContainer
-              isNull={isNull}
-              isModal={isModal}
-              isEditClicked={isEditClicked}
-              setIsEditClicked={setIsEditClicked}
-            ></ModalContainer>
-          </s.EditDiv>
-        </s.WrapperList>
-      )}
+      <s.WrapperList>
+        <s.UserWrapper>
+          <s.ProfileImg>
+            <Avatar size={44} icon={<UserOutlined />} />
+          </s.ProfileImg>
+          <s.CommentFetch>
+            <s.FetchData>
+              <s.FetchName>{props.el.writer}</s.FetchName>
+              <s.FetchRate value={props.el.rating} disabled></s.FetchRate>
+            </s.FetchData>
+            <s.FetchComment>{props.el.contents}</s.FetchComment>
+            <s.FetchCreateAt>{creatDate}</s.FetchCreateAt>
+          </s.CommentFetch>
+        </s.UserWrapper>
+        <s.DeleteBtn>
+          <PopoverPage
+            setPassword={setPassword}
+            password={password}
+            data={props.el}
+            commentInputFunc={props.commentInputFunc}
+            contents={props.contents}
+          ></PopoverPage>
+          {/* <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn> */}
+          {/* <s.CommentDelete>x</s.CommentDelete> */}
+        </s.DeleteBtn>
+      </s.WrapperList>
     </>
   );
 }

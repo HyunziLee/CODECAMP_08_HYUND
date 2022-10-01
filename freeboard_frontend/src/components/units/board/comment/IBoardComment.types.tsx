@@ -6,18 +6,29 @@ export interface ICommentUIProps {
   commentInputFunc: {
     writer: (e: ChangeEvent<HTMLInputElement>) => void;
     password: (e: ChangeEvent<HTMLInputElement>) => void;
-    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
     rating: React.Dispatch<React.SetStateAction<number>>;
   };
   rating: number;
   contents: string;
 }
 
-export interface IModalContainerProps {
-  isNull: boolean;
-  isModal: boolean;
-  isEditClicked: boolean;
-  setIsEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
+// export interface IModalContainerProps {
+//   isNull: boolean;
+//   isModal: boolean;
+//   isEditClicked: boolean;
+//   setIsEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
+// }
+
+export interface ICommentEditProps {
+  commentInputFunc: {
+    writer: (e: ChangeEvent<HTMLInputElement>) => void;
+    password: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+    rating: React.Dispatch<React.SetStateAction<number>>;
+  };
+
+  contents: string;
 }
 
 export interface IPopoverProps {
@@ -25,13 +36,12 @@ export interface IPopoverProps {
   commentInputFunc: {
     writer: (e: ChangeEvent<HTMLInputElement>) => void;
     password: (e: ChangeEvent<HTMLInputElement>) => void;
-    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
     rating: React.Dispatch<React.SetStateAction<number>>;
   };
   password: string;
   data: IBoardComment;
   contents: string;
-  isEditBtn: () => void;
 }
 
 export interface ICommentScrollProps {
@@ -40,7 +50,7 @@ export interface ICommentScrollProps {
   commentInputFunc: {
     writer: (e: ChangeEvent<HTMLInputElement>) => void;
     password: (e: ChangeEvent<HTMLInputElement>) => void;
-    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLTextAreaElement>) => void;
     rating: React.Dispatch<React.SetStateAction<number>>;
   };
   contents: string;

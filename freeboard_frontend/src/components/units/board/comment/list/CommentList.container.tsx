@@ -6,10 +6,11 @@ import {
   IQueryFetchBoardCommentsArgs,
 } from "../../../../../commons/types/generated/types";
 import { FETCH_BOARD_COMMENTS } from "../../queries";
+import { ICommentEditProps } from "../IBoardComment.types";
 import CommentScroll from "./CommentList.presenter";
 import { WrapperScroll } from "./CommentList.styles";
 
-export default function CommentEdit(props) {
+export default function CommentEdit(props: ICommentEditProps) {
   const router = useRouter();
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchBoardComments">,
@@ -20,8 +21,6 @@ export default function CommentEdit(props) {
       boardId: String(router.query.name),
     },
   });
-
-  console.log(data?.fetchBoardComments);
 
   const onFetchMore = () => {
     if (!data) {

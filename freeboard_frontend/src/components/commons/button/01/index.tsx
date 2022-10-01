@@ -1,24 +1,33 @@
 import styled from "@emotion/styled";
 
-export const LoginButton = styled.button<{ width: string }>`
+export const Button = styled.button<{ width: string }>`
   width: ${(props) => props.width};
   height: 70px;
   background-color: ${(props) => props.color};
-  margin: auto;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 70px;
-  margin-bottom: 10px;
+  color: #333;
+  font-size: 1rem;
   border: none;
+  margin-bottom: 10px;
   cursor: pointer;
+  @media (max-width: 767px) {
+    font-size: 0.8rem;
+  }
 `;
-export default function Button01(props) {
+
+interface IButton01Props {
+  type: "button" | "submit" | "reset" | undefined;
+  title: string;
+  color: string;
+  width: string;
+  isValid: boolean;
+  onClick: any;
+}
+export default function Button01(props: IButton01Props) {
   const { onClick, type, title, color, width } = props;
 
   return (
-    <LoginButton onClick={onClick} type={type} color={color} width={width}>
+    <Button onClick={onClick} type={type} color={color} width={width}>
       {title}
-    </LoginButton>
+    </Button>
   );
 }

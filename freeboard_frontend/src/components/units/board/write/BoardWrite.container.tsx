@@ -10,8 +10,13 @@ import {
   IMutationUpdateBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { IBoardWriteProps, IUpdateBoardInput } from "./IBoardWrite.types";
+import { Modal } from "antd";
+import { useRecoilState } from "recoil";
+import { modalState } from "../../../../commons/store";
 
 export default function BoardWrite(props: IBoardWriteProps) {
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
     IMutationCreateBoardArgs
@@ -106,11 +111,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
             },
           },
         });
-        console.log(result.data?.createBoard.images);
-
-        router.push(`/PostDetail/${result.data?.createBoard._id}`);
+        Modal.success({
+          content: "게시글이 등록되었습니다.",
+          onOk: () => {
+            location.replace(`/PostDetail/${result.data?.createBoard._id}`);
+          },
+        });
       } catch (error) {
-        if (error instanceof Error) console.log(error.message);
+        if (error instanceof Error) Modal.error({ content: error.message });
       }
     }
     if (writer === "") {
@@ -146,9 +154,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
           updateBoardInput,
         },
       });
-      router.push(`/PostDetail/${result.data?.updateBoard._id}`);
+      Modal.success({
+        content: "수정되었습니다.",
+        onOk: () => {
+          location.replace(`/PostDetail/${result.data?.updateBoard._id}`);
+        },
+      });
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
 
     if (!pwd) {
@@ -156,7 +169,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
   const onClickFindAddressModal = () => {
-    setIsModal(!isModal);
+    setModalOpen(!modalOpen);
+
     setIsNull(true);
   };
 

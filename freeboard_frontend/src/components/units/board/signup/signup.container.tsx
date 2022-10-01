@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Modal } from "antd";
 
 import { useForm } from "react-hook-form";
 import {
@@ -25,24 +26,26 @@ export default function SignUpContainer() {
     mode: "onChange",
   });
 
-  const onClickSignUp = (data: FormValue) => {
-    console.log(data);
+  const onClickSignUp = async (data: FormValue) => {
     if (!(data.email && data.password && data.name)) {
       return;
     }
     try {
-      createUser({
+      await createUser({
         variables: {
           createUserInput: {
             email: data.email,
             password: data.password,
+
             name: data.name,
           },
         },
       });
-      alert("회원가입 되었습니다.");
+      Modal.success({ content: "회원가입 되었습니다." });
       onClickMovetoPage(`/Login`);
-    } catch (error) {}
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message });
+    }
   };
   return (
     <>

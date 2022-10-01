@@ -4,7 +4,7 @@ export default function PostDetailPage() {
   return (
     <>
       <BoardDetail adminState={false}></BoardDetail>
-      <CommentContainer></CommentContainer>
+      <CommentContainer />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import * as s from "../../../../../styles/signup.styles";
+import * as s from "./signup.styles";
 import Button01 from "../../../commons/button/01";
 import Warning from "../../../commons/div/01-warning";
 
@@ -7,38 +7,55 @@ import { ISignupProps } from "./signup.types";
 
 export default function SignUpUI(props: ISignupProps) {
   return (
-    <>
-      <s.Wrapper>
-        <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
-          <s.Basic_info>
+    <s.Wrapper>
+      <s.Main>
+        <s.WrapperForm>
+          <form
+            onSubmit={props.handleSubmit(props.onClickSignUp)}
+            style={{ width: "90%" }}
+          >
             <s.Title>회원가입</s.Title>
-            <s.Info_division>
-              <s.Info_title>이름</s.Info_title>
-              <s.InputWrapper>
-                <Input02 type="text" register={props.register} name={"name"} />
-                <Warning errormsg={props.formState.errors.name?.message} />
-              </s.InputWrapper>
-            </s.Info_division>
-
-            <s.Info_division>
-              <s.Info_title>이메일</s.Info_title>
-              <s.InputWrapper>
-                <Input02 type="text" register={props.register} name={"email"} />
-                <Warning errormsg={props.formState.errors.email?.message} />
-              </s.InputWrapper>
-            </s.Info_division>
-
-            <s.Info_division>
-              <s.Info_title>비밀번호</s.Info_title>
+            <s.InfoWrapper>
+              <s.InfoText>이름</s.InfoText>
               <s.InputWrapper>
                 <Input02
                   type="text"
                   register={props.register}
-                  name={"password"}
+                  name="name"
+                  width="100%"
+                  defaultValue=""
+                />
+                <Warning errormsg={props.formState.errors.name?.message} />
+              </s.InputWrapper>
+            </s.InfoWrapper>
+
+            <s.InfoWrapper>
+              <s.InfoText>이메일</s.InfoText>
+              <s.InputWrapper>
+                <Input02
+                  type="text"
+                  register={props.register}
+                  name="email"
+                  width="100%"
+                  defaultValue=""
+                />
+                <Warning errormsg={props.formState.errors.email?.message} />
+              </s.InputWrapper>
+            </s.InfoWrapper>
+
+            <s.InfoWrapper>
+              <s.InfoText>비밀번호</s.InfoText>
+              <s.InputWrapper>
+                <Input02
+                  type="password"
+                  register={props.register}
+                  name="password"
+                  width="100%"
+                  defaultValue=""
                 />
                 <Warning errormsg={props.formState.errors.password?.message} />
               </s.InputWrapper>
-            </s.Info_division>
+            </s.InfoWrapper>
 
             {/* <s.Info_division>
               <s.Info_title>비밀번호 확인</s.Info_title>
@@ -77,13 +94,15 @@ export default function SignUpUI(props: ISignupProps) {
               type="submit"
               isValid={props.formState.isValid}
               color="#e9ecef"
+              width="100%"
+              onClick={""}
             />
-          </s.Basic_info>
-        </form>
+          </form>
+        </s.WrapperForm>
 
         <s.Extra_info></s.Extra_info>
         <s.ServiceCheck></s.ServiceCheck>
-      </s.Wrapper>
-    </>
+      </s.Main>
+    </s.Wrapper>
   );
 }

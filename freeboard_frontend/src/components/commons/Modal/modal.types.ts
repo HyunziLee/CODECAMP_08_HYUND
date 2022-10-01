@@ -3,5 +3,4 @@ export interface IModalProps {
   handleOk: () => void;
   handleCancel: () => void;
   isModalVisible: boolean;
-  isModal: boolean;
 }

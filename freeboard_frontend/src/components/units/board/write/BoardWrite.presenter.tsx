@@ -2,8 +2,11 @@ import * as s from "./BoardWrite.styles";
 import RatioContainer from "../../../commons/Ratio/ratio.container";
 import ModalContainer from "../../../commons/Modal/modal.container";
 import { IBoardWriteUIProps } from "./IBoardWrite.types";
+import { modalState } from "../../../../commons/store";
+import { useRecoilState } from "recoil";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
   return (
     <s.Wrapper>
       <s.Main>
@@ -60,10 +63,8 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             </s.PostBtn>
             {
               // isModal이 true 이면 모달창 보여줘 (isModal 초기 = fasle / onClickFindAddressModal누르면 !isModal임 )
-              props.isModal === true ? (
+              modalOpen && (
                 <ModalContainer isModal={props.isModal} isNull={props.isNull} />
-              ) : (
-                ""
               )
             }
 

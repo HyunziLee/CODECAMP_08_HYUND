@@ -15,6 +15,7 @@ import {
   FETCH_USED_ITEMS,
 } from "../queries";
 import CreateItemSuccessUI from "./createItemSuccess.presenter";
+import { Modal } from "antd";
 
 export default function CreateItemSuccess() {
   const router = useRouter();
@@ -51,11 +52,12 @@ export default function CreateItemSuccess() {
         },
         refetchQueries: [{ query: FETCH_USED_ITEMS }],
       });
-      alert("정상적으로 구매되었습니다.");
+      Modal.success({ content: "구매 완료했습니다." });
+      router.push("/market");
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      if (error instanceof Error)
+        Modal.error({ content: "로그인 후 이용가능합니다." });
     }
-    router.push("/Market");
   };
 
   const onClickEdit = (id: string) => () => {
@@ -63,7 +65,6 @@ export default function CreateItemSuccess() {
   };
 
   const onClickDelete = (useditemId: string) => async () => {
-    console.log(useditemId);
     try {
       await deleteUsedItem({
         variables: { useditemId },
@@ -73,9 +74,10 @@ export default function CreateItemSuccess() {
           },
         ],
       });
+      Modal.success({ content: "삭제 완료했습니다." });
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        Modal.error({ content: error.message });
       }
     }
     router.push("/market");

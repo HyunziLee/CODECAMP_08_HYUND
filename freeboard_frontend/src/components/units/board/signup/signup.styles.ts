@@ -1,40 +1,46 @@
 import styled from "@emotion/styled";
+import { Container } from "@mui/material";
 
-export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 200px auto;
+export const Wrapper = styled(Container)``;
+
+export const Main = styled.main`
+  width: 100%;
+
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-export const Basic_info = styled.div`
-  width: 800px;
+export const WrapperForm = styled.div`
+  width: 50%;
+
   display: flex;
   flex-direction: column;
-
-  background: #ffffff;
+  align-items: center;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
 `;
+
 export const Title = styled.div`
-  width: 500px;
-  font-size: 40px;
+  width: 100%;
+  font-size: 2rem;
   font-weight: 800;
   text-align: center;
   margin: 40px auto;
 `;
-export const Info_division = styled.div`
-  height: 150px;
+export const InfoWrapper = styled.div`
+  width: 100%;
   margin-bottom: 30px;
-
-  margin: auto;
 `;
 export const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const Info_title = styled.div`
-  width: 20%;
-
+export const InfoText = styled.div`
+  width: 100%;
+  font-size: 1rem;
   font-size: 20px;
 `;
 

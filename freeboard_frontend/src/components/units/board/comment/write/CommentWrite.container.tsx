@@ -3,12 +3,13 @@ import { CREATE_BOARD_COMMENT, FETCH_BOARD_COMMENTS } from "../../queries";
 import React, { ChangeEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@apollo/client";
-import ModalContainer from "../../../../commons/Modal/modal.container";
+
 import {
   IMutation,
   IMutationCreateBoardCommentArgs,
 } from "../../../../../commons/types/generated/types";
 import CommentEdit from "../list/CommentList.container";
+import { Modal } from "antd";
 
 export default function CommentContainer() {
   const router = useRouter();
@@ -22,8 +23,6 @@ export default function CommentContainer() {
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
   const [rating, setRating] = useState(0);
-  const [isNull, setIsNull] = useState(false);
-  const [isModal] = useState(false);
 
   const commentInputFunc = {
     writer: (e: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +31,7 @@ export default function CommentContainer() {
     password: (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
     },
-    contents: (e: ChangeEvent<HTMLInputElement>) => {
+    contents: (e: ChangeEvent<HTMLTextAreaElement>) => {
       setContents(e.target.value);
     },
     rating: setRating,
@@ -40,13 +39,17 @@ export default function CommentContainer() {
 
   const onClickCommentBtn = async () => {
     // 입력창이 하나라도 빈칸인 경우, 댓글이 등록되지 않으며, 모달창 발생
+    console.log(writer);
+    console.log(password);
+    console.log(contents);
+    console.log(rating);
 
     if (!writer || !password || !contents) {
-      setIsNull(true);
+      Modal.error({ content: "모든 항목을 입력하십시오." });
       return;
     }
     try {
-      const result = await createBoardComment({
+      await createBoardComment({
         variables: {
           boardId: String(router.query.name),
           createBoardCommentInput: {
@@ -63,10 +66,9 @@ export default function CommentContainer() {
           },
         ],
       });
-      console.log(result);
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message);
+        Modal.error({ content: error.message });
       }
     }
   };
@@ -80,10 +82,7 @@ export default function CommentContainer() {
         contents={contents}
       ></CommentUI>
 
-      <CommentEdit />
-
-      {/* 댓글 입력창에 공란이 있을 경우, 모달창 발생 */}
-      <ModalContainer isNull={isNull} isModal={isModal} />
+      <CommentEdit commentInputFunc={commentInputFunc} contents={contents} />
     </>
   );
 }

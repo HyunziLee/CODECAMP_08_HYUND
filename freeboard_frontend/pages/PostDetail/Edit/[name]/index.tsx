@@ -20,9 +20,5 @@ export default function EditForm() {
     }
   );
 
-  return (
-    <>
-      <PostEdit data={data}></PostEdit>
-    </>
-  );
+  return <PostEdit data={data} />;
 }

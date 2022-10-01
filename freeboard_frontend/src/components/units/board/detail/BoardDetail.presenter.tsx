@@ -1,4 +1,4 @@
-import * as s from "../../../../../styles/postDetail.styles";
+import * as s from "./BoardDetail.styles";
 
 import { IBoardDetailUIProps } from "./IBoardDetail.types";
 import { Link, LocationOn, ThumbDown, ThumbUp } from "@mui/icons-material";

@@ -1,6 +1,5 @@
 import { atom, selector } from "recoil";
 import { getAccessToken } from "../libraries/getAccessToken";
-import { getUserInfo } from "../libraries/getUserInfo";
 
 export const accessTokenState = atom({
   key: "accessTokenState",
@@ -72,4 +71,9 @@ export const isEditState = atom({
 export const commentForModal = atom({
   key: "commentModal",
   default: "비밀번호가 일치하지 않습니다.",
+});
+
+export const modalState = atom({
+  key: "modalState",
+  default: false,
 });

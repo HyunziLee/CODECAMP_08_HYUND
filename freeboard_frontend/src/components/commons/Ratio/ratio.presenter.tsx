@@ -2,8 +2,9 @@ import { Radio } from "antd";
 import UrlInputContainer from "../InputUrl/urlInput.container";
 import UploadImg from "../upload/01/uploadImg.container";
 import { v4 as uuidv4 } from "uuid";
+import { IRatioUIProps } from "./ratio.types";
 
-export default function RatioUI(props) {
+export default function RatioUI(props: IRatioUIProps) {
   return (
     <>
       <Radio.Group onChange={props.onChange} value={props.value}>

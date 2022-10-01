@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { UseFormRegister } from "react-hook-form";
 
 import { IUseForm } from "../../../units/board/createItem/createItem.types";
+import { FormValue } from "../../../units/board/signup/signup.types";
 
 export const InfoInput = styled.input<{ width: string }>`
   width: ${(props) => props.width};
@@ -16,7 +17,7 @@ export const InfoInput = styled.input<{ width: string }>`
 `;
 
 interface IInputProps {
-  name: "name" | "remarks" | "price" | "contents";
+  name: "name" | "remarks" | "price" | "contents" | "email" | "password";
   register: UseFormRegister<IUseForm>;
   type: string;
   width: string;
