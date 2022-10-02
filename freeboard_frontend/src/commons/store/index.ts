@@ -80,3 +80,11 @@ export const modalState = atom({
   key: "modalState",
   default: false,
 });
+
+export const addressValue = atom({
+  key: "modalState",
+  default: {
+    fullAddress: "",
+    detailAddress: "",
+  },
+});

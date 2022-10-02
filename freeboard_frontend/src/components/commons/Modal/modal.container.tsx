@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
-import { modalState } from "../../../commons/store";
+import { addressValue, modalState } from "../../../commons/store";
 import ModalUI from "./modal.presenter";
 
 export default function ModalContainer() {
-  const [modalOpen] = useRecoilState(modalState);
-  const [isModalVisible, setIsModalVisible] = useState(true);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [resultValue, setResultValue] = useRecoilState(addressValue);
+  const [detailAdd, setDetailAdd] = useState("");
 
   const handleOk = () => {
-    setIsModalVisible(false);
+    const temp = { ...resultValue };
+    temp.detailAddress = detailAdd;
+    setResultValue(temp);
+    setModalOpen(false);
   };
+  console.log(resultValue);
 
   const handleCancel = () => {
-    setIsModalVisible(false);
+    setModalOpen(false);
   };
+
+  const onChangeDetailAddress = (event: ChangeEvent<HTMLInputElement>) => {
+    // console.log(event.target.value);
+    setDetailAdd(event.target.value);
+  };
+  console.log(detailAdd);
 
   return (
     <>
       {modalOpen && (
         <ModalUI
-          showModal={showModal}
           handleOk={handleOk}
           handleCancel={handleCancel}
-          isModalVisible={isModalVisible}
+          onChangeDetailAddress={onChangeDetailAddress}
         />
       )}
     </>

@@ -2,11 +2,12 @@ import * as s from "./BoardWrite.styles";
 import RatioContainer from "../../../commons/Ratio/ratio.container";
 import ModalContainer from "../../../commons/Modal/modal.container";
 import { IBoardWriteUIProps } from "./IBoardWrite.types";
-import { modalState } from "../../../../commons/store";
+import { addressValue, modalState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const [modalOpen] = useRecoilState(modalState);
+  const [resultValue, setResultValue] = useRecoilState(addressValue);
   return (
     <s.Wrapper>
       <s.Main>
@@ -69,9 +70,13 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             </s.FindPost>
 
             {modalOpen && <ModalContainer />}
+            {console.log(resultValue)}
 
-            {/* <DaumPostcodeEmbed onComplete={props.FindAddress} /> */}
-            <s.PostInput width="100%" align="left"></s.PostInput>
+            <s.PostInput
+              width="100%"
+              align="left"
+              defaultValue={resultValue.fullAddress}
+            ></s.PostInput>
             <s.PostInput width="100%" align="left"></s.PostInput>
           </s.AddressWrapper>
         </s.WriterContents>

@@ -1,15 +1,17 @@
-import { Button, Modal } from "antd";
-import { Postcode } from "react-daum-postcode/lib/loadPostcode";
+import { Modal } from "antd";
+
 import React from "react";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import { useRecoilState } from "recoil";
+import * as s from "./modal.styles";
 
 import { IModalProps } from "./modal.types";
-import { modalState } from "../../../commons/store";
+import { addressValue, modalState } from "../../../commons/store";
 
 export default function ModalUI(props: IModalProps) {
   const [modalOpen] = useRecoilState(modalState);
-  const handleComplete = (data) => {
+  const [resultValue, setResultValue] = useRecoilState(addressValue);
+  const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = "";
 
@@ -23,8 +25,11 @@ export default function ModalUI(props: IModalProps) {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
+    const temp = { ...resultValue };
+    temp.fullAddress = fullAddress;
+    setResultValue(temp);
 
-    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+    // console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
   };
 
   return (
@@ -32,11 +37,23 @@ export default function ModalUI(props: IModalProps) {
       {modalOpen && (
         <Modal
           title="주소 검색"
-          visible={props.isModalVisible}
+          visible={modalOpen}
           onOk={props.handleOk}
           onCancel={props.handleCancel}
         >
           <DaumPostcodeEmbed onComplete={handleComplete} />
+          {resultValue.fullAddress && (
+            <s.Wrapper>
+              <s.Address>
+                <s.Text weight="700">선택 주소</s.Text>
+                <s.Text weight="400">{resultValue.fullAddress}</s.Text>
+              </s.Address>
+              <s.Address>
+                <s.Text weight="700">상세주소 입력</s.Text>
+                <s.Input onChange={props.onChangeDetailAddress} />
+              </s.Address>
+            </s.Wrapper>
+          )}
         </Modal>
       )}
     </>

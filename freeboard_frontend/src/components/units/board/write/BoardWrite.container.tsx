@@ -12,7 +12,7 @@ import {
 import { IBoardWriteProps, IUpdateBoardInput } from "./IBoardWrite.types";
 import { Modal } from "antd";
 import { useRecoilState } from "recoil";
-import { modalState } from "../../../../commons/store";
+import { addressValue, modalState } from "../../../../commons/store";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const [modalOpen, setModalOpen] = useRecoilState(modalState);
@@ -44,9 +44,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [pwdMsg, setPwdMsg] = useState("");
   const [titleMsg, setTitleMsg] = useState("");
   const [contentsMsg, setContentsMsg] = useState("");
-  const [isRatio, setIsRatio] = useState(true);
-  const [isModal, setIsModal] = useState(false);
-  const [isNull, setIsNull] = useState(false);
+  const [isRatio] = useState(true);
+  const [isModal] = useState(false);
+
+  const [resultValue, setResultValue] = useRecoilState(addressValue);
+  console.log(resultValue);
 
   const InputFunction = {
     writer: (e: ChangeEvent<HTMLInputElement>) => {
@@ -105,8 +107,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
               images: fileUrls,
               boardAddress: {
                 zipcode: "ddd",
-                address: "ddd",
-                addressDetail: "dddd",
+                address: "resultValue.fullAddress",
+                addressDetail: "resultValue.detailAddress",
               },
             },
           },
@@ -170,8 +172,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
   const onClickFindAddressModal = () => {
     setModalOpen(!modalOpen);
-
-    setIsNull(true);
   };
 
   return (
@@ -187,7 +187,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
         contentsMsg={contentsMsg}
         isRatio={isRatio}
         isModal={isModal}
-        isNull={isNull}
         btnState={props.btnState}
         data={props.data}
         onChangeFileUrls={onChangeFileUrls}

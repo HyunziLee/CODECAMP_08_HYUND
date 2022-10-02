@@ -36,7 +36,7 @@ export interface IBoardWriteUIProps {
   contentsMsg: string;
   isRatio: boolean;
   isModal: boolean;
-  isNull: boolean;
+
   btnState: boolean;
   data?: Pick<IQuery, "fetchBoard">;
 }

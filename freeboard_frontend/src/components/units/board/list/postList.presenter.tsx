@@ -27,7 +27,7 @@ export default function PostListUI(props: IPostListProps) {
             <s.Column weight="700">번호</s.Column>
             <s.Column weight="700">제목</s.Column>
             <s.Column weight="700">작성자</s.Column>
-            <s.Column weight="700">날짜</s.Column>
+            <s.Column weight="700">작성일</s.Column>
           </s.Row>
 
           {props.data?.fetchBoards.map((e, i) => (

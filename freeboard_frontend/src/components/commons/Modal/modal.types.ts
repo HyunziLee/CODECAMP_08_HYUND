@@ -1,6 +1,7 @@
+import { ChangeEvent } from "react";
+
 export interface IModalProps {
-  showModal: () => void;
   handleOk: () => void;
   handleCancel: () => void;
-  isModalVisible: boolean;
+  onChangeDetailAddress: (e: ChangeEvent<HTMLInputElement>) => void;
 }
