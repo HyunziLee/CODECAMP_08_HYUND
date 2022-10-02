@@ -14,17 +14,14 @@ export default function ModalContainer() {
     setResultValue(temp);
     setModalOpen(false);
   };
-  console.log(resultValue);
 
   const handleCancel = () => {
     setModalOpen(false);
   };
 
   const onChangeDetailAddress = (event: ChangeEvent<HTMLInputElement>) => {
-    // console.log(event.target.value);
     setDetailAdd(event.target.value);
   };
-  console.log(detailAdd);
 
   return (
     <>

@@ -82,9 +82,10 @@ export const modalState = atom({
 });
 
 export const addressValue = atom({
-  key: "modalState",
+  key: "addressValue",
   default: {
     fullAddress: "",
     detailAddress: "",
+    zoneCode: "",
   },
 });

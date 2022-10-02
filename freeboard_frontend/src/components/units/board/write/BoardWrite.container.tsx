@@ -15,7 +15,7 @@ import { useRecoilState } from "recoil";
 import { addressValue, modalState } from "../../../../commons/store";
 
 export default function BoardWrite(props: IBoardWriteProps) {
-  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [modalOpen, setModalOpen] = useRecoilState(modalState); // eslint-disable-line no-unused-vars
 
   const [createBoard] = useMutation<
     Pick<IMutation, "createBoard">,
@@ -33,7 +33,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [contents, setContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
-  const [addressTotal, setAddressTotal] = useState("");
+
   // const [addressTotal, setAddressTotal] = useState({
   //   zipcode: "",
   //   address: "",
@@ -47,8 +47,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [isRatio] = useState(true);
   const [isModal] = useState(false);
 
-  const [resultValue, setResultValue] = useRecoilState(addressValue);
-  console.log(resultValue);
+  const [resultValue] = useRecoilState(addressValue);
 
   const InputFunction = {
     writer: (e: ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +77,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     youtubeUrl: (e: ChangeEvent<HTMLInputElement>) => {
       setYoutubeUrl(e.target.value);
     },
-    // address: () => {},
   };
 
   const onChangeFileUrls = (fileUrl: string, index: number) => {
@@ -86,12 +84,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
     newFileUrls[index] = fileUrl;
     setFileUrls(newFileUrls);
   };
-
-  // useEffect(() => {
-  //   if (props.data?.fetchBoard.images?.length) {
-  //     setFileUrls([...props.data?.fetchBoard.images]);
-  //   }
-  // }, [props.data]);
 
   const SignupChk = async () => {
     if (writer !== "" && pwd !== "" && title !== "" && contents !== "") {
@@ -106,9 +98,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
               youtubeUrl,
               images: fileUrls,
               boardAddress: {
-                zipcode: "ddd",
-                address: "resultValue.fullAddress",
-                addressDetail: "resultValue.detailAddress",
+                zipcode: resultValue.zoneCode,
+                address: resultValue.fullAddress,
+                addressDetail: resultValue.detailAddress,
               },
             },
           },
@@ -170,8 +162,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
       setPwdMsg("비밀번호를 입력하세요");
     }
   };
+
   const onClickFindAddressModal = () => {
-    setModalOpen(!modalOpen);
+    setModalOpen(true);
   };
 
   return (

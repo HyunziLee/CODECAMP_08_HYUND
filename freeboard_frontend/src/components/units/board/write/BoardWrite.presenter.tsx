@@ -7,7 +7,8 @@ import { useRecoilState } from "recoil";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   const [modalOpen] = useRecoilState(modalState);
-  const [resultValue, setResultValue] = useRecoilState(addressValue);
+
+  const [resultValue] = useRecoilState(addressValue);
   return (
     <s.Wrapper>
       <s.Main>
@@ -63,21 +64,28 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
                 placeholder="07250"
                 width="30%"
                 align="center"
-              ></s.PostInput>
+                defaultValue={resultValue.zoneCode}
+                disabled
+              />
               <s.PostBtn onClick={props.onClickFindAddressModal}>
                 우편번호 검색
               </s.PostBtn>
             </s.FindPost>
 
             {modalOpen && <ModalContainer />}
-            {console.log(resultValue)}
 
             <s.PostInput
               width="100%"
               align="left"
               defaultValue={resultValue.fullAddress}
-            ></s.PostInput>
-            <s.PostInput width="100%" align="left"></s.PostInput>
+              disabled
+            />
+            <s.PostInput
+              width="100%"
+              align="left"
+              defaultValue={resultValue.detailAddress}
+              disabled
+            />
           </s.AddressWrapper>
         </s.WriterContents>
         <s.Select>
