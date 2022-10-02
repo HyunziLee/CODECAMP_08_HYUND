@@ -93,9 +93,10 @@ export default function SignUpUI(props: ISignupProps) {
               title="회원가입"
               type="submit"
               isValid={props.formState.isValid}
-              color="#e9ecef"
+              bgColor="#111"
+              fontColor="#fff"
               width="100%"
-              onClick={""}
+              onClick={props.onClickSignUp}
             />
           </form>
         </s.WrapperForm>

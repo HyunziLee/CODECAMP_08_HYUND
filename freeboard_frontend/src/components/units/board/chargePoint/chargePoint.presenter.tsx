@@ -1,28 +1,35 @@
-import { Container } from "@mui/material";
-
-import * as s from "../../../../../styles/chargePoint.styles";
+import * as s from "./chargePoint.styles";
 import { IChargePointProps } from "./chargePoint.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ChargePointUI(props: IChargePointProps) {
   return (
-    <Container maxWidth="xl">
-      <s.Wrapper>
+    <s.Wrapper>
+      <s.Main>
         <s.PriceUl>
           <s.Div>{props.data?.name}님 지갑 충전하기</s.Div>
-          {props.priceList.map((el, index: number) => (
-            <s.PriceLi key={el}>
+          <s.PriceLi>
+            {props.priceList.map((el, index: number) => (
               <s.PriceBtn
+                key={uuidv4()}
                 value={el}
                 onClick={props.onSelect(index)}
                 color={props.isClick[index] ? "#e9ecef" : "#fff"}
               >
                 {el}
               </s.PriceBtn>
-            </s.PriceLi>
-          ))}
+            ))}
+          </s.PriceLi>
         </s.PriceUl>
-        <s.ChargeBtn onClick={props.onClickPrice}>충전하기</s.ChargeBtn>
-      </s.Wrapper>
-    </Container>
+        <s.ChargeBtn
+          color={props.isSelect ? "#111" : "#f5f5f5"}
+          fontColor={props.isSelect ? "#fff" : "#111"}
+          onClick={props.onClickPrice}
+          disabled={!props.isSelect}
+        >
+          충전하기
+        </s.ChargeBtn>
+      </s.Main>
+    </s.Wrapper>
   );
 }

@@ -17,6 +17,7 @@ import {
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import { IBoardDetailProps } from "./IBoardDetail.types";
+import { Modal } from "antd";
 
 export default function BoardDetail(props: IBoardDetailProps) {
   //
@@ -54,15 +55,20 @@ export default function BoardDetail(props: IBoardDetailProps) {
         },
         refetchQueries: [{ query: FETCH_BOARDS }],
       });
-      console.log("삭제완료");
-      router.push(`/PostList/p`);
+      Modal.success({
+        content: "게시물이 삭제되었습니다.",
+        onOk: () => location.replace(`/postlist`),
+      });
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      if (error instanceof Error)
+        Modal.error({
+          content: error.message,
+        });
     }
   };
 
   const MoveToListPageBtn = () => {
-    router.push(`/PostList/p/`); // 나중에 페이저번호 번수로 저장해서 바꿔야함 /p/아님
+    router.push(`/postlist`); // 나중에 페이저번호 번수로 저장해서 바꿔야함 /p/아님
   };
 
   const MoveToEditPageBtn = () => {

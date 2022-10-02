@@ -1,4 +1,4 @@
-import * as s from "../../../../styles/layout.styles";
+import * as s from "../layout.styles";
 
 export default function LayoutNavigation() {
   return <s.WrapperNav />;

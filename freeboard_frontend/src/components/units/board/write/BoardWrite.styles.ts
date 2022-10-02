@@ -34,6 +34,9 @@ export const WriterInput = styled.input`
   height: 40px;
   &::placeholder {
     color: gray;
+    @media (max-width: 767px) {
+      font-size: 0.7rem;
+    }
   }
 `;
 
@@ -47,33 +50,54 @@ export const WriterContentsTitle = styled.div``;
 export const WriterContentsInput = styled.input`
   width: 100%;
   height: 40px;
+  &::placeholder {
+    color: gray;
+    @media (max-width: 767px) {
+      font-size: 0.7rem;
+    }
+  }
 `;
 export const WriterContentsInput2 = styled.input`
   width: 100%;
   height: 400px;
+  @media (max-width: 767px) {
+    height: 200px;
+  }
+  &::placeholder {
+    color: gray;
+    @media (max-width: 767px) {
+      font-size: 0.7rem;
+    }
+  }
 `;
-export const WrapperPost = styled.div`
+export const AddressWrapper = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+`;
+export const FindPost = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: left;
 `;
-export const PostInput1 = styled.input`
-  width: 20%;
+export const PostInput = styled.input<{ width: string; align: string }>`
+  width: ${(props) => props.width};
   height: 40px;
-  margin-right: 20px;
-  text-align: center;
+  text-align: ${(props) => props.align};
+  margin-bottom: 10px;
 `;
 export const PostBtn = styled.button`
-  width: 10%;
+  width: 30%;
+  margin-left: 10px;
   height: 40px;
   background-color: black;
   color: white;
 `;
-export const PostInput2 = styled.input`
-  width: 32%;
-  height: 40px;
-  margin: 10px 0px;
-`;
+
 export const Photo = styled.div`
   width: 500px;
 
@@ -83,16 +107,21 @@ export const Photo = styled.div`
   margin-top: 30px;
 `;
 
-export const Select = styled.div`
+export const Select = styled.section`
   width: 90%;
+`;
+export const RatioWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SubmitBtn = styled.button`
   width: 150px;
-  height: 40px;
-  background-color: #bbd0ff;
+  height: 70px;
+  background-color: #111;
+  color: #fff;
+  font-weight: 700;
   border: none;
   margin-top: 100px;
-
   margin-bottom: 100px;
 `;

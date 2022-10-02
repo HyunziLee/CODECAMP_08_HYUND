@@ -1,24 +1,20 @@
-import {
-  UploadBtn,
-  UploadFileHidden,
-  UploadImg,
-} from "../../../../../styles/uploadImg.styles";
+import * as s from "./uploadImg.styles";
 
 export default function UploadImgUI(props) {
   return (
     <>
       {props.fileUrl ? (
-        <UploadImg
+        <s.UploadImg
           onClick={props.onClickUpload}
           src={`https://storage.googleapis.com/${props.fileUrl}`}
         />
       ) : (
-        <UploadBtn onClick={props.onClickUpload}>
+        <s.UploadBtn onClick={props.onClickUpload}>
           <>+</>
           <>Upload</>
-        </UploadBtn>
+        </s.UploadBtn>
       )}
-      <UploadFileHidden
+      <s.UploadFileHidden
         type="file"
         ref={props.fileRef}
         onChange={props.onChangeFile}

@@ -13,4 +13,5 @@ export interface IChargePointProps {
   onSelect: (index: number) => (event: any) => void;
   selectPrice: number;
   isClick: boolean[];
+  isSelect: boolean;
 }

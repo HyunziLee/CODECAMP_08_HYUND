@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
-import { MAIN_COLOR } from "../src/commons/stylesConst";
 
 export const WrapperFooter = styled.div`
   height: 300px;
-  background-color: #e3e4e6;
+  background-color: #f5f5f5;
 `;
 
 export const WrapperHeader = styled(Container)`
@@ -21,8 +20,13 @@ export const WrapperHeaderMenu = styled.div`
   align-items: center;
 `;
 export const HeaderMenuLogo = styled.div`
-  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    font-size: 0.7rem;
+  }
 `;
 export const HeaderMenus = styled.div`
   width: 50%;
@@ -33,11 +37,12 @@ export const HeaderMenus = styled.div`
 export const HeaderMenu = styled.div`
   width: 33%;
   text-align: center;
-  font-size: 15px;
-  margin: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+
   cursor: pointer;
   @media (max-width: 767px) {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -61,9 +66,14 @@ export const HeaderDetail = styled.div<{ Opacity: string }>`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: ${MAIN_COLOR};
+  background-color: #f9f9f9;
+  opacity: 0.9;
+
   z-index: 90;
   animation: ${(props) => props.Opacity} 0.5s linear;
+  @media (max-width: 767px) {
+    height: 150px;
+  }
 `;
 export const HeaderDetailLogo = styled.div`
   width: 10%;
@@ -84,6 +94,6 @@ export const Div = styled.div`
   text-align: center;
   cursor: pointer;
   @media (max-width: 767px) {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
   }
 `;

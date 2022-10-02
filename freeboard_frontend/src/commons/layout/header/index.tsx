@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import * as s from "../../../../styles/layout.styles";
+import * as s from "../layout.styles";
 import { keyframes } from "@emotion/react";
 import { useRecoilState } from "recoil";
 import { basketLength, userInfoState } from "../../store";
 import { useMutation } from "@apollo/client";
 import { LOGOUT_USER } from "../../../components/units/board/queries";
 import { IMutation } from "../../types/generated/types";
+import { Modal } from "antd";
 
 export default function LayoutHeader() {
   const [userInfo] = useRecoilState(userInfoState);
@@ -36,11 +37,19 @@ export default function LayoutHeader() {
       opacity: 0.5;
     }
     100% {
-      opacity: 1;
+      opacity: 0.9;
     }
   `;
-  const onClickLogout = () => {
-    logoutUser();
+  const onClickLogout = async () => {
+    try {
+      await logoutUser();
+      Modal.success({
+        content: "로그아웃 되었습니다.",
+        onOk: () => location.replace("/main"),
+      });
+    } catch (error) {
+      if (error instanceof Error) Modal.error({ content: error.message });
+    }
   };
 
   return (
@@ -51,13 +60,13 @@ export default function LayoutHeader() {
             onClickMenu("main");
           }}
         >
-          Home
+          Pick Pick
         </s.HeaderMenuLogo>
         <s.HeaderMenus>
-          <s.HeaderMenu onMouseOver={onHover}>Market</s.HeaderMenu>
-          <s.HeaderMenu onMouseOver={onHover}>Community</s.HeaderMenu>
+          <s.HeaderMenu onMouseOver={onHover}>중고마켓</s.HeaderMenu>
+          <s.HeaderMenu onMouseOver={onHover}>커뮤니티</s.HeaderMenu>
           <s.HeaderMenu onMouseOver={onHover}>
-            {userInfo ? `${userInfo.name}님` : "Account"}
+            {userInfo ? `${userInfo.name}님` : "내 계정"}
           </s.HeaderMenu>
         </s.HeaderMenus>
       </s.WrapperHeaderMenu>
@@ -78,7 +87,7 @@ export default function LayoutHeader() {
                   onClickMenu("CreateItem");
                 }}
               >
-                상품 등록하기
+                내 상품 등록
               </s.Div>
             </s.HeaderDetailMenu>
             <s.HeaderDetailMenu>
@@ -94,9 +103,10 @@ export default function LayoutHeader() {
                   onClickMenu("postform");
                 }}
               >
-                게시물 등록하기
+                게시물 등록
               </s.Div>
             </s.HeaderDetailMenu>
+            {console.log(userInfo)}
             {!userInfo ? (
               <s.HeaderDetailMenu>
                 <s.Div
@@ -125,7 +135,9 @@ export default function LayoutHeader() {
                 </s.Div>
                 <s.Div onClick={onClickLogout}>로그아웃</s.Div>
                 <s.Div>{`장바구니 ${basketTemp}`}</s.Div>
-                <s.Div>최근본 상품</s.Div>
+                <s.Div>
+                  {userInfo.userPoint.amount ? userInfo.userPoint.amount : 0}P
+                </s.Div>
               </s.HeaderDetailMenu>
             )}
           </s.HeaderDetailMenus>

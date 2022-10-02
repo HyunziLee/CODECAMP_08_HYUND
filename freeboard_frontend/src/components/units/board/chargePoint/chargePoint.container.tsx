@@ -12,6 +12,7 @@ import {
   IMutation,
   IMutationCreatePointTransactionOfLoadingArgs,
 } from "../../../../commons/types/generated/types";
+import { Modal } from "antd";
 
 declare const window: typeof globalThis & {
   IMP: any;
@@ -24,13 +25,15 @@ function ChargePointContainer() {
   >(CREATE_POINT_TRANSACTION_OF_LOADING);
   const [userInfo] = useRecoilState(userInfoState);
   // const client = useApolloClient();
-  const priceList = [500, 1000, 2000, 5000, 0, 0, 0, 0];
+  const priceList = [500, 1000, 2000, 5000, 10000, 30000, 50000, 100000];
   const [selectPrice, setSelectPrice] = useState(0);
+  const [isSelect, setIsSelect] = useState(false);
 
   const [isClick, setIsClick] = useState(Array(8).fill(false));
 
   const onSelect =
     (index: number) => (event: { target: { value: number } }) => {
+      setIsSelect(true);
       setIsClick(isClick.fill(false));
       const copy = [...isClick];
       copy[index] = true;
@@ -48,7 +51,7 @@ function ChargePointContainer() {
         pg: "nice",
         pay_method: "card",
         merchant_uid: `ORD20180131-00000${uuidv4()}`,
-        name: "노르웨이 회전 의자",
+        name: "포인트충전",
         amount: selectPrice,
         buyer_email: userInfo.email,
         buyer_name: userInfo.name,
@@ -60,11 +63,20 @@ function ChargePointContainer() {
       async (rsp: any) => {
         if (rsp.success) {
           const impUid = rsp.imp_uid;
-          await createPointTransactionOfLoading({
-            variables: {
-              impUid,
-            },
-          });
+          try {
+            await createPointTransactionOfLoading({
+              variables: {
+                impUid,
+              },
+            });
+
+            Modal.success({
+              content: "포인트 충전이 완료되었습니다.",
+              onOk: () => location.replace(`/myaccount`),
+            });
+          } catch (error) {
+            if (error instanceof Error) Modal.error({ content: error.message });
+          }
 
           // const resultUserInfo = await client.mutate({
           //   mutation: CREATE_POINT_TRANSACTION_OF_LOADING,
@@ -73,8 +85,7 @@ function ChargePointContainer() {
           //   },
           // });
         } else {
-          // 결제 실패 시 로직,
-          alert("결제에 실패했습니다. 다시 시도해주삼");
+          Modal.error({ content: "결제 실패했습니다. 다시 시도해주십시오." });
         }
       }
     );
@@ -104,6 +115,7 @@ function ChargePointContainer() {
         onSelect={onSelect}
         selectPrice={selectPrice}
         isClick={isClick}
+        isSelect={isSelect}
       />
     </>
   );

@@ -9,6 +9,7 @@ import { UPLOAD_FILE } from "../../../units/board/queries";
 import { CheckFileValidation } from "../../Function/checkFileValidation";
 import { UploadImgState } from "../../../../commons/store";
 import UploadImgUI from "./uploadImg.presenter";
+import { Modal } from "antd";
 
 export default function UploadImg(props) {
   const [uploadUrl, setUploadUrl] = useRecoilState(UploadImgState);
@@ -40,7 +41,7 @@ export default function UploadImg(props) {
         props.onChangeFileUrls(result.data?.uploadFile.url, props.index);
       }
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
   return (

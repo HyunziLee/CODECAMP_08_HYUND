@@ -30,14 +30,15 @@ export default function LoginContainer() {
     try {
       const result = await loginUser({
         variables: {
-          email: data.email,
-          password: data.password,
+          email: String(data.email),
+          password: String(data.password),
         },
       });
 
       if (!result) return;
 
       const accessToken = result.data?.loginUser.accessToken;
+
       const resultUserInfo = await client.query({
         query: FETCH_USER_LOGGED_IN,
         context: {
@@ -46,6 +47,7 @@ export default function LoginContainer() {
           },
         },
       });
+      console.log(resultUserInfo);
 
       const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
 

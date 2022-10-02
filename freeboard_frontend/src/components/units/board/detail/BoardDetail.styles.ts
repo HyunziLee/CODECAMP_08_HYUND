@@ -1,13 +1,15 @@
 import styled from "@emotion/styled";
+import { Container } from "@mui/material";
 import ReactPlayer from "react-player";
+import { BOX_SHADOW } from "../../../../commons/stylesConst";
 
-export const Wrapper = styled.div`
-  margin: auto;
-  width: 1200px;
+export const Wrapper = styled(Container)``;
+export const Main = styled.main`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: ${BOX_SHADOW};
 `;
 
 export const UserWrapper = styled.div`
@@ -17,11 +19,11 @@ export const UserWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 `;
 
 export const ProfileWrapper = styled.div`
-  width: 300px;
+  width: 60%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -32,30 +34,39 @@ export const ProfileImg = styled.div`
   height: 50px;
   border-radius: 50%;
   border: 1px solid #bdbdbd;
+  @media (max-width: 767px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 export const ProfileName = styled.div`
   margin-left: 10px;
 `;
 export const Name = styled.div`
   font-weight: 700;
-  font-size: 22px;
+  font-size: 1.5rem;
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Date = styled.div`
   color: #bdbdbd;
-  font-size: 15px;
+  font-size: 0.9rem;
+  @media (max-width: 767px) {
+    font-size: 0.6rem;
+  }
 `;
-export const ProfileIcon = styled.div`
-  width: 200px;
+export const IconWrapper = styled.div`
+  width: 20%;
   height: 100%;
-
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 `;
 
-export const ProfileIcon__Icon = styled.div`
+export const Icon = styled.div`
   width: 30px;
 
   margin-left: 20px;
@@ -70,8 +81,7 @@ export const ProfileIcon__Icon = styled.div`
 
 export const Title = styled.div`
   width: 90%;
-  margin: 40px 0px;
-
+  margin-bottom: 20px;
   font-size: 25px;
   font-weight: 700;
 `;
@@ -88,11 +98,14 @@ export const ImageArea = styled.img`
 export const Contents = styled.div`
   width: 90%;
   height: 500px;
-  background: skyblue;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+  background-color: yellow;
+  @media (max-width: 767px) {
+    height: 200px;
+  }
 `;
 
-export const LikeDislikeIcon = styled.div`
+export const LikeDislikeIconWrapper = styled.div`
   width: 40%;
 
   display: flex;
@@ -100,7 +113,7 @@ export const LikeDislikeIcon = styled.div`
   justify-content: center;
   margin-bottom: 100px;
 `;
-export const LikeDislikeIcon_icon = styled.div`
+export const LikeDislikeIcon = styled.div`
   width: 80px;
 
   margin-left: 15px;
@@ -122,20 +135,23 @@ export const LikeDislikeIcon_icon = styled.div`
   }
 `;
 export const FooterBtnWrapper = styled.div`
-  width: 1200px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin: auto;
+  justify-content: space-evenly;
+
   margin-top: 40px;
 `;
-export const FooterBtnWrapper__btn = styled.button`
+export const FooterBtn = styled.button`
   background-color: #fff;
-  margin-left: 20px;
-  width: 179px;
+  width: 20%;
   height: 45px;
   border: 1px solid #bdbdbd;
   cursor: pointer;
+
+  @media (max-width: 767px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const Youtube = styled(ReactPlayer)`

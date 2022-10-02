@@ -20,6 +20,7 @@ export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   margin-top: 40px;
   @media (max-width: 767px) {
     width: 100%;
@@ -34,8 +35,8 @@ export const ImageSmallWrapper = styled.section`
   flex-direction: column;
   width: 90%;
   height: 100px;
-  background-color: pink;
-  align-items: center;
+
+  justify-content: center;
   flex-wrap: wrap;
   overflow-y: scroll;
 `;

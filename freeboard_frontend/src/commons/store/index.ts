@@ -16,6 +16,9 @@ export const userInfoState = atom({
     createdAt: "",
     updatedAt: "",
     deletedAt: "",
+    userPoint: {
+      amount: "",
+    },
   },
 });
 

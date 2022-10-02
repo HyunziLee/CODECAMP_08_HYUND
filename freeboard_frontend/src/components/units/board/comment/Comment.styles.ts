@@ -1,89 +1,79 @@
 import styled from "@emotion/styled";
-import { Rate, Avatar } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import { Rate } from "antd";
+import { Container } from "@mui/material";
 
-export const Wrapper = styled.div`
-  margin: auto;
-  width: 1200px;
+export const Wrapper = styled(Container)``;
+export const Main = styled.main`
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 40px;
 `;
 
-export const Wrapper_write = styled.div`
+export const WriteWrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const Write_userInfo = styled.div`
+export const WriterInfo = styled.div`
   display: flex;
   flex-direction: row;
   margin: 20px 0px;
 `;
-export const UserInfo__writer = styled.input`
+export const Writer = styled.input`
   width: 150px;
   height: 40px;
   border: 1px solid #bdbdbd;
   margin-right: 20px;
 `;
-export const UserInfo__password = styled.input`
+export const Password = styled.input`
   width: 150px;
   height: 40px;
   border: 1px solid #bdbdbd;
 `;
-export const Comment__wrapper = styled.div`
+export const CommentWrapper = styled.div`
   width: 100%;
   height: 150px;
   display: flex;
   flex-direction: column;
   border: 1px solid #bdbdbd;
 `;
-export const Comment__write = styled.textarea`
+export const Textarea = styled.textarea`
   width: 100%;
   height: 70%;
   border: none;
   &::placeholder {
     color: #bdbdbd;
-    font-size: 16px;
+    font-size: 1rem;
+    @media (max-width: 767px) {
+      font-size: 0.7rem;
+    }
   }
 `;
-export const Comment__info = styled.div`
+export const WordInfo = styled.div`
   display: flex;
   flex-direction: row;
   height: 30%;
   align-content: center;
 `;
-export const Comment__info_length = styled.div`
+export const WordLength = styled.div`
   width: 90%;
   color: #bdbdbd;
   border-top: 1px solid #f2f2f2;
 `;
-export const Comment__info_btn = styled.div`
-  width: 10%;
+export const SubmitBtn = styled.div`
+  width: 20%;
   border: none;
   background-color: #111;
   color: #fff;
   text-align: center;
   cursor: pointer;
   line-height: 45px;
+  @media (max-width: 767px) {
+    font-size: 0.8rem;
+  }
 `;
-export const Wrapper_list = styled.div`
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 111px;
-  margin-top: 30px;
-  border-bottom: 1px solid #bdbdbd;
-  width: 100%;
-  justify-content: space-between;
-  background-color: yellow;
-`;
-export const User_wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
+
 export const ProfileImg = styled.div`
   margin-right: 10px;
 `;

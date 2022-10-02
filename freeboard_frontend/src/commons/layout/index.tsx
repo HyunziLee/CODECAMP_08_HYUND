@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import LayoutFooter from "./footer";
 import LayoutHeader from "./header";
-import LayoutSide from "./side";
+// import LayoutSide from "./side";
 
 // 특정페이지에서 안보이게 하는 방법
 const HIDDEN_HEADER_FOOTER_SIDE = ["/"];

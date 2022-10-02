@@ -40,9 +40,10 @@ export const QuestionButton = styled.button`
   width: 15%;
   height: 100px;
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 700;
   border: none;
-  background-color: #bbd0ff;
+  background-color: #111;
+  color: #fff;
   cursor: pointer;
   @media (max-width: 767px) {
     height: 50px;

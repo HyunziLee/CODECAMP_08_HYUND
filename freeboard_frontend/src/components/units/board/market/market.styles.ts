@@ -23,7 +23,6 @@ export const WrapperItems = styled.section`
   flex-direction: column;
   width: 30%;
   margin-bottom: 30px;
-  box-shadow: ${BOX_SHADOW};
   @media (max-width: 767px) {
     width: 48%;
   }

@@ -41,7 +41,10 @@ export default function SignUpContainer() {
           },
         },
       });
-      Modal.success({ content: "회원가입 되었습니다." });
+      Modal.success({
+        content: "회원가입 되었습니다.",
+        onOk: () => location.replace(`/login`),
+      });
       onClickMovetoPage(`/Login`);
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });

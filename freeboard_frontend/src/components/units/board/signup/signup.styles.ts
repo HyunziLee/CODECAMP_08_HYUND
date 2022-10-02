@@ -13,7 +13,6 @@ export const Main = styled.main`
 `;
 export const WrapperForm = styled.div`
   width: 50%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +26,6 @@ export const Title = styled.div`
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
-  margin: 40px auto;
 `;
 export const InfoWrapper = styled.div`
   width: 100%;

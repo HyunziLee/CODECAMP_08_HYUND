@@ -84,11 +84,16 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
             </s.ContentsDiv>
             {userInfo?.email !== props.data?.seller?.email ? (
               <s.ButtonWrapper width="100%">
-                <s.Button color="#bbd0ff" onClick={props.onClickBuying}>
+                <s.Button
+                  bgColor="#111"
+                  fontColor="#fff"
+                  onClick={props.onClickBuying}
+                >
                   구매하기
                 </s.Button>
                 <s.Button
-                  color="#e9ecef"
+                  bgColor="#f5f5f5"
+                  fontColor="#111"
                   onClick={() => {
                     const result = onClickBasket(props.data);
                     setBasketTemp(Number(result));

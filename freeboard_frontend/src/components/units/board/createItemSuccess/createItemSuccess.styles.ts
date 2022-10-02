@@ -119,10 +119,12 @@ export const ButtonWrapper = styled.div<{ width: string }>`
   }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<{ bgColor: string; fontColor: string }>`
   width: 45%;
   height: 60px;
-  background-color: ${(props) => props.color};
+  color: ${(props) => props.fontColor};
+  background-color: ${(props) => props.bgColor};
+  font-weight: 700;
   border: none;
   margin: 0 20px;
   cursor: pointer;

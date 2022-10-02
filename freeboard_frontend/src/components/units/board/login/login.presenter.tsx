@@ -55,15 +55,19 @@ export default function LoginUI(props: ILoginUIProps) {
               title="로그인"
               type="submit"
               isValid={props.formState.isValid}
-              color="#bbd0ff"
+              onClick={props.onClickLogin}
+              bgColor="#111"
+              fontColor="#fff"
               width="100%"
             />
           </form>
           <Button01
             title="회원가입"
             type="button"
-            onClick={onClickMovetoPage("/SignUp")}
-            color="#e9ecef"
+            onClick={onClickMovetoPage("/signup")}
+            isValid={props.formState.isValid}
+            bgColor="#f5f5f5"
+            fontColor="#111"
             width="90%"
           />
         </s.WrapperForm>

@@ -6,7 +6,7 @@ import { modalState } from "../../../../commons/store";
 import { useRecoilState } from "recoil";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-  const [modalOpen, setModalOpen] = useRecoilState(modalState);
+  const [modalOpen] = useRecoilState(modalState);
   return (
     <s.Wrapper>
       <s.Main>
@@ -56,33 +56,36 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </s.WriterContents>
         <s.WriterContents>
           <s.WriterContentsTitle> 주소</s.WriterContentsTitle>
-          <s.WrapperPost>
-            <s.PostInput1 placeholder="07250"></s.PostInput1>
-            <s.PostBtn onClick={props.onClickFindAddressModal}>
-              우편번호 검색
-            </s.PostBtn>
-            {
-              // isModal이 true 이면 모달창 보여줘 (isModal 초기 = fasle / onClickFindAddressModal누르면 !isModal임 )
-              modalOpen && (
-                <ModalContainer isModal={props.isModal} isNull={props.isNull} />
-              )
-            }
+          <s.AddressWrapper>
+            <s.FindPost>
+              <s.PostInput
+                placeholder="07250"
+                width="30%"
+                align="center"
+              ></s.PostInput>
+              <s.PostBtn onClick={props.onClickFindAddressModal}>
+                우편번호 검색
+              </s.PostBtn>
+            </s.FindPost>
+
+            {modalOpen && <ModalContainer />}
 
             {/* <DaumPostcodeEmbed onComplete={props.FindAddress} /> */}
-          </s.WrapperPost>
-          <s.PostInput2></s.PostInput2>
-          <s.PostInput2></s.PostInput2>
+            <s.PostInput width="100%" align="left"></s.PostInput>
+            <s.PostInput width="100%" align="left"></s.PostInput>
+          </s.AddressWrapper>
         </s.WriterContents>
         <s.Select>
           <s.WriterContentsTitle>메인 설정</s.WriterContentsTitle>
-          {props.isRatio === true ? (
-            <RatioContainer
-              InputFunction={props.InputFunction}
-              onChangeFileUrls={props.onChangeFileUrls}
-              fileUrls={props.fileUrls}
-            ></RatioContainer>
-          ) : (
-            ""
+
+          {props.isRatio && (
+            <s.RatioWrapper>
+              <RatioContainer
+                InputFunction={props.InputFunction}
+                onChangeFileUrls={props.onChangeFileUrls}
+                fileUrls={props.fileUrls}
+              ></RatioContainer>
+            </s.RatioWrapper>
           )}
         </s.Select>
         <s.SubmitBtn

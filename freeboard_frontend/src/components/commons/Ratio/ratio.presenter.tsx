@@ -3,8 +3,14 @@ import UrlInputContainer from "../InputUrl/urlInput.container";
 import UploadImg from "../upload/01/uploadImg.container";
 import { v4 as uuidv4 } from "uuid";
 import { IRatioUIProps } from "./ratio.types";
+import styled from "@emotion/styled";
 
 export default function RatioUI(props: IRatioUIProps) {
+  const UploadImgWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+  `;
+
   return (
     <>
       <Radio.Group onChange={props.onChange} value={props.value}>
@@ -14,7 +20,7 @@ export default function RatioUI(props: IRatioUIProps) {
       {props.value === 1 ? (
         <UrlInputContainer InputFunction={props.InputFunction} />
       ) : (
-        <>
+        <UploadImgWrapper>
           {props.fileUrls.map((el, index) => (
             <UploadImg
               key={uuidv4()}
@@ -23,7 +29,7 @@ export default function RatioUI(props: IRatioUIProps) {
               onChangeFileUrls={props.onChangeFileUrls}
             />
           ))}
-        </>
+        </UploadImgWrapper>
       )}
     </>
   );

@@ -114,7 +114,8 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                   title="상품 등록하기"
                   type="submit"
                   isValid={props.formState.isValid}
-                  color="#bbd0ff"
+                  bgColor="#111"
+                  fontColor="#fff"
                   width="20%"
                   onClick={""}
                 />
@@ -123,7 +124,8 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                   title="상품 수정하기"
                   type="submit"
                   isValid={props.formState.isValid}
-                  color="#bbd0ff"
+                  bgColor="#111"
+                  fontColor="#fff"
                   width="20%"
                   onClick={""}
                 />

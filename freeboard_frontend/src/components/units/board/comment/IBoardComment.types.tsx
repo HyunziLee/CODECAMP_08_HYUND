@@ -12,14 +12,6 @@ export interface ICommentUIProps {
   rating: number;
   contents: string;
 }
-
-// export interface IModalContainerProps {
-//   isNull: boolean;
-//   isModal: boolean;
-//   isEditClicked: boolean;
-//   setIsEditClicked: React.Dispatch<React.SetStateAction<boolean>>;
-// }
-
 export interface ICommentEditProps {
   commentInputFunc: {
     writer: (e: ChangeEvent<HTMLInputElement>) => void;
