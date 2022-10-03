@@ -91,8 +91,6 @@ export default function BoardDetail(props: IBoardDetailProps) {
         },
       ],
     });
-    console.log(data?.fetchBoard.likeCount);
-    console.log(router.query.name);
   };
   const dislikeBtn = () => {
     if (typeof router.query.name !== "string") return;
@@ -110,8 +108,6 @@ export default function BoardDetail(props: IBoardDetailProps) {
       ],
     });
   };
-
-  console.log(data?.fetchBoard);
 
   return (
     <>

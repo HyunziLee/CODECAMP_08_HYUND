@@ -51,7 +51,6 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
           >
             <s.InputDiv>
               <s.InputH3>상품명</s.InputH3>
-              {console.log(props.data?.name)}
               <Input02
                 type="text"
                 register={props.register}
@@ -68,7 +67,7 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                 type="text"
                 register={props.register}
                 name="price"
-                defaultValue={isEdit ? props.data?.price : ""}
+                defaultValue={isEdit ? props.data?.price : 0}
                 width="100%"
               />
               <Warning errormsg={props.formState.errors.price?.message} />
@@ -89,7 +88,6 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
 
             <s.InputDiv>
               <s.InputH3>주소</s.InputH3>
-
               <KakaoMapPage />
             </s.InputDiv>
             <s.InputDiv>
@@ -117,7 +115,7 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                   bgColor="#111"
                   fontColor="#fff"
                   width="20%"
-                  onClick={""}
+                  onClick={props.onClickCreateItem}
                 />
               ) : (
                 <Button01
@@ -127,7 +125,7 @@ export default function CreateItemUI(props: ICreateItemUIProps) {
                   bgColor="#111"
                   fontColor="#fff"
                   width="20%"
-                  onClick={""}
+                  onClick={props.onClickUpdate}
                 />
               )}
             </s.SubmitBtnWrapper>

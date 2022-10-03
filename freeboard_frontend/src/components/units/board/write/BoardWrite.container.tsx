@@ -34,12 +34,6 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
-  // const [addressTotal, setAddressTotal] = useState({
-  //   zipcode: "",
-  //   address: "",
-  //   addressDetail: "",
-  // });
-
   const [writerMsg, setWriterMsg] = useState("");
   const [pwdMsg, setPwdMsg] = useState("");
   const [titleMsg, setTitleMsg] = useState("");
@@ -168,23 +162,21 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
 
   return (
-    <>
-      <BoardWriteUI
-        InputFunction={InputFunction}
-        SignupChk={SignupChk}
-        onClickUpdateBtn={onClickUpdateBtn}
-        onClickFindAddressModal={onClickFindAddressModal}
-        writerMsg={writerMsg}
-        pwdMsg={pwdMsg}
-        titleMsg={titleMsg}
-        contentsMsg={contentsMsg}
-        isRatio={isRatio}
-        isModal={isModal}
-        btnState={props.btnState}
-        data={props.data}
-        onChangeFileUrls={onChangeFileUrls}
-        fileUrls={fileUrls}
-      />
-    </>
+    <BoardWriteUI
+      InputFunction={InputFunction}
+      SignupChk={SignupChk}
+      onClickUpdateBtn={onClickUpdateBtn}
+      onClickFindAddressModal={onClickFindAddressModal}
+      writerMsg={writerMsg}
+      pwdMsg={pwdMsg}
+      titleMsg={titleMsg}
+      contentsMsg={contentsMsg}
+      isRatio={isRatio}
+      isModal={isModal}
+      btnState={props.btnState}
+      data={props.data}
+      onChangeFileUrls={onChangeFileUrls}
+      fileUrls={fileUrls}
+    />
   );
 }

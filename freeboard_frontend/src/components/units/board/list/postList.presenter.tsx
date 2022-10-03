@@ -100,10 +100,6 @@ export default function PostListUI(props: IPostListProps) {
           ) : (
             ""
           )}
-
-          {/* <s.SubmitBtn onClick={props.MoveToWritePageBtn}>
-            <s.SubmitBtnText>게시물등록하기</s.SubmitBtnText>
-          </s.SubmitBtn> */}
         </s.Footer>
       </s.Main>
     </s.Wrapper>

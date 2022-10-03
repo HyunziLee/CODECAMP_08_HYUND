@@ -99,7 +99,7 @@ export const Contents = styled.div`
   width: 90%;
   height: 500px;
   margin-bottom: 50px;
-  background-color: yellow;
+
   @media (max-width: 767px) {
     height: 200px;
   }

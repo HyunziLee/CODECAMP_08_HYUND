@@ -46,6 +46,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
               )}
             </s.ImageSmallWrapper>
           </s.ImageWrapper>
+          {console.log(props.data)}
 
           <s.ContentsWrapper>
             <s.ContentsDiv>
@@ -59,16 +60,17 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
 
             <s.ContentsDiv>
               <s.TitleH4>주소</s.TitleH4>
+              <s.ContentsH3>{`${props.data?.useditemAddress?.address} ${props.data?.useditemAddress?.addressDetail}`}</s.ContentsH3>
 
               {/* <KakaoMapPage /> */}
             </s.ContentsDiv>
             <s.ContentsDiv>
               <s.TitleH4>상품요약</s.TitleH4>
-              {props.data?.remarks ? (
-                <s.ContentsH3>{props.data?.remarks}</s.ContentsH3>
-              ) : (
-                <s.ContentsH3>등록된 상품 설명 요약이 없습니다.</s.ContentsH3>
-              )}
+              <s.ContentsH3>
+                {props.data?.remarks
+                  ? props.data?.remarks
+                  : "등록된 상품 설명 요약이 없습니다."}
+              </s.ContentsH3>
             </s.ContentsDiv>
             <s.ContentsDiv>
               <s.TitleH4>태그</s.TitleH4>

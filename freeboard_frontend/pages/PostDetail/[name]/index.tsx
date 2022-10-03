@@ -3,7 +3,7 @@ import BoardDetail from "../../../src/components/units/board/detail/BoardDetail.
 export default function PostDetailPage() {
   return (
     <>
-      <BoardDetail adminState={false}></BoardDetail>
+      <BoardDetail></BoardDetail>
       <CommentContainer />
     </>
   );

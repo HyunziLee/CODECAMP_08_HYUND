@@ -10,7 +10,7 @@ import CreateItemContainer from "../../../src/components/units/board/createItem/
 import { FETCH_USED_ITEM } from "../../../src/components/units/board/queries";
 
 export default function CreateItemEditPage() {
-  const [isEdit, setIsEdit] = useRecoilState(isEditState);
+  const [isEdit, setIsEdit] = useRecoilState(isEditState); // eslint-disable-line no-unused-vars
   const router = useRouter();
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
@@ -20,7 +20,6 @@ export default function CreateItemEditPage() {
       useditemId: String(router.query.id),
     },
   });
-  console.log(data);
   setIsEdit(true);
   return <CreateItemContainer data={data?.fetchUseditem} />;
 }

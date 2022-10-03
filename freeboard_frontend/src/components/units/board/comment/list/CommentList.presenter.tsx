@@ -12,7 +12,7 @@ import { ICommentScrollProps } from "../IBoardComment.types";
 export default function CommentScroll(props: ICommentScrollProps) {
   const [password, setPassword] = useState("");
 
-  const creatDate = getDate(props.el.updatedAt);
+  const createDate = getDate(props.el.updatedAt);
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function CommentScroll(props: ICommentScrollProps) {
               <s.FetchRate value={props.el.rating} disabled></s.FetchRate>
             </s.FetchData>
             <s.FetchComment>{props.el.contents}</s.FetchComment>
-            <s.FetchCreateAt>{creatDate}</s.FetchCreateAt>
+            <s.FetchCreateAt>{createDate}</s.FetchCreateAt>
           </s.CommentFetch>
         </s.UserWrapper>
         <s.DeleteBtn>
@@ -38,8 +38,6 @@ export default function CommentScroll(props: ICommentScrollProps) {
             commentInputFunc={props.commentInputFunc}
             contents={props.contents}
           ></PopoverPage>
-          {/* <s.EditBtn onClick={isEditBtn}>수정하기</s.EditBtn> */}
-          {/* <s.CommentDelete>x</s.CommentDelete> */}
         </s.DeleteBtn>
       </s.WrapperList>
     </>

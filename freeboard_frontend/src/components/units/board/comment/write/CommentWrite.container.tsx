@@ -39,10 +39,6 @@ export default function CommentContainer() {
 
   const onClickCommentBtn = async () => {
     // 입력창이 하나라도 빈칸인 경우, 댓글이 등록되지 않으며, 모달창 발생
-    console.log(writer);
-    console.log(password);
-    console.log(contents);
-    console.log(rating);
 
     if (!writer || !password || !contents) {
       Modal.error({ content: "모든 항목을 입력하십시오." });

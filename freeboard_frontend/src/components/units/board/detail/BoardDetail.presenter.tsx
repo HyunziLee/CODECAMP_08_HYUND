@@ -1,9 +1,10 @@
 import * as s from "./BoardDetail.styles";
 
 import { IBoardDetailUIProps } from "./IBoardDetail.types";
-import { Link, LocationOn, ThumbDown, ThumbUp } from "@mui/icons-material";
+import { LocationOn, ThumbDown, ThumbUp } from "@mui/icons-material";
 import { v4 as uuidv4 } from "uuid";
 import { getDate } from "../../../commons/Function/getDate";
+import { Tooltip } from "antd";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
@@ -21,10 +22,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           </s.ProfileWrapper>
           <s.IconWrapper>
             <s.Icon>
-              <Link />
-            </s.Icon>
-            <s.Icon>
-              <LocationOn />
+              <Tooltip
+                placement="bottomRight"
+                title={props.data?.boardAddress?.address}
+              >
+                <LocationOn />
+              </Tooltip>
             </s.Icon>
           </s.IconWrapper>
         </s.UserWrapper>

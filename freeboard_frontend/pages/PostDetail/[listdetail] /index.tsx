@@ -20,12 +20,9 @@ export default function ListDetailPage() {
   );
 
   return (
-    //해당글 작성자 이면 수정하기 버튼 활성화 , 걍 방문자 이면 리스트 눌렀을 때, 댓글 화면
+    // 해당글 작성자 이면 수정하기 버튼 활성화 , 걍 방문자 이면 리스트 눌렀을 때, 댓글 화면
     <>
-      <BoardDetail
-        // adminState={true} //여기는 true, false에 따라 안바뀜
-        data={data}
-      ></BoardDetail>
+      <BoardDetail data={data}></BoardDetail>
     </>
   );
 }

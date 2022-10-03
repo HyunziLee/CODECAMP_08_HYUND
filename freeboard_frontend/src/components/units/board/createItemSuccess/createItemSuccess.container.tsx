@@ -52,8 +52,10 @@ export default function CreateItemSuccess() {
         },
         refetchQueries: [{ query: FETCH_USED_ITEMS }],
       });
-      Modal.success({ content: "구매 완료했습니다." });
-      router.push("/market");
+      Modal.success({
+        content: "구매 완료했습니다.",
+        onOk: () => location.replace("/market"),
+      });
     } catch (error) {
       if (error instanceof Error)
         Modal.error({ content: "로그인 후 이용가능합니다." });
@@ -74,13 +76,15 @@ export default function CreateItemSuccess() {
           },
         ],
       });
-      Modal.success({ content: "삭제 완료했습니다." });
+      Modal.success({
+        content: "삭제 완료했습니다.",
+        onOk: () => location.replace("/market"),
+      });
     } catch (error) {
       if (error instanceof Error) {
         Modal.error({ content: error.message });
       }
     }
-    router.push("/market");
   };
 
   return (

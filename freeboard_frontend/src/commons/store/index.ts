@@ -41,7 +41,37 @@ export const TagArr = atom({
 });
 export const KakaoMapAddress = atom({
   key: "KakaoMapAddress",
-  default: [],
+  default: {
+    road_address: {
+      address_name: "",
+      building_name: "",
+      main_building_no: "",
+      region_1depth_name: "",
+      region_2depth_name: "",
+      region_3depth_name: "",
+      road_name: "",
+      sub_building_no: "",
+      underground_yn: "",
+      zone_no: "",
+    },
+    address: {
+      address_name: "",
+      main_address_no: "",
+      mountain_yn: "",
+      region_1depth_name: "",
+      region_2depth_name: "",
+      region_3depth_name: "",
+      sub_address_no: "",
+      zip_code: "",
+    },
+  },
+});
+export const markerValue = atom({
+  key: "markerValue",
+  default: {
+    La: 0,
+    Ma: 0,
+  },
 });
 export const UploadImgState = atom({
   key: "UploadImg",

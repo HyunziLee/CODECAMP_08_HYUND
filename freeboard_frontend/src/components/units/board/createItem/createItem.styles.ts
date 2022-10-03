@@ -29,6 +29,7 @@ export const ImageWrapper = styled.div`
 export const ImageBig = styled.img`
   width: 90%;
   height: 300px;
+  object-fit: cover;
 `;
 export const ImageSmallWrapper = styled.section`
   display: flex;

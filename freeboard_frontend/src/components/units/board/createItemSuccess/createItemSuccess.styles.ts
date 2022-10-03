@@ -38,6 +38,7 @@ export const ImageBigWrapper = styled.div`
 export const ImageBig = styled.img`
   width: 100%;
   height: 100%;
+  object-fit: cover;
 `;
 export const ImageSmallWrapper = styled.section`
   display: flex;
@@ -45,7 +46,7 @@ export const ImageSmallWrapper = styled.section`
   width: 90%;
   height: 100px;
 
-  align-items: center;
+  align-items: left;
   flex-wrap: wrap;
   overflow-y: scroll;
 `;

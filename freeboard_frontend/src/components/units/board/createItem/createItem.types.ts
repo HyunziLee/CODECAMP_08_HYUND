@@ -19,7 +19,7 @@ export interface ICreateItemUIProps {
   onChangeContents: (value: string) => void;
   register: UseFormRegister<IUseForm>;
   handleSubmit: UseFormHandleSubmit<IUseForm>;
-  onClickCreateItem: (data: IUseForm) => Promise<void>;
+  onClickCreateItem: (data: IUseForm) => void;
   formState: FormState<IUseForm>;
   fileUrls: string[];
   onChangeFileUrls: (fileUrl: string, index: number) => void;

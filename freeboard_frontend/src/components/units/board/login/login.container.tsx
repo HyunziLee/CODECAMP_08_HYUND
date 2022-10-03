@@ -47,7 +47,6 @@ export default function LoginContainer() {
           },
         },
       });
-      console.log(resultUserInfo);
 
       const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
 

@@ -10,7 +10,11 @@ import {
   IMutationUpdateUseditemArgs,
 } from "../../../../commons/types/generated/types";
 
-import { KakaoMapAddress, TagArr } from "../../../../commons/store";
+import {
+  KakaoMapAddress,
+  markerValue,
+  TagArr,
+} from "../../../../commons/store";
 import { schema } from "../../../commons/yup/createItem";
 import {
   CREATE_USED_ITEM,
@@ -19,10 +23,12 @@ import {
 } from "../queries";
 import CreateItemUI from "./createItem.presenter";
 import { ICreateItemProps, IUseForm } from "./createItem.types";
+import { Modal } from "antd";
 
 export default function CreateItemContainer(props: ICreateItemProps) {
   const [tags] = useRecoilState(TagArr);
   const [kakaoAddress] = useRecoilState(KakaoMapAddress);
+  const [marker, setMarker] = useRecoilState(markerValue);
   const [fileUrls, setFileUrls] = useState(["", "", "", "", ""]);
   const router = useRouter();
   const [createUseditem] = useMutation<
@@ -52,33 +58,37 @@ export default function CreateItemContainer(props: ICreateItemProps) {
   };
 
   const onClickCreateItem = async (data: IUseForm) => {
-    console.log(kakaoAddress);
-
+    if (!data) return;
     try {
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
-            name: data.name,
-            remarks: data.remarks,
-            price: Number(data.price),
+            name: String(data.name),
+            remarks: String(data.remarks),
+            price: data.price,
             tags,
             images: fileUrls,
-            contents: data.contents,
-            // useditemAddress: {
-            //   zipcode: kakaoAddress.address?.main_address_no,
-            //   address: kakaoAddress.address?.address_name,
-            //   addressDetail:
-            //     kakaoAddress.road_address?.address_name.building_name,
-            //   lat: la,
-            //   lng: ma,
-            // },
+            contents: String(data.contents),
+            useditemAddress: {
+              zipcode: kakaoAddress.road_address
+                ? kakaoAddress.road_address.zone_no
+                : "",
+              address: kakaoAddress.road_address
+                ? kakaoAddress.road_address.address_name
+                : kakaoAddress.address.address_name,
+              addressDetail: kakaoAddress.road_address
+                ? kakaoAddress.road_address.building_name
+                : kakaoAddress.address.main_address_no,
+              lat: marker.La,
+              lng: marker.Ma,
+            },
           },
         },
       });
-
-      router.push(`/CreateItemSuccess/${result.data?.createUseditem._id}`);
+      if (result)
+        router.push(`/CreateItemSuccess/${result.data?.createUseditem._id}`);
     } catch (error) {
-      if (error instanceof Error) console.log(error.message);
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
@@ -120,7 +130,6 @@ export default function CreateItemContainer(props: ICreateItemProps) {
       }
     }
   };
-  console.log(props.data);
 
   return (
     <CreateItemUI
