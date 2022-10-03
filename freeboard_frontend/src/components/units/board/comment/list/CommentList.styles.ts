@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
+import { Container } from "@mui/system";
 import { Rate } from "antd";
 
-export const WrapperList = styled.div`
-  width: 1200px;
+export const Wrapper = styled(Container)``;
 
+export const Main = styled.main`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -34,16 +36,25 @@ export const FetchData = styled.div`
 export const FetchName = styled.div`
   margin-right: 10px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 0.9rem;
+  @media (max-width: 767px) {
+    font-size: 0.6rem;
+  }
 `;
 export const FetchRate = styled(Rate)``;
 export const FetchComment = styled.div`
-  font-size: 16px;
+  font-size: 0.9rem;
   color: #4f4f4f;
+  @media (max-width: 767px) {
+    font-size: 0.6rem;
+  }
 `;
 export const FetchCreateAt = styled.div`
-  font-size: 12px;
+  font-size: 0.7rem;
   color: #bdbdbd;
+  @media (max-width: 767px) {
+    font-size: 0.5rem;
+  }
 `;
 export const DeleteBtn = styled.div`
   display: flex;
@@ -52,12 +63,12 @@ export const DeleteBtn = styled.div`
   align-items: baseline;
 `;
 export const CommentDelete = styled.span`
-  font-size: 16px;
+  font-size: 1rem;
   margin-left: 20px;
   cursor: pointer;
 `;
 export const EditBtn = styled.span`
-  font-size: 14px;
+  font-size: 0.9rem;
 
   cursor: pointer;
 `;

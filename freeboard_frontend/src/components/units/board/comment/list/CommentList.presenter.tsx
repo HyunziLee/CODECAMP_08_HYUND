@@ -15,8 +15,8 @@ export default function CommentScroll(props: ICommentScrollProps) {
   const createDate = getDate(props.el.updatedAt);
 
   return (
-    <>
-      <s.WrapperList>
+    <s.Wrapper>
+      <s.Main>
         <s.UserWrapper>
           <s.ProfileImg>
             <Avatar size={44} icon={<UserOutlined />} />
@@ -39,8 +39,8 @@ export default function CommentScroll(props: ICommentScrollProps) {
             contents={props.contents}
           ></PopoverPage>
         </s.DeleteBtn>
-      </s.WrapperList>
-    </>
+      </s.Main>
+    </s.Wrapper>
   );
 }
 
