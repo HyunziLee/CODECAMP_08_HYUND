@@ -17,7 +17,6 @@ export default function CommentEdit(props: ICommentEditProps) {
     IQueryFetchBoardCommentsArgs
   >(FETCH_BOARD_COMMENTS, {
     variables: {
-      // router.query.변수명=> 하위 폴더 [변수명]
       boardId: String(router.query.name),
     },
   });
@@ -50,8 +49,6 @@ export default function CommentEdit(props: ICommentEditProps) {
         hasMore={true}
         useWindow={false}
       >
-        {/* {console.log(console.log(data?.fetchBoardComments))} */}
-
         {data?.fetchBoardComments.map((el) => (
           <CommentScroll
             key={el._id}

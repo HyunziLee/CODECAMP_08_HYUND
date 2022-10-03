@@ -1,13 +1,17 @@
-import { Input } from "antd";
-import React, { useState } from "react";
+import React, { ChangeEvent } from "react";
 import { YoutubeInput } from "./urlInput.styles";
 
-export default function UrlInputContainer(props) {
-  // const [youtubeInput, setYoutubeInput] = useState("");
-  // const onChangeInput = (e) => {
-  //   setYoutubeInput(e.target.value);
-  // };
-  // console.log(youtubeInput);
+interface IUrlInputContainerProps {
+  InputFunction: {
+    writer: (e: ChangeEvent<HTMLInputElement>) => void;
+    password: (e: ChangeEvent<HTMLInputElement>) => void;
+    title: (e: ChangeEvent<HTMLInputElement>) => void;
+    contents: (e: ChangeEvent<HTMLInputElement>) => void;
+    youtubeUrl: (e: ChangeEvent<HTMLInputElement>) => void;
+  };
+}
+
+export default function UrlInputContainer(props: IUrlInputContainerProps) {
   return (
     <YoutubeInput
       placeholder="URL 입력"

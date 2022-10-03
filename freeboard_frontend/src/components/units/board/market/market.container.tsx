@@ -99,17 +99,16 @@ export default function MarketContainer() {
             hasMore={true}
             useWindow={false}
           >
-            {data?.fetchUseditems
-              ? data?.fetchUseditems.map((el, index) => (
-                  <MarketUI
-                    key={uuidv4()}
-                    item={el}
-                    onClickDetail={onClickDetail}
-                    onClickPick={onClickPick}
-                    IPick={IPick}
-                  />
-                ))
-              : ""}
+            {data?.fetchUseditems &&
+              data?.fetchUseditems.map((el, index) => (
+                <MarketUI
+                  key={uuidv4()}
+                  item={el}
+                  onClickDetail={onClickDetail}
+                  onClickPick={onClickPick}
+                  IPick={IPick}
+                />
+              ))}
           </s.Scroll>
         </s.WrapperScroll>
       </s.Main>

@@ -25,7 +25,6 @@ export const ImageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 40px;
-  background-color: aliceblue;
   @media (max-width: 767px) {
     width: 100%;
   }
@@ -45,7 +44,6 @@ export const ImageSmallWrapper = styled.section`
   flex-direction: column;
   width: 90%;
   height: 100px;
-
   align-items: left;
   flex-wrap: wrap;
   overflow-y: scroll;
@@ -99,7 +97,6 @@ export const DetailImg = styled.img`
   width: 60%;
   height: 500px;
   margin-top: 10px;
-  background-color: aliceblue;
   object-fit: cover;
   @media (max-width: 767px) {
     width: 100%;

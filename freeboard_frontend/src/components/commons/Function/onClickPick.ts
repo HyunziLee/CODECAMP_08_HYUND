@@ -1,12 +1,7 @@
-import { useMutation } from "@apollo/client";
 import { GraphQLClient } from "graphql-request";
-import {
-  FETCH_USED_ITEM,
-  TOGGLE_USED_ITEM_PICK,
-} from "../../units/board/queries";
+import { TOGGLE_USED_ITEM_PICK } from "../../units/board/queries";
 
-export const onClickPick = async (parm) => {
-  console.log(parm);
+export const onClickPick = async (useditemId: string) => {
   try {
     const graphQlClient = new GraphQLClient(
       "https://backend08.codebootcamp.co.kr/graphql",

@@ -7,7 +7,6 @@ import {
 export interface FormValue {
   email: string;
   password: string;
-
   name: string;
 }
 

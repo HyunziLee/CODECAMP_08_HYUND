@@ -9,14 +9,12 @@ export default function RatioContainer(props: IRatioProps) {
     setValue(e.target.value);
   };
   return (
-    <>
-      <RatioUI
-        value={value}
-        onChange={onChange}
-        InputFunction={props.InputFunction}
-        onChangeFileUrls={props.onChangeFileUrls}
-        fileUrls={props.fileUrls}
-      ></RatioUI>
-    </>
+    <RatioUI
+      value={value}
+      onChange={onChange}
+      InputFunction={props.InputFunction}
+      onChangeFileUrls={props.onChangeFileUrls}
+      fileUrls={props.fileUrls}
+    />
   );
 }

@@ -57,38 +57,6 @@ export default function SignUpUI(props: ISignupProps) {
               </s.InputWrapper>
             </s.InfoWrapper>
 
-            {/* <s.Info_division>
-              <s.Info_title>비밀번호 확인</s.Info_title>
-              <InfoInput />
-            </s.Info_division>
-
-            <s.Info_division>
-              <s.Info_title>휴대폰</s.Info_title>
-              <s.Info_phone>
-                <s.Wrapper_phone>
-                  <s.Info_phone_number />
-                  <s.Info_phone_number />
-                  <s.Info_phone_number />
-                  <Button02 title="인증번호 받기" />
-                </s.Wrapper_phone>
-                <s.Info_phone_certification>
-                  <s.Certification_input />
-                  <Button02 title="확인" />
-                </s.Info_phone_certification>
-              </s.Info_phone>
-            </s.Info_division>
-            <s.Info_division>
-              <s.Info_title>주소</s.Info_title>
-              <s.Info_address>
-                <s.Info_address_find>
-                  <s.Info_address_find_title />
-                  <Button02 title="주소검색" />
-                </s.Info_address_find>
-                <s.Info_address_input />
-                <s.Info_address_input />
-              </s.Info_address>
-            </s.Info_division> */}
-
             <Button01
               title="회원가입"
               type="submit"
@@ -101,7 +69,6 @@ export default function SignUpUI(props: ISignupProps) {
           </form>
         </s.WrapperForm>
 
-        <s.Extra_info></s.Extra_info>
         <s.ServiceCheck></s.ServiceCheck>
       </s.Main>
     </s.Wrapper>

@@ -8,7 +8,7 @@ import {
 
 export const withAuth = (Component) => (props) => {
   const router = useRouter();
-  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [userInfo] = useRecoilState(userInfoState);
 
   const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
@@ -25,7 +25,7 @@ export const withAuth = (Component) => (props) => {
       aaa.toPromise().then((newAccessToken) => {
         if (!newAccessToken) {
           alert("로그인을 먼저 해주세요");
-          router.push("/Login");
+          router.push("/login");
         }
       });
     }

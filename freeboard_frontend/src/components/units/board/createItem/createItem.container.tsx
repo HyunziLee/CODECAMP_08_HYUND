@@ -28,7 +28,7 @@ import { Modal } from "antd";
 export default function CreateItemContainer(props: ICreateItemProps) {
   const [tags] = useRecoilState(TagArr);
   const [kakaoAddress] = useRecoilState(KakaoMapAddress);
-  const [marker, setMarker] = useRecoilState(markerValue);
+  const [marker] = useRecoilState(markerValue);
   const [fileUrls, setFileUrls] = useState(["", "", "", "", ""]);
   const router = useRouter();
   const [createUseditem] = useMutation<
@@ -58,7 +58,7 @@ export default function CreateItemContainer(props: ICreateItemProps) {
   };
 
   const onClickCreateItem = async (data: IUseForm) => {
-    if (!data) return;
+    if (!data.name || !data.remarks || !data.price || !data.contents) return;
     try {
       const result = await createUseditem({
         variables: {
@@ -86,13 +86,20 @@ export default function CreateItemContainer(props: ICreateItemProps) {
         },
       });
       if (result)
-        router.push(`/CreateItemSuccess/${result.data?.createUseditem._id}`);
+        Modal.success({
+          content: "상품이 등록되었습니다.",
+          onOk: () =>
+            router.push(
+              `/CreateItemSuccess/${result.data?.createUseditem._id}`
+            ),
+        });
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 
   const onClickUpdate = async (data: IUseForm) => {
+    if (!data.name || !data.remarks || !data.price || !data.contents) return;
     try {
       const result = await updateUseditem({
         variables: {
@@ -103,14 +110,19 @@ export default function CreateItemContainer(props: ICreateItemProps) {
             tags,
             images: fileUrls,
             contents: data.contents,
-            // useditemAddress: {
-            //   zipcode: kakaoAddress.road_address?.zone_no,
-            //   address: kakaoAddress.road_address?.address_name,
-            //   addressDetail:
-            //     kakaoAddress.road_address?.address_name.building_name,
-            //   lat: la,
-            //   lng: ma,
-            // },
+            useditemAddress: {
+              zipcode: kakaoAddress.road_address
+                ? kakaoAddress.road_address.zone_no
+                : "",
+              address: kakaoAddress.road_address
+                ? kakaoAddress.road_address.address_name
+                : kakaoAddress.address.address_name,
+              addressDetail: kakaoAddress.road_address
+                ? kakaoAddress.road_address.building_name
+                : kakaoAddress.address.main_address_no,
+              lat: marker.La,
+              lng: marker.Ma,
+            },
           },
 
           useditemId: String(router.query.id),
@@ -123,11 +135,16 @@ export default function CreateItemContainer(props: ICreateItemProps) {
           },
         ],
       });
-      router.push(`/CreateItemSuccess/${result.data?.updateUseditem._id}`);
+      if (result)
+        Modal.success({
+          content: "상품이 수정되었습니다.",
+          onOk: () =>
+            router.push(
+              `/CreateItemSuccess/${result.data?.updateUseditem._id}`
+            ),
+        });
     } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-      }
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 

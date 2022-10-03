@@ -84,7 +84,7 @@ export default function PostListUI(props: IPostListProps) {
         )}
 
         <s.Footer>
-          {!props.keyword ? (
+          {!props.keyword && (
             <ListPaginationUI
               onClickRefetch={props.onClickRefetch}
               onClickPrev={props.onClickPrev}
@@ -97,8 +97,6 @@ export default function PostListUI(props: IPostListProps) {
               isLastPage={props.isLastPage}
               isClicked={props.isClicked}
             />
-          ) : (
-            ""
           )}
         </s.Footer>
       </s.Main>

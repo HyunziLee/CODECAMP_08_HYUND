@@ -6,7 +6,6 @@ import { useRecoilState } from "recoil";
 import { TagArr } from "../../../commons/store";
 
 export default function Tags() {
-  // const [tags, setTags] =  useState<string[]>(["#태그를 입력하세요"]);
   const [tags, setTags] = useRecoilState(TagArr);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");

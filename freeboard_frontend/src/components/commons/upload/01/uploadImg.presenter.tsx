@@ -1,6 +1,7 @@
 import * as s from "./uploadImg.styles";
+import { IUploadImgUIProps } from "./uploadImg.types";
 
-export default function UploadImgUI(props) {
+export default function UploadImgUI(props: IUploadImgUIProps) {
   return (
     <>
       {props.fileUrl ? (

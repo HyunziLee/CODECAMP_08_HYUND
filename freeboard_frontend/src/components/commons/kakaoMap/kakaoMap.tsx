@@ -6,8 +6,8 @@ declare const window: typeof globalThis & {
   kakao: any;
 };
 export default function KakaoMapPage() {
-  const [mapAddress, setMapAddress] = useRecoilState(KakaoMapAddress);
-  const [marker, setMarker] = useRecoilState(markerValue);
+  const [mapAddress, setMapAddress] = useRecoilState(KakaoMapAddress); // eslint-disable-line no-unused-vars
+  const [marker, setMarker] = useRecoilState(markerValue); // eslint-disable-line no-unused-vars
   useEffect(() => {
     const script = document.createElement("script"); // <script></script>
     script.src =
@@ -39,12 +39,12 @@ export default function KakaoMapPage() {
         window.kakao.maps.event.addListener(
           map,
           "click",
-          function (mouseEvent) {
+          function (mouseEvent: any) {
             searchDetailAddrFromCoords(
               mouseEvent.latLng,
-              function (result, status) {
+              function (result: any, status: any) {
                 if (status === window.kakao.maps.services.Status.OK) {
-                  const detailAddr = result[0].road_address
+                  let detailAddr = result[0].road_address
                     ? "<div>도로명주소 : " +
                       result[0].road_address.address_name +
                       "</div>"
@@ -72,7 +72,6 @@ export default function KakaoMapPage() {
 
                   const address = result[0];
 
-                  console.log(address);
                   setMapAddress(address);
                 }
               }
@@ -85,20 +84,20 @@ export default function KakaoMapPage() {
           searchAddrFromCoords(map.getCenter(), displayCenterInfo);
         });
 
-        function searchAddrFromCoords(coords, callback) {
+        function searchAddrFromCoords(coords: any, callback: any) {
           // 좌표로 행정동 주소 정보를 요청합니다
           geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
         }
 
-        function searchDetailAddrFromCoords(coords, callback) {
+        function searchDetailAddrFromCoords(coords: any, callback: any) {
           // 좌표로 법정동 상세 주소 정보를 요청합니다
           geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
         }
 
         // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
-        function displayCenterInfo(result, status) {
+        function displayCenterInfo(result: any, status: any) {
           if (status === window.kakao.maps.services.Status.OK) {
-            const infoDiv = document.getElementById("centerAddr");
+            document.getElementById("centerAddr");
 
             for (let i = 0; i < result.length; i++) {
               // 행정동의 region_type 값은 'H' 이므로

@@ -84,7 +84,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
                 )}
               </s.TagWrapper>
             </s.ContentsDiv>
-            {userInfo?.email !== props.data?.seller?.email ? (
+            {userInfo?.email !== props.data?.seller?.email && (
               <s.ButtonWrapper width="100%">
                 <s.Button
                   bgColor="#111"
@@ -104,8 +104,6 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
                   장바구니
                 </s.Button>
               </s.ButtonWrapper>
-            ) : (
-              <></>
             )}
           </s.ContentsWrapper>
         </s.ItemWrapper>
@@ -123,32 +121,34 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
           </s.ContentsDiv>
         </s.DetailWrapper>
         <s.DetailImgWrapper>
-          {props.data?.images
-            ? props.data?.images.map((el) => (
-                <s.DetailImg
-                  key={uuidv4()}
-                  src={`https://storage.googleapis.com/${el}`}
-                />
-              ))
-            : ""}
+          {props.data?.images &&
+            props.data?.images.map(
+              (el) =>
+                el && (
+                  <s.DetailImg
+                    key={uuidv4()}
+                    src={`https://storage.googleapis.com/${el}`}
+                  />
+                )
+            )}
         </s.DetailImgWrapper>
-        {userInfo?.email === props.data?.seller?.email ? (
+        {userInfo?.email === props.data?.seller?.email && (
           <s.ButtonWrapper width="30%">
             <s.Button
-              color="#bbd0ff"
+              bgColor="#f5f5f5"
+              fontColor="#111"
               onClick={props.onClickEdit(props.data?._id)}
             >
               수정하기
             </s.Button>
             <s.Button
-              color="#e9ecef"
+              bgColor="#f5f5f5"
+              fontColor="#111"
               onClick={props.onClickDelete(props.data?._id)}
             >
               삭제하기
             </s.Button>
           </s.ButtonWrapper>
-        ) : (
-          <></>
         )}
       </s.Main>
     </s.Wrapper>
