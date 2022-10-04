@@ -24,10 +24,12 @@ export default function MyAccountUI() {
               <p>구매내역</p>
             </s.Button>
           </Link>
-          <s.Button>
-            <s.CustomAccountCircle />
-            <p>내 정보 수정</p>
-          </s.Button>
+          <Link href={"/basket"}>
+            <s.Button>
+              <s.CustomAccountCircle />
+              <p>장바구니</p>
+            </s.Button>
+          </Link>
         </s.WrapperButton>
       </s.Main>
     </s.Wrapper>

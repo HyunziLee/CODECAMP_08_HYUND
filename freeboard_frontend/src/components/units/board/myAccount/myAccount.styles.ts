@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
 import {
-  AccountCircle,
   Storefront,
   CreditCard,
   Paid,
+  LocalGroceryStore,
 } from "@mui/icons-material";
 
 import { MAIN_COLOR } from "../../../../commons/stylesConst";
@@ -61,7 +61,7 @@ export const CustomStorefront = styled(Storefront)`
   }
 `;
 
-export const CustomAccountCircle = styled(AccountCircle)`
+export const CustomAccountCircle = styled(LocalGroceryStore)`
   font-size: 3rem;
   color: ${MAIN_COLOR};
   @media (max-width: 767px) {

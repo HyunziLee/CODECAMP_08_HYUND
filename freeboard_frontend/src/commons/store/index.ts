@@ -124,3 +124,8 @@ export const loginStateStd = atom({
   key: "loginStateStd",
   default: false,
 });
+
+export const basketValues = atom({
+  key: "basketValues",
+  default: [],
+});

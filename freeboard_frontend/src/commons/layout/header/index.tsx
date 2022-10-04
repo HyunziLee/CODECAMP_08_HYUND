@@ -133,7 +133,11 @@ export default function LayoutHeader() {
                   마이페이지
                 </s.Div>
                 <s.Div onClick={onClickLogout}>로그아웃</s.Div>
-                <s.Div>{`장바구니 ${basketTemp}`}</s.Div>
+                <s.Div
+                  onClick={() => {
+                    onClickMenu("basket");
+                  }}
+                >{`장바구니 ${basketTemp}`}</s.Div>
                 <s.Div>
                   {userInfo.userPoint.amount ? userInfo.userPoint.amount : 0}P
                 </s.Div>

@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import { IUseditem } from "../../../commons/types/generated/types";
 
 export const onClickBasket = (fetchUsedItem: IUseditem) => {
@@ -10,7 +11,8 @@ export const onClickBasket = (fetchUsedItem: IUseditem) => {
   // 2. 이미 담겼는지 확인하기
   const temp = baskets.filter((el: IUseditem) => el._id === fetchUsedItem._id); // temp는 임시로 저장할 때 주로 작명함
   if (temp.length === 1) {
-    alert("장바구니에 동일한 상품이 있습니다.");
+    Modal.warning({ content: "장바구니에 동일한 상품이 있습니다." });
+
     return;
   }
 
@@ -20,5 +22,7 @@ export const onClickBasket = (fetchUsedItem: IUseditem) => {
   localStorage.setItem("baskets", JSON.stringify(baskets)); // localStorage는 항상 문자열만 저장 가능
 
   basketLength = baskets.length;
+
+  Modal.success({ content: "장바구니에 담겼습니다." });
   return basketLength;
 };

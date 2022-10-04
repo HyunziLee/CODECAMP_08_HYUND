@@ -44,11 +44,6 @@ export const NodataImg = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  @media (max-width: 767px) {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
-  }
 `;
 export const CustomError = styled(ErrorOutline)`
   color: #333;

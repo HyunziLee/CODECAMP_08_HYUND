@@ -35,7 +35,7 @@ export default function MarketUI(props: IMarketUIProps) {
         >
           {props.item?.name}
         </s.Item>
-        <s.Item color="red" size="1.2rem" weight="800">
+        <s.Item color="red" size="1.2rem" weight="700">
           {props.item?.price}
         </s.Item>
       </s.ItemContents>
