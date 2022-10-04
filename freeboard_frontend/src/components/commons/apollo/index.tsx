@@ -28,18 +28,20 @@ interface IApolloSettingProps {
 export default function ApolloSetting(props: IApolloSettingProps) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState); // eslint-disable-line no-unused-vars
-  const aaa = useRecoilValueLoadable(restoreAccessTokenLoadable);
+  const refreshTokenFunc = useRecoilValueLoadable(restoreAccessTokenLoadable);
   const [basketTemp, setBasketTemp] = useRecoilState(basketLength); // eslint-disable-line no-unused-vars
 
   useEffect(() => {
-    aaa.toPromise().then((newAccessToken) => {
+    refreshTokenFunc.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
+
     const Fetch = async (accessToken: string) => {
       const resultUserInfo = await getUserInfo(accessToken);
       setUserInfo(resultUserInfo);
       return resultUserInfo;
     };
+
     Fetch(accessToken);
 
     const temp = JSON.parse(localStorage.getItem("baskets") || "[]");

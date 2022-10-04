@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ErrorOutline } from "@mui/icons-material";
 import { Container } from "@mui/system";
 import { BOX_SHADOW } from "../../../../commons/stylesConst";
 export const Wrapper = styled(Container)``;
@@ -27,6 +28,29 @@ export const ImageWrapper = styled.div`
   margin-top: 40px;
   @media (max-width: 767px) {
     width: 100%;
+  }
+`;
+
+export const NodataImg = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 767px) {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+  }
+`;
+export const CustomError = styled(ErrorOutline)`
+  color: #333;
+  font-size: 2.5rem;
+  @media (max-width: 767px) {
+    font-size: 1.5rem;
   }
 `;
 

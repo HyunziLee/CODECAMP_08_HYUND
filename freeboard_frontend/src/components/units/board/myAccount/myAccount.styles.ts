@@ -2,10 +2,11 @@ import styled from "@emotion/styled";
 import { Container } from "@mui/material";
 import {
   AccountCircle,
-  Payment,
-  SentimentDissatisfied,
   Storefront,
+  CreditCard,
+  Paid,
 } from "@mui/icons-material";
+
 import { MAIN_COLOR } from "../../../../commons/stylesConst";
 
 export const Wrapper = styled(Container)``;
@@ -44,7 +45,7 @@ export const Button = styled.button`
   }
 `;
 
-export const CustomPayment = styled(Payment)`
+export const CustomPaid = styled(Paid)`
   font-size: 3rem;
   color: ${MAIN_COLOR};
   @media (max-width: 767px) {
@@ -68,7 +69,7 @@ export const CustomAccountCircle = styled(AccountCircle)`
   }
 `;
 
-export const CustomSentimentDissatisfied = styled(SentimentDissatisfied)`
+export const CustomCreditCard = styled(CreditCard)`
   font-size: 3rem;
   color: ${MAIN_COLOR};
   @media (max-width: 767px) {

@@ -119,3 +119,8 @@ export const addressValue = atom({
     zoneCode: "",
   },
 });
+
+export const loginStateStd = atom({
+  key: "loginStateStd",
+  default: false,
+});

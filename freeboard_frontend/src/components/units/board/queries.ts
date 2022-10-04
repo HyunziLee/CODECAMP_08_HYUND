@@ -384,3 +384,37 @@ export const DELETE_USED_ITEM = gql`
     deleteUseditem(useditemId: $useditemId)
   }
 `;
+
+export const FETCH_USEDITEMS_I_BOUGHT = gql`
+  query fetchUseditemsIBought($page: Int) {
+    fetchUseditemsIBought(page: $page) {
+      _id
+      name
+      remarks
+      price
+      images
+      soldAt
+      seller {
+        name
+      }
+    }
+  }
+`;
+
+export const FETCH_USEDITEMS_I_SOLD = gql`
+  query fetchUseditemsISold($page: Int) {
+    fetchUseditemsISold(page: $page) {
+      _id
+      name
+      remarks
+      price
+      images
+      soldAt
+      createdAt
+      pickedCount
+      buyer {
+        name
+      }
+    }
+  }
+`;

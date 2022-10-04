@@ -16,6 +16,7 @@ import { Modal } from "antd";
 
 export default function LoginContainer() {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState); // eslint-disable-line no-unused-vars
+
   const client = useApolloClient();
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
@@ -51,6 +52,7 @@ export default function LoginContainer() {
       const userInfo = resultUserInfo.data?.fetchUserLoggedIn;
 
       setUserInfo(userInfo);
+
       if (userInfo) {
         location.replace(`/myaccount`);
       } else {

@@ -21,7 +21,9 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
             {!bigImg ? (
               <s.ImageBigWrapper>
                 {props.data?.images[0] === "" ? (
-                  <s.NodataWrapper>등록된 사진이 없습니다.</s.NodataWrapper>
+                  <s.NodataImg>
+                    <s.CustomError />
+                  </s.NodataImg>
                 ) : (
                   <s.ImageBig
                     src={`https://storage.googleapis.com/${props.data?.images[0]}`}

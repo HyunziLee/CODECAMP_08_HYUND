@@ -13,7 +13,9 @@ export default function MarketUI(props: IMarketUIProps) {
   return (
     <s.WrapperItems>
       {!props.item?.images[0] ? (
-        <s.NoImg onClick={props.onClickDetail(props.item?._id, "")} />
+        <s.NodataImg onClick={props.onClickDetail(props.item?._id, "")}>
+          <s.CustomError />
+        </s.NodataImg>
       ) : (
         <s.ItemImage
           src={`https://storage.googleapis.com/${props.item?.images[0]}`}

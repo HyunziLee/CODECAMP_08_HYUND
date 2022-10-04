@@ -66,7 +66,7 @@ export default function LayoutHeader() {
           <s.HeaderMenu onMouseOver={onHover}>중고마켓</s.HeaderMenu>
           <s.HeaderMenu onMouseOver={onHover}>커뮤니티</s.HeaderMenu>
           <s.HeaderMenu onMouseOver={onHover}>
-            {userInfo ? `${userInfo.name}님` : "내 계정"}
+            {userInfo?.name ? `${userInfo.name}님` : "내 계정"}
           </s.HeaderMenu>
         </s.HeaderMenus>
       </s.WrapperHeaderMenu>
@@ -106,8 +106,7 @@ export default function LayoutHeader() {
                 게시물 등록
               </s.Div>
             </s.HeaderDetailMenu>
-            {console.log(userInfo)}
-            {!userInfo ? (
+            {!userInfo?.name ? (
               <s.HeaderDetailMenu>
                 <s.Div
                   onClick={() => {
