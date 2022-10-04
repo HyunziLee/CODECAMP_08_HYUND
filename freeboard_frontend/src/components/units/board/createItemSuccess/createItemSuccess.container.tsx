@@ -88,12 +88,14 @@ export default function CreateItemSuccess() {
   };
 
   return (
-    <CreateItemSuccessUI
-      data={data?.fetchUseditem}
-      onClickImg={onClickImg}
-      onClickBuying={onClickBuying}
-      onClickEdit={onClickEdit}
-      onClickDelete={onClickDelete}
-    />
+    data?.fetchUseditem && (
+      <CreateItemSuccessUI
+        data={data?.fetchUseditem}
+        onClickImg={onClickImg}
+        onClickBuying={onClickBuying}
+        onClickEdit={onClickEdit}
+        onClickDelete={onClickDelete}
+      />
+    )
   );
 }

@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import Dompurify from "dompurify";
 import { onClickBasket } from "../../../commons/Function/onClickAddBaskets";
 import { ICreateItemSuccessUIProps } from "./createItemSuccess.types";
+
 export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
   const [bigImg] = useRecoilState(detailImgState);
   const [basketTemp, setBasketTemp] = useRecoilState(basketLength); // eslint-disable-line no-unused-vars
@@ -116,7 +117,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
             {typeof window !== "undefined" && (
               <s.ContentsH3
                 dangerouslySetInnerHTML={{
-                  __html: Dompurify.sanitize(props.data?.contents || ""),
+                  __html: Dompurify.sanitize(props.data?.contents),
                 }}
               ></s.ContentsH3>
             )}
