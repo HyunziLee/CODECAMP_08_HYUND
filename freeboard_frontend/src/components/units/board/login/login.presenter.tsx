@@ -42,13 +42,6 @@ export default function LoginUI(props: ILoginUIProps) {
                 width="100%"
               />
               <Warning errormsg={props.formState.errors.password?.message} />
-              <s.SubService>
-                <s.SubServiceText>아이디 기억하기</s.SubServiceText>
-                <s.FindUserInfo>
-                  <s.SubServiceText>아이디 찾기 /</s.SubServiceText>
-                  <s.SubServiceText> 비밀번호 찾기</s.SubServiceText>
-                </s.FindUserInfo>
-              </s.SubService>
             </s.InputWrapper>
 
             <Button01
