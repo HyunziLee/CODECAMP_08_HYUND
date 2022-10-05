@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { ComponentType, useEffect } from "react";
 import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import {
   restoreAccessTokenLoadable,
   userInfoState,
 } from "../../../commons/store";
 
-export const withAuth = (Component: any) => (props: any) => {
+export const withAuth = (Component: ComponentType) => <P extends {}>(props: P) => {
   const router = useRouter();
   const [userInfo] = useRecoilState(userInfoState);
 

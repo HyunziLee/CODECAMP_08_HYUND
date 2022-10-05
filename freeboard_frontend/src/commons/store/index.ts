@@ -35,7 +35,7 @@ export const visitedPageState = atom({
   default: "/",
 });
 
-export const TagArr = atom({
+export const TagArr = atom<string[]>({
   key: "TagArr",
   default: [],
 });

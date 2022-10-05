@@ -2,8 +2,12 @@
 import * as s from "./basket.styles";
 import { v4 as uuidv4 } from "uuid";
 import { IBasketProps } from "./basket.types";
+import { useEffect } from "react";
 export default function BasketUI(props: IBasketProps) {
-  const baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
+  let baskets: string[] = []
+  useEffect(()=>{
+     baskets = JSON.parse(localStorage.getItem("baskets") || "[]");
+  },[])
 
   return (
     <s.Wrapper>

@@ -24,7 +24,7 @@ const Img = styled.img`
 export default function LayoutSide() {
   const [recent, setRecent] = useState([]);
   useEffect(() => {
-    const tempImg = JSON.parse(sessionStorage.getItem("recentImages"));
+    const tempImg = JSON.parse(sessionStorage.getItem("recentImages" ) || "[]");
     setRecent(tempImg);
   }, []);
 
