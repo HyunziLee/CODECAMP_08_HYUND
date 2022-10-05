@@ -1,7 +1,8 @@
-import { IQuery, IUseditem } from "../../../../commons/types/generated/types";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IMarketUIProps {
-  item: IUseditem;
+  // item: IUseditem;
+  item: any;
   onClickDetail: (id: string, img: string) => () => void;
   onClickPick: (parm: string) => () => void;
   IPick: Pick<IQuery, "fetchUseditemsIPicked"> | undefined;

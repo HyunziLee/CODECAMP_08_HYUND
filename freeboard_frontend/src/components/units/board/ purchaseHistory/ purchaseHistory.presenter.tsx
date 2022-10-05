@@ -20,9 +20,9 @@ export default function PurchaseHistoryUI(props: IPurchaseHistoryProps) {
               hasMore={true}
               useWindow={false}
             >
-              {props.data?.map((el) => (
+              {props.data?.map((el: any) => (
                 <s.PurchaseItem key={uuidv4()}>
-                  {el.images[0] === "" || el?.images?.length === 0 ? (
+                  {el?.images[0] === undefined || el?.images.length === 0 ? (
                     <s.NodataImg>
                       <s.CustomError />
                     </s.NodataImg>

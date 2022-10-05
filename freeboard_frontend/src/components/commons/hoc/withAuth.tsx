@@ -6,7 +6,7 @@ import {
   userInfoState,
 } from "../../../commons/store";
 
-export const withAuth = (Component) => (props) => {
+export const withAuth = (Component: any) => (props: any) => {
   const router = useRouter();
   const [userInfo] = useRecoilState(userInfoState);
 
@@ -20,8 +20,7 @@ export const withAuth = (Component) => (props) => {
   // }, []);
 
   useEffect(() => {
-    if (userInfo) return;
-    else {
+    if (!userInfo) {
       aaa.toPromise().then((newAccessToken) => {
         if (!newAccessToken) {
           alert("로그인을 먼저 해주세요");

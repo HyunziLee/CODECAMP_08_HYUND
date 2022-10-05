@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { Maybe } from "graphql/jsutils/Maybe";
-import { UseFormRegister } from "react-hook-form";
+// import { Maybe } from "graphql/jsutils/Maybe";
+// import { UseFormRegister } from "react-hook-form";
 
-import { IUseForm } from "../../../units/board/createItem/createItem.types";
-import { FormValue } from "../../../units/board/signup/signup.types";
+// import { IUseForm } from "../../../units/board/createItem/createItem.types";
+// import { FormValue } from "../../../units/board/signup/signup.types";
 
 export const InfoInput = styled.input<{ width: string }>`
   width: ${(props) => props.width};
@@ -30,16 +30,16 @@ export const InfoInput = styled.input<{ width: string }>`
 //   name: string;
 // }
 
-interface IInputProps {
-  type: string;
+// interface IInputProps {
+//   type: string;
 
-  register: UseFormRegister<IUseForm> | UseFormRegister<FormValue>;
-  name: string;
-  defaultValue: string | Maybe<number> | undefined;
-  width: string;
-}
-
-export default function Input02(props: IInputProps) {
+//   register: UseFormRegister<IUseForm> | UseFormRegister<FormValue>;
+//   name: string;
+//   defaultValue: string | Maybe<number> | undefined;
+//   width: string;
+// }
+// IInputProps
+export default function Input02(props: any) {
   const { name, register, type, width, defaultValue } = props;
   return (
     <InfoInput

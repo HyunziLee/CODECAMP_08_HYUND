@@ -21,7 +21,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
           <s.ImageWrapper>
             {!bigImg ? (
               <s.ImageBigWrapper>
-                {props.data?.images[0] === "" ? (
+                {props.data?.images[0] === undefined ? (
                   <s.NodataImg>
                     <s.CustomError />
                   </s.NodataImg>
@@ -36,21 +36,18 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
             )}
 
             <s.ImageSmallWrapper>
-              {props.data?.images?.map((el: string) =>
-                el ? (
-                  <s.ImageSmall
-                    key={uuidv4()}
-                    src={`https://storage.googleapis.com/${el}`}
-                    onClick={props.onClickImg(el)}
-                  />
-                ) : (
-                  ""
-                )
+              {props.data?.images?.map(
+                (el: string) =>
+                  el && (
+                    <s.ImageSmall
+                      key={uuidv4()}
+                      src={`https://storage.googleapis.com/${el}`}
+                      onClick={props.onClickImg(el)}
+                    />
+                  )
               )}
             </s.ImageSmallWrapper>
           </s.ImageWrapper>
-          {console.log(props.data)}
-
           <s.ContentsWrapper>
             <s.ContentsDiv>
               <s.TitleH4>상품명</s.TitleH4>
@@ -126,7 +123,7 @@ export default function CreateItemSuccessUI(props: ICreateItemSuccessUIProps) {
         <s.DetailImgWrapper>
           {props.data?.images &&
             props.data?.images.map(
-              (el) =>
+              (el: string) =>
                 el && (
                   <s.DetailImg
                     key={uuidv4()}

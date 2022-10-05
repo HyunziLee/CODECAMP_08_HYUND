@@ -8,11 +8,11 @@ import { basketLength } from "../../../../commons/store";
 import { IMarketUIProps } from "./market.types";
 
 export default function MarketUI(props: IMarketUIProps) {
-  const [basketTemp, setBasketTemp] = useRecoilState(basketLength);
+  const [basketTemp, setBasketTemp] = useRecoilState(basketLength); // eslint-disable-line no-unused-vars
 
   return (
     <s.WrapperItems>
-      {!props.item?.images[0] ? (
+      {props.item?.images[0] === undefined ? (
         <s.NodataImg onClick={props.onClickDetail(props.item?._id, "")}>
           <s.CustomError />
         </s.NodataImg>
@@ -30,7 +30,7 @@ export default function MarketUI(props: IMarketUIProps) {
           weight="400"
           onClick={props.onClickDetail(
             props.item?._id,
-            props?.item?.images[0] ? props.item?.images[0] : ""
+            props.item?.images[0] !== undefined ? props.item?.images[0] : ""
           )}
         >
           {props.item?.name}

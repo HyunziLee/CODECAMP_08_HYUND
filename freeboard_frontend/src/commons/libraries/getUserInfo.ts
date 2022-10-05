@@ -5,7 +5,7 @@ export async function getUserInfo(accessToken: string) {
   if (!accessToken) return;
   try {
     const graphQlClient = new GraphQLClient(
-      "https://backend08.codebootcamp.co.kr/graphql",
+      "https://backend08.codebootcamp.co.kr/graphql/graphql04",
       {
         credentials: "include",
         headers: { Authorization: `Bearer ${accessToken}` },

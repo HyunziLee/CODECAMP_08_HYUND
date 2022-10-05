@@ -1,4 +1,4 @@
-import { IUseditem } from "../../../../commons/types/generated/types";
+// import { IUseditem } from "../../../../commons/types/generated/types";
 import * as s from "./basket.styles";
 import { v4 as uuidv4 } from "uuid";
 import { IBasketProps } from "./basket.types";
@@ -14,12 +14,12 @@ export default function BasketUI(props: IBasketProps) {
             <s.Text>장바구니가 비었습니다.</s.Text>
           </s.Nodata>
         ) : (
-          baskets.map((el: IUseditem) => (
+          baskets.map((el: any) => (
             <s.Basket
               key={uuidv4()}
               onClick={() => props.onClickDetail(el._id)}
             >
-              {el.images[0] ? (
+              {el?.images[0] !== undefined ? (
                 <s.ItemImg
                   src={`https://storage.googleapis.com/${el.images[0]}`}
                 />
