@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@mui/icons-material": "^5.8.4",
-    "apollo-upload-client": "^17.0.0"
-  }
-}
