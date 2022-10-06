@@ -25,7 +25,7 @@ export default function SignUpContainer() {
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-
+  // dd
   const onClickSignUp = async (data: FormValue) => {
     if (!(data.email && data.password && data.name)) {
       return;
