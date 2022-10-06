@@ -3,10 +3,20 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   margin: auto;
   position: relative;
+  height: 100%;
+  min-height: 100%;
+
+  
 `;
 
 export const Video = styled.video`
   width: 100%;
+ 
+  /* @media (max-width: 767px) {
+    transform: rotate(90deg);
+    
+  } */
+ 
 `;
 
 export const VideoText = styled.div<{

@@ -3,7 +3,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Container } from "@mui/system";
 
-export const Wrapper = styled(Container)``;
+export const Wrapper = styled(Container)`
+ height: 100vh;
+`;
 
 export const Main = styled.div`
   margin: auto;

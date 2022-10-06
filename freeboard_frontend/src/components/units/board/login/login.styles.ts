@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
 
-export const Wrapper = styled(Container)``;
+export const Wrapper = styled(Container)`
+   height: 100vh;
+ 
+`;
 
 export const Main = styled.main`
   width: 100%;

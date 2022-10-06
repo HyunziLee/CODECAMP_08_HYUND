@@ -2,8 +2,33 @@ import styled from "@emotion/styled";
 import { Container } from "@mui/material";
 
 export const WrapperFooter = styled.div`
-  height: 300px;
+  height: 200px;
   background-color: #f5f5f5;
+`;
+export const FooterMain = styled(Container)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 50px;
+
+`;
+export const TitleWrapper = styled.div<{direction: string}>`
+  width: 20%;
+  display: flex;
+  flex-direction: ${props=>props.direction};
+  justify-content: space-between;
+  @media (max-width: 767px) {
+    width: 40%;
+  }
+ 
+
+`;
+export const FooterTitle = styled.div<{size: string}>`
+  font-size: ${(props)=>props.size};
+  color: #c0c0c0;
+  @media (max-width: 767px) {
+    font-size: 0.5rem;
+  }
 `;
 
 export const WrapperHeader = styled(Container)`

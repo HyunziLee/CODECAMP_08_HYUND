@@ -72,7 +72,7 @@ export default function BoardDetail(props: IBoardDetailProps) {
   };
 
   const MoveToEditPageBtn = () => {
-    router.push(`/PostDetail/Edit/${router.query.name}`); // 나중에 페이저번호 번수로 저장해서 바꿔야함 /p/아님
+    router.push(`/PostDetail/Edit/${router.query.name}/`); // 나중에 페이저번호 번수로 저장해서 바꿔야함 /p/아님
   };
 
   const likeBtn = () => {

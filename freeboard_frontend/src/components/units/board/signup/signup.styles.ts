@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { Container } from "@mui/material";
 
-export const Wrapper = styled(Container)``;
+export const Wrapper = styled(Container)`
+   height: 100vh;
+`;
 
 export const Main = styled.main`
   width: 100%;
@@ -26,10 +28,12 @@ export const Title = styled.div`
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
+  margin-bottom: 50px;
 `;
 export const InfoWrapper = styled.div`
   width: 100%;
   margin-bottom: 30px;
+ 
 `;
 export const InputWrapper = styled.div`
   display: flex;

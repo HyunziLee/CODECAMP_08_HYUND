@@ -15,7 +15,8 @@ export const Button = styled.button<{
   margin-bottom: 10px;
   cursor: pointer;
   @media (max-width: 767px) {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    width: 40%;
   }
 `;
 

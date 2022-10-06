@@ -19,12 +19,13 @@ export default function MainUI() {
         modules={[Mousewheel, Pagination]}
         className="mySwiper"
       >
-        <s.CustonSwiperSlide>Slide 1</s.CustonSwiperSlide>
-        <s.CustonSwiperSlide>Slide 2</s.CustonSwiperSlide>
-        <s.CustonSwiperSlide>Slide 3</s.CustonSwiperSlide>
-        <s.CustonSwiperSlide>Slide 4</s.CustonSwiperSlide>
-        <s.CustonSwiperSlide>Slide 5</s.CustonSwiperSlide>
-        <s.CustonSwiperSlide>Slide 6</s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>
+          <s.Img src="/img/main1.jpg" color="#B6D2D6"/>
+        </s.CustonSwiperSlide>
+        <s.CustonSwiperSlide>
+        <s.Img src="/img/main2.jpg" color="#fff"/>
+        </s.CustonSwiperSlide>
+        
       </s.CustonSwiper>
     </s.Wrapper>
   );

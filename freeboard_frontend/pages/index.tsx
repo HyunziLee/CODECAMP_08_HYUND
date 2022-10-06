@@ -91,7 +91,7 @@ export default function Home() {
       )}
       {isMobile && (
         <s.Wrapper>
-          <s.Video autoPlay muted loop src={BgVideo}></s.Video>
+          
           {isHover ? (
             <s.VideoText
               fontsize={`10px`}
@@ -115,9 +115,7 @@ export default function Home() {
           )}
         </s.Wrapper>
       )}
-      {/* <s.Main_intro>
-        <s.Intro_contents data-aos="fade-up" />
-      </s.Main_intro> */}
+   
     </>
   );
 }
