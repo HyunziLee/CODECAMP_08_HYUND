@@ -10,7 +10,7 @@ import ApolloSetting from "../src/components/commons/apollo";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      {/* 🔻 useMutation 등 사용할 때  써야함 */}
+      {/* 🔻 useMutation 등 사용할 때  써야함! */}
       <ApolloSetting>
         <Layout>
           <Component {...pageProps} />
