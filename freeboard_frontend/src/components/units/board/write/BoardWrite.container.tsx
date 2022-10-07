@@ -102,7 +102,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
         Modal.success({
           content: "게시글이 등록되었습니다.",
           onOk: () => {
-            location.replace(`/PostDetail/${result.data?.createBoard._id}`);
+            location.replace(`/PostDetail/${result.data?.createBoard._id}/`);
           },
         });
       } catch (error) {
