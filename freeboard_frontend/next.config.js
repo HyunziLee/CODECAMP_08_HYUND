@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
+  assetPrefix: '.'
 }
 
 module.exports = nextConfig
