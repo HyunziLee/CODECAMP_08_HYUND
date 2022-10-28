@@ -38,7 +38,7 @@
   - 개인프로젝트 (중고거래, 커뮤니트 플랫폼)
   - 프로젝트 명: pick-pick (원하는 중고 물품 pick, 맘에 드는 게시글 pick)
   - 배포
-    - [https:pick-pick.shop](https:pick-pick.shop)
+    - [https:pick-pick.shop](https://www.pick-pick.shop/)
     - vercel 배포
   - 프로젝트 시작 방법:
     1. 폴더 경로 이동
