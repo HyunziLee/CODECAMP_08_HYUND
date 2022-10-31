@@ -31,7 +31,7 @@ export const getSeverSideProps = async (context) => {
   // 여기서 fetchBoard 요청하기
 
   const graphQLClient = new GraphQLClient(
-    "https://backend08.codebootcamp.co.kr/graphql/graphql04"
+    "https://backend08.codebootcamp.co.kr/graphql04"
   );
   const result = await graphQLClient.request(FETCH_BOARD, {
     boardId: context.query.boardId,

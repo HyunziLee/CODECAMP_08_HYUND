@@ -8,7 +8,7 @@ export async function getUserInfo(parm) {
   console.log(parm);
   try {
     const graphQlClient = new GraphQLClient(
-      "https://backend08.codebootcamp.co.kr/graphql/graphql04",
+      "https://backend08.codebootcamp.co.kr/graphql04",
       { credentials: "include", headers: { Authorization: `Bearer ${parm}` } }
     );
     const result = await graphQlClient.request(FETCH_USER_LOGGED_IN);
