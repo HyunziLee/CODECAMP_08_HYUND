@@ -9,6 +9,7 @@
 - freeboard_frontend
 
   - 개인프로젝트: pick-pick (중고거래, 커뮤니티 플랫폼 - 원하는 중고 물품 pick, 맘에 드는 게시글 pick)
+
     <img width="30%" src="https://user-images.githubusercontent.com/93130161/198503512-3a83a3e8-31c0-40f8-b422-f47b874bcb2d.png" />
 
   - 배포
